@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="danceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="50%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+    <filter id="danceGlow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="24" fill="#0f172a" fill-opacity="0.8"/>
+  <!-- Music EQ Equalizer Spectrum Bars -->
+  <g fill="url(#danceGrad)" opacity="0.6">
+    <rect x="35" y="130" width="10" height="30" rx="2" />
+    <rect x="52" y="110" width="10" height="50" rx="2" />
+    <rect x="69" y="85" width="10" height="75" rx="2" />
+    <rect x="121" y="95" width="10" height="65" rx="2" />
+    <rect x="138" y="120" width="10" height="40" rx="2" />
+    <rect x="155" y="135" width="10" height="25" rx="2" />
+  </g>
+  <!-- Breakdancer silhouette / dynamic action icon -->
+  <!-- Head -->
+  <circle cx="95" cy="55" r="9" fill="#00f0ff" filter="url(#danceGlow)" />
+  <!-- Torso and Limbs in freeze pose -->
+  <path d="M95 65 L95 105 L70 90 M95 80 L125 70 M95 105 L115 130 L135 125 M95 105 L75 140 L60 135" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#danceGlow)" />
+</svg>

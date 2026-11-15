@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="expoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+    <filter id="expoGlow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="24" fill="#0f172a" fill-opacity="0.8"/>
+  <!-- Hologram Pedestal -->
+  <ellipse cx="100" cy="155" rx="55" ry="16" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2" />
+  <ellipse cx="100" cy="155" rx="35" ry="10" fill="none" stroke="#00f0ff" stroke-width="1.5" />
+  <!-- Hologram Light Rays -->
+  <polygon points="100,55 50,155 150,155" fill="url(#expoGrad)" fill-opacity="0.12" />
+  <!-- Rocket / Prototype icon -->
+  <path d="M100 45 C85 70, 85 105, 90 125 L110 125 C115 105, 115 70, 100 45 Z" fill="#1e293b" stroke="url(#expoGrad)" stroke-width="2" />
+  <!-- Rocket Fins -->
+  <path d="M90 110 L75 125 L90 125 Z" fill="#8b5cf6" />
+  <path d="M110 110 L125 125 L110 125 Z" fill="#8b5cf6" />
+  <!-- Window -->
+  <circle cx="100" cy="80" r="7" fill="#00f0ff" filter="url(#expoGlow)" />
+  <circle cx="100" cy="80" r="3" fill="#ffffff" />
+  <!-- Thruster flame -->
+  <polygon points="95,126 100,142 105,126" fill="#f59e0b" filter="url(#expoGlow)" />
+</svg>

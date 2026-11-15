@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="quizGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#00f0ff" />
+    </linearGradient>
+    <filter id="quizGlow">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="24" fill="#0f172a" fill-opacity="0.8"/>
+  <!-- Neural Head/Brain silhouette base -->
+  <circle cx="100" cy="100" r="55" fill="none" stroke="url(#quizGrad)" stroke-width="2" stroke-dasharray="6 4" />
+  <!-- Question Mark Tech Bolt -->
+  <path d="M85 70 C85 55, 115 55, 115 70 C115 82, 100 88, 100 102" fill="none" stroke="#00f0ff" stroke-width="5" stroke-linecap="round" filter="url(#quizGlow)" />
+  <circle cx="100" cy="120" r="4.5" fill="#00f0ff" filter="url(#quizGlow)" />
+  <!-- Lightning Spurt -->
+  <path d="M60 115 L70 95 L63 95 L75 75" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M140 115 L130 95 L137 95 L125 75" fill="none" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

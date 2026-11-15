@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="webGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <filter id="webGlow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="24" fill="#0f172a" fill-opacity="0.8"/>
+  <!-- Browser Frame -->
+  <rect x="35" y="45" width="130" height="110" rx="10" fill="#090d16" stroke="url(#webGrad)" stroke-width="2.5" />
+  <path d="M35 68 L165 68" stroke="url(#webGrad)" stroke-width="1.5" />
+  <circle cx="48" cy="56" r="3.5" fill="#ec4899" />
+  <circle cx="58" cy="56" r="3.5" fill="#f59e0b" />
+  <circle cx="68" cy="56" r="3.5" fill="#10b981" />
+  <!-- Responsive layout blocks inside -->
+  <rect x="47" y="78" width="106" height="20" rx="4" fill="rgba(236, 72, 153, 0.25)" stroke="#ec4899" stroke-width="1"/>
+  <rect x="47" y="105" width="50" height="38" rx="4" fill="rgba(139, 92, 246, 0.25)" stroke="#8b5cf6" stroke-width="1"/>
+  <rect x="103" y="105" width="50" height="38" rx="4" fill="rgba(0, 240, 255, 0.25)" stroke="#00f0ff" stroke-width="1"/>
+</svg>

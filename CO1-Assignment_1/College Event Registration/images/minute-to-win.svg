@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="mtwGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#ef4444" />
+    </linearGradient>
+    <filter id="mtwGlow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="24" fill="#0f172a" fill-opacity="0.8"/>
+  <!-- Stopwatch Outer Shell -->
+  <circle cx="100" cy="110" r="48" fill="#1e293b" stroke="url(#mtwGrad)" stroke-width="2.5" />
+  <!-- Top button -->
+  <rect x="94" y="46" width="12" height="16" rx="2" fill="#94a3b8" />
+  <rect x="88" y="42" width="24" height="6" rx="2" fill="#cbd5e1" />
+  <!-- Side angle button -->
+  <rect x="135" y="58" width="10" height="12" rx="2" fill="#94a3b8" transform="rotate(40 140 64)" />
+  <!-- Dial face -->
+  <circle cx="100" cy="110" r="38" fill="#0b1120" />
+  <!-- Ticking arc (60s mark) -->
+  <circle cx="100" cy="110" r="34" fill="none" stroke="url(#mtwGrad)" stroke-width="2" stroke-dasharray="160 50" stroke-linecap="round" />
+  <!-- Hand pointing to 60 / countdown -->
+  <line x1="100" y1="110" x2="100" y2="82" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" filter="url(#mtwGlow)" />
+  <circle cx="100" cy="110" r="4" fill="#f59e0b" />
+  <text x="100" y="132" font-family="'Orbitron', sans-serif" font-size="11" font-weight="900" fill="#10b981" text-anchor="middle">60 SEC</text>
+</svg>

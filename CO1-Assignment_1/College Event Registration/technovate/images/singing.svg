@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="singGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#00f0ff" />
+    </linearGradient>
+    <filter id="singGlow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="24" fill="#0f172a" fill-opacity="0.8"/>
+  <!-- Vintage Studio Microphone -->
+  <!-- Capsule -->
+  <rect x="80" y="45" width="40" height="60" rx="20" fill="#1e293b" stroke="url(#singGrad)" stroke-width="2.5" />
+  <line x1="80" y1="65" x2="120" y2="65" stroke="url(#singGrad)" stroke-width="2" />
+  <line x1="80" y1="85" x2="120" y2="85" stroke="url(#singGrad)" stroke-width="2" />
+  <line x1="100" y1="45" x2="100" y2="105" stroke="url(#singGrad)" stroke-width="2" />
+  <!-- U-Mount -->
+  <path d="M70 75 C70 120, 130 120, 130 75" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+  <line x1="100" y1="112" x2="100" y2="145" stroke="#94a3b8" stroke-width="4" stroke-linecap="round" />
+  <ellipse cx="100" cy="148" rx="25" ry="8" fill="#334155" stroke="url(#singGrad)" stroke-width="2" />
+  <!-- Musical notes -->
+  <path d="M142 55 L155 50 L155 70 M142 65 L155 60" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" />
+  <circle cx="142" cy="70" r="4" fill="#ec4899" filter="url(#singGlow)" />
+  <circle cx="155" cy="65" r="4" fill="#ec4899" filter="url(#singGlow)" />
+  <path d="M50 75 L60 70 L60 85 M50 82 L60 78" fill="none" stroke="#00f0ff" stroke-width="2" stroke-linecap="round" />
+  <circle cx="50" cy="88" r="3.5" fill="#00f0ff" filter="url(#singGlow)" />
+  <circle cx="60" cy="83" r="3.5" fill="#00f0ff" filter="url(#singGlow)" />
+</svg>

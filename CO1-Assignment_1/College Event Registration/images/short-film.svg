@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="filmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+    <filter id="filmGlow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="24" fill="#0f172a" fill-opacity="0.8"/>
+  <!-- Clapperboard Lower Slate -->
+  <rect x="40" y="80" width="120" height="80" rx="8" fill="#1e293b" stroke="url(#filmGrad)" stroke-width="2.5" />
+  <!-- Clapper Upper Stick with stripes -->
+  <g transform="rotate(-12 40 75)">
+    <rect x="40" y="55" width="120" height="22" rx="4" fill="#0f172a" stroke="url(#filmGrad)" stroke-width="2" />
+    <polygon points="50,56 60,56 50,76 40,76" fill="#38bdf8" />
+    <polygon points="75,56 85,56 75,76 65,76" fill="#8b5cf6" />
+    <polygon points="100,56 110,56 100,76 90,76" fill="#ec4899" />
+    <polygon points="125,56 135,56 125,76 115,76" fill="#38bdf8" />
+    <polygon points="150,56 158,56 148,76 140,76" fill="#8b5cf6" />
+  </g>
+  <!-- Cinema Slate markings -->
+  <circle cx="100" cy="120" r="16" fill="rgba(0,240,255,0.15)" stroke="#00f0ff" stroke-width="1.5" />
+  <polygon points="95,110 110,120 95,130" fill="#00f0ff" filter="url(#filmGlow)" />
+  <line x1="55" y1="148" x2="145" y2="148" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 4" />
+</svg>

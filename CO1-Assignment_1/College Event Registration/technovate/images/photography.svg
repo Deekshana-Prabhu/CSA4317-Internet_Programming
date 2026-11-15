@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="photoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899" />
+      <stop offset="50%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#00f0ff" />
+    </linearGradient>
+    <filter id="photoGlow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="200" height="200" rx="24" fill="#0f172a" fill-opacity="0.8"/>
+  <!-- Camera Body -->
+  <rect x="40" y="60" width="120" height="90" rx="14" fill="#1e293b" stroke="url(#photoGrad)" stroke-width="2.5" />
+  <path d="M75 60 L85 45 L115 45 L125 60 Z" fill="#334155" stroke="url(#photoGrad)" stroke-width="2" />
+  <!-- Shutter Button & Flash -->
+  <circle cx="60" cy="50" r="5" fill="#ec4899" filter="url(#photoGlow)" />
+  <rect x="135" y="70" width="14" height="10" rx="2" fill="#00f0ff" />
+  <!-- Lens Aperture -->
+  <circle cx="100" cy="105" r="32" fill="#0b1120" stroke="url(#photoGrad)" stroke-width="3" />
+  <circle cx="100" cy="105" r="22" fill="#1e1b4b" stroke="#00f0ff" stroke-width="1.5" />
+  <circle cx="94" cy="98" r="6" fill="#00f0ff" opacity="0.8" filter="url(#photoGlow)" />
+  <circle cx="108" cy="112" r="3" fill="#ffffff" opacity="0.6" />
+</svg>
