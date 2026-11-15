@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPORTIFY – College Sports Tournament Management</title>
+  <meta name="description" content="Official College Sports Tournament Management Portal - Inter-Departmental Sports Championship 2026. Explore categories, live schedules, match scores, and register your team.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER & STICKY NAVIGATION ==================== -->
+  <header class="site-header" id="header">
+    <nav class="navbar" aria-label="Main Navigation">
+      <div class="nav-container">
+        <!-- Brand Logo -->
+        <a href="#hero" class="brand-logo" aria-label="SPORTIFY Home">
+          <img src="assets/images/sportify-logo.svg" alt="SPORTIFY Logo" class="logo-img">
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li class="nav-item"><a href="#sports" class="nav-link"><i class="fa-solid fa-trophy"></i> Sports Categories</a></li>
+          <li class="nav-item"><a href="#teams" class="nav-link"><i class="fa-solid fa-shield-halved"></i> Teams</a></li>
+          <li class="nav-item"><a href="#schedule" class="nav-link"><i class="fa-solid fa-calendar-days"></i> Tournament Schedule</a></li>
+          <li class="nav-item"><a href="#results" class="nav-link"><i class="fa-solid fa-medal"></i> Match Results</a></li>
+          <li class="nav-item"><a href="#register" class="nav-link"><i class="fa-solid fa-file-pen"></i> Register Team</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+        </ul>
+
+        <!-- Right Side CTA & Mobile Toggle -->
+        <div class="nav-actions">
+          <a href="#register" class="btn btn-primary nav-cta">
+            <span>Register Now</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main>
+
+    <!-- ==================== 1. HERO SECTION ==================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-overlay"></div>
+      
+      <!-- Dynamic Floating Glow Accents -->
+      <div class="ambient-glow glow-blue"></div>
+      <div class="ambient-glow glow-orange"></div>
+
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="championship-badge animate-fade-down">
+            <span class="pulse-indicator"></span>
+            <i class="fa-solid fa-fire"></i>
+            <span>ANNUAL INTER-COLLEGE ATHLETIC MEET 2026</span>
+          </div>
+
+          <h1 class="hero-title animate-fade-up">
+            Where Champions <br>
+            <span class="gradient-text">Are Made</span>
+          </h1>
+
+          <p class="hero-tagline animate-fade-up delay-1">
+            Compete. Conquer. Celebrate.
+          </p>
+
+          <p class="hero-description animate-fade-up delay-2">
+            Welcome to the official digital portal of the College Sports Department. Witness adrenaline-fueled rivalries, track real-time fixture updates, cheer for departmental squads, and lead your team to championship glory.
+          </p>
+
+          <div class="hero-cta-group animate-fade-up delay-3">
+            <a href="#schedule" class="btn btn-outline-glow">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span>Explore Tournaments</span>
+            </a>
+            <a href="#register" class="btn btn-primary btn-large">
+              <i class="fa-solid fa-flag-checkered"></i>
+              <span>Register Your Team</span>
+            </a>
+          </div>
+
+          <!-- Hero Highlights Quick Bar -->
+          <div class="hero-highlights animate-fade-up delay-4">
+            <div class="highlight-item">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>University Olympic Complex</span>
+            </div>
+            <div class="highlight-item">
+              <i class="fa-solid fa-stopwatch"></i>
+              <span>Live Electronic Scoring</span>
+            </div>
+            <div class="highlight-item">
+              <i class="fa-solid fa-award"></i>
+              <span>Over $10,000 in Trophies & Grants</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Graphic Showcase (Glassmorphic Featured Match Card) -->
+        <div class="hero-showcase animate-fade-left">
+          <div class="live-match-banner">
+            <div class="live-badge">
+              <span class="live-dot"></span> LIVE NOW
+            </div>
+            <div class="match-meta">Inter-Department T20 Championship</div>
+            <div class="clash-display">
+              <div class="clash-team">
+                <img src="assets/images/team-strikers.svg" alt="Royal Strikers Logo" class="team-mini-emblem">
+                <span class="team-clash-name">Strikers</span>
+                <span class="team-score">178/4 (20)</span>
+              </div>
+              <div class="clash-vs">VS</div>
+              <div class="clash-team">
+                <img src="assets/images/team-apex.svg" alt="Apex Predators Logo" class="team-mini-emblem">
+                <span class="team-clash-name">Predators</span>
+                <span class="team-score">152/9 (18.4)</span>
+              </div>
+            </div>
+            <div class="match-footer-stat">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Predators need 27 runs in 8 balls</span>
+            </div>
+            <a href="#schedule" class="btn btn-sm btn-glass">View Full Fixtures</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statistics Bar (Counters) -->
+      <aside class="hero-stats-bar">
+        <div class="stats-container">
+          <div class="stat-card" data-counter="20" data-suffix="+">
+            <div class="stat-icon-wrapper">
+              <i class="fa-solid fa-users-rays"></i>
+            </div>
+            <div class="stat-details">
+              <h3 class="stat-number"><span class="counter-value">0</span>+</h3>
+              <p class="stat-label">Registered Teams</p>
+            </div>
+          </div>
+
+          <div class="stat-card" data-counter="8" data-suffix="+">
+            <div class="stat-icon-wrapper">
+              <i class="fa-solid fa-volleyball"></i>
+            </div>
+            <div class="stat-details">
+              <h3 class="stat-number"><span class="counter-value">0</span>+</h3>
+              <p class="stat-label">Sports Categories</p>
+            </div>
+          </div>
+
+          <div class="stat-card" data-counter="30" data-suffix="+">
+            <div class="stat-icon-wrapper">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div class="stat-details">
+              <h3 class="stat-number"><span class="counter-value">0</span>+</h3>
+              <p class="stat-label">Matches Scheduled</p>
+            </div>
+          </div>
+
+          <div class="stat-card" data-counter="500" data-suffix="+">
+            <div class="stat-icon-wrapper">
+              <i class="fa-solid fa-person-running"></i>
+            </div>
+            <div class="stat-details">
+              <h3 class="stat-number"><span class="counter-value">0</span>+</h3>
+              <p class="stat-label">Student Participants</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ==================== 2. SPORTS CATEGORIES SECTION ==================== -->
+    <section class="section-padding sports-section" id="sports">
+      <div class="section-container">
+        <header class="section-header">
+          <span class="sub-heading"><i class="fa-solid fa-medal"></i> DISCIPLINE SHOWCASE</span>
+          <h2 class="main-heading">Explore <span class="gradient-text">Sports Categories</span></h2>
+          <p class="section-subtitle">
+            Eight competitive sporting arenas designed to foster athleticism, collegiate camaraderie, and peak physical excellence.
+          </p>
+        </header>
+
+        <!-- HTML5 Unordered List for Sports Categories -->
+        <ul class="sports-grid" role="list">
+
+          <!-- 1. Cricket -->
+          <li class="sports-card-item">
+            <article class="sport-card">
+              <div class="sport-img-container">
+                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80" 
+                     onerror="this.onerror=null; this.src='assets/images/cricket.svg';" 
+                     alt="T20 Cricket Tournament" class="sport-image" loading="lazy">
+                <div class="sport-badge-overlay">
+                  <i class="fa-solid fa-baseball-bat-ball"></i>
+                  <span>T20 Cricket</span>
+                </div>
+              </div>
+              <div class="sport-content">
+                <h3 class="sport-title">Cricket Championship</h3>
+                <p class="sport-desc">
+                  Fast-paced 20-over leather ball tournament played under floodlights on the international-grade university pitch.
+                </p>
+                <div class="sport-meta-row">
+                  <span><i class="fa-solid fa-users"></i> 11 Players + 4 Subs</span>
+                  <span><i class="fa-solid fa-location-dot"></i> Central Oval</span>
+                </div>
+                <button type="button" class="btn btn-outline-card view-sport-btn" data-sport="cricket">
+                  <span>View Details</span>
+                  <i class="fa-solid fa-circle-chevron-right"></i>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 2. Football -->
+          <li class="sports-card-item">
+            <article class="sport-card">
+              <div class="sport-img-container">
+                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80" 
+                     onerror="this.onerror=null; this.src='assets/images/football.svg';" 
+                     alt="Inter-Department Football Tournament" class="sport-image" loading="lazy">
+                <div class="sport-badge-overlay">
+                  <i class="fa-solid fa-futbol"></i>
+                  <span>Football</span>
+                </div>
+              </div>
+              <div class="sport-content">
+                <h3 class="sport-title">Football League</h3>
+                <p class="sport-desc">
+                  11-a-side championship featuring strategic passing, tactical grit, and high-intensity knockouts on natural turf.
+                </p>
+                <div class="sport-meta-row">
+                  <span><i class="fa-solid fa-users"></i> 11 Players + 5 Subs</span>
+                  <span><i class="fa-solid fa-location-dot"></i> North Stadium</span>
+                </div>
+                <button type="button" class="btn btn-outline-card view-sport-btn" data-sport="football">
+                  <span>View Details</span>
+                  <i class="fa-solid fa-circle-chevron-right"></i>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 3. Basketball -->
+          <li class="sports-card-item">
+            <article class="sport-card">
+              <div class="sport-img-container">
+                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80" 
+                     onerror="this.onerror=null; this.src='assets/images/basketball.svg';" 
+                     alt="Men and Women Basketball Trophy" class="sport-image" loading="lazy">
+                <div class="sport-badge-overlay">
+                  <i class="fa-solid fa-basketball"></i>
+                  <span>Basketball</span>
+                </div>
+              </div>
+              <div class="sport-content">
+                <h3 class="sport-title">Basketball Slam</h3>
+                <p class="sport-desc">
+                  Full-court 5v5 collegiate league featuring 4 high-octane 10-minute quarters with shot clocks inside the hardwood arena.
+                </p>
+                <div class="sport-meta-row">
+                  <span><i class="fa-solid fa-users"></i> 5 Players + 5 Subs</span>
+                  <span><i class="fa-solid fa-location-dot"></i> Indoor Arena</span>
+                </div>
+                <button type="button" class="btn btn-outline-card view-sport-btn" data-sport="basketball">
+                  <span>View Details</span>
+                  <i class="fa-solid fa-circle-chevron-right"></i>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 4. Volleyball -->
+          <li class="sports-card-item">
+            <article class="sport-card">
+              <div class="sport-img-container">
+                <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=800&q=80" 
+                     onerror="this.onerror=null; this.src='assets/images/volleyball.svg';" 
+                     alt="Volleyball Championship" class="sport-image" loading="lazy">
+                <div class="sport-badge-overlay">
+                  <i class="fa-solid fa-volleyball"></i>
+                  <span>Volleyball</span>
+                </div>
+              </div>
+              <div class="sport-content">
+                <h3 class="sport-title">Volleyball Clash</h3>
+                <p class="sport-desc">
+                  Best-of-5 sets rally tournament with powerful spikes, acrobatic digs, and impenetrable 3-man blocks.
+                </p>
+                <div class="sport-meta-row">
+                  <span><i class="fa-solid fa-users"></i> 6 Players + 4 Subs</span>
+                  <span><i class="fa-solid fa-location-dot"></i> East Court</span>
+                </div>
+                <button type="button" class="btn btn-outline-card view-sport-btn" data-sport="volleyball">
+                  <span>View Details</span>
+                  <i class="fa-solid fa-circle-chevron-right"></i>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 5. Badminton -->
+          <li class="sports-card-item">
+            <article class="sport-card">
+              <div class="sport-img-container">
+                <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=800&q=80" 
+                     onerror="this.onerror=null; this.src='assets/images/badminton.svg';" 
+                     alt="Badminton Singles and Doubles" class="sport-image" loading="lazy">
+                <div class="sport-badge-overlay">
+                  <i class="fa-solid fa-feather"></i>
+                  <span>Badminton</span>
+                </div>
+              </div>
+              <div class="sport-content">
+                <h3 class="sport-title">Badminton Masters</h3>
+                <p class="sport-desc">
+                  Fast-paced singles and doubles clashes on BWF-standard synthetic indoor mats with feather shuttlecocks.
+                </p>
+                <div class="sport-meta-row">
+                  <span><i class="fa-solid fa-users"></i> 1-2 Players + Subs</span>
+                  <span><i class="fa-solid fa-location-dot"></i> Badminton Complex</span>
+                </div>
+                <button type="button" class="btn btn-outline-card view-sport-btn" data-sport="badminton">
+                  <span>View Details</span>
+                  <i class="fa-solid fa-circle-chevron-right"></i>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 6. Table Tennis -->
+          <li class="sports-card-item">
+            <article class="sport-card">
+              <div class="sport-img-container">
+                <img src="https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?auto=format&fit=crop&w=800&q=80" 
+                     onerror="this.onerror=null; this.src='assets/images/table-tennis.svg';" 
+                     alt="Table Tennis Tournament" class="sport-image" loading="lazy">
+                <div class="sport-badge-overlay">
+                  <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                  <span>Table Tennis</span>
+                </div>
+              </div>
+              <div class="sport-content">
+                <h3 class="sport-title">Table Tennis Open</h3>
+                <p class="sport-desc">
+                  Lightning spin serves, counter-loops, and rapid-fire rallies contested across 8 international STIGA tables.
+                </p>
+                <div class="sport-meta-row">
+                  <span><i class="fa-solid fa-users"></i> 1-2 Players + Subs</span>
+                  <span><i class="fa-solid fa-location-dot"></i> Recreation Hall</span>
+                </div>
+                <button type="button" class="btn btn-outline-card view-sport-btn" data-sport="table-tennis">
+                  <span>View Details</span>
+                  <i class="fa-solid fa-circle-chevron-right"></i>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 7. Kabaddi -->
+          <li class="sports-card-item">
+            <article class="sport-card">
+              <div class="sport-img-container">
+                <img src="assets/images/kabaddi.svg" 
+                     alt="Pro Kabaddi Inter-College Cup" class="sport-image" loading="lazy">
+                <div class="sport-badge-overlay">
+                  <i class="fa-solid fa-hand-fist"></i>
+                  <span>Kabaddi</span>
+                </div>
+              </div>
+              <div class="sport-content">
+                <h3 class="sport-title">Kabaddi Premier Cup</h3>
+                <p class="sport-desc">
+                  Authentic contact sport played on rubberized synthetic mat with 30-second raid timers, bonus lines, and super tackles.
+                </p>
+                <div class="sport-meta-row">
+                  <span><i class="fa-solid fa-users"></i> 7 Players + 5 Subs</span>
+                  <span><i class="fa-solid fa-location-dot"></i> Gymnasium Mat</span>
+                </div>
+                <button type="button" class="btn btn-outline-card view-sport-btn" data-sport="kabaddi">
+                  <span>View Details</span>
+                  <i class="fa-solid fa-circle-chevron-right"></i>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 8. Athletics -->
+          <li class="sports-card-item">
+            <article class="sport-card">
+              <div class="sport-img-container">
+                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80" 
+                     onerror="this.onerror=null; this.src='assets/images/athletics.svg';" 
+                     alt="Athletics Track and Field Events" class="sport-image" loading="lazy">
+                <div class="sport-badge-overlay">
+                  <i class="fa-solid fa-person-running"></i>
+                  <span>Athletics</span>
+                </div>
+              </div>
+              <div class="sport-content">
+                <h3 class="sport-title">Track & Field Athletics</h3>
+                <p class="sport-desc">
+                  100m, 200m, 400m sprint dashes, 4x100m relays, long jump, shot put, and high jump on our synthetic track.
+                </p>
+                <div class="sport-meta-row">
+                  <span><i class="fa-solid fa-users"></i> Individual / Relays</span>
+                  <span><i class="fa-solid fa-location-dot"></i> Olympic Track</span>
+                </div>
+                <button type="button" class="btn btn-outline-card view-sport-btn" data-sport="athletics">
+                  <span>View Details</span>
+                  <i class="fa-solid fa-circle-chevron-right"></i>
+                </button>
+              </div>
+            </article>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================== 3. PARTICIPATING TEAMS SECTION ==================== -->
+    <section class="section-padding teams-section" id="teams">
+      <div class="section-container">
+        <header class="section-header">
+          <span class="sub-heading"><i class="fa-solid fa-shield-halved"></i> GLADIATORS OF SPORTIFY</span>
+          <h2 class="main-heading">Participating <span class="gradient-text">Teams</span></h2>
+          <p class="section-subtitle">
+            Representing various academic colleges and departments with unyielding determination and athletic spirit.
+          </p>
+
+          <!-- Team Sport Filter Buttons -->
+          <div class="teams-filter-bar">
+            <button type="button" class="filter-btn active" data-filter="all">All Teams</button>
+            <button type="button" class="filter-btn" data-filter="Cricket">Cricket</button>
+            <button type="button" class="filter-btn" data-filter="Football">Football</button>
+            <button type="button" class="filter-btn" data-filter="Basketball">Basketball</button>
+            <button type="button" class="filter-btn" data-filter="Volleyball">Volleyball</button>
+            <button type="button" class="filter-btn" data-filter="Badminton">Badminton</button>
+            <button type="button" class="filter-btn" data-filter="Kabaddi">Kabaddi</button>
+            <button type="button" class="filter-btn" data-filter="Athletics">Athletics</button>
+          </div>
+        </header>
+
+        <!-- Teams Grid -->
+        <div class="teams-grid" id="teamsGrid">
+          
+          <!-- Team 1 -->
+          <article class="team-card" data-sport="Football">
+            <div class="team-card-header">
+              <div class="team-logo-box">
+                <img src="assets/images/team-apex.svg" alt="Apex Predators Emblem" class="team-logo-img">
+              </div>
+              <span class="team-status-badge status-approved"><i class="fa-solid fa-circle-check"></i> Approved</span>
+            </div>
+            <div class="team-info">
+              <span class="team-sport-tag"><i class="fa-solid fa-futbol"></i> Football</span>
+              <h3 class="team-title">Apex Predators</h3>
+              <p class="team-college"><i class="fa-solid fa-building-columns"></i> Dept. of Computer Science</p>
+              
+              <div class="team-details-table">
+                <div class="detail-row">
+                  <span class="detail-key">Captain:</span>
+                  <span class="detail-val">Aryan Sharma</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Squad Size:</span>
+                  <span class="detail-val"><i class="fa-solid fa-user-group"></i> 16 Players</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Home Jersey:</span>
+                  <span class="detail-val"><span class="color-dot cyan"></span> Cyan & Navy</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Team 2 -->
+          <article class="team-card" data-sport="Cricket">
+            <div class="team-card-header">
+              <div class="team-logo-box">
+                <img src="assets/images/team-strikers.svg" alt="Royal Strikers Emblem" class="team-logo-img">
+              </div>
+              <span class="team-status-badge status-approved"><i class="fa-solid fa-circle-check"></i> Approved</span>
+            </div>
+            <div class="team-info">
+              <span class="team-sport-tag"><i class="fa-solid fa-baseball-bat-ball"></i> Cricket</span>
+              <h3 class="team-title">Royal Strikers</h3>
+              <p class="team-college"><i class="fa-solid fa-building-columns"></i> School of Business & Mgmt</p>
+              
+              <div class="team-details-table">
+                <div class="detail-row">
+                  <span class="detail-key">Captain:</span>
+                  <span class="detail-val">Rohit Verma</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Squad Size:</span>
+                  <span class="detail-val"><i class="fa-solid fa-user-group"></i> 15 Players</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Home Jersey:</span>
+                  <span class="detail-val"><span class="color-dot gold"></span> Gold & Navy</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Team 3 -->
+          <article class="team-card" data-sport="Basketball">
+            <div class="team-card-header">
+              <div class="team-logo-box">
+                <img src="assets/images/team-thunderbolts.svg" alt="Thunderbolts Emblem" class="team-logo-img">
+              </div>
+              <span class="team-status-badge status-approved"><i class="fa-solid fa-circle-check"></i> Approved</span>
+            </div>
+            <div class="team-info">
+              <span class="team-sport-tag"><i class="fa-solid fa-basketball"></i> Basketball</span>
+              <h3 class="team-title">Thunderbolts</h3>
+              <p class="team-college"><i class="fa-solid fa-building-columns"></i> Dept. of Mechanical Engg</p>
+              
+              <div class="team-details-table">
+                <div class="detail-row">
+                  <span class="detail-key">Captain:</span>
+                  <span class="detail-val">Marcus Vance</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Squad Size:</span>
+                  <span class="detail-val"><i class="fa-solid fa-user-group"></i> 10 Players</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Home Jersey:</span>
+                  <span class="detail-val"><span class="color-dot orange"></span> Electric Orange</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Team 4 -->
+          <article class="team-card" data-sport="Volleyball">
+            <div class="team-card-header">
+              <div class="team-logo-box">
+                <img src="assets/images/team-spikers.svg" alt="Titan Spikers Emblem" class="team-logo-img">
+              </div>
+              <span class="team-status-badge status-approved"><i class="fa-solid fa-circle-check"></i> Approved</span>
+            </div>
+            <div class="team-info">
+              <span class="team-sport-tag"><i class="fa-solid fa-volleyball"></i> Volleyball</span>
+              <h3 class="team-title">Titan Spikers</h3>
+              <p class="team-college"><i class="fa-solid fa-building-columns"></i> Dept. of Civil Engineering</p>
+              
+              <div class="team-details-table">
+                <div class="detail-row">
+                  <span class="detail-key">Captain:</span>
+                  <span class="detail-val">Vikram Rathore</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Squad Size:</span>
+                  <span class="detail-val"><i class="fa-solid fa-user-group"></i> 12 Players</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Home Jersey:</span>
+                  <span class="detail-val"><span class="color-dot green"></span> Emerald Green</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Team 5 -->
+          <article class="team-card" data-sport="Badminton">
+            <div class="team-card-header">
+              <div class="team-logo-box">
+                <img src="assets/images/team-smashers.svg" alt="Falcon Smashers Emblem" class="team-logo-img">
+              </div>
+              <span class="team-status-badge status-registered"><i class="fa-solid fa-clock"></i> Registered</span>
+            </div>
+            <div class="team-info">
+              <span class="team-sport-tag"><i class="fa-solid fa-feather"></i> Badminton</span>
+              <h3 class="team-title">Falcon Smashers</h3>
+              <p class="team-college"><i class="fa-solid fa-building-columns"></i> Dept. of Electrical Engg</p>
+              
+              <div class="team-details-table">
+                <div class="detail-row">
+                  <span class="detail-key">Captain:</span>
+                  <span class="detail-val">Sneha Patel</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Squad Size:</span>
+                  <span class="detail-val"><i class="fa-solid fa-user-group"></i> 6 Players</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Home Jersey:</span>
+                  <span class="detail-val"><span class="color-dot purple"></span> Neon Magenta</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Team 6 -->
+          <article class="team-card" data-sport="Kabaddi">
+            <div class="team-card-header">
+              <div class="team-logo-box">
+                <img src="assets/images/team-cyber.svg" alt="Cyber Warriors Emblem" class="team-logo-img">
+              </div>
+              <span class="team-status-badge status-approved"><i class="fa-solid fa-circle-check"></i> Approved</span>
+            </div>
+            <div class="team-info">
+              <span class="team-sport-tag"><i class="fa-solid fa-hand-fist"></i> Kabaddi</span>
+              <h3 class="team-title">Cyber Warriors</h3>
+              <p class="team-college"><i class="fa-solid fa-building-columns"></i> Dept. of Information Tech</p>
+              
+              <div class="team-details-table">
+                <div class="detail-row">
+                  <span class="detail-key">Captain:</span>
+                  <span class="detail-val">Devendra Yadav</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Squad Size:</span>
+                  <span class="detail-val"><i class="fa-solid fa-user-group"></i> 10 Players</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Home Jersey:</span>
+                  <span class="detail-val"><span class="color-dot blue"></span> Cyber Blue</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Team 7 -->
+          <article class="team-card" data-sport="Athletics">
+            <div class="team-card-header">
+              <div class="team-logo-box">
+                <img src="assets/images/team-velocity.svg" alt="Velocity Sprinters Emblem" class="team-logo-img">
+              </div>
+              <span class="team-status-badge status-approved"><i class="fa-solid fa-circle-check"></i> Approved</span>
+            </div>
+            <div class="team-info">
+              <span class="team-sport-tag"><i class="fa-solid fa-person-running"></i> Athletics</span>
+              <h3 class="team-title">Velocity Sprinters</h3>
+              <p class="team-college"><i class="fa-solid fa-building-columns"></i> School of Physical Education</p>
+              
+              <div class="team-details-table">
+                <div class="detail-row">
+                  <span class="detail-key">Captain:</span>
+                  <span class="detail-val">Priya Nair</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Squad Size:</span>
+                  <span class="detail-val"><i class="fa-solid fa-user-group"></i> 14 Athletes</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-key">Home Jersey:</span>
+                  <span class="detail-val"><span class="color-dot yellow"></span> Sunset Amber</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. TOURNAMENT SCHEDULE SECTION ==================== -->
+    <section class="section-padding schedule-section" id="schedule">
+      <div class="section-container">
+        <header class="section-header">
+          <span class="sub-heading"><i class="fa-solid fa-calendar-days"></i> OFFICIAL FIXTURES</span>
+          <h2 class="main-heading">Tournament <span class="gradient-text">Schedule</span></h2>
+          <p class="section-subtitle">
+            Track upcoming, ongoing and concluded matches across all college tournament categories.
+          </p>
+
+          <!-- Schedule Controls Bar -->
+          <div class="schedule-controls-bar">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="scheduleSearchInput" placeholder="Search team, sport or venue..." aria-label="Search Schedule">
+            </div>
+
+            <div class="filter-dropdown-wrapper">
+              <label for="scheduleSportFilter"><i class="fa-solid fa-filter"></i> Sport:</label>
+              <select id="scheduleSportFilter">
+                <option value="all">All Sports</option>
+                <option value="Cricket">Cricket</option>
+                <option value="Football">Football</option>
+                <option value="Basketball">Basketball</option>
+                <option value="Volleyball">Volleyball</option>
+                <option value="Badminton">Badminton</option>
+                <option value="Table Tennis">Table Tennis</option>
+                <option value="Kabaddi">Kabaddi</option>
+                <option value="Athletics">Athletics</option>
+              </select>
+            </div>
+
+            <div class="filter-dropdown-wrapper">
+              <label for="scheduleStatusFilter"><i class="fa-solid fa-circle-dot"></i> Status:</label>
+              <select id="scheduleStatusFilter">
+                <option value="all">All Statuses</option>
+                <option value="Live">Live</option>
+                <option value="Upcoming">Upcoming</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+          </div>
+        </header>
+
+        <!-- HTML5 Responsive Table Container -->
+        <div class="table-responsive-wrapper">
+          <table class="tournament-table" id="scheduleTable">
+            <thead>
+              <tr>
+                <th scope="col">Match ID</th>
+                <th scope="col">Sport</th>
+                <th scope="col">Team A</th>
+                <th scope="col">Team B</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Venue</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="scheduleTableBody">
+              
+              <!-- Match 1: LIVE -->
+              <tr class="match-row" data-sport="Cricket" data-status="Live">
+                <td class="match-id"><span class="id-tag">M-CRIC-01</span></td>
+                <td class="sport-cell"><i class="fa-solid fa-baseball-bat-ball sport-icon-accent"></i> Cricket</td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-strikers.svg" alt="Royal Strikers Logo" class="team-table-icon">
+                    <span class="team-name-strong">Royal Strikers</span>
+                  </div>
+                </td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-apex.svg" alt="Apex Predators Logo" class="team-table-icon">
+                    <span class="team-name-strong">Apex Predators</span>
+                  </div>
+                </td>
+                <td class="date-cell">Nov 15, 2026</td>
+                <td class="time-cell">02:30 PM</td>
+                <td class="venue-cell"><i class="fa-solid fa-location-dot"></i> Central Oval Turf</td>
+                <td class="status-cell">
+                  <span class="status-pill status-live">
+                    <span class="pulsing-live-dot"></span> LIVE NOW
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Match 2: LIVE -->
+              <tr class="match-row" data-sport="Football" data-status="Live">
+                <td class="match-id"><span class="id-tag">M-FOOT-02</span></td>
+                <td class="sport-cell"><i class="fa-solid fa-futbol sport-icon-accent"></i> Football</td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-apex.svg" alt="Apex Predators Logo" class="team-table-icon">
+                    <span class="team-name-strong">Apex Predators</span>
+                  </div>
+                </td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-thunderbolts.svg" alt="Thunder Bolts Logo" class="team-table-icon">
+                    <span class="team-name-strong">Thunderbolts FC</span>
+                  </div>
+                </td>
+                <td class="date-cell">Nov 15, 2026</td>
+                <td class="time-cell">04:00 PM</td>
+                <td class="venue-cell"><i class="fa-solid fa-location-dot"></i> North Stadium Turf</td>
+                <td class="status-cell">
+                  <span class="status-pill status-live">
+                    <span class="pulsing-live-dot"></span> LIVE NOW
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Match 3: Upcoming -->
+              <tr class="match-row" data-sport="Basketball" data-status="Upcoming">
+                <td class="match-id"><span class="id-tag">M-BASK-03</span></td>
+                <td class="sport-cell"><i class="fa-solid fa-basketball sport-icon-accent"></i> Basketball</td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-thunderbolts.svg" alt="Thunderbolts Logo" class="team-table-icon">
+                    <span class="team-name-strong">Thunderbolts</span>
+                  </div>
+                </td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-spikers.svg" alt="Titan Spikers Logo" class="team-table-icon">
+                    <span class="team-name-strong">Titan Hoopers</span>
+                  </div>
+                </td>
+                <td class="date-cell">Nov 16, 2026</td>
+                <td class="time-cell">10:00 AM</td>
+                <td class="venue-cell"><i class="fa-solid fa-location-dot"></i> University Indoor Arena</td>
+                <td class="status-cell">
+                  <span class="status-pill status-upcoming">
+                    <i class="fa-solid fa-hourglass-start"></i> Upcoming
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Match 4: Upcoming -->
+              <tr class="match-row" data-sport="Volleyball" data-status="Upcoming">
+                <td class="match-id"><span class="id-tag">M-VOLL-04</span></td>
+                <td class="sport-cell"><i class="fa-solid fa-volleyball sport-icon-accent"></i> Volleyball</td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-spikers.svg" alt="Titan Spikers Logo" class="team-table-icon">
+                    <span class="team-name-strong">Titan Spikers</span>
+                  </div>
+                </td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-cyber.svg" alt="Cyber Warriors Logo" class="team-table-icon">
+                    <span class="team-name-strong">Cyber Warriors</span>
+                  </div>
+                </td>
+                <td class="date-cell">Nov 16, 2026</td>
+                <td class="time-cell">03:30 PM</td>
+                <td class="venue-cell"><i class="fa-solid fa-location-dot"></i> East Volleyball Pavilion</td>
+                <td class="status-cell">
+                  <span class="status-pill status-upcoming">
+                    <i class="fa-solid fa-hourglass-start"></i> Upcoming
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Match 5: Upcoming -->
+              <tr class="match-row" data-sport="Badminton" data-status="Upcoming">
+                <td class="match-id"><span class="id-tag">M-BADM-05</span></td>
+                <td class="sport-cell"><i class="fa-solid fa-feather sport-icon-accent"></i> Badminton</td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-smashers.svg" alt="Falcon Smashers Logo" class="team-table-icon">
+                    <span class="team-name-strong">Falcon Smashers</span>
+                  </div>
+                </td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-strikers.svg" alt="Royal Strikers Logo" class="team-table-icon">
+                    <span class="team-name-strong">Royal Hitters</span>
+                  </div>
+                </td>
+                <td class="date-cell">Nov 17, 2026</td>
+                <td class="time-cell">11:00 AM</td>
+                <td class="venue-cell"><i class="fa-solid fa-location-dot"></i> Synthetic Court 1</td>
+                <td class="status-cell">
+                  <span class="status-pill status-upcoming">
+                    <i class="fa-solid fa-hourglass-start"></i> Upcoming
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Match 6: Upcoming -->
+              <tr class="match-row" data-sport="Kabaddi" data-status="Upcoming">
+                <td class="match-id"><span class="id-tag">M-KABA-06</span></td>
+                <td class="sport-cell"><i class="fa-solid fa-hand-fist sport-icon-accent"></i> Kabaddi</td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-cyber.svg" alt="Cyber Warriors Logo" class="team-table-icon">
+                    <span class="team-name-strong">Cyber Warriors</span>
+                  </div>
+                </td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-apex.svg" alt="Apex Raiders Logo" class="team-table-icon">
+                    <span class="team-name-strong">Apex Raiders</span>
+                  </div>
+                </td>
+                <td class="date-cell">Nov 17, 2026</td>
+                <td class="time-cell">05:00 PM</td>
+                <td class="venue-cell"><i class="fa-solid fa-location-dot"></i> Multi-Sport Gymnasium</td>
+                <td class="status-cell">
+                  <span class="status-pill status-upcoming">
+                    <i class="fa-solid fa-hourglass-start"></i> Upcoming
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Match 7: Completed -->
+              <tr class="match-row" data-sport="Table Tennis" data-status="Completed">
+                <td class="match-id"><span class="id-tag">M-TT-07</span></td>
+                <td class="sport-cell"><i class="fa-solid fa-table-tennis-paddle-ball sport-icon-accent"></i> Table Tennis</td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-velocity.svg" alt="Velocity Spinners Logo" class="team-table-icon">
+                    <span class="team-name-strong">Velocity Spinners</span>
+                  </div>
+                </td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-smashers.svg" alt="Falcon Smashers Logo" class="team-table-icon">
+                    <span class="team-name-strong">Falcon Paddlers</span>
+                  </div>
+                </td>
+                <td class="date-cell">Nov 14, 2026</td>
+                <td class="time-cell">02:00 PM</td>
+                <td class="venue-cell"><i class="fa-solid fa-location-dot"></i> Table Tennis Arena</td>
+                <td class="status-cell">
+                  <span class="status-pill status-completed">
+                    <i class="fa-solid fa-check"></i> Completed
+                  </span>
+                </td>
+              </tr>
+
+              <!-- Match 8: Completed -->
+              <tr class="match-row" data-sport="Athletics" data-status="Completed">
+                <td class="match-id"><span class="id-tag">M-ATHL-08</span></td>
+                <td class="sport-cell"><i class="fa-solid fa-person-running sport-icon-accent"></i> Athletics</td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-velocity.svg" alt="Velocity Sprinters Logo" class="team-table-icon">
+                    <span class="team-name-strong">Velocity Sprinters</span>
+                  </div>
+                </td>
+                <td class="team-cell">
+                  <div class="table-team-badge">
+                    <img src="assets/images/team-strikers.svg" alt="Royal Harriers Logo" class="team-table-icon">
+                    <span class="team-name-strong">Royal Harriers</span>
+                  </div>
+                </td>
+                <td class="date-cell">Nov 13, 2026</td>
+                <td class="time-cell">09:00 AM</td>
+                <td class="venue-cell"><i class="fa-solid fa-location-dot"></i> Olympic Track & Field</td>
+                <td class="status-cell">
+                  <span class="status-pill status-completed">
+                    <i class="fa-solid fa-check"></i> Completed
+                  </span>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+          <div class="no-records-msg" id="noScheduleMsg" style="display:none;">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <p>No matches match your search criteria. Try clearing your filters.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. MATCH RESULTS SECTION ==================== -->
+    <section class="section-padding results-section" id="results">
+      <div class="section-container">
+        <header class="section-header">
+          <span class="sub-heading"><i class="fa-solid fa-trophy"></i> HALL OF VICTORY</span>
+          <h2 class="main-heading">Match <span class="gradient-text">Results</span></h2>
+          <p class="section-subtitle">
+            Official verified scores and match outcomes from concluded championship clashes.
+          </p>
+        </header>
+
+        <!-- Results Cards Grid -->
+        <div class="results-grid">
+
+          <!-- Result 1: Cricket -->
+          <article class="result-card">
+            <div class="result-header">
+              <div class="sport-tag"><i class="fa-solid fa-baseball-bat-ball"></i> T20 Cricket Tournament</div>
+              <time class="result-date" datetime="2026-11-14"><i class="fa-regular fa-calendar"></i> Nov 14, 2026</time>
+            </div>
+            
+            <div class="scoreboard">
+              <!-- Team A (Winner) -->
+              <div class="result-team-row winner">
+                <div class="team-meta">
+                  <img src="assets/images/team-strikers.svg" alt="Royal Strikers Logo" class="result-logo">
+                  <span class="result-team-name">Royal Strikers</span>
+                  <span class="winner-crown-badge"><i class="fa-solid fa-trophy"></i> WINNER</span>
+                </div>
+                <div class="result-score-highlight">
+                  <span class="score-main">186/5</span>
+                  <span class="score-sub">(20.0 ov)</span>
+                </div>
+              </div>
+
+              <div class="versus-divider"><span>FINAL SCORE</span></div>
+
+              <!-- Team B -->
+              <div class="result-team-row">
+                <div class="team-meta">
+                  <img src="assets/images/team-apex.svg" alt="Apex Predators Logo" class="result-logo">
+                  <span class="result-team-name">Apex Predators</span>
+                </div>
+                <div class="result-score-highlight">
+                  <span class="score-main">164/9</span>
+                  <span class="score-sub">(20.0 ov)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-footer">
+              <span class="outcome-badge"><i class="fa-solid fa-award"></i> Royal Strikers won by 22 runs</span>
+              <span class="mvp-label">POM: Rohit Verma (78 off 44)</span>
+            </div>
+          </article>
+
+          <!-- Result 2: Football -->
+          <article class="result-card">
+            <div class="result-header">
+              <div class="sport-tag"><i class="fa-solid fa-futbol"></i> Football Championship</div>
+              <time class="result-date" datetime="2026-11-13"><i class="fa-regular fa-calendar"></i> Nov 13, 2026</time>
+            </div>
+            
+            <div class="scoreboard">
+              <!-- Team A (Winner) -->
+              <div class="result-team-row winner">
+                <div class="team-meta">
+                  <img src="assets/images/team-apex.svg" alt="Apex Predators Logo" class="result-logo">
+                  <span class="result-team-name">Apex Predators</span>
+                  <span class="winner-crown-badge"><i class="fa-solid fa-trophy"></i> WINNER</span>
+                </div>
+                <div class="result-score-highlight">
+                  <span class="score-main">3</span>
+                  <span class="score-sub">Goals</span>
+                </div>
+              </div>
+
+              <div class="versus-divider"><span>FINAL SCORE</span></div>
+
+              <!-- Team B -->
+              <div class="result-team-row">
+                <div class="team-meta">
+                  <img src="assets/images/team-thunderbolts.svg" alt="Thunderbolts FC Logo" class="result-logo">
+                  <span class="result-team-name">Thunderbolts FC</span>
+                </div>
+                <div class="result-score-highlight">
+                  <span class="score-main">1</span>
+                  <span class="score-sub">Goal</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-footer">
+              <span class="outcome-badge"><i class="fa-solid fa-award"></i> Apex Predators won 3 - 1</span>
+              <span class="mvp-label">POM: Aryan Sharma (2 Goals)</span>
+            </div>
+          </article>
+
+          <!-- Result 3: Basketball -->
+          <article class="result-card">
+            <div class="result-header">
+              <div class="sport-tag"><i class="fa-solid fa-basketball"></i> Basketball League</div>
+              <time class="result-date" datetime="2026-11-12"><i class="fa-regular fa-calendar"></i> Nov 12, 2026</time>
+            </div>
+            
+            <div class="scoreboard">
+              <!-- Team A (Winner) -->
+              <div class="result-team-row winner">
+                <div class="team-meta">
+                  <img src="assets/images/team-thunderbolts.svg" alt="Thunderbolts Logo" class="result-logo">
+                  <span class="result-team-name">Thunderbolts</span>
+                  <span class="winner-crown-badge"><i class="fa-solid fa-trophy"></i> WINNER</span>
+                </div>
+                <div class="result-score-highlight">
+                  <span class="score-main">84</span>
+                  <span class="score-sub">PTS</span>
+                </div>
+              </div>
+
+              <div class="versus-divider"><span>FINAL SCORE</span></div>
+
+              <!-- Team B -->
+              <div class="result-team-row">
+                <div class="team-meta">
+                  <img src="assets/images/team-spikers.svg" alt="Titan Hoopers Logo" class="result-logo">
+                  <span class="result-team-name">Titan Hoopers</span>
+                </div>
+                <div class="result-score-highlight">
+                  <span class="score-main">76</span>
+                  <span class="score-sub">PTS</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-footer">
+              <span class="outcome-badge"><i class="fa-solid fa-award"></i> Thunderbolts won by 8 points</span>
+              <span class="mvp-label">POM: Marcus Vance (29 PTS)</span>
+            </div>
+          </article>
+
+          <!-- Result 4: Volleyball -->
+          <article class="result-card">
+            <div class="result-header">
+              <div class="sport-tag"><i class="fa-solid fa-volleyball"></i> Volleyball Trophy</div>
+              <time class="result-date" datetime="2026-11-11"><i class="fa-regular fa-calendar"></i> Nov 11, 2026</time>
+            </div>
+            
+            <div class="scoreboard">
+              <!-- Team A (Winner) -->
+              <div class="result-team-row winner">
+                <div class="team-meta">
+                  <img src="assets/images/team-spikers.svg" alt="Titan Spikers Logo" class="result-logo">
+                  <span class="result-team-name">Titan Spikers</span>
+                  <span class="winner-crown-badge"><i class="fa-solid fa-trophy"></i> WINNER</span>
+                </div>
+                <div class="result-score-highlight">
+                  <span class="score-main">3</span>
+                  <span class="score-sub">Sets (25-21, 25-18, 26-24)</span>
+                </div>
+              </div>
+
+              <div class="versus-divider"><span>FINAL SCORE</span></div>
+
+              <!-- Team B -->
+              <div class="result-team-row">
+                <div class="team-meta">
+                  <img src="assets/images/team-cyber.svg" alt="Cyber Warriors Logo" class="result-logo">
+                  <span class="result-team-name">Cyber Warriors</span>
+                </div>
+                <div class="result-score-highlight">
+                  <span class="score-main">0</span>
+                  <span class="score-sub">Sets</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-footer">
+              <span class="outcome-badge"><i class="fa-solid fa-award"></i> Titan Spikers won 3 - 0</span>
+              <span class="mvp-label">POM: Vikram Rathore (18 Spikes)</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. TEAM REGISTRATION FORM SECTION ==================== -->
+    <section class="section-padding registration-section" id="register">
+      <div class="section-container">
+        <header class="section-header">
+          <span class="sub-heading"><i class="fa-solid fa-file-signature"></i> JOIN THE BATTLE</span>
+          <h2 class="main-heading">Team <span class="gradient-text">Registration Form</span></h2>
+          <p class="section-subtitle">
+            Enter your college or departmental squad into SPORTIFY 2026. Fill out the official form below to reserve your match slot.
+          </p>
+        </header>
+
+        <div class="registration-layout">
+          <!-- Main Form Card -->
+          <div class="form-card">
+            
+            <!-- Live Success Toast / Banner (initially hidden) -->
+            <div class="alert-banner alert-success" id="formSuccessAlert" style="display:none;" role="alert">
+              <i class="fa-solid fa-circle-check alert-icon"></i>
+              <div class="alert-text">
+                <h4 class="alert-title">Registration Submitted Successfully!</h4>
+                <p>Your team has been officially registered with ID: <strong id="registeredIdDisplay"></strong>. View the confirmation receipt below.</p>
+              </div>
+            </div>
+
+            <form id="teamRegistrationForm" novalidate>
+              <div class="form-grid">
+                
+                <!-- 1. Team Name -->
+                <div class="form-group">
+                  <label for="teamName" class="form-label">
+                    <i class="fa-solid fa-shield-cat"></i> Team Name <span class="required">*</span>
+                  </label>
+                  <input type="text" id="teamName" name="teamName" class="form-control" 
+                         placeholder="e.g. Phoenix Titans" required minlength="3" maxlength="40">
+                  <span class="field-error-msg" id="teamNameError">Please enter a valid team name (at least 3 characters).</span>
+                </div>
+
+                <!-- 2. College / Department Name -->
+                <div class="form-group">
+                  <label for="collegeName" class="form-label">
+                    <i class="fa-solid fa-building-columns"></i> College / Department Name <span class="required">*</span>
+                  </label>
+                  <input type="text" id="collegeName" name="collegeName" class="form-control" 
+                         placeholder="e.g. Dept. of Computer Science" required minlength="3" maxlength="60">
+                  <span class="field-error-msg" id="collegeNameError">Please enter your college or department name.</span>
+                </div>
+
+                <!-- 3. Team Captain Name -->
+                <div class="form-group">
+                  <label for="captainName" class="form-label">
+                    <i class="fa-solid fa-user-ninja"></i> Team Captain Name <span class="required">*</span>
+                  </label>
+                  <input type="text" id="captainName" name="captainName" class="form-control" 
+                         placeholder="e.g. Sarah Jenkins" required minlength="3" maxlength="40">
+                  <span class="field-error-msg" id="captainNameError">Please enter captain's full name.</span>
+                </div>
+
+                <!-- 4. Email Address -->
+                <div class="form-group">
+                  <label for="emailAddress" class="form-label">
+                    <i class="fa-solid fa-envelope"></i> Captain's Email Address <span class="required">*</span>
+                  </label>
+                  <input type="email" id="emailAddress" name="emailAddress" class="form-control" 
+                         placeholder="captain@college.edu" required>
+                  <span class="field-error-msg" id="emailAddressError">Please enter a valid academic/personal email address.</span>
+                </div>
+
+                <!-- 5. Phone Number -->
+                <div class="form-group">
+                  <label for="phoneNumber" class="form-label">
+                    <i class="fa-solid fa-phone"></i> Phone Number <span class="required">*</span>
+                  </label>
+                  <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" 
+                         placeholder="10-digit mobile number (e.g. 9876543210)" required pattern="[0-9]{10}">
+                  <span class="field-error-msg" id="phoneNumberError">Please provide a valid 10-digit phone number.</span>
+                </div>
+
+                <!-- 6. Select Sport -->
+                <div class="form-group">
+                  <label for="sportCategory" class="form-label">
+                    <i class="fa-solid fa-trophy"></i> Select Sport <span class="required">*</span>
+                  </label>
+                  <select id="sportCategory" name="sportCategory" class="form-control" required>
+                    <option value="" disabled selected>-- Select a Tournament Sport --</option>
+                    <option value="Cricket">Cricket (T20 League)</option>
+                    <option value="Football">Football (11-a-side Championship)</option>
+                    <option value="Basketball">Basketball (5v5 Slam)</option>
+                    <option value="Volleyball">Volleyball (Spikers Trophy)</option>
+                    <option value="Badminton">Badminton (Singles & Doubles)</option>
+                    <option value="Table Tennis">Table Tennis (Rapid Open)</option>
+                    <option value="Kabaddi">Kabaddi (Premier Mat Cup)</option>
+                    <option value="Athletics">Athletics (Track & Field)</option>
+                  </select>
+                  <span class="field-error-msg" id="sportCategoryError">Please select a sport category.</span>
+                </div>
+
+                <!-- 7. Number of Players -->
+                <div class="form-group">
+                  <label for="playerCount" class="form-label">
+                    <i class="fa-solid fa-users"></i> Number of Players <span class="required">*</span>
+                  </label>
+                  <input type="number" id="playerCount" name="playerCount" class="form-control" 
+                         min="1" max="25" placeholder="e.g. 15" required>
+                  <span class="field-error-msg" id="playerCountError">Please enter squad size between 1 and 25 players.</span>
+                </div>
+
+                <!-- 8. Preferred Match Date -->
+                <div class="form-group">
+                  <label for="preferredDate" class="form-label">
+                    <i class="fa-solid fa-calendar-day"></i> Preferred Match Date <span class="required">*</span>
+                  </label>
+                  <input type="date" id="preferredDate" name="preferredDate" class="form-control" required>
+                  <span class="field-error-msg" id="preferredDateError">Please select a valid upcoming tournament date.</span>
+                </div>
+
+                <!-- 9. Team Members' Names (Full width) -->
+                <div class="form-group form-col-span-2">
+                  <label for="teamMembers" class="form-label">
+                    <i class="fa-solid fa-list-ol"></i> Team Members' Names <span class="required">*</span>
+                  </label>
+                  <textarea id="teamMembers" name="teamMembers" class="form-control" rows="3" 
+                            placeholder="Enter player names separated by commas (e.g. 1. Aryan Sharma, 2. Rahul Roy, 3. Alex Chen, 4. David Miller...)" required></textarea>
+                  <span class="field-error-msg" id="teamMembersError">Please list all participating team members.</span>
+                </div>
+
+                <!-- 10. Upload Team Logo -->
+                <div class="form-group">
+                  <label for="teamLogoFile" class="form-label">
+                    <i class="fa-solid fa-image"></i> Upload Team Logo
+                  </label>
+                  <div class="custom-file-upload">
+                    <input type="file" id="teamLogoFile" name="teamLogoFile" accept="image/*">
+                    <div class="upload-hint">
+                      <i class="fa-solid fa-cloud-arrow-up"></i>
+                      <span>Choose file or drag image here (PNG, JPG, SVG)</span>
+                    </div>
+                  </div>
+                  <!-- Logo Preview Container -->
+                  <div class="logo-preview-wrapper" id="logoPreviewContainer" style="display:none;">
+                    <img id="logoPreviewImg" src="" alt="Team Logo Preview" class="preview-thumbnail">
+                    <button type="button" class="btn-clear-logo" id="clearLogoBtn" title="Remove logo"><i class="fa-solid fa-xmark"></i></button>
+                  </div>
+                </div>
+
+                <!-- 11. Additional Information -->
+                <div class="form-group">
+                  <label for="additionalInfo" class="form-label">
+                    <i class="fa-solid fa-circle-info"></i> Additional Information / Coach Notes
+                  </label>
+                  <textarea id="additionalInfo" name="additionalInfo" class="form-control" rows="3" 
+                            placeholder="Optional: Team jersey colors, coach name, past accolades or special medical requests."></textarea>
+                </div>
+
+                <!-- 12. Terms and Conditions Checkbox (Full width) -->
+                <div class="form-group form-col-span-2 terms-group">
+                  <label class="checkbox-container">
+                    <input type="checkbox" id="termsCheck" name="termsCheck" required>
+                    <span class="checkmark"></span>
+                    <span class="checkbox-label">
+                      I certify that all players are bonafide enrolled college students and agree to abide by the 
+                      <a href="#rules" class="link-inline">SPORTIFY Code of Conduct & Fair Play Rules</a>. <span class="required">*</span>
+                    </span>
+                  </label>
+                  <span class="field-error-msg" id="termsCheckError">You must accept the terms and sports code of conduct.</span>
+                </div>
+
+              </div>
+
+              <!-- Form Buttons -->
+              <div class="form-btn-actions">
+                <button type="reset" class="btn btn-outline-secondary" id="resetFormBtn">
+                  <i class="fa-solid fa-arrow-rotate-left"></i>
+                  <span>Reset Form</span>
+                </button>
+                <button type="submit" class="btn btn-primary btn-large" id="submitFormBtn">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span>Submit Registration</span>
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- Dynamic Side Panel: Submitted Confirmation Slip & Saved Registrations -->
+          <aside class="confirmation-panel" id="confirmationPanel">
+            
+            <!-- Default Placeholder Info -->
+            <div class="panel-placeholder" id="panelPlaceholder">
+              <div class="placeholder-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+              <h3>Registration Confirmation</h3>
+              <p>Your official registration receipt and unique Registration ID will appear right here after submission.</p>
+              <div class="perks-list">
+                <div class="perk-item"><i class="fa-solid fa-bolt text-accent"></i> Instant Digital Pass</div>
+                <div class="perk-item"><i class="fa-solid fa-shield text-accent"></i> Official Roster Approval</div>
+                <div class="perk-item"><i class="fa-solid fa-hard-drive text-accent"></i> Saved in Local Storage</div>
+              </div>
+            </div>
+
+            <!-- Confirmation Card (Hidden until submitted) -->
+            <div class="confirmation-card" id="confirmationSlip" style="display:none;">
+              <div class="slip-header">
+                <div class="slip-badge"><i class="fa-solid fa-certificate"></i> OFFICIAL RECEIPT</div>
+                <span class="slip-timestamp" id="confTimestamp">Nov 15, 2026</span>
+              </div>
+
+              <div class="slip-id-box">
+                <span class="slip-id-label">UNIQUE REGISTRATION ID</span>
+                <h3 class="slip-id-code" id="confRegId">SPT-2026-00000</h3>
+              </div>
+
+              <div class="slip-team-header">
+                <img id="confLogo" src="assets/images/team-apex.svg" alt="Registered Team Logo" class="conf-logo-img">
+                <div>
+                  <h4 id="confTeamName" class="conf-team-title">Team Name</h4>
+                  <p id="confCollege" class="conf-team-sub">Department of College</p>
+                </div>
+              </div>
+
+              <div class="slip-body">
+                <div class="slip-row">
+                  <span class="slip-label">Sport:</span>
+                  <span class="slip-val" id="confSport">Cricket</span>
+                </div>
+                <div class="slip-row">
+                  <span class="slip-label">Captain:</span>
+                  <span class="slip-val" id="confCaptain">Captain Name</span>
+                </div>
+                <div class="slip-row">
+                  <span class="slip-label">Contact:</span>
+                  <span class="slip-val" id="confEmail">captain@college.edu</span>
+                </div>
+                <div class="slip-row">
+                  <span class="slip-label">Phone:</span>
+                  <span class="slip-val" id="confPhone">9876543210</span>
+                </div>
+                <div class="slip-row">
+                  <span class="slip-label">Squad Size:</span>
+                  <span class="slip-val" id="confPlayers">15 Players</span>
+                </div>
+                <div class="slip-row">
+                  <span class="slip-label">Match Date:</span>
+                  <span class="slip-val" id="confMatchDate">Nov 20, 2026</span>
+                </div>
+                <div class="slip-row full-width">
+                  <span class="slip-label">Squad Roster:</span>
+                  <div class="slip-roster-box" id="confRoster">1. Player A, 2. Player B</div>
+                </div>
+              </div>
+
+              <div class="slip-footer">
+                <button type="button" class="btn btn-sm btn-outline-glow" id="printReceiptBtn">
+                  <i class="fa-solid fa-print"></i> Print Slip
+                </button>
+                <button type="button" class="btn btn-sm btn-primary" id="viewNewTeamBtn">
+                  <i class="fa-solid fa-users"></i> View in Teams
+                </button>
+              </div>
+            </div>
+
+            <!-- Saved Submissions List in LocalStorage -->
+            <div class="stored-registrations-box" id="storedRegistrationsContainer">
+              <div class="stored-header">
+                <h4><i class="fa-solid fa-clock-rotate-left"></i> Saved in LocalStorage (<span id="storedCount">0</span>)</h4>
+                <button type="button" class="clear-all-link" id="clearStorageBtn" title="Clear saved registrations">Clear</button>
+              </div>
+              <ul class="stored-list" id="storedList">
+                <li class="empty-list-note">No stored submissions yet. Register a team!</li>
+              </ul>
+            </div>
+
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 7. CONTACT SECTION ==================== -->
+    <section class="section-padding contact-section" id="contact">
+      <div class="section-container">
+        <header class="section-header">
+          <span class="sub-heading"><i class="fa-solid fa-headset"></i> GET IN TOUCH</span>
+          <h2 class="main-heading">Contact the <span class="gradient-text">Sports Department</span></h2>
+          <p class="section-subtitle">
+            Have questions about rules, fixtures, eligibility, or equipment? Our collegiate athletic committee is here to assist.
+          </p>
+        </header>
+
+        <div class="contact-grid">
+          
+          <!-- Contact Info Cards -->
+          <div class="contact-cards-col">
+            
+            <article class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-building-columns"></i></div>
+              <div class="contact-details">
+                <h4 class="contact-title">Sports Department Office</h4>
+                <p>Department of Physical Education & Sports</p>
+                <p>Student Activity Center, National Campus, University Road</p>
+              </div>
+            </article>
+
+            <article class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="contact-details">
+                <h4 class="contact-title">Official Inquiries & Support</h4>
+                <p><a href="mailto:sports.dept@sportify-college.edu" class="contact-link">sports.dept@sportify-college.edu</a></p>
+                <p><a href="mailto:tournaments@sportify-college.edu" class="contact-link">tournaments@sportify-college.edu</a></p>
+              </div>
+            </article>
+
+            <article class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-phone-volume"></i></div>
+              <div class="contact-details">
+                <h4 class="contact-title">Helpline Numbers</h4>
+                <p><a href="tel:+919876543210" class="contact-link">+91 98765 43210</a> (Sports Desk)</p>
+                <p><a href="tel:02025507788" class="contact-link">(020) 2550-SPORT</a> (Tournament Director)</p>
+              </div>
+            </article>
+
+            <article class="contact-card">
+              <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+              <div class="contact-details">
+                <h4 class="contact-title">Operational Hours</h4>
+                <p>Monday – Friday: 07:00 AM – 08:00 PM</p>
+                <p>Saturday – Sunday (Match Days): 06:30 AM – 09:30 PM</p>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Quick Inquiry Form -->
+          <div class="contact-form-col">
+            <div class="inquiry-card">
+              <h3 class="inquiry-title"><i class="fa-solid fa-paper-plane"></i> Send Us a Message</h3>
+              <p class="inquiry-subtitle">Direct message to the Tournament Operations Desk.</p>
+
+              <form id="contactForm" novalidate>
+                <div class="form-group">
+                  <label for="contactName" class="form-label">Full Name <span class="required">*</span></label>
+                  <input type="text" id="contactName" class="form-control" placeholder="Your Name" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="contactEmail" class="form-label">Email Address <span class="required">*</span></label>
+                  <input type="email" id="contactEmail" class="form-control" placeholder="yourname@college.edu" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="contactSubject" class="form-label">Subject <span class="required">*</span></label>
+                  <input type="text" id="contactSubject" class="form-control" placeholder="e.g. Schedule Query for Cricket Match" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="contactMessage" class="form-label">Message <span class="required">*</span></label>
+                  <textarea id="contactMessage" class="form-control" rows="4" placeholder="Write your inquiry or feedback here..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                  <i class="fa-solid fa-paper-plane"></i> Send Inquiry
+                </button>
+              </form>
+
+              <div id="contactSuccessMsg" class="contact-success" style="display:none;">
+                <i class="fa-solid fa-circle-check"></i> Thank you! Your message has been routed to the sports committee.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 8. FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-container">
+        
+        <!-- Col 1: Brand & Bio -->
+        <div class="footer-col brand-col">
+          <img src="assets/images/sportify-logo.svg" alt="SPORTIFY Brand" class="footer-logo">
+          <p class="footer-bio">
+            SPORTIFY is the premier digital tournament management system for collegiate athletic excellence, powering seamless registrations, live score tracking, and inter-departmental athletic rivalries.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Tournament Portals</h4>
+          <ul class="footer-links">
+            <li><a href="#hero"><i class="fa-solid fa-angle-right"></i> Home Overview</a></li>
+            <li><a href="#sports"><i class="fa-solid fa-angle-right"></i> Sports Disciplines</a></li>
+            <li><a href="#teams"><i class="fa-solid fa-angle-right"></i> Participating Rosters</a></li>
+            <li><a href="#schedule"><i class="fa-solid fa-angle-right"></i> Fixture Calendar</a></li>
+            <li><a href="#results"><i class="fa-solid fa-angle-right"></i> Live Scoreboard</a></li>
+            <li><a href="#register"><i class="fa-solid fa-angle-right"></i> Register Squad</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Sports Categories -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Active Disciplines</h4>
+          <ul class="footer-links">
+            <li><a href="#sports"><i class="fa-solid fa-angle-right"></i> T20 Cricket</a></li>
+            <li><a href="#sports"><i class="fa-solid fa-angle-right"></i> Football League</a></li>
+            <li><a href="#sports"><i class="fa-solid fa-angle-right"></i> Basketball Slam</a></li>
+            <li><a href="#sports"><i class="fa-solid fa-angle-right"></i> Volleyball Clash</a></li>
+            <li><a href="#sports"><i class="fa-solid fa-angle-right"></i> Badminton Masters</a></li>
+            <li><a href="#sports"><i class="fa-solid fa-angle-right"></i> Athletics Championship</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Legal & Policies -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Governance & Fair Play</h4>
+          <ul class="footer-links">
+            <li><a href="#rules"><i class="fa-solid fa-angle-right"></i> Tournament Bylaws 2026</a></li>
+            <li><a href="#rules"><i class="fa-solid fa-angle-right"></i> Anti-Doping Regulations</a></li>
+            <li><a href="#rules"><i class="fa-solid fa-angle-right"></i> Fair Play & Disciplinary Code</a></li>
+            <li><a href="#rules"><i class="fa-solid fa-angle-right"></i> Medical Clearance Protocols</a></li>
+            <li><a href="#rules"><i class="fa-solid fa-angle-right"></i> Privacy & Data Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-container">
+        <p class="copyright-text">
+          &copy; 2026 <strong>SPORTIFY – College Sports Tournament Management</strong>. All Rights Reserved.
+        </p>
+        <p class="dev-credits">
+          Developed for College Physical Education & Sports Directorate &bull; Designed with HTML5, CSS3 & JavaScript
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE SPORT DETAILS MODAL ==================== -->
+  <div class="modal-backdrop" id="sportModalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close details dialog">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="modal-header">
+          <div class="modal-icon-badge" id="modalIconBadge"><i class="fa-solid fa-trophy"></i></div>
+          <div>
+            <h3 class="modal-title" id="modalTitle">Sport Discipline Name</h3>
+            <span class="modal-category-tag" id="modalTag">Championship Category</span>
+          </div>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <!-- Dynamic sport content loaded by script.js -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="modalCloseActionBtn">Close</button>
+          <a href="#register" class="btn btn-primary" id="modalRegisterActionBtn">Register for this Sport</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Back to Top Button -->
+  <button type="button" class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>

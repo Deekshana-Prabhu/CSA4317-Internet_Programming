@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="veloGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#ef4444" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="46" fill="#2c140a" stroke="url(#veloGrad)" stroke-width="4"/>
+  <!-- Winged Running Foot / Torch -->
+  <path d="M 45 20 Q 55 12 55 26 Q 50 32 45 36 Q 42 28 45 20 Z" fill="#f59e0b"/>
+  <!-- Flame -->
+  <path d="M 48 14 Q 58 20 54 32 Q 48 38 42 34 Z" fill="#ef4444" opacity="0.8"/>
+  <!-- Running Track Lines -->
+  <path d="M 20 68 Q 50 50 80 68" stroke="#f59e0b" stroke-width="2.5" fill="none"/>
+  <path d="M 24 74 Q 50 58 76 74" stroke="#ffffff" stroke-width="1.5" fill="none"/>
+  <path d="M 28 80 Q 50 66 72 80" stroke="#f59e0b" stroke-width="2" fill="none"/>
+  <!-- Sprinter silhouette -->
+  <circle cx="48" cy="40" r="4" fill="#ffffff"/>
+  <path d="M 48 44 L 54 52 L 64 54 M 50 48 L 40 56 L 34 50 M 52 52 L 48 64 L 40 68 M 52 52 L 60 62 L 68 64" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="50" y="91" font-family="'Segoe UI', Arial, sans-serif" font-weight="900" font-size="7.5" fill="#fcd34d" text-anchor="middle" letter-spacing="1">VELOCITY</text>
+</svg>

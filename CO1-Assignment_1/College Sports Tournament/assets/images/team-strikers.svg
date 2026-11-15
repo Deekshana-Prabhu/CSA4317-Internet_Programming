@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd700" />
+      <stop offset="100%" stop-color="#ff8c00" />
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+  </defs>
+  <!-- Shield Background -->
+  <path d="M 50 10 L 82 22 C 82 56 68 76 50 88 C 32 76 18 56 18 22 Z" fill="url(#shieldGrad)" stroke="url(#goldGrad)" stroke-width="3.5"/>
+  <!-- Crown Icon -->
+  <polygon points="34,36 38,24 50,32 62,24 66,36 50,40" fill="url(#goldGrad)"/>
+  <!-- Crossed Bats / Strikers -->
+  <line x1="30" y1="64" x2="70" y2="42" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <line x1="70" y1="64" x2="30" y2="42" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <!-- Cricket / Sports Ball -->
+  <circle cx="50" cy="53" r="10" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+  <path d="M 43 53 Q 50 47 57 53" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="50" y="80" font-family="'Segoe UI', Arial, sans-serif" font-weight="900" font-size="8" fill="#ffd700" text-anchor="middle" letter-spacing="1">STRIKERS</text>
+</svg>

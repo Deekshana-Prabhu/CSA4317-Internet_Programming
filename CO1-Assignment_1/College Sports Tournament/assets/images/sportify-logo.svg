@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d2ff" />
+      <stop offset="100%" stop-color="#0055ff" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff8c00" />
+      <stop offset="100%" stop-color="#ff3b00" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Athletic Shield Emblem -->
+  <g transform="translate(10, 8)">
+    <!-- Outer Shield Glow -->
+    <path d="M 32 4 L 58 14 C 58 42 42 58 32 64 C 22 58 6 42 6 14 Z" fill="url(#blueGrad)" opacity="0.25" filter="url(#glow)"/>
+    <!-- Outer Shield -->
+    <path d="M 32 4 L 58 14 C 58 42 42 58 32 64 C 22 58 6 14 Z" fill="#0c1633" stroke="url(#blueGrad)" stroke-width="2.5"/>
+    
+    <!-- Dynamic Lightning / Flame Accent -->
+    <path d="M 34 12 L 20 34 L 32 34 L 28 54 L 46 28 L 34 28 Z" fill="url(#orangeGrad)"/>
+    
+    <!-- Athletic Star -->
+    <polygon points="32,2 34,7 39,7 35,10 37,15 32,12 27,15 29,10 25,7 30,7" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- Brand Typography -->
+  <text x="82" y="47" font-family="'Montserrat', 'Arial Black', sans-serif" font-weight="900" font-size="34" letter-spacing="2" fill="#ffffff">
+    SPORT<tspan fill="url(#orangeGrad)">IFY</tspan>
+  </text>
+  
+  <!-- Subtitle Badge -->
+  <text x="85" y="64" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="9" letter-spacing="3.5" fill="#00d2ff">
+    COLLEGE SPORTS CHAMPIONSHIP
+  </text>
+</svg>

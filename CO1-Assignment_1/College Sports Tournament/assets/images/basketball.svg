@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="baskBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b1502" />
+      <stop offset="50%" stop-color="#190e28" />
+      <stop offset="100%" stop-color="#020814" />
+    </linearGradient>
+    <radialGradient id="baskGlow" cx="70%" cy="35%" r="50%">
+      <stop offset="0%" stop-color="#ff7700" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#000" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#baskBg)" />
+  <rect width="600" height="400" fill="url(#baskGlow)" />
+  <!-- Basketball Backboard & Hoop -->
+  <rect x="420" y="40" width="14" height="150" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="360" y="140" width="70" height="6" fill="#f97316"/>
+  <!-- Net -->
+  <polygon points="364,146 426,146 414,210 376,210" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="6,4" opacity="0.8"/>
+  <!-- Dunker Player Silhouette in Mid-Air -->
+  <g fill="#ff8c00" transform="translate(160, 60) scale(1.2)">
+    <circle cx="90" cy="30" r="12" />
+    <path d="M 90 42 L 85 85 L 75 125 L 60 160" stroke="#ff8c00" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <path d="M 85 85 L 110 115 L 125 150" stroke="#ff8c00" stroke-width="11" stroke-linecap="round" fill="none"/>
+    <path d="M 88 55 L 70 80 L 60 100" stroke="#ff8c00" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <path d="M 88 55 L 125 40 L 155 45" stroke="#ff8c00" stroke-width="10" stroke-linecap="round" fill="none"/>
+    <!-- Basketball Slammed into Rim -->
+    <circle cx="168" cy="45" r="24" fill="#ea580c" stroke="#111827" stroke-width="2.5"/>
+    <path d="M 144 45 Q 168 30 192 45 M 144 45 Q 168 60 192 45 M 168 21 L 168 69" stroke="#111827" stroke-width="2" fill="none"/>
+  </g>
+  <!-- Court Perspective Lines -->
+  <ellipse cx="250" cy="380" rx="300" ry="80" fill="none" stroke="#f97316" stroke-width="2" opacity="0.3"/>
+  <rect x="30" y="32" width="145" height="34" rx="17" fill="#c2410c" fill-opacity="0.3" stroke="#f97316" stroke-width="1.5" />
+  <text x="102" y="54" font-family="'Segoe UI', Arial, sans-serif" font-weight="800" font-size="13" fill="#ffffff" text-anchor="middle" letter-spacing="2">BASKETBALL</text>
+</svg>

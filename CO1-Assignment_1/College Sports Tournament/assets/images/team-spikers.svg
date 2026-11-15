@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="spikerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="orangeSpike" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fb923c" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+  </defs>
+  <!-- Diamond / Shield Badge -->
+  <polygon points="50,10 88,40 76,84 24,84 12,40" fill="#064e3b" stroke="url(#spikerGrad)" stroke-width="3"/>
+  <!-- Volleyball Art -->
+  <circle cx="50" cy="46" r="22" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+  <path d="M 34 36 Q 50 46 44 66" fill="none" stroke="#ea580c" stroke-width="2.5"/>
+  <path d="M 66 36 Q 50 46 56 66" fill="none" stroke="#047857" stroke-width="2.5"/>
+  <path d="M 50 24 Q 50 46 32 50" fill="none" stroke="#ea580c" stroke-width="2.5"/>
+  <path d="M 50 24 Q 50 46 68 50" fill="none" stroke="#047857" stroke-width="2.5"/>
+  <!-- Wings / Spikes -->
+  <path d="M 18 36 L 6 28 L 18 24 M 82 36 L 94 28 L 82 24" stroke="url(#orangeSpike)" stroke-width="3" stroke-linecap="round"/>
+  <text x="50" y="78" font-family="'Segoe UI', Arial, sans-serif" font-weight="900" font-size="8" fill="#a7f3d0" text-anchor="middle" letter-spacing="1">SPIKERS</text>
+</svg>

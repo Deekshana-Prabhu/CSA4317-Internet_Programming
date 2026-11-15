@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="vbBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#042f2e" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <radialGradient id="vbGlow" cx="50%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#000" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#vbBg)" />
+  <rect width="600" height="400" fill="url(#vbGlow)" />
+  <!-- Volleyball Net -->
+  <line x1="0" y1="230" x2="600" y2="230" stroke="#ffffff" stroke-width="4" opacity="0.9" />
+  <rect x="0" y="234" width="600" height="70" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="12,12" opacity="0.3" />
+  <!-- Spiker in Air (Left) -->
+  <g fill="#2dd4bf" transform="translate(130, 80) scale(1.1)">
+    <circle cx="70" cy="30" r="12" />
+    <path d="M 70 42 L 72 85 L 60 120 L 40 150" stroke="#2dd4bf" stroke-width="11" stroke-linecap="round" fill="none"/>
+    <path d="M 72 85 L 90 115 L 110 145" stroke="#2dd4bf" stroke-width="10" stroke-linecap="round" fill="none"/>
+    <path d="M 72 55 L 50 70 L 40 90" stroke="#2dd4bf" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <path d="M 72 55 L 105 35 L 135 25" stroke="#2dd4bf" stroke-width="10" stroke-linecap="round" fill="none"/>
+  </g>
+  <!-- Volleyball ball over net -->
+  <g transform="translate(290, 80)">
+    <circle cx="30" cy="30" r="30" fill="#f8fafc" stroke="#0f172a" stroke-width="2" />
+    <path d="M 12 18 Q 30 30 20 54" fill="none" stroke="#0284c7" stroke-width="4"/>
+    <path d="M 48 18 Q 30 30 40 54" fill="none" stroke="#f59e0b" stroke-width="4"/>
+    <path d="M 30 2 Q 30 30 6 30" fill="none" stroke="#0284c7" stroke-width="4"/>
+    <path d="M 30 2 Q 30 30 54 30" fill="none" stroke="#f59e0b" stroke-width="4"/>
+  </g>
+  <!-- Blocker hands (Right) -->
+  <g fill="#38bdf8" transform="translate(380, 110) scale(1.05)">
+    <circle cx="50" cy="40" r="11" />
+    <path d="M 50 52 L 48 95 L 45 140 L 40 170" stroke="#38bdf8" stroke-width="11" stroke-linecap="round" fill="none"/>
+    <path d="M 50 65 L 30 30 L 25 10" stroke="#38bdf8" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <path d="M 50 65 L 45 30 L 40 10" stroke="#38bdf8" stroke-width="9" stroke-linecap="round" fill="none"/>
+  </g>
+  <rect x="30" y="32" width="145" height="34" rx="17" fill="#0f766e" fill-opacity="0.3" stroke="#14b8a6" stroke-width="1.5" />
+  <text x="102" y="54" font-family="'Segoe UI', Arial, sans-serif" font-weight="800" font-size="13" fill="#ffffff" text-anchor="middle" letter-spacing="2">VOLLEYBALL</text>
+</svg>
