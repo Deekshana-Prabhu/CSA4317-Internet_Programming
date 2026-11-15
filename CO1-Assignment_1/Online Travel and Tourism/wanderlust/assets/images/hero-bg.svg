@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c2461" />
+      <stop offset="40%" stop-color="#0a3d62" />
+      <stop offset="75%" stop-color="#00a8ff" />
+      <stop offset="100%" stop-color="#48dbfb" />
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="75%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#ffd166" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#ff9f43" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#ff9f43" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#skyGrad)" />
+  <circle cx="1440" cy="320" r="380" fill="url(#sunGlow)" />
+  
+  <!-- Distant Mountains -->
+  <path d="M-100 800 L300 450 L750 780 L1200 420 L1650 750 L2020 510 L2020 1080 L-100 1080 Z" fill="#0a3d62" fill-opacity="0.55" />
+  <path d="M150 820 L580 520 L980 790 L1450 490 L1880 760 L2100 630 L2100 1080 L150 1080 Z" fill="#0c2461" fill-opacity="0.7" />
+  
+  <!-- Foreground Tropical Waves and Islands -->
+  <path d="M-100 920 Q400 840 900 930 T1920 890 L1920 1080 L-100 1080 Z" fill="#079992" fill-opacity="0.5" />
+  <path d="M-100 960 Q500 900 1100 980 T2020 940 L2020 1080 L-100 1080 Z" fill="#0a3d62" fill-opacity="0.9" />
+  
+  <!-- Golden Sand Beach Edge -->
+  <path d="M-50 1020 Q800 980 1920 1020 L1920 1080 L-50 1080 Z" fill="#f7d794" fill-opacity="0.3" />
+</svg>

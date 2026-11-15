@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 360" width="400" height="360">
+  <defs>
+    <linearGradient id="prodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <radialGradient id="prodBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0b1329" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="360" rx="16" fill="url(#prodBg)"/>
+  <circle cx="200" cy="180" r="130" fill="#00d2ff" fill-opacity="0.06"/>
+  
+      <rect x="130" y="40" width="140" height="280" rx="18" fill="#0f172a" stroke="#2563eb" stroke-width="3.5"/>
+      <rect x="136" y="46" width="128" height="268" rx="12" fill="#020617"/>
+      <circle cx="200" cy="55" r="4" fill="#38bdf8"/>
+      <circle cx="200" cy="170" r="50" fill="url(#prodGrad)" fill-opacity="0.7"/>
+      <text x="200" y="175" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">Galaxy S25</text>
+    
+</svg>

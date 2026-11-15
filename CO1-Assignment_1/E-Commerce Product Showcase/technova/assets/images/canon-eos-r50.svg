@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 360" width="400" height="360">
+  <defs>
+    <linearGradient id="prodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <radialGradient id="prodBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0b1329" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="360" rx="16" fill="url(#prodBg)"/>
+  <circle cx="200" cy="180" r="130" fill="#00d2ff" fill-opacity="0.06"/>
+  
+      <rect x="90" y="100" width="220" height="150" rx="22" fill="#18181b" stroke="#e2e8f0" stroke-width="3"/>
+      <rect x="150" y="80" width="80" height="25" rx="8" fill="#27272a"/>
+      <circle cx="200" cy="175" r="55" fill="#27272a" stroke="#ef4444" stroke-width="3"/>
+      <circle cx="200" cy="175" r="42" fill="#09090b" stroke="#38bdf8" stroke-width="2"/>
+      <circle cx="200" cy="175" r="22" fill="#1e1b4b"/>
+      <circle cx="270" cy="125" r="7" fill="#ef4444"/>
+      <text x="200" y="280" fill="#ef4444" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">Canon EOS R50</text>
+    
+</svg>

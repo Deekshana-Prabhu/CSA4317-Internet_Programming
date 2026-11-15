@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" width="600" height="300">
+  <defs>
+    <linearGradient id="bannerGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="300" rx="20" fill="url(#bannerGrad2)"/>
+  <circle cx="480" cy="150" r="120" fill="#14b8a6" fill-opacity="0.2"/>
+  <text x="50" y="80" fill="#facc15" font-size="14" font-weight="bold" font-family="sans-serif" letter-spacing="2">STUDENT SPECIAL</text>
+  <text x="50" y="130" fill="#ffffff" font-size="32" font-weight="900" font-family="sans-serif">Laptops & Tablets</text>
+  <text x="50" y="170" fill="#cbd5e1" font-size="16" font-family="sans-serif">Flat ₹10,000 Instant Exchange Bonus</text>
+  <rect x="50" y="200" width="150" height="42" rx="8" fill="#facc15"/>
+  <text x="125" y="226" fill="#0f172a" font-size="14" font-weight="bold" font-family="sans-serif" text-anchor="middle">CLAIM OFFER →</text>
+</svg>

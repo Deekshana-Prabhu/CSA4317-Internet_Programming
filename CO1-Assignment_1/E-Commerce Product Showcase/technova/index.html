@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TECHNOVA – Electronics Store | Smart Gadgets & Premium Technology</title>
+  <meta name="description" content="Discover premium electronic gadgets, smartphones, laptops, audio gear, and gaming accessories at unbeatable prices with TECHNOVA.">
+  <link rel="icon" type="image/svg+xml" href="assets/images/technova-logo.svg">
+
+  <!-- Google Fonts: Poppins & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. STICKY NAVIGATION BAR
+       ========================================================================= -->
+  <header class="site-header" id="main-nav">
+    <div class="container nav-container">
+      <!-- Store Brand / Logo -->
+      <a href="#hero" class="brand-logo-link" aria-label="TECHNOVA Home">
+        <img src="assets/images/technova-logo.svg" alt="TECHNOVA Electronics Store" class="brand-logo-img">
+      </a>
+
+      <!-- Primary Navigation Links -->
+      <nav class="nav-menu" id="nav-links" aria-label="Main Navigation">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#products" class="nav-link">Products</a>
+        <a href="#categories" class="nav-link">Categories</a>
+        <a href="#offers" class="nav-link">Offers</a>
+        <a href="#compare" class="nav-link">Compare Products</a>
+        <a href="#enquiry" class="nav-link">Customer Enquiry</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Nav Action Bar: Search, Cart & CTA -->
+      <div class="nav-actions">
+        <div class="nav-search-box">
+          <span class="nav-search-icon">🔍</span>
+          <input 
+            type="search" 
+            id="nav-search-input" 
+            class="nav-search-input" 
+            placeholder="Search electronics..." 
+            aria-label="Quick Search Products"
+          >
+        </div>
+
+        <button 
+          type="button" 
+          class="cart-btn" 
+          id="cart-toggle-btn" 
+          aria-label="View Shopping Cart"
+          title="Shopping Cart"
+        >
+          <span>🛒</span>
+          <span class="cart-count-badge" id="cart-count">0</span>
+        </button>
+
+        <a href="#products" class="nav-cta-btn">
+          <span>Explore Products</span>
+          <span>→</span>
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================= -->
+  <main id="main-content">
+
+    <!-- =======================================================================
+         2. HERO SECTION
+         ======================================================================= -->
+    <section id="hero" aria-label="Welcome to TECHNOVA">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left Hero Text & CTA -->
+          <div class="hero-content">
+            <div class="promo-pill">
+              <span class="promo-tag">NEW LAUNCH</span>
+              <span>New Arrivals – Up to 30% OFF</span>
+            </div>
+
+            <h1 class="hero-title">
+              Upgrade Your World with <span class="gradient-text">Smarter Technology</span>
+            </h1>
+
+            <p class="hero-subtitle">
+              Discover the Latest Electronics at Unbeatable Prices. From cutting-edge smartphones and ultra-thin laptops to high-fidelity audio and smart wearables.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#products" class="btn btn-primary">
+                <span>Explore Products</span>
+                <span>⚡</span>
+              </a>
+              <a href="#offers" class="btn btn-outline-light">
+                <span>View Offers</span>
+                <span>🏷️</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Hero Visual Graphics -->
+          <div class="hero-media-wrap">
+            <img 
+              src="assets/images/hero-gadgets.svg" 
+              alt="Next-Gen Electronic Gadgets at TECHNOVA" 
+              class="hero-image-frame"
+            >
+
+            <!-- Floating feature badges with glassmorphism & keyframe float -->
+            <div class="floating-glass-badge badge-pos-1">
+              <div class="floating-icon">🛡️</div>
+              <div class="floating-text">
+                <strong>100% Genuine</strong>
+                <span>Official Brand Warranty</span>
+              </div>
+            </div>
+
+            <div class="floating-glass-badge badge-pos-2">
+              <div class="floating-icon">🚀</div>
+              <div class="floating-text">
+                <strong>Express Delivery</strong>
+                <span>Pan-India Shipping</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         3. ANIMATED STATISTICS BAR
+         ======================================================================= -->
+    <section id="stats-section" aria-label="Store Statistics">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-icon">📱</div>
+            <div>
+              <div class="stat-number" data-target="100" data-suffix="+">0</div>
+              <div class="stat-label">100+ Products</div>
+            </div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-icon">🏢</div>
+            <div>
+              <div class="stat-number" data-target="20" data-suffix="+">0</div>
+              <div class="stat-label">20+ Top Brands</div>
+            </div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-icon">⭐</div>
+            <div>
+              <div class="stat-number" data-target="500" data-suffix="+">0</div>
+              <div class="stat-label">500+ Happy Customers</div>
+            </div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-icon">🎧</div>
+            <div>
+              <div class="stat-number" data-target="24" data-suffix="/7">0</div>
+              <div class="stat-label">24/7 Customer Support</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         4. PRODUCT CATEGORIES (HTML5 Lists & Interactive Cards)
+         ======================================================================= -->
+    <section id="categories" aria-label="Product Categories">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Explore By Category</span>
+          <h2 class="section-title">Curated Tech Categories</h2>
+          <p class="section-desc">
+            Browse our comprehensive selection of high-performance electronics engineered for creators, gamers, and modern professionals.
+          </p>
+        </div>
+
+        <!-- HTML5 List of Categories -->
+        <ul class="categories-list">
+          <!-- 1. Smartphones -->
+          <li class="category-card" data-category="smartphones">
+            <div class="category-img-box">
+              <img src="assets/images/cat-smartphones.svg" alt="Smartphones" class="category-img">
+            </div>
+            <h3 class="category-name">Smartphones</h3>
+            <p class="category-desc">Next-gen 5G flagship phones featuring AI cameras and all-day battery life.</p>
+            <button type="button" class="category-explore-btn">Explore Category →</button>
+          </li>
+
+          <!-- 2. Laptops -->
+          <li class="category-card" data-category="laptops">
+            <div class="category-img-box">
+              <img src="assets/images/cat-laptops.svg" alt="Laptops" class="category-img">
+            </div>
+            <h3 class="category-name">Laptops</h3>
+            <p class="category-desc">Ultra-slim ultrabooks and power-packed workstations for coding and productivity.</p>
+            <button type="button" class="category-explore-btn">Explore Category →</button>
+          </li>
+
+          <!-- 3. Headphones -->
+          <li class="category-card" data-category="headphones">
+            <div class="category-img-box">
+              <img src="assets/images/cat-headphones.svg" alt="Headphones" class="category-img">
+            </div>
+            <h3 class="category-name">Headphones</h3>
+            <p class="category-desc">Active Noise-Cancelling wireless headphones and studio-grade earbuds.</p>
+            <button type="button" class="category-explore-btn">Explore Category →</button>
+          </li>
+
+          <!-- 4. Smart Watches -->
+          <li class="category-card" data-category="watches">
+            <div class="category-img-box">
+              <img src="assets/images/cat-watches.svg" alt="Smart Watches" class="category-img">
+            </div>
+            <h3 class="category-name">Smart Watches</h3>
+            <p class="category-desc">Precision health trackers, AMOLED smartwatches, and sports wearables.</p>
+            <button type="button" class="category-explore-btn">Explore Category →</button>
+          </li>
+
+          <!-- 5. Tablets -->
+          <li class="category-card" data-category="tablets">
+            <div class="category-img-box">
+              <img src="assets/images/cat-tablets.svg" alt="Tablets" class="category-img">
+            </div>
+            <h3 class="category-name">Tablets</h3>
+            <p class="category-desc">Versatile touchscreen tablets and stylus pads for art, design, and work.</p>
+            <button type="button" class="category-explore-btn">Explore Category →</button>
+          </li>
+
+          <!-- 6. Cameras -->
+          <li class="category-card" data-category="cameras">
+            <div class="category-img-box">
+              <img src="assets/images/cat-cameras.svg" alt="Cameras" class="category-img">
+            </div>
+            <h3 class="category-name">Cameras</h3>
+            <p class="category-desc">Mirrorless 4K vlogging cameras and professional high-res zoom lenses.</p>
+            <button type="button" class="category-explore-btn">Explore Category →</button>
+          </li>
+
+          <!-- 7. Speakers -->
+          <li class="category-card" data-category="speakers">
+            <div class="category-img-box">
+              <img src="assets/images/cat-speakers.svg" alt="Speakers" class="category-img">
+            </div>
+            <h3 class="category-name">Speakers</h3>
+            <p class="category-desc">Waterproof Bluetooth outdoor party speakers with punchy bass.</p>
+            <button type="button" class="category-explore-btn">Explore Category →</button>
+          </li>
+
+          <!-- 8. Gaming Accessories -->
+          <li class="category-card" data-category="gaming">
+            <div class="category-img-box">
+              <img src="assets/images/cat-gaming.svg" alt="Gaming Accessories" class="category-img">
+            </div>
+            <h3 class="category-name">Gaming Accessories</h3>
+            <p class="category-desc">RGB mechanical gaming keyboards, high-precision mice, and controllers.</p>
+            <button type="button" class="category-explore-btn">Explore Category →</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         5. FEATURED PRODUCTS (With Live Search, Category & Brand Filters, Sort)
+         ======================================================================= -->
+    <section id="products" aria-label="Featured Electronic Products">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Featured Catalog</span>
+          <h2 class="section-title">Discover Our Premium Electronics</h2>
+          <p class="section-desc">
+            Hand-picked gadgets from top international brands. Compare specifications, calculate your savings, or send an enquiry directly.
+          </p>
+        </div>
+
+        <!-- Filter & Search Toolbar Control Panel -->
+        <div class="products-toolbar">
+          <div class="toolbar-top-row">
+            <!-- Search bar -->
+            <div class="search-input-group">
+              <span class="filter-search-icon">🔍</span>
+              <input 
+                type="text" 
+                id="product-search-input" 
+                class="filter-search-input" 
+                placeholder="Search by product name, brand, or feature..." 
+                aria-label="Filter products by text"
+              >
+            </div>
+
+            <!-- Dropdown Filters (Brand, Sort, Reset) -->
+            <div class="dropdown-filters-group">
+              <select id="brand-filter-select" class="custom-select" aria-label="Filter by Brand">
+                <option value="all">All Brands</option>
+                <option value="Apple">Apple</option>
+                <option value="Samsung">Samsung</option>
+                <option value="OnePlus">OnePlus</option>
+                <option value="HP">HP</option>
+                <option value="Dell">Dell</option>
+                <option value="Sony">Sony</option>
+                <option value="Canon">Canon</option>
+                <option value="JBL">JBL</option>
+                <option value="Razer">Razer</option>
+                <option value="Logitech">Logitech</option>
+              </select>
+
+              <select id="sort-select" class="custom-select" aria-label="Sort Products">
+                <option value="featured">Sort by: Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Customer Rating</option>
+                <option value="discount">Biggest Discount</option>
+              </select>
+
+              <button type="button" id="reset-filters-btn" class="btn-reset" title="Reset All Filters">
+                <span>🔄 Reset</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Category Filter Pills -->
+          <div class="category-pills-row" role="tablist" aria-label="Product Category Filter">
+            <button type="button" class="category-filter-btn active" data-category="all">All Categories</button>
+            <button type="button" class="category-filter-btn" data-category="smartphones">Smartphones</button>
+            <button type="button" class="category-filter-btn" data-category="laptops">Laptops</button>
+            <button type="button" class="category-filter-btn" data-category="headphones">Headphones</button>
+            <button type="button" class="category-filter-btn" data-category="watches">Smart Watches</button>
+            <button type="button" class="category-filter-btn" data-category="tablets">Tablets</button>
+            <button type="button" class="category-filter-btn" data-category="cameras">Cameras</button>
+            <button type="button" class="category-filter-btn" data-category="speakers">Speakers</button>
+            <button type="button" class="category-filter-btn" data-category="gaming">Gaming</button>
+          </div>
+        </div>
+
+        <!-- Products Status / Count Bar -->
+        <div class="products-status-bar">
+          <span class="products-count-text" id="products-count">Loading products catalog...</span>
+        </div>
+
+        <!-- Dynamic Products Grid (Populated by JavaScript) -->
+        <div class="products-grid" id="products-grid">
+          <!-- Product cards rendered here dynamically -->
+        </div>
+
+        <!-- Empty Results Card -->
+        <div class="empty-state-card" id="products-empty-state">
+          <div class="empty-icon">🔍</div>
+          <h3 class="empty-title">No Matching Products Found</h3>
+          <p class="empty-desc">We couldn't find any electronics matching your current search or filter criteria. Try adjusting your keywords or reset all filters.</p>
+          <button type="button" class="btn btn-primary" onclick="resetFilters()">Reset All Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         6. PRODUCT SPECIFICATIONS & COMPARISON (HTML5 Table)
+         ======================================================================= -->
+    <section id="compare" aria-label="Product Specifications Comparison">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Specifications Matrix</span>
+          <h2 class="section-title">Side-by-Side Product Comparison</h2>
+          <p class="section-desc">
+            Compare processors, memory, storage, displays, and battery capabilities across our flagship devices in Indian Rupees (₹).
+          </p>
+        </div>
+
+        <!-- Responsive HTML5 Table Container -->
+        <div class="table-responsive">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Processor</th>
+                <th scope="col">RAM</th>
+                <th scope="col">Storage</th>
+                <th scope="col">Display</th>
+                <th scope="col">Battery</th>
+                <th scope="col">Price (₹)</th>
+              </tr>
+            </thead>
+            <tbody id="comparison-tbody">
+              <!-- Comparison rows rendered dynamically by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         7. SPECIAL OFFERS & PROMOTIONS (CSS3 Border-Image & Countdown Timer)
+         ======================================================================= -->
+    <section id="offers" aria-label="Special Offers and Discounts">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" style="background: rgba(0, 245, 212, 0.15); color: var(--color-neon-cyan);">Mega Tech Fest</span>
+          <h2 class="section-title">Exclusive Deals & Limited-Time Offers</h2>
+          <p class="section-desc">
+            Save up to 40% on cutting-edge electronics. Avail instant bank exchange bonuses, no-cost EMIs, and bundled gaming packs.
+          </p>
+        </div>
+
+        <!-- Featured Promotional Banner demonstrating CSS3 border-image -->
+        <div class="promotional-highlight-banner">
+          <div class="promo-banner-text">
+            <span class="promo-tag-badge">FLASH SALE OF THE DAY</span>
+            <h3 class="promo-banner-title">Supercharge Your Workspace</h3>
+            <p class="promo-banner-desc">
+              Get an extra 10% instant discount on premium laptops, 4K monitors, and wireless noise-cancelling headphones when you order today.
+            </p>
+
+            <!-- Working Countdown Timer -->
+            <div class="deal-timer-wrap">
+              <div class="timer-box">
+                <span class="timer-val" id="timer-hours">18</span>
+                <span class="timer-lbl">Hours</span>
+              </div>
+              <span class="timer-colon">:</span>
+              <div class="timer-box">
+                <span class="timer-val" id="timer-minutes">45</span>
+                <span class="timer-lbl">Minutes</span>
+              </div>
+              <span class="timer-colon">:</span>
+              <div class="timer-box">
+                <span class="timer-val" id="timer-seconds">30</span>
+                <span class="timer-lbl">Seconds</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="promo-banner-cta">
+            <a href="#products" class="btn btn-primary btn-lg" onclick="selectCategory('headphones')">
+              <span>Claim Audio Deal →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Promotional Offer Cards Grid -->
+        <div class="offers-grid">
+          <!-- Offer 1 -->
+          <article class="offer-card">
+            <img src="assets/images/offer-banner-1.svg" alt="Mega Audio Fest" class="offer-banner-img">
+            <div class="offer-card-body">
+              <span class="offer-card-badge">HOT AUDIO DEAL</span>
+              <h4 class="offer-card-title">Sony & JBL Wireless Fest</h4>
+              <p class="offer-card-desc">Experience studio acoustics. Up to 40% off on flagship noise-cancelling headphones and IP67 Bluetooth party speakers.</p>
+              <button type="button" class="btn btn-outline-light btn-sm" onclick="selectCategory('headphones')">
+                <span>Shop Audio Gear →</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Offer 2 -->
+          <article class="offer-card">
+            <img src="assets/images/offer-banner-2.svg" alt="Student & Creator Pack" class="offer-banner-img">
+            <div class="offer-card-body">
+              <span class="offer-card-badge" style="background: rgba(250, 204, 21, 0.2); color: #facc15;">STUDENT EXCLUSIVE</span>
+              <h4 class="offer-card-title">Laptops & Creative Tablets</h4>
+              <p class="offer-card-desc">Upgrade your campus and design workflow. Flat ₹10,000 instant bonus on eligible student ID verification plus free backpack.</p>
+              <button type="button" class="btn btn-outline-light btn-sm" onclick="selectCategory('laptops')">
+                <span>View Eligible Laptops →</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         8. CUSTOMER ENQUIRY FORM SECTION
+         ======================================================================= -->
+    <section id="enquiry" aria-label="Customer Enquiry Form">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Direct Retail & Bulk Enquiries</span>
+          <h2 class="section-title">Request Quotation & Product Enquiry</h2>
+          <p class="section-desc">
+            Interested in product details, custom bulk pricing, or availability? Submit your enquiry below and our technical advisors will assist you within 2 hours.
+          </p>
+        </div>
+
+        <div class="enquiry-layout-grid">
+          <!-- Left Info & Benefits Column -->
+          <aside class="enquiry-sidebar">
+            <h3>Why Inquire with TECHNOVA?</h3>
+            <p>We supply authentic, brand-sealed electronic hardware with GST billing and authorized manufacturer warranty.</p>
+
+            <ul class="enquiry-perks-list">
+              <li>
+                <div class="perk-icon">🏷️</div>
+                <div class="perk-text">
+                  <strong>Competitive Bulk Pricing</strong>
+                  <span>Tiered discounts for enterprise, institutional, and student bulk purchases.</span>
+                </div>
+              </li>
+
+              <li>
+                <div class="perk-icon">⚡</div>
+                <div class="perk-text">
+                  <strong>Quick Turnaround</strong>
+                  <span>Instant quotation generation and guaranteed response within 2 business hours.</span>
+                </div>
+              </li>
+
+              <li>
+                <div class="perk-icon">🤝</div>
+                <div class="perk-text">
+                  <strong>Dedicated Tech Specialist</strong>
+                  <span>Assistance from hardware engineers to choose the optimal gadget for your needs.</span>
+                </div>
+              </li>
+
+              <li>
+                <div class="perk-icon">📦</div>
+                <div class="perk-text">
+                  <strong>Transit Insured Delivery</strong>
+                  <span>Safe door-to-door delivery with live courier tracking.</span>
+                </div>
+              </li>
+            </ul>
+          </aside>
+
+          <!-- Right Professional Enquiry Form -->
+          <div class="enquiry-form-card">
+            <form id="customer-enquiry-form" novalidate>
+              <!-- Row 1: Name & Email -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="enquiry-name" class="form-label">
+                    Customer Name <span class="required-asterisk">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id="enquiry-name" 
+                    name="customerName" 
+                    class="form-control" 
+                    placeholder="e.g. Rahul Sharma" 
+                    required
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="enquiry-email" class="form-label">
+                    Email Address <span class="required-asterisk">*</span>
+                  </label>
+                  <input 
+                    type="email" 
+                    id="enquiry-email" 
+                    name="email" 
+                    class="form-control" 
+                    placeholder="e.g. rahul@example.com" 
+                    required
+                  >
+                </div>
+              </div>
+
+              <!-- Row 2: Phone Number & Product Dropdown -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="enquiry-phone" class="form-label">
+                    Phone Number (10 Digits) <span class="required-asterisk">*</span>
+                  </label>
+                  <input 
+                    type="tel" 
+                    id="enquiry-phone" 
+                    name="phone" 
+                    class="form-control" 
+                    placeholder="10-digit mobile number" 
+                    pattern="[0-9]{10}" 
+                    maxlength="10" 
+                    required
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="enquiry-product" class="form-label">
+                    Select Product <span class="required-asterisk">*</span>
+                  </label>
+                  <select id="enquiry-product" name="product" class="form-control" required>
+                    <!-- Dynamically populated by JS from productsData -->
+                  </select>
+                </div>
+              </div>
+
+              <!-- Row 3: Enquiry Type, Quantity & Preferred Contact -->
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="enquiry-type" class="form-label">
+                    Enquiry Type <span class="required-asterisk">*</span>
+                  </label>
+                  <select id="enquiry-type" name="enquiryType" class="form-control" required>
+                    <option value="" disabled selected>-- Select Type --</option>
+                    <option value="Product Information">Product Information</option>
+                    <option value="Price Details">Price Details & Discounts</option>
+                    <option value="Bulk Order">Bulk Order / Corporate Purchase</option>
+                    <option value="Availability">Stock Availability</option>
+                    <option value="Warranty Support">Warranty & Accessories</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="enquiry-qty" class="form-label">
+                    Quantity Required <span class="required-asterisk">*</span>
+                  </label>
+                  <input 
+                    type="number" 
+                    id="enquiry-qty" 
+                    name="quantity" 
+                    class="form-control" 
+                    min="1" 
+                    max="500" 
+                    value="1" 
+                    required
+                  >
+                </div>
+              </div>
+
+              <!-- Row 4: Preferred Contact Method -->
+              <div class="form-group">
+                <label for="enquiry-method" class="form-label">Preferred Contact Method</label>
+                <select id="enquiry-method" name="contactMethod" class="form-control">
+                  <option value="Email" selected>Email (Detailed quotation sent to inbox)</option>
+                  <option value="Phone Call">Phone Call (Callback during business hours)</option>
+                  <option value="WhatsApp">WhatsApp (Quick chat and brochures)</option>
+                </select>
+              </div>
+
+              <!-- Row 5: Additional Requirements / Message -->
+              <div class="form-group">
+                <label for="enquiry-message" class="form-label">Message / Additional Requirements</label>
+                <textarea 
+                  id="enquiry-message" 
+                  name="message" 
+                  class="form-control" 
+                  rows="3" 
+                  placeholder="Specify custom storage options, color preferences, delivery location, or institutional tax details..."
+                ></textarea>
+              </div>
+
+              <!-- Buttons: Submit & Reset -->
+              <div class="form-actions-row">
+                <button type="reset" class="btn btn-outline-info">
+                  <span>Reset Form</span>
+                </button>
+                <button type="submit" class="btn btn-primary" id="enquiry-submit-btn">
+                  <span>Submit Enquiry 🚀</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       9. CONTACT SECTION & FOOTER
+       ========================================================================= -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Brand Info -->
+        <div class="footer-brand-col">
+          <a href="#hero" class="brand-logo-link">
+            <img src="assets/images/technova-logo.svg" alt="TECHNOVA Logo" class="brand-logo-img">
+          </a>
+          <p>
+            TECHNOVA is India's leading consumer electronics and gadget showcase retail destination. Delivering 100% authentic tech hardware with nationwide express delivery.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Facebook">📘</a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Twitter / X">🐦</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">📸</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn">💼</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="YouTube">▶️</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#products">Explore Products</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#offers">Special Offers</a></li>
+            <li><a href="#compare">Compare Products</a></li>
+            <li><a href="#enquiry">Customer Enquiry</a></li>
+          </ul>
+        </div>
+
+        <!-- Top Categories -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Top Categories</h4>
+          <ul class="footer-links-list">
+            <li><a href="#products" onclick="selectCategory('smartphones')">5G Smartphones</a></li>
+            <li><a href="#products" onclick="selectCategory('laptops')">Ultra Laptops</a></li>
+            <li><a href="#products" onclick="selectCategory('headphones')">ANC Headphones</a></li>
+            <li><a href="#products" onclick="selectCategory('watches')">Smart Watches</a></li>
+            <li><a href="#products" onclick="selectCategory('cameras')">Mirrorless Cameras</a></li>
+            <li><a href="#products" onclick="selectCategory('gaming')">Gaming Gear</a></li>
+          </ul>
+        </div>
+
+        <!-- Store Contact Details -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Store & Support</h4>
+          <ul class="contact-details-list">
+            <li>
+              <span class="contact-icon">📍</span>
+              <span>TechNova Tower, 4th Floor, Innovation Park, Cyber City, Bangalore - 560100</span>
+            </li>
+            <li>
+              <span class="contact-icon">✉️</span>
+              <span>support@technova-store.com<br>sales@technova-store.com</span>
+            </li>
+            <li>
+              <span class="contact-icon">📞</span>
+              <span>+91 98765 43210<br>1800-419-TECH (Toll Free)</span>
+            </li>
+            <li>
+              <span class="contact-icon">🕒</span>
+              <span>Mon – Sat: 9:30 AM – 8:30 PM<br>Sun: 10:00 AM – 6:00 PM</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 TECHNOVA Electronics Store. All Rights Reserved. Designed for Internet Programming Showcase Project.
+        </div>
+        <div>
+          Compatible with WAMP / LAMP Localhost Server environments.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       10. SHOPPING CART SLIDE-OVER DRAWER
+       ========================================================================= -->
+  <aside class="cart-drawer-panel" id="cart-drawer" aria-label="Shopping Cart Drawer">
+    <div class="cart-drawer-header">
+      <h3 class="cart-drawer-title">
+        <span>🛒</span>
+        <span>Your Shopping Cart</span>
+      </h3>
+      <button type="button" class="close-drawer-btn" id="close-cart-btn" aria-label="Close Cart">✕</button>
+    </div>
+
+    <div class="cart-drawer-body">
+      <!-- Empty Cart Message -->
+      <div class="cart-empty-view" id="cart-empty-view">
+        <div class="cart-empty-icon">🛍️</div>
+        <h4 class="cart-empty-title">Your Cart is Empty</h4>
+        <p class="cart-empty-desc">Discover our range of cutting-edge electronics and add your favorite items to your cart.</p>
+        <button type="button" class="btn btn-primary" onclick="closeCartDrawer(); selectCategory('all');">
+          Browse Electronics Now
+        </button>
+      </div>
+
+      <!-- Cart Item Rows Container -->
+      <div id="cart-items-container">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Cart Footer with Totals and Enquiry Checkout -->
+    <div class="cart-drawer-footer" id="cart-drawer-footer" style="display: none;">
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">₹0</span>
+      </div>
+      <div class="cart-summary-line" style="color: var(--color-success);">
+        <span>Total Savings</span>
+        <span id="cart-savings">₹0</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Estimated GST & Shipping</span>
+        <span style="color: var(--color-neon-cyan); font-weight: 600;">FREE DELIVERY</span>
+      </div>
+      <div class="cart-summary-line grand-total">
+        <span>Estimated Grand Total</span>
+        <span id="cart-grand-total">₹0</span>
+      </div>
+
+      <button type="button" class="btn btn-primary cart-checkout-btn" onclick="checkoutCartAsEnquiry()">
+        <span>Convert to Order Enquiry 🚀</span>
+      </button>
+      <button type="button" class="btn btn-outline-info btn-block" style="margin-top: 8px;" onclick="clearCart()">
+        <span>Clear Shopping Cart</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       11. PRODUCT DETAIL MODAL
+       ========================================================================= -->
+  <div class="custom-modal" id="product-detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-prod-title">
+    <div class="modal-header">
+      <h3 id="modal-header-brand">Product Technical Specifications</h3>
+      <button type="button" class="modal-close-btn" onclick="closeProductModal()" aria-label="Close dialog">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-prod-grid">
+        <div class="modal-prod-img-box">
+          <img id="modal-prod-img" src="" alt="Product Detail Image">
+        </div>
+        <div class="modal-prod-details">
+          <div style="font-size: 0.8rem; font-weight: 700; color: var(--color-accent-blue); text-transform: uppercase;">
+            <span id="modal-prod-brand"></span> • <span id="modal-prod-category"></span>
+          </div>
+          <h2 id="modal-prod-title"></h2>
+
+          <div class="product-rating" style="margin: 8px 0;">
+            <span id="modal-prod-stars" style="color: #f59e0b; font-size: 1.1rem;">★★★★★</span>
+            <span id="modal-prod-rating-val" style="font-size: 0.88rem; color: var(--color-text-muted);"></span>
+          </div>
+
+          <div class="modal-price-box">
+            <span class="price" id="modal-prod-price"></span>
+            <span class="mrp" id="modal-prod-original"></span>
+            <span class="discount-pill" id="modal-prod-discount"></span>
+          </div>
+
+          <p id="modal-prod-spec" style="font-size: 0.92rem; color: var(--color-text-muted); margin-bottom: 16px;"></p>
+
+          <!-- Specifications Mini Table -->
+          <table class="specs-mini-table">
+            <tbody id="modal-prod-specs-body">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+
+          <div class="modal-actions-bar">
+            <div class="qty-select-box">
+              <label for="modal-qty-input">Qty:</label>
+              <input type="number" id="modal-qty-input" min="1" max="50" value="1">
+            </div>
+
+            <button type="button" class="btn btn-primary" id="modal-add-to-cart">
+              <span>Add to Cart 🛒</span>
+            </button>
+            <button type="button" class="btn btn-outline-info" id="modal-send-enquiry">
+              <span>Send Enquiry ✉️</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       12. CUSTOMER ENQUIRY CONFIRMATION RECEIPT MODAL
+       (Requirement: Displays ONLY submitted details and unique enquiry ID)
+       ========================================================================= -->
+  <div class="confirmation-receipt-modal" id="enquiry-confirmation-modal" role="dialog" aria-modal="true" aria-labelledby="conf-heading">
+    <div class="receipt-header">
+      <div class="receipt-check-icon">✓</div>
+      <h3 id="conf-heading">Enquiry Submitted Successfully!</h3>
+      <p>Thank you for reaching out to TECHNOVA Electronics Store.</p>
+    </div>
+
+    <div class="receipt-body">
+      <div class="receipt-id-box">
+        <span>Official Reference ID</span>
+        <strong id="conf-enquiry-id">TECH-ENQ-2026-00000</strong>
+      </div>
+
+      <!-- Displays ONLY submitted customer details -->
+      <div class="receipt-details-list">
+        <div class="receipt-row">
+          <span class="receipt-label">Submission Date & Time:</span>
+          <span class="receipt-val" id="conf-timestamp"></span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Customer Name:</span>
+          <span class="receipt-val" id="conf-name"></span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Email Address:</span>
+          <span class="receipt-val" id="conf-email"></span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Contact Number:</span>
+          <span class="receipt-val" id="conf-phone"></span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Selected Product:</span>
+          <span class="receipt-val" id="conf-product"></span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Enquiry Category:</span>
+          <span class="receipt-val" id="conf-type"></span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Units / Quantity:</span>
+          <span class="receipt-val" id="conf-qty"></span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Preferred Response:</span>
+          <span class="receipt-val" id="conf-method"></span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Message / Notes:</span>
+          <span class="receipt-val" id="conf-message"></span>
+        </div>
+      </div>
+
+      <div class="receipt-actions">
+        <button type="button" class="btn btn-outline-info" onclick="printEnquiryReceipt()">
+          <span>🖨️ Print Receipt</span>
+        </button>
+        <button type="button" class="btn btn-primary" onclick="closeEnquiryConfirmation()">
+          <span>Submit Another Enquiry</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared Modal Backdrop -->
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="js/script.js"></script>
+</body>
+</html>

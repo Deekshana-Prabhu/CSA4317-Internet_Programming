@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WANDERLUST – Explore the World | Premium Travel Agency</title>
+  
+  <!-- Meta Information -->
+  <meta name="description" content="Wanderlust Travel Agency offers unforgettable luxury vacations, hill station escapes, tropical beach getaways, and customized travel packages across India and worldwide.">
+  <meta name="keywords" content="travel agency, tour packages, Ooty, Goa, Kerala, Manali, Jaipur, Bali, Maldives, hotel booking, vacations">
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+
+  <!-- Google Web Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       2. Sticky Navigation Bar
+       ========================================================================= -->
+  <header class="navbar-header" id="navbar">
+    <div class="container nav-container">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="brand-logo" aria-label="WANDERLUST Home">
+        <div class="brand-icon">
+          <i class="fas fa-compass"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">WANDER<span>LUST</span></span>
+          <span class="brand-tagline">Explore the World</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#destinations" class="nav-link">Destinations</a></li>
+          <li><a href="#hotels" class="nav-link">Hotels</a></li>
+          <li><a href="#packages" class="nav-link">Travel Packages</a></li>
+          <li><a href="#comparison" class="nav-link">Compare</a></li>
+          <li><a href="#attractions" class="nav-link">Attractions</a></li>
+          <li><a href="#offers" class="nav-link">Special Offers</a></li>
+          <li><a href="#http-guide" class="nav-link">How It Works</a></li>
+          <li><a href="#booking" class="nav-link">Book Now</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Action Controls -->
+      <div class="nav-actions">
+        <a href="#destinations" class="nav-search-trigger" title="Quick Search Destinations" aria-label="Search Destinations">
+          <i class="fas fa-search"></i>
+        </a>
+        <a href="#booking" class="btn-plan-trip">
+          <i class="fas fa-paper-plane"></i> Plan Your Trip
+        </a>
+        <button class="nav-toggle" id="nav-toggle-btn" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN CONTENT
+       ========================================================================= -->
+  <main>
+
+    <!-- =======================================================================
+         3. Home Page / Full-Screen Hero Section
+         ======================================================================= -->
+    <section class="hero-section" id="home">
+      
+      <!-- Floating Travel Themed Decorative Elements (CSS Keyframe Animations) -->
+      <div class="floating-element airplane-elem" aria-hidden="true">
+        <i class="fas fa-plane" style="color: #ffd166; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));"></i>
+      </div>
+      <div class="floating-element compass-elem" aria-hidden="true">
+        <i class="fas fa-compass" style="color: var(--color-sky-light); opacity: 0.6;"></i>
+      </div>
+      <div class="floating-element cloud-elem-1" aria-hidden="true">
+        <i class="fas fa-cloud" style="color: rgba(255,255,255,0.7);"></i>
+      </div>
+      <div class="floating-element island-elem" aria-hidden="true">
+        <i class="fas fa-umbrella-beach" style="color: var(--color-tropical-bright);"></i>
+      </div>
+
+      <div class="container hero-content">
+        <!-- Hero Promotional Badge -->
+        <div class="hero-promo-badge">
+          <span class="sparkle"><i class="fas fa-star"></i></span>
+          <span>Your Gateway to Luxury Travel Experiences</span>
+          <span class="sparkle"><i class="fas fa-star"></i></span>
+        </div>
+
+        <!-- Hero Headings with CSS Text Shadows -->
+        <h1 class="hero-title">
+          Discover the World, One Journey at a Time
+        </h1>
+        <p class="hero-subtitle">
+          Explore breathtaking destinations, handpicked luxury stays, and create unforgettable memories with WANDERLUST travel agency.
+        </p>
+
+        <!-- Hero Action Buttons -->
+        <div class="hero-buttons">
+          <a href="#destinations" class="btn-primary">
+            <i class="fas fa-globe-americas"></i> Explore Destinations
+          </a>
+          <a href="#booking" class="btn-outline">
+            <i class="fas fa-calendar-check"></i> Book Your Trip
+          </a>
+        </div>
+
+        <!-- Destination Interactive Quick Search Bar -->
+        <div class="hero-search-box">
+          <form class="hero-search-form" id="hero-search-form">
+            <div class="search-field">
+              <label for="hero-search-where"><i class="fas fa-map-marker-alt"></i> Where to?</label>
+              <div class="search-input-wrapper">
+                <input type="text" id="hero-search-where" placeholder="e.g. Ooty, Goa, Kerala, Bali..." autocomplete="off">
+              </div>
+            </div>
+            
+            <div class="search-field">
+              <label for="hero-search-date"><i class="fas fa-calendar-alt"></i> Travel Date</label>
+              <div class="search-input-wrapper">
+                <input type="date" id="hero-search-date">
+              </div>
+            </div>
+
+            <div class="search-field">
+              <label for="hero-search-type"><i class="fas fa-mountain"></i> Tour Type</label>
+              <div class="search-input-wrapper">
+                <select id="hero-search-type">
+                  <option value="all">All Experiences</option>
+                  <option value="hill">Hill Stations & Valleys</option>
+                  <option value="beach">Tropical Beaches</option>
+                  <option value="heritage">Heritage & Royal Palaces</option>
+                  <option value="international">International Getaways</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="search-field">
+              <label>&nbsp;</label>
+              <button type="submit" class="btn-hero-search">
+                <i class="fas fa-search"></i> Search Trips
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         Promotional Banner (Demonstrating CSS3 BORDER-IMAGE)
+         ======================================================================= -->
+    <div class="container promo-banner-section">
+      <div class="promo-banner-card">
+        <div class="promo-banner-text">
+          <div class="promo-tag">
+            <i class="fas fa-fire-alt"></i> Limited Season Offer
+          </div>
+          <h2 class="promo-heading">Your Next Adventure Starts Here!</h2>
+          <p class="promo-desc">
+            Book today and unlock exclusive discounts of up to 30% on family vacations, weekend escapes, and luxury honeymoons.
+          </p>
+        </div>
+        <div class="promo-cta-group">
+          <div class="promo-discount-badge">
+            <i class="fas fa-tag"></i> UP TO 30% OFF
+          </div>
+          <a href="#offers" class="btn-primary">
+            View Offers <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- =======================================================================
+         Animated Statistics Counters
+         ======================================================================= -->
+    <section class="stats-section" aria-label="Wanderlust Travel Agency Statistics">
+      <div class="container">
+        <div class="stats-grid">
+          
+          <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-map-marked-alt"></i></div>
+            <div class="stat-number" data-target="50">0<span class="plus">+</span></div>
+            <div class="stat-label">Destinations</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-suitcase-rolling"></i></div>
+            <div class="stat-number" data-target="100">0<span class="plus">+</span></div>
+            <div class="stat-label">Travel Packages</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-hotel"></i></div>
+            <div class="stat-number" data-target="200">0<span class="plus">+</span></div>
+            <div class="stat-label">Verified Hotels</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-smile-beam"></i></div>
+            <div class="stat-number" data-target="5000">0<span class="plus">+</span></div>
+            <div class="stat-label">Happy Travellers</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         4. Tourist Destinations Section
+         ======================================================================= -->
+    <section class="section-padding destinations-section" id="destinations">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-compass"></i> Curated Destinations</span>
+          <h2 class="section-title">Popular Travel Destinations</h2>
+          <p class="section-subtitle">
+            Immerse yourself in scenic misty hills, golden beaches, historic palaces, and breathtaking international paradises.
+          </p>
+        </div>
+
+        <!-- Destination Filter and Search Controls -->
+        <div class="destination-controls">
+          <div class="filter-button-group">
+            <button class="filter-btn active" data-filter="all">All Destinations</button>
+            <button class="filter-btn" data-filter="hill">Hill Stations</button>
+            <button class="filter-btn" data-filter="beach">Beaches</button>
+            <button class="filter-btn" data-filter="heritage">Heritage & Palaces</button>
+            <button class="filter-btn" data-filter="international">International</button>
+          </div>
+
+          <div class="destination-search-input">
+            <i class="fas fa-search"></i>
+            <input type="text" id="dest-search-input" placeholder="Search destination by name...">
+          </div>
+        </div>
+
+        <!-- Destination Cards Gallery (8+ Required Destinations) -->
+        <div class="destinations-grid" id="destinations-grid">
+
+          <!-- 1. OOTY -->
+          <article class="destination-card" data-category="hill" data-name="ooty" data-location="tamil nadu">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/ooty.svg'" 
+                   alt="Scenic tea plantations and hills of Ooty, Tamil Nadu" 
+                   loading="lazy">
+              <span class="card-badge">Hill Station</span>
+              <span class="card-price-badge">From ₹14,999</span>
+            </div>
+            <div class="card-body">
+              <span class="card-location"><i class="fas fa-map-pin"></i> Nilgiris, Tamil Nadu</span>
+              <h3 class="destination-card-title">Ooty</h3>
+              <p class="card-description">
+                The Queen of Hill Stations, renowned for emerald tea gardens, the UNESCO toy train, and mist-cloaked Nilgiri valleys.
+              </p>
+              <div class="card-meta">
+                <i class="fas fa-calendar-check"></i> Best Time: <strong>Oct – Jun</strong>
+              </div>
+              <button class="btn-card-action btn-explore-dest" data-dest="ooty">
+                Explore Destination <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 2. KODAIKANAL -->
+          <article class="destination-card" data-category="hill" data-name="kodaikanal" data-location="tamil nadu">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1626014303757-6564477318f7?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/kodaikanal.svg'" 
+                   alt="Star lake and pine hills in Kodaikanal" 
+                   loading="lazy">
+              <span class="card-badge">Hill Station</span>
+              <span class="card-price-badge">From ₹13,500</span>
+            </div>
+            <div class="card-body">
+              <span class="card-location"><i class="fas fa-map-pin"></i> Dindigul, Tamil Nadu</span>
+              <h3 class="destination-card-title">Kodaikanal</h3>
+              <p class="card-description">
+                The Princess of Hill Stations, blessed with dense pine forests, picturesque star-shaped lakes, and misty viewpoints.
+              </p>
+              <div class="card-meta">
+                <i class="fas fa-calendar-check"></i> Best Time: <strong>Sep – May</strong>
+              </div>
+              <button class="btn-card-action btn-explore-dest" data-dest="kodaikanal">
+                Explore Destination <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 3. GOA -->
+          <article class="destination-card" data-category="beach" data-name="goa" data-location="western coast india">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/goa.svg'" 
+                   alt="Sunny sandy beaches and palm trees of Goa" 
+                   loading="lazy">
+              <span class="card-badge">Beach Paradise</span>
+              <span class="card-price-badge">From ₹16,800</span>
+            </div>
+            <div class="card-body">
+              <span class="card-location"><i class="fas fa-map-pin"></i> Goa, India</span>
+              <h3 class="destination-card-title">Goa</h3>
+              <p class="card-description">
+                Endless sun-kissed beaches, thrilling water sports, Portuguese colonial architecture, and vibrant coastal nightlife.
+              </p>
+              <div class="card-meta">
+                <i class="fas fa-calendar-check"></i> Best Time: <strong>Nov – Feb</strong>
+              </div>
+              <button class="btn-card-action btn-explore-dest" data-dest="goa">
+                Explore Destination <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 4. MANALI -->
+          <article class="destination-card" data-category="hill" data-name="manali" data-location="himachal pradesh">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df8?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/manali.svg'" 
+                   alt="Snow covered peaks in Manali, Himachal Pradesh" 
+                   loading="lazy">
+              <span class="card-badge">Alpine Snow</span>
+              <span class="card-price-badge">From ₹24,999</span>
+            </div>
+            <div class="card-body">
+              <span class="card-location"><i class="fas fa-map-pin"></i> Himachal Pradesh</span>
+              <h3 class="destination-card-title">Manali</h3>
+              <p class="card-description">
+                Snow-draped Himalayan peaks, Solang Valley adventures, Rohtang Pass, and tranquil apple orchard valleys.
+              </p>
+              <div class="card-meta">
+                <i class="fas fa-calendar-check"></i> Best Time: <strong>Oct – Jun</strong>
+              </div>
+              <button class="btn-card-action btn-explore-dest" data-dest="manali">
+                Explore Destination <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 5. KERALA -->
+          <article class="destination-card" data-category="beach" data-name="kerala" data-location="south india">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/kerala.svg'" 
+                   alt="Kerala backwaters and traditional luxury houseboat" 
+                   loading="lazy">
+              <span class="card-badge">Backwaters</span>
+              <span class="card-price-badge">From ₹22,500</span>
+            </div>
+            <div class="card-body">
+              <span class="card-location"><i class="fas fa-map-pin"></i> Kerala, India</span>
+              <h3 class="destination-card-title">Kerala</h3>
+              <p class="card-description">
+                God’s Own Country: tranquil palm-fringed backwaters, luxury houseboat cruises, spice plantations, and Ayurvedic healing.
+              </p>
+              <div class="card-meta">
+                <i class="fas fa-calendar-check"></i> Best Time: <strong>Sep – Mar</strong>
+              </div>
+              <button class="btn-card-action btn-explore-dest" data-dest="kerala">
+                Explore Destination <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 6. JAIPUR -->
+          <article class="destination-card" data-category="heritage" data-name="jaipur" data-location="rajasthan">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/jaipur.svg'" 
+                   alt="Hawa Mahal pink palace architecture in Jaipur" 
+                   loading="lazy">
+              <span class="card-badge">Royal Heritage</span>
+              <span class="card-price-badge">From ₹18,200</span>
+            </div>
+            <div class="card-body">
+              <span class="card-location"><i class="fas fa-map-pin"></i> Rajasthan, India</span>
+              <h3 class="destination-card-title">Jaipur</h3>
+              <p class="card-description">
+                The royal Pink City featuring majestic forts like Amber and Jaigarh, the ornate Hawa Mahal, and regal Rajput hospitality.
+              </p>
+              <div class="card-meta">
+                <i class="fas fa-calendar-check"></i> Best Time: <strong>Oct – Mar</strong>
+              </div>
+              <button class="btn-card-action btn-explore-dest" data-dest="jaipur">
+                Explore Destination <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 7. BALI -->
+          <article class="destination-card" data-category="international" data-name="bali" data-location="indonesia">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/bali.svg'" 
+                   alt="Balinese temple and tropical landscape" 
+                   loading="lazy">
+              <span class="card-badge">International</span>
+              <span class="card-price-badge">From ₹48,500</span>
+            </div>
+            <div class="card-body">
+              <span class="card-location"><i class="fas fa-map-pin"></i> Bali, Indonesia</span>
+              <h3 class="destination-card-title">Bali</h3>
+              <p class="card-description">
+                Island of the Gods: sacred sea temples, lush emerald rice terraces, surf beaches, cultural dances, and cliffside sunsets.
+              </p>
+              <div class="card-meta">
+                <i class="fas fa-calendar-check"></i> Best Time: <strong>Apr – Oct</strong>
+              </div>
+              <button class="btn-card-action btn-explore-dest" data-dest="bali">
+                Explore Destination <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- 8. MALDIVES -->
+          <article class="destination-card" data-category="international" data-name="maldives" data-location="indian ocean">
+            <div class="card-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/maldives.svg'" 
+                   alt="Maldives luxury overwater villas and crystal turquoise ocean" 
+                   loading="lazy">
+              <span class="card-badge">Luxury Island</span>
+              <span class="card-price-badge">From ₹62,000</span>
+            </div>
+            <div class="card-body">
+              <span class="card-location"><i class="fas fa-map-pin"></i> Indian Ocean</span>
+              <h3 class="destination-card-title">Maldives</h3>
+              <p class="card-description">
+                Crystal turquoise lagoons, private overwater bungalows, coral reef snorkeling, and the ultimate luxury beach retreat.
+              </p>
+              <div class="card-meta">
+                <i class="fas fa-calendar-check"></i> Best Time: <strong>Nov – Apr</strong>
+              </div>
+              <button class="btn-card-action btn-explore-dest" data-dest="maldives">
+                Explore Destination <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         5. Hotel Information Section
+         ======================================================================= -->
+    <section class="section-padding hotels-section" id="hotels">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-hotel"></i> Handpicked Accommodations</span>
+          <h2 class="section-title">Luxury Hotels & Resorts</h2>
+          <p class="section-subtitle">
+            Experience world-class hospitality, premium amenities, scenic vistas, and exceptional dining across all destinations.
+          </p>
+        </div>
+
+        <div class="hotels-grid">
+
+          <!-- Hotel 1: Ooty -->
+          <article class="hotel-card">
+            <div class="hotel-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/hotel-savoy.svg'" 
+                   alt="Savoy Heritage Palace in Ooty" 
+                   loading="lazy">
+              <div class="hotel-star-badge">
+                <i class="fas fa-star"></i> 5.0 (Luxury)
+              </div>
+            </div>
+            <div class="hotel-card-body">
+              <div class="hotel-location">
+                <i class="fas fa-map-marker-alt"></i> Ooty, Tamil Nadu
+              </div>
+              <h3 class="hotel-title">Savoy Heritage Palace</h3>
+              <p class="hotel-desc">
+                Colonial elegance amidst English gardens and misty hill views. Features cozy fireplaces and authentic Nilgiri tea tastings.
+              </p>
+              <ul class="hotel-facilities-list">
+                <li class="facility-pill"><i class="fas fa-wifi"></i> Free Wi-Fi</li>
+                <li class="facility-pill"><i class="fas fa-utensils"></i> Restaurant</li>
+                <li class="facility-pill"><i class="fas fa-snowflake"></i> Air Conditioning</li>
+                <li class="facility-pill"><i class="fas fa-parking"></i> Parking</li>
+                <li class="facility-pill"><i class="fas fa-concierge-bell"></i> Room Service</li>
+              </ul>
+              <div class="hotel-card-footer">
+                <div class="hotel-price-tag">
+                  <span class="price-sub">Starting from</span>
+                  <span class="price-val">₹7,500 <small>/ night</small></span>
+                </div>
+                <button class="btn-primary btn-view-hotel" data-dest="ooty" data-hotel-pref="luxury">
+                  View Hotel
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hotel 2: Goa -->
+          <article class="hotel-card">
+            <div class="hotel-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/hotel-leela.svg'" 
+                   alt="The Leela Beach Resort & Spa in Goa" 
+                   loading="lazy">
+              <div class="hotel-star-badge">
+                <i class="fas fa-star"></i> 4.9 (5-Star)
+              </div>
+            </div>
+            <div class="hotel-card-body">
+              <div class="hotel-location">
+                <i class="fas fa-map-marker-alt"></i> Mobor Beach, South Goa
+              </div>
+              <h3 class="hotel-title">The Leela Beach Resort</h3>
+              <p class="hotel-desc">
+                Sprawling 75-acre beachfront sanctuary with 12-hole golf course, private beach access, and lagoons.
+              </p>
+              <ul class="hotel-facilities-list">
+                <li class="facility-pill"><i class="fas fa-wifi"></i> Free Wi-Fi</li>
+                <li class="facility-pill"><i class="fas fa-swimming-pool"></i> Swimming Pool</li>
+                <li class="facility-pill"><i class="fas fa-utensils"></i> Restaurant</li>
+                <li class="facility-pill"><i class="fas fa-snowflake"></i> Air Conditioning</li>
+                <li class="facility-pill"><i class="fas fa-parking"></i> Parking</li>
+                <li class="facility-pill"><i class="fas fa-concierge-bell"></i> Room Service</li>
+              </ul>
+              <div class="hotel-card-footer">
+                <div class="hotel-price-tag">
+                  <span class="price-sub">Starting from</span>
+                  <span class="price-val">₹12,999 <small>/ night</small></span>
+                </div>
+                <button class="btn-primary btn-view-hotel" data-dest="goa" data-hotel-pref="luxury">
+                  View Hotel
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hotel 3: Manali -->
+          <article class="hotel-card">
+            <div class="hotel-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/hotel-solang.svg'" 
+                   alt="Solang Valley Mountain Retreat in Manali" 
+                   loading="lazy">
+              <div class="hotel-star-badge">
+                <i class="fas fa-star"></i> 4.8 (Premium)
+              </div>
+            </div>
+            <div class="hotel-card-body">
+              <div class="hotel-location">
+                <i class="fas fa-map-marker-alt"></i> Solang Valley, Manali
+              </div>
+              <h3 class="hotel-title">Solang Valley Retreat</h3>
+              <p class="hotel-desc">
+                Cedar timber lodge situated right on the banks of the Beas river with uninterrupted views of snow peaks and glaciers.
+              </p>
+              <ul class="hotel-facilities-list">
+                <li class="facility-pill"><i class="fas fa-wifi"></i> Free Wi-Fi</li>
+                <li class="facility-pill"><i class="fas fa-utensils"></i> Restaurant</li>
+                <li class="facility-pill"><i class="fas fa-snowflake"></i> Central Heating</li>
+                <li class="facility-pill"><i class="fas fa-parking"></i> Parking</li>
+                <li class="facility-pill"><i class="fas fa-concierge-bell"></i> Room Service</li>
+              </ul>
+              <div class="hotel-card-footer">
+                <div class="hotel-price-tag">
+                  <span class="price-sub">Starting from</span>
+                  <span class="price-val">₹6,200 <small>/ night</small></span>
+                </div>
+                <button class="btn-primary btn-view-hotel" data-dest="manali" data-hotel-pref="deluxe">
+                  View Hotel
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hotel 4: Kerala -->
+          <article class="hotel-card">
+            <div class="hotel-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/hotel-kumarakom.svg'" 
+                   alt="Kumarakom Lagoon Luxury Villas in Kerala" 
+                   loading="lazy">
+              <div class="hotel-star-badge">
+                <i class="fas fa-star"></i> 5.0 (Luxury)
+              </div>
+            </div>
+            <div class="hotel-card-body">
+              <div class="hotel-location">
+                <i class="fas fa-map-marker-alt"></i> Kumarakom, Kerala
+              </div>
+              <h3 class="hotel-title">Kumarakom Lagoon Villas</h3>
+              <p class="hotel-desc">
+                Heritage water villas built along emerald canals with private plunge pools, authentic Ayurvedic center, and sunset cruises.
+              </p>
+              <ul class="hotel-facilities-list">
+                <li class="facility-pill"><i class="fas fa-wifi"></i> Free Wi-Fi</li>
+                <li class="facility-pill"><i class="fas fa-swimming-pool"></i> Swimming Pool</li>
+                <li class="facility-pill"><i class="fas fa-utensils"></i> Restaurant</li>
+                <li class="facility-pill"><i class="fas fa-snowflake"></i> Air Conditioning</li>
+                <li class="facility-pill"><i class="fas fa-parking"></i> Parking</li>
+                <li class="facility-pill"><i class="fas fa-concierge-bell"></i> Room Service</li>
+              </ul>
+              <div class="hotel-card-footer">
+                <div class="hotel-price-tag">
+                  <span class="price-sub">Starting from</span>
+                  <span class="price-val">₹9,800 <small>/ night</small></span>
+                </div>
+                <button class="btn-primary btn-view-hotel" data-dest="kerala" data-hotel-pref="luxury">
+                  View Hotel
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hotel 5: Jaipur -->
+          <article class="hotel-card">
+            <div class="hotel-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/hotel-rambagh.svg'" 
+                   alt="Rambagh Royal Palace Hotel in Jaipur" 
+                   loading="lazy">
+              <div class="hotel-star-badge">
+                <i class="fas fa-star"></i> 5.0 (Heritage)
+              </div>
+            </div>
+            <div class="hotel-card-body">
+              <div class="hotel-location">
+                <i class="fas fa-map-marker-alt"></i> Jaipur, Rajasthan
+              </div>
+              <h3 class="hotel-title">Rambagh Royal Palace</h3>
+              <p class="hotel-desc">
+                The former residence of the Maharaja of Jaipur. An opulent palace featuring manicured peacock gardens, marble halls, and regal suites.
+              </p>
+              <ul class="hotel-facilities-list">
+                <li class="facility-pill"><i class="fas fa-wifi"></i> Free Wi-Fi</li>
+                <li class="facility-pill"><i class="fas fa-swimming-pool"></i> Swimming Pool</li>
+                <li class="facility-pill"><i class="fas fa-utensils"></i> Royal Dining</li>
+                <li class="facility-pill"><i class="fas fa-snowflake"></i> Air Conditioning</li>
+                <li class="facility-pill"><i class="fas fa-parking"></i> Valet Parking</li>
+                <li class="facility-pill"><i class="fas fa-concierge-bell"></i> 24/7 Butler</li>
+              </ul>
+              <div class="hotel-card-footer">
+                <div class="hotel-price-tag">
+                  <span class="price-sub">Starting from</span>
+                  <span class="price-val">₹18,500 <small>/ night</small></span>
+                </div>
+                <button class="btn-primary btn-view-hotel" data-dest="jaipur" data-hotel-pref="luxury">
+                  View Hotel
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hotel 6: Bali -->
+          <article class="hotel-card">
+            <div class="hotel-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/hotel-ayana.svg'" 
+                   alt="Ayana Ocean Cliff Resort in Bali" 
+                   loading="lazy">
+              <div class="hotel-star-badge">
+                <i class="fas fa-star"></i> 5.0 (Oceanfront)
+              </div>
+            </div>
+            <div class="hotel-card-body">
+              <div class="hotel-location">
+                <i class="fas fa-map-marker-alt"></i> Jimbaran, Bali
+              </div>
+              <h3 class="hotel-title">Ayana Ocean Cliff Resort</h3>
+              <p class="hotel-desc">
+                World-acclaimed clifftop resort perched above Jimbaran Bay, boasting 12 swimming pools including the famous Rock Bar.
+              </p>
+              <ul class="hotel-facilities-list">
+                <li class="facility-pill"><i class="fas fa-wifi"></i> Free Wi-Fi</li>
+                <li class="facility-pill"><i class="fas fa-swimming-pool"></i> Infinity Pool</li>
+                <li class="facility-pill"><i class="fas fa-utensils"></i> 19 Restaurants</li>
+                <li class="facility-pill"><i class="fas fa-snowflake"></i> Air Conditioning</li>
+                <li class="facility-pill"><i class="fas fa-parking"></i> Parking</li>
+                <li class="facility-pill"><i class="fas fa-concierge-bell"></i> Room Service</li>
+              </ul>
+              <div class="hotel-card-footer">
+                <div class="hotel-price-tag">
+                  <span class="price-sub">Starting from</span>
+                  <span class="price-val">₹15,200 <small>/ night</small></span>
+                </div>
+                <button class="btn-primary btn-view-hotel" data-dest="bali" data-hotel-pref="luxury">
+                  View Hotel
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         6. Travel Packages Section
+         ======================================================================= -->
+    <section class="section-padding packages-section" id="packages">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-suitcase"></i> All-Inclusive Itineraries</span>
+          <h2 class="section-title">Featured Travel Packages</h2>
+          <p class="section-subtitle">
+            Carefully curated itineraries including premium accommodations, private transfers, guided excursions, and meals.
+          </p>
+        </div>
+
+        <!-- Filter bar for packages -->
+        <div class="packages-filter-bar">
+          <span style="font-weight: 700; color: var(--color-ocean-deep);"><i class="fas fa-filter"></i> Filter Packages by Budget:</span>
+          <select id="package-price-filter" style="padding: 0.5rem 1rem; border-radius: var(--radius-md); border: 1.5px solid var(--color-gray-200); font-weight: 600;">
+            <option value="all">All Price Ranges</option>
+            <option value="budget">Budget Escapes (Under ₹18,000)</option>
+            <option value="premium">Premium Tours (₹18,000 – ₹30,000)</option>
+            <option value="luxury">Luxury & International (Above ₹30,000)</option>
+          </select>
+        </div>
+
+        <!-- Packages Grid (6 Sample Travel Packages) -->
+        <div class="packages-grid">
+
+          <!-- 1. Ooty Weekend Escape -->
+          <article class="package-card" data-price="14999">
+            <div class="package-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/pkg-ooty.svg'" 
+                   alt="Ooty Weekend Escape Package" 
+                   loading="lazy">
+              <span class="package-duration-badge"><i class="fas fa-clock"></i> 3 Days / 2 Nights</span>
+            </div>
+            <div class="package-card-body">
+              <span class="package-dest-label">Ooty, Tamil Nadu</span>
+              <h3 class="package-title">Ooty Weekend Escape</h3>
+              <ul class="package-features">
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Tea garden estate walk & tasting</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Nilgiri Heritage toy train tickets</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Doddabetta peak & Pykara lake boat ride</li>
+              </ul>
+              <div class="package-logistics">
+                <div class="logistics-row"><i class="fas fa-hotel"></i> <strong>Stay:</strong> Heritage Nilgiri 4-Star Resort</div>
+                <div class="logistics-row"><i class="fas fa-car"></i> <strong>Transit:</strong> AC Coach / Sightseeing Cab</div>
+              </div>
+              <div class="package-card-footer">
+                <div class="package-price-wrap">
+                  <span class="from">Price per Person</span>
+                  <span class="amount">₹14,999</span>
+                  <span class="unit">All taxes included</span>
+                </div>
+                <button class="btn-book-package" data-package="ooty-escape">
+                  Book Package <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. Kerala Backwater Experience -->
+          <article class="package-card featured" data-price="22500">
+            <div class="package-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/pkg-kerala.svg'" 
+                   alt="Kerala Backwater Experience" 
+                   loading="lazy">
+              <span class="package-duration-badge"><i class="fas fa-clock"></i> 5 Days / 4 Nights</span>
+            </div>
+            <div class="package-card-body">
+              <span class="package-dest-label">Alleppey & Kumarakom</span>
+              <h3 class="package-title">Kerala Backwater Experience</h3>
+              <ul class="package-features">
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> 1-Night private motorized houseboat stay</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Traditional Ayurvedic massage session</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Spice garden trail & Kathakali cultural show</li>
+              </ul>
+              <div class="package-logistics">
+                <div class="logistics-row"><i class="fas fa-hotel"></i> <strong>Stay:</strong> Lake Resort & Luxury Houseboat</div>
+                <div class="logistics-row"><i class="fas fa-car"></i> <strong>Transit:</strong> Private Chauffeur Sedan</div>
+              </div>
+              <div class="package-card-footer">
+                <div class="package-price-wrap">
+                  <span class="from">Price per Person</span>
+                  <span class="amount">₹22,500</span>
+                  <span class="unit">All taxes included</span>
+                </div>
+                <button class="btn-book-package" data-package="kerala-backwater">
+                  Book Package <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. Goa Beach Holiday -->
+          <article class="package-card" data-price="16800">
+            <div class="package-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/pkg-goa.svg'" 
+                   alt="Goa Beach Holiday" 
+                   loading="lazy">
+              <span class="package-duration-badge"><i class="fas fa-clock"></i> 4 Days / 3 Nights</span>
+            </div>
+            <div class="package-card-body">
+              <span class="package-dest-label">North & South Goa</span>
+              <h3 class="package-title">Goa Beach Holiday</h3>
+              <ul class="package-features">
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Sunset cruise on Mandovi River</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Scuba diving & jet ski in Malvan</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Portuguese churches & Fort Aguada</li>
+              </ul>
+              <div class="package-logistics">
+                <div class="logistics-row"><i class="fas fa-hotel"></i> <strong>Stay:</strong> Beachfront 4-Star Resort</div>
+                <div class="logistics-row"><i class="fas fa-car"></i> <strong>Transit:</strong> Airport Transfers & Private Cab</div>
+              </div>
+              <div class="package-card-footer">
+                <div class="package-price-wrap">
+                  <span class="from">Price per Person</span>
+                  <span class="amount">₹16,800</span>
+                  <span class="unit">All taxes included</span>
+                </div>
+                <button class="btn-book-package" data-package="goa-holiday">
+                  Book Package <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. Manali Adventure Trip -->
+          <article class="package-card" data-price="24999">
+            <div class="package-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/pkg-manali.svg'" 
+                   alt="Manali Adventure Trip" 
+                   loading="lazy">
+              <span class="package-duration-badge"><i class="fas fa-clock"></i> 6 Days / 5 Nights</span>
+            </div>
+            <div class="package-card-body">
+              <span class="package-dest-label">Manali & Rohtang Pass</span>
+              <h3 class="package-title">Manali Adventure Trip</h3>
+              <ul class="package-features">
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Solang Valley paragliding & zorbing</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Rohtang Pass snow point excursion</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Riverside camping & bonfire night</li>
+              </ul>
+              <div class="package-logistics">
+                <div class="logistics-row"><i class="fas fa-hotel"></i> <strong>Stay:</strong> Snow Valley Alpine Chalet</div>
+                <div class="logistics-row"><i class="fas fa-car"></i> <strong>Transit:</strong> Luxury Volvo + 4x4 Cab</div>
+              </div>
+              <div class="package-card-footer">
+                <div class="package-price-wrap">
+                  <span class="from">Price per Person</span>
+                  <span class="amount">₹24,999</span>
+                  <span class="unit">All taxes included</span>
+                </div>
+                <button class="btn-book-package" data-package="manali-adventure">
+                  Book Package <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. Jaipur Heritage Tour -->
+          <article class="package-card" data-price="18200">
+            <div class="package-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/pkg-jaipur.svg'" 
+                   alt="Jaipur Heritage Tour" 
+                   loading="lazy">
+              <span class="package-duration-badge"><i class="fas fa-clock"></i> 4 Days / 3 Nights</span>
+            </div>
+            <div class="package-card-body">
+              <span class="package-dest-label">Jaipur, Rajasthan</span>
+              <h3 class="package-title">Jaipur Heritage Tour</h3>
+              <ul class="package-features">
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Amber Fort guided tour & elephant ride</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> City Palace, Jantar Mantar & Hawa Mahal</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Chokhi Dhani royal cultural dinner</li>
+              </ul>
+              <div class="package-logistics">
+                <div class="logistics-row"><i class="fas fa-hotel"></i> <strong>Stay:</strong> Traditional Haveli Heritage Hotel</div>
+                <div class="logistics-row"><i class="fas fa-car"></i> <strong>Transit:</strong> Dedicated AC Chauffeur Cab</div>
+              </div>
+              <div class="package-card-footer">
+                <div class="package-price-wrap">
+                  <span class="from">Price per Person</span>
+                  <span class="amount">₹18,200</span>
+                  <span class="unit">All taxes included</span>
+                </div>
+                <button class="btn-book-package" data-package="jaipur-heritage">
+                  Book Package <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. Bali Tropical Vacation -->
+          <article class="package-card" data-price="48500">
+            <div class="package-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/pkg-bali.svg'" 
+                   alt="Bali Tropical Vacation" 
+                   loading="lazy">
+              <span class="package-duration-badge"><i class="fas fa-clock"></i> 7 Days / 6 Nights</span>
+            </div>
+            <div class="package-card-body">
+              <span class="package-dest-label">Bali, Indonesia</span>
+              <h3 class="package-title">Bali Tropical Vacation</h3>
+              <ul class="package-features">
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Ubud rice terrace & Bali giant swing</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Sunset Kecak dance at Uluwatu Cliff</li>
+                <li class="package-feature-item"><i class="fas fa-check-circle"></i> Nusa Penida island speedboat day tour</li>
+              </ul>
+              <div class="package-logistics">
+                <div class="logistics-row"><i class="fas fa-hotel"></i> <strong>Stay:</strong> Private Pool Villa + Beach Resort</div>
+                <div class="logistics-row"><i class="fas fa-car"></i> <strong>Transit:</strong> Private Air-Conditioned Van</div>
+              </div>
+              <div class="package-card-footer">
+                <div class="package-price-wrap">
+                  <span class="from">Price per Person</span>
+                  <span class="amount">₹48,500</span>
+                  <span class="unit">Flights & Visa Assistance</span>
+                </div>
+                <button class="btn-book-package" data-package="bali-vacation">
+                  Book Package <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         7. Travel Package Comparison Table (HTML5 Table with Zebra Striping)
+         ======================================================================= -->
+    <section class="section-padding comparison-section" id="comparison">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-balance-scale"></i> Transparent Comparison</span>
+          <h2 class="section-title">Compare Travel Packages</h2>
+          <p class="section-subtitle">
+            Evaluate package features side-by-side to choose the perfect itinerary suited for your schedule and budget.
+          </p>
+        </div>
+
+        <div class="table-responsive-wrapper">
+          <table class="comparison-table">
+            <caption><i class="fas fa-table"></i> Comprehensive Travel Packages Comparison Matrix</caption>
+            <thead>
+              <tr>
+                <th scope="col">Package Name</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Accommodation</th>
+                <th scope="col">Transportation</th>
+                <th scope="col">Activities Included</th>
+                <th scope="col">Price / Person</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="pkg-name-cell"><i class="fas fa-mountain" style="color:var(--color-tropical-green)"></i> Ooty Weekend Escape</td>
+                <td>Ooty, Tamil Nadu</td>
+                <td><span class="table-badge">3D / 2N</span></td>
+                <td>Heritage Resort (4-Star)</td>
+                <td>AC Tourist Coach / Cab</td>
+                <td>Toy train, tea garden tour, lake boating</td>
+                <td class="pkg-price-cell">₹14,999</td>
+              </tr>
+              <tr>
+                <td class="pkg-name-cell"><i class="fas fa-water" style="color:var(--color-sky-primary)"></i> Kerala Backwater Experience</td>
+                <td>Alleppey & Kumarakom</td>
+                <td><span class="table-badge">5D / 4N</span></td>
+                <td>Lake Resort + Houseboat</td>
+                <td>Private AC Sedan Cab</td>
+                <td>Lagoon cruise, spice tour, Ayurvedic spa</td>
+                <td class="pkg-price-cell">₹22,500</td>
+              </tr>
+              <tr>
+                <td class="pkg-name-cell"><i class="fas fa-umbrella-beach" style="color:var(--color-sunset-gold)"></i> Goa Beach Holiday</td>
+                <td>Goa Coast</td>
+                <td><span class="table-badge">4D / 3N</span></td>
+                <td>Beachfront Resort</td>
+                <td>Airport Transfers & Cab</td>
+                <td>Scuba diving, river cruise, fort exploration</td>
+                <td class="pkg-price-cell">₹16,800</td>
+              </tr>
+              <tr>
+                <td class="pkg-name-cell"><i class="fas fa-snowflake" style="color:var(--color-sky-light)"></i> Manali Adventure Trip</td>
+                <td>Manali, Himachal Pradesh</td>
+                <td><span class="table-badge">6D / 5N</span></td>
+                <td>Alpine Luxury Chalet</td>
+                <td>Volvo Bus & 4x4 Cab</td>
+                <td>Paragliding, snow trek, riverside camping</td>
+                <td class="pkg-price-cell">₹24,999</td>
+              </tr>
+              <tr>
+                <td class="pkg-name-cell"><i class="fas fa-monument" style="color:var(--color-sunset-coral)"></i> Jaipur Heritage Tour</td>
+                <td>Jaipur, Rajasthan</td>
+                <td><span class="table-badge">4D / 3N</span></td>
+                <td>Haveli Palace Hotel</td>
+                <td>Chauffeur Driven AC Cab</td>
+                <td>Amber Fort, Hawa Mahal, Chokhi Dhani dinner</td>
+                <td class="pkg-price-cell">₹18,200</td>
+              </tr>
+              <tr>
+                <td class="pkg-name-cell"><i class="fas fa-plane" style="color:var(--color-tropical-green)"></i> Bali Tropical Vacation</td>
+                <td>Bali, Indonesia</td>
+                <td><span class="table-badge">7D / 6N</span></td>
+                <td>Private Villa & Resort</td>
+                <td>Private AC Van + Speedboat</td>
+                <td>Ubud terraces, sunset Kecak dance, island tour</td>
+                <td class="pkg-price-cell">₹48,500</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="table-scroll-hint">
+          <i class="fas fa-info-circle"></i> On mobile and smaller screens, swipe horizontally to view all comparison details.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         8. Tourist Attractions & Facilities (HTML5 Ordered & Unordered Lists)
+         ======================================================================= -->
+    <section class="section-padding attractions-section" id="attractions">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-map-marked"></i> Sightseeing & Agency Services</span>
+          <h2 class="section-title">Attractions & Travel Facilities</h2>
+          <p class="section-subtitle">
+            Explore top rated attractions across popular destinations along with comprehensive travel assistance provided by WANDERLUST.
+          </p>
+        </div>
+
+        <div class="attractions-grid">
+          
+          <!-- Box 1: Destination Specific Attractions (HTML5 Ordered List <ol>) -->
+          <div class="attractions-card-box">
+            <div class="box-header">
+              <h3 class="box-title"><i class="fas fa-list-ol"></i> Top Ranked Attractions</h3>
+              <span style="font-size: 0.85rem; color: var(--color-gray-600);">Select destination:</span>
+            </div>
+
+            <!-- Destination selector pills -->
+            <div class="dest-selector-tabs">
+              <button class="tab-pill active" data-dest="ooty">Ooty</button>
+              <button class="tab-pill" data-dest="goa">Goa</button>
+              <button class="tab-pill" data-dest="kerala">Kerala</button>
+              <button class="tab-pill" data-dest="manali">Manali</button>
+              <button class="tab-pill" data-dest="jaipur">Jaipur</button>
+              <button class="tab-pill" data-dest="bali">Bali</button>
+            </div>
+
+            <!-- Dynamic Ordered List -->
+            <ol class="attractions-ordered-list" id="dynamic-attractions-list">
+              <!-- Dynamically populated via JS -->
+            </ol>
+          </div>
+
+          <!-- Box 2: Attraction Categories (HTML5 Unordered List <ul>) -->
+          <div class="attractions-card-box">
+            <div class="box-header">
+              <h3 class="box-title"><i class="fas fa-tags"></i> Attraction Categories</h3>
+              <span class="table-badge">7 Categories</span>
+            </div>
+            <p style="color: var(--color-gray-600); font-size: 0.9rem; margin-bottom: 1.5rem;">
+              We organize specialized travel packages covering diverse attraction themes tailored to every explorer:
+            </p>
+
+            <ul class="categories-unordered-list">
+              <li class="category-tag-item"><i class="fas fa-umbrella-beach"></i> Beaches</li>
+              <li class="category-tag-item"><i class="fas fa-mountain"></i> Hill Stations</li>
+              <li class="category-tag-item"><i class="fas fa-water"></i> Waterfalls</li>
+              <li class="category-tag-item"><i class="fas fa-monument"></i> Historical Monuments</li>
+              <li class="category-tag-item"><i class="fas fa-parachute-box"></i> Adventure Activities</li>
+              <li class="category-tag-item"><i class="fas fa-paw"></i> Wildlife Sanctuaries</li>
+              <li class="category-tag-item"><i class="fas fa-place-of-worship"></i> Religious Places</li>
+              <li class="category-tag-item"><i class="fas fa-spa"></i> Wellness & Ayurveda</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Travel Agency Provided Facilities -->
+        <div class="facilities-heading-wrap">
+          <h3 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 800; color: var(--color-ocean-deep); margin-bottom: 0.5rem;">
+            Facilities Provided by WANDERLUST
+          </h3>
+          <p style="color: var(--color-gray-600); font-size: 0.95rem;">
+            End-to-end premium hospitality and seamless travel logistics for a stress-free vacation.
+          </p>
+        </div>
+
+        <div class="facilities-grid">
+          
+          <div class="facility-card">
+            <div class="facility-card-icon"><i class="fas fa-hotel"></i></div>
+            <h4 class="facility-card-title">Hotel Booking</h4>
+            <p class="facility-card-desc">Verified 3 to 5-star properties with complimentary breakfast and late checkout.</p>
+          </div>
+
+          <div class="facility-card">
+            <div class="facility-card-icon"><i class="fas fa-bus-alt"></i></div>
+            <h4 class="facility-card-title">Transportation</h4>
+            <p class="facility-card-desc">Private AC vehicles, luxury Volvo coaches, flight bookings, and seamless transfers.</p>
+          </div>
+
+          <div class="facility-card">
+            <div class="facility-card-icon"><i class="fas fa-user-tie"></i></div>
+            <h4 class="facility-card-title">Tour Guide</h4>
+            <p class="facility-card-desc">Certified, knowledgeable local guides fluent in English and regional languages.</p>
+          </div>
+
+          <div class="facility-card">
+            <div class="facility-card-icon"><i class="fas fa-camera-retro"></i></div>
+            <h4 class="facility-card-title">Sightseeing</h4>
+            <p class="facility-card-desc">Curated itineraries, VIP fast-track entry tickets, and exclusive photo viewpoints.</p>
+          </div>
+
+          <div class="facility-card">
+            <div class="facility-card-icon"><i class="fas fa-utensils"></i></div>
+            <h4 class="facility-card-title">Food Arrangements</h4>
+            <p class="facility-card-desc">Delicious authentic regional buffets, hygienic gourmet meals, and dietary options.</p>
+          </div>
+
+          <div class="facility-card">
+            <div class="facility-card-icon"><i class="fas fa-headset"></i></div>
+            <h4 class="facility-card-title">Travel Assistance</h4>
+            <p class="facility-card-desc">24/7 dedicated support desk, on-trip emergency coordination, and travel insurance.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         10. Special Offers Section
+         ======================================================================= -->
+    <section class="section-padding offers-section" id="offers">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-fire"></i> Exclusive Discounts</span>
+          <h2 class="section-title">Special Travel Offers & Deals</h2>
+          <p class="section-subtitle">
+            Avail seasonal coupons, early-bird rebates, and bundled family vacation discounts.
+          </p>
+        </div>
+
+        <div class="offers-grid">
+
+          <!-- Offer 1: Summer Holiday Offers -->
+          <article class="special-offer-card featured-offer">
+            <div class="offer-img-box">
+              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/offer-summer.svg'" 
+                   alt="Summer Holiday Offers" 
+                   loading="lazy">
+              <span class="offer-discount-badge">30% OFF</span>
+            </div>
+            <div class="offer-body">
+              <h3 class="offer-title">Summer Holiday Offers</h3>
+              <p class="offer-desc">
+                Beat the heat with refreshing hill station retreats in Ooty, Kodaikanal, and Manali. Includes free guided hiking tours.
+              </p>
+              <div class="offer-promo-box">
+                <div class="promo-code-wrap">
+                  <span class="promo-label">Coupon Code</span>
+                  <span class="promo-code-val">SUMMER30</span>
+                </div>
+                <button class="btn-copy-code" data-code="SUMMER30">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+              <button class="btn-claim-offer" data-package="ooty-escape" data-code="SUMMER30">
+                Claim Offer & Book <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Offer 2: Family Vacation Packages -->
+          <article class="special-offer-card">
+            <div class="offer-img-box">
+              <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/offer-family.svg'" 
+                   alt="Family Vacation Packages" 
+                   loading="lazy">
+              <span class="offer-discount-badge">15% OFF</span>
+            </div>
+            <div class="offer-body">
+              <h3 class="offer-title">Family Vacation Packages</h3>
+              <p class="offer-desc">
+                Kids stay free in Kerala and Goa packages. Includes complimentary family cruise, cultural evening, and buffet dinners.
+              </p>
+              <div class="offer-promo-box">
+                <div class="promo-code-wrap">
+                  <span class="promo-label">Coupon Code</span>
+                  <span class="promo-code-val">FAMILYFUN</span>
+                </div>
+                <button class="btn-copy-code" data-code="FAMILYFUN">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+              <button class="btn-claim-offer" data-package="kerala-backwater" data-code="FAMILYFUN">
+                Claim Offer & Book <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Offer 3: Honeymoon Packages -->
+          <article class="special-offer-card">
+            <div class="offer-img-box">
+              <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/offer-honeymoon.svg'" 
+                   alt="Honeymoon Packages" 
+                   loading="lazy">
+              <span class="offer-discount-badge">20% OFF</span>
+            </div>
+            <div class="offer-body">
+              <h3 class="offer-title">Honeymoon Romance</h3>
+              <p class="offer-desc">
+                Romantic candlelight dinner on the beach, flower-bed suite decoration, couple massage, and private sunset yacht cruise.
+              </p>
+              <div class="offer-promo-box">
+                <div class="promo-code-wrap">
+                  <span class="promo-label">Coupon Code</span>
+                  <span class="promo-code-val">HONEYMOON</span>
+                </div>
+                <button class="btn-copy-code" data-code="HONEYMOON">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+              <button class="btn-claim-offer" data-package="goa-holiday" data-code="HONEYMOON">
+                Claim Offer & Book <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Offer 4: Adventure Travel Offers -->
+          <article class="special-offer-card">
+            <div class="offer-img-box">
+              <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/offer-adventure.svg'" 
+                   alt="Adventure Travel Offers" 
+                   loading="lazy">
+              <span class="offer-discount-badge">20% OFF</span>
+            </div>
+            <div class="offer-body">
+              <h3 class="offer-title">Adventure Travel Blast</h3>
+              <p class="offer-desc">
+                Adrenaline thrill! 20% discount on Solang Valley paragliding, river rafting, and mountain trekking in Manali.
+              </p>
+              <div class="offer-promo-box">
+                <div class="promo-code-wrap">
+                  <span class="promo-label">Coupon Code</span>
+                  <span class="promo-code-val">ADVENTURE20</span>
+                </div>
+                <button class="btn-copy-code" data-code="ADVENTURE20">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+              <button class="btn-claim-offer" data-package="manali-adventure" data-code="ADVENTURE20">
+                Claim Offer & Book <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+          <!-- Offer 5: Early Booking Discounts -->
+          <article class="special-offer-card">
+            <div class="offer-img-box">
+              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" 
+                   onerror="this.onerror=null; this.src='assets/images/offer-earlybird.svg'" 
+                   alt="Early Booking Discounts" 
+                   loading="lazy">
+              <span class="offer-discount-badge">FLAT ₹5,000 OFF</span>
+            </div>
+            <div class="offer-body">
+              <h3 class="offer-title">Early Booking Discounts</h3>
+              <p class="offer-desc">
+                Plan ahead and save big! Get flat ₹5,000 instant discount when booking any domestic or international package 30 days prior.
+              </p>
+              <div class="offer-promo-box">
+                <div class="promo-code-wrap">
+                  <span class="promo-label">Coupon Code</span>
+                  <span class="promo-code-val">EARLYBIRD</span>
+                </div>
+                <button class="btn-copy-code" data-code="EARLYBIRD">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+              <button class="btn-claim-offer" data-package="bali-vacation" data-code="EARLYBIRD">
+                Claim Offer & Book <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         15. HTTP Client-Server Communication Explanation Section
+         ======================================================================= -->
+    <section class="section-padding http-guide-section" id="http-guide">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-network-wired"></i> Internet Architecture Guide</span>
+          <h2 class="section-title">How Online Travel Booking Works</h2>
+          <p class="section-subtitle">
+            An educational breakdown of the HTTP request-response lifecycle powering modern online travel and tourism applications.
+          </p>
+        </div>
+
+        <div class="http-diagram-box">
+          
+          <!-- Visual Client-Server Flow Diagram -->
+          <div class="http-arch-visual">
+            
+            <!-- Client Node -->
+            <div class="arch-node">
+              <div class="arch-node-icon"><i class="fas fa-laptop"></i></div>
+              <h4 class="arch-node-title">Web Browser</h4>
+              <p class="arch-node-desc">Client device parsing HTML5, CSS3, DOM & JavaScript</p>
+            </div>
+
+            <!-- Communication Channel -->
+            <div class="arch-channel">
+              <!-- Request Packet Track -->
+              <div class="packet-track request">
+                <span class="packet-indicator"></span>
+                <span>HTTP Request (GET / POST Headers & JSON Payload) &rarr;</span>
+              </div>
+              
+              <!-- Response Packet Track -->
+              <div class="packet-track response">
+                <span class="packet-indicator"></span>
+                <span>&larr; HTTP Response (Status 200 OK / 201 Created + Data)</span>
+              </div>
+            </div>
+
+            <!-- Server Node -->
+            <div class="arch-node">
+              <div class="arch-node-icon"><i class="fas fa-server"></i></div>
+              <h4 class="arch-node-title">Web / App Server</h4>
+              <p class="arch-node-desc">Node.js / Apache web server handling routing & business logic</p>
+            </div>
+
+            <!-- Database Channel -->
+            <div class="arch-channel" style="max-width: 140px;">
+              <div class="packet-track request" style="height: 32px; font-size: 0.72rem;">
+                SQL / Query &rarr;
+              </div>
+              <div class="packet-track response" style="height: 32px; font-size: 0.72rem;">
+                &larr; Record
+              </div>
+            </div>
+
+            <!-- Database Node -->
+            <div class="arch-node" style="width: 180px;">
+              <div class="arch-node-icon"><i class="fas fa-database"></i></div>
+              <h4 class="arch-node-title">Database</h4>
+              <p class="arch-node-desc">Storage of hotel rooms, fares & booking records</p>
+            </div>
+
+          </div>
+
+          <!-- Interactive Simulation Bar -->
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <button class="btn-primary" id="btn-simulate-http" style="padding: 0.7rem 1.5rem; font-size: 0.95rem;">
+              <i class="fas fa-play"></i> Simulate HTTP Communication Flow
+            </button>
+            <p id="http-sim-status" style="margin-top: 0.85rem; font-weight: 700; font-size: 0.95rem; color: var(--color-ocean-primary);">
+              Click the button above to simulate the 8-step client-server round-trip in real time.
+            </p>
+          </div>
+
+          <!-- 8 Concrete Steps Cards -->
+          <div class="http-steps-grid">
+            
+            <div class="http-step-card">
+              <div class="step-badge">1</div>
+              <h4 class="step-card-title">User Opens Website</h4>
+              <p class="step-card-text">
+                User enters the travel agency URL into a web browser (Client) and presses Enter.
+              </p>
+            </div>
+
+            <div class="http-step-card">
+              <div class="step-badge">2</div>
+              <h4 class="step-card-title">Browser Sends HTTP Request</h4>
+              <p class="step-card-text">
+                Browser issues an <code>HTTP GET /index.html</code> request over TCP/IP to the target web server.
+              </p>
+            </div>
+
+            <div class="http-step-card">
+              <div class="step-badge">3</div>
+              <h4 class="step-card-title">Server Processes Request</h4>
+              <p class="step-card-text">
+                The web server receives the socket connection, resolves routes, and locates the requested HTML, CSS, and JS files.
+              </p>
+            </div>
+
+            <div class="http-step-card">
+              <div class="step-badge">4</div>
+              <h4 class="step-card-title">Server Sends HTTP Response</h4>
+              <p class="step-card-text">
+                Server returns an <code>HTTP 200 OK</code> response status header containing HTML markup, stylesheets, and scripts.
+              </p>
+            </div>
+
+            <div class="http-step-card">
+              <div class="step-badge">5</div>
+              <h4 class="step-card-title">Browser Renders Webpage</h4>
+              <p class="step-card-text">
+                The browser's rendering engine constructs the DOM & CSSOM trees, executes JavaScript, and paints the interactive portal.
+              </p>
+            </div>
+
+            <div class="http-step-card">
+              <div class="step-badge">6</div>
+              <h4 class="step-card-title">User Submits Booking</h4>
+              <p class="step-card-text">
+                User enters traveller data, dates, and package choice, triggering an <code>HTTP POST /api/book</code> with form payload.
+              </p>
+            </div>
+
+            <div class="http-step-card">
+              <div class="step-badge">7</div>
+              <h4 class="step-card-title">Server Validates & Stores</h4>
+              <p class="step-card-text">
+                Server processes the booking, runs server-side validation, queries the database, and locks hotel & transport inventory.
+              </p>
+            </div>
+
+            <div class="http-step-card">
+              <div class="step-badge">8</div>
+              <h4 class="step-card-title">Confirmation Returned</h4>
+              <p class="step-card-text">
+                Server generates a unique Booking ID and returns an <code>HTTP 201 Created</code> response rendered as the voucher.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         9. Travel Booking Form Section & Dynamic Calculator
+         ======================================================================= -->
+    <section class="section-padding booking-section" id="booking">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-plane-departure"></i> Reserve Your Journey</span>
+          <h2 class="section-title">Online Travel Booking Form</h2>
+          <p class="section-subtitle">
+            Customize dates, hotel preferences, and transportation. Estimated total is computed automatically before submission.
+          </p>
+        </div>
+
+        <!-- Saved Booking Notice (if user previously booked in localStorage) -->
+        <div class="saved-booking-notice" id="saved-booking-notice">
+          <div>
+            <i class="fas fa-history" style="color: var(--color-ocean-primary); margin-right: 0.4rem;"></i>
+            <span>You have a saved booking in this browser (<strong id="saved-booking-id-span">WND-XXXX</strong>).</span>
+          </div>
+          <button class="btn-load-saved" id="btn-load-saved-booking">
+            <i class="fas fa-file-invoice"></i> View Confirmation Voucher
+          </button>
+        </div>
+
+        <!-- Main Booking Wrapper Grid: Form + Live Cost Summary Sidebar -->
+        <div class="booking-wrapper">
+          
+          <!-- Booking Form -->
+          <div class="booking-form-container">
+            <h3 class="form-heading">Traveller & Tour Details</h3>
+            <p class="form-subheading">Please provide accurate information for ticket issuance and hotel reservations.</p>
+
+            <form id="travel-booking-form" novalidate>
+              
+              <!-- Personal Details Grid -->
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="full-name">
+                    <i class="fas fa-user"></i> Full Name <span class="req">*</span>
+                  </label>
+                  <input type="text" id="full-name" class="form-control" placeholder="e.g. John Doe" required minlength="3">
+                  <span class="field-error-msg">Please enter your full name (minimum 3 characters).</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="email-address">
+                    <i class="fas fa-envelope"></i> Email Address <span class="req">*</span>
+                  </label>
+                  <input type="email" id="email-address" class="form-control" placeholder="name@example.com" required>
+                  <span class="field-error-msg">Please enter a valid email address.</span>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="phone-number">
+                    <i class="fas fa-phone-alt"></i> Phone Number <span class="req">*</span>
+                  </label>
+                  <input type="tel" id="phone-number" class="form-control" placeholder="e.g. 9876543210" required>
+                  <span class="field-error-msg">Please enter a valid 10-digit phone number.</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="select-destination">
+                    <i class="fas fa-map-marker-alt"></i> Select Destination <span class="req">*</span>
+                  </label>
+                  <select id="select-destination" class="form-control" required>
+                    <option value="" disabled selected>-- Choose a Destination --</option>
+                    <option value="ooty">Ooty (Tamil Nadu)</option>
+                    <option value="kodaikanal">Kodaikanal (Tamil Nadu)</option>
+                    <option value="goa">Goa (Beach Paradise)</option>
+                    <option value="manali">Manali (Himachal Pradesh)</option>
+                    <option value="kerala">Kerala (Backwaters)</option>
+                    <option value="jaipur">Jaipur (Pink City, Rajasthan)</option>
+                    <option value="bali">Bali (Indonesia)</option>
+                    <option value="maldives">Maldives (Indian Ocean)</option>
+                  </select>
+                  <span class="field-error-msg">Please select a destination.</span>
+                </div>
+              </div>
+
+              <!-- Package Selection -->
+              <div class="form-group">
+                <label class="form-label" for="select-package">
+                  <i class="fas fa-box-open"></i> Select Travel Package <span class="req">*</span>
+                </label>
+                <select id="select-package" class="form-control" required>
+                  <option value="" disabled selected>-- Select Tour Package --</option>
+                  <option value="ooty-escape">Ooty Weekend Escape (3D/2N) — ₹14,999/person</option>
+                  <option value="kerala-backwater">Kerala Backwater Experience (5D/4N) — ₹22,500/person</option>
+                  <option value="goa-holiday">Goa Beach Holiday (4D/3N) — ₹16,800/person</option>
+                  <option value="manali-adventure">Manali Adventure Trip (6D/5N) — ₹24,999/person</option>
+                  <option value="jaipur-heritage">Jaipur Heritage Tour (4D/3N) — ₹18,200/person</option>
+                  <option value="bali-vacation">Bali Tropical Vacation (7D/6N) — ₹48,500/person</option>
+                </select>
+                <span class="field-error-msg">Please select an itinerary package.</span>
+              </div>
+
+              <!-- Travel Dates -->
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="travel-start-date">
+                    <i class="fas fa-calendar-plus"></i> Travel Start Date <span class="req">*</span>
+                  </label>
+                  <input type="date" id="travel-start-date" class="form-control" required>
+                  <span class="field-error-msg">Please select a valid start date.</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="travel-end-date">
+                    <i class="fas fa-calendar-check"></i> Travel End Date <span class="req">*</span>
+                  </label>
+                  <input type="date" id="travel-end-date" class="form-control" required>
+                  <span class="field-error-msg">End date must be strictly later than start date.</span>
+                </div>
+              </div>
+
+              <!-- Travellers Count -->
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label" for="num-adults">
+                    <i class="fas fa-male"></i> Number of Adults (12+ yrs) <span class="req">*</span>
+                  </label>
+                  <input type="number" id="num-adults" class="form-control" min="1" max="20" value="1" required>
+                  <span class="field-error-msg">At least 1 adult traveller is required.</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="num-children">
+                    <i class="fas fa-child"></i> Number of Children (under 12 yrs)
+                  </label>
+                  <input type="number" id="num-children" class="form-control" min="0" max="10" value="0">
+                  <small style="color: var(--color-gray-600); font-size: 0.75rem; margin-top: 2px;">Children enjoy 50% discount on base package fare.</small>
+                </div>
+              </div>
+
+              <!-- Hotel Preference (Standard / Deluxe / Luxury) -->
+              <div class="form-group">
+                <label class="form-label">
+                  <i class="fas fa-bed"></i> Hotel Preference <span class="req">*</span>
+                </label>
+                <div class="preference-radio-group">
+                  <div class="radio-card">
+                    <input type="radio" id="hotel-std" name="hotel_preference" value="standard">
+                    <label for="hotel-std" class="radio-card-label">
+                      <i class="fas fa-hotel"></i>
+                      <span class="radio-card-title">Standard</span>
+                      <span class="radio-card-sub">3-Star (+₹0)</span>
+                    </label>
+                  </div>
+                  <div class="radio-card">
+                    <input type="radio" id="hotel-dlx" name="hotel_preference" value="deluxe" checked>
+                    <label for="hotel-dlx" class="radio-card-label">
+                      <i class="fas fa-star"></i>
+                      <span class="radio-card-title">Deluxe</span>
+                      <span class="radio-card-sub">4-Star (+₹2,500/p)</span>
+                    </label>
+                  </div>
+                  <div class="radio-card">
+                    <input type="radio" id="hotel-lux" name="hotel_preference" value="luxury">
+                    <label for="hotel-lux" class="radio-card-label">
+                      <i class="fas fa-crown"></i>
+                      <span class="radio-card-title">Luxury</span>
+                      <span class="radio-card-sub">5-Star Palace (+₹6,000/p)</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Transportation Preference (Bus / Train / Flight / Private Cab) -->
+              <div class="form-group">
+                <label class="form-label">
+                  <i class="fas fa-route"></i> Transportation Preference <span class="req">*</span>
+                </label>
+                <div class="preference-radio-group cols-4">
+                  <div class="radio-card">
+                    <input type="radio" id="trans-bus" name="transport_preference" value="bus">
+                    <label for="trans-bus" class="radio-card-label">
+                      <i class="fas fa-bus"></i>
+                      <span class="radio-card-title">Tourist Bus</span>
+                      <span class="radio-card-sub">+₹0</span>
+                    </label>
+                  </div>
+                  <div class="radio-card">
+                    <input type="radio" id="trans-train" name="transport_preference" value="train">
+                    <label for="trans-train" class="radio-card-label">
+                      <i class="fas fa-train"></i>
+                      <span class="radio-card-title">Train (AC)</span>
+                      <span class="radio-card-sub">+₹1,200/p</span>
+                    </label>
+                  </div>
+                  <div class="radio-card">
+                    <input type="radio" id="trans-cab" name="transport_preference" value="cab" checked>
+                    <label for="trans-cab" class="radio-card-label">
+                      <i class="fas fa-taxi"></i>
+                      <span class="radio-card-title">Private Cab</span>
+                      <span class="radio-card-sub">+₹3,000/p</span>
+                    </label>
+                  </div>
+                  <div class="radio-card">
+                    <input type="radio" id="trans-flight" name="transport_preference" value="flight">
+                    <label for="trans-flight" class="radio-card-label">
+                      <i class="fas fa-plane"></i>
+                      <span class="radio-card-title">Flight</span>
+                      <span class="radio-card-sub">+₹6,500/p</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Promo Code Input -->
+              <div class="form-group">
+                <label class="form-label" for="promo-code-input">
+                  <i class="fas fa-tag"></i> Have a Promo Code?
+                </label>
+                <div style="display: flex; gap: 0.5rem;">
+                  <input type="text" id="promo-code-input" class="form-control" placeholder="e.g. SUMMER30, EARLYBIRD" style="text-transform: uppercase;">
+                  <button type="button" class="btn-primary" id="btn-apply-promo" style="padding: 0 1.25rem; font-size: 0.9rem;">
+                    Apply
+                  </button>
+                </div>
+              </div>
+
+              <!-- Special Requirements -->
+              <div class="form-group">
+                <label class="form-label" for="special-requirements">
+                  <i class="fas fa-clipboard-list"></i> Special Requirements / Requests
+                </label>
+                <textarea id="special-requirements" class="form-control" rows="3" placeholder="Dietary preferences, wheelchair assistance, anniversary floral setup, room floor preference..."></textarea>
+              </div>
+
+              <!-- Terms and Conditions -->
+              <div class="terms-checkbox-wrap">
+                <input type="checkbox" id="terms-checkbox" required>
+                <label for="terms-checkbox">
+                  I accept the <a href="#terms-modal">Terms and Conditions</a> and authorize WANDERLUST to reserve tour itineraries.
+                </label>
+              </div>
+
+              <!-- Buttons -->
+              <div class="form-buttons-row">
+                <button type="submit" class="btn-submit-booking">
+                  <i class="fas fa-check-circle"></i> Submit Booking
+                </button>
+                <button type="reset" class="btn-reset-form">
+                  <i class="fas fa-redo"></i> Reset
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- Dynamic Live Booking Cost Summary Sidebar -->
+          <aside class="booking-summary-sidebar" aria-label="Estimated Booking Total">
+            <h3 class="sidebar-title"><i class="fas fa-calculator"></i> Price Estimate</h3>
+            <p class="sidebar-desc">Calculated dynamically in real-time as you select your package and travel preferences.</p>
+
+            <ul class="calc-breakdown-list">
+              <li class="calc-row">
+                <span>Selected Package:</span>
+                <strong id="calc-package-name">Ooty Weekend Escape</strong>
+              </li>
+              <li class="calc-row">
+                <span>Travellers:</span>
+                <span id="calc-travellers-count">1 Adult</span>
+              </li>
+              <li class="calc-row">
+                <span>Base Package Cost:</span>
+                <span id="calc-base-cost">₹14,999</span>
+              </li>
+              <li class="calc-row">
+                <span>Hotel Tier Upgrade:</span>
+                <span id="calc-hotel-upgrade">+ ₹2,500</span>
+              </li>
+              <li class="calc-row">
+                <span>Transportation Add-on:</span>
+                <span id="calc-transport-addon">+ ₹3,000</span>
+              </li>
+              <li class="calc-row discount-row" id="calc-discount-row" style="display: none;">
+                <span>Promo Discount:</span>
+                <strong id="calc-discount-amount">- ₹0</strong>
+              </li>
+            </ul>
+
+            <div class="calc-total-box">
+              <div class="calc-total-label">Estimated Total Amount:</div>
+              <div class="calc-total-amount" id="calc-total-amount">₹20,499</div>
+            </div>
+
+            <div class="calc-help-text">
+              <i class="fas fa-shield-alt"></i> Guaranteed Best Price with 100% Booking Protection & Zero Hidden Fees.
+            </div>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         9B. Official Booking Confirmation Slip (PRINTABLE SINGLE-PAGE SECTION)
+         Requirements:
+         Contains ONLY:
+         - Travel agency name and logo
+         - Booking ID
+         - Customer name
+         - Contact details
+         - Destination
+         - Selected package
+         - Travel dates
+         - Number of travellers
+         - Hotel preference
+         - Transportation preference
+         - Total estimated amount
+         - Booking status
+         - Print button that prints ONLY this confirmation slip!
+         ======================================================================= -->
+    <section class="confirmation-section" id="confirmation-section">
+      <div class="container confirmation-card-wrapper">
+        
+        <!-- Screen Toolbar (Hidden on print) -->
+        <div class="confirmation-top-toolbar">
+          <div class="confirmation-success-badge">
+            <i class="fas fa-check-circle"></i> Booking Successfully Submitted & Verified
+          </div>
+          <button class="btn-print-voucher" id="btn-print-confirmation">
+            <i class="fas fa-print"></i> Print Booking Confirmation
+          </button>
+        </div>
+
+        <!-- THE ACTUAL PRINTABLE SLIP -->
+        <div id="booking-confirmation-slip">
+          
+          <!-- Slip Header: Agency Logo & Name + Unique Booking ID -->
+          <div class="slip-header">
+            <div class="slip-brand-logo">
+              <div class="slip-logo-icon">
+                <i class="fas fa-compass"></i>
+              </div>
+              <div>
+                <h2 class="slip-brand-title">WANDERLUST</h2>
+                <span class="slip-brand-sub">Explore the World • Official Booking Voucher</span>
+              </div>
+            </div>
+
+            <div class="slip-id-badge">
+              <span class="slip-id-label">Booking ID</span>
+              <div class="slip-id-val" id="slip-booking-id">WND-2026-89421</div>
+              <span class="slip-status-pill" id="slip-status">CONFIRMED & VERIFIED</span>
+            </div>
+          </div>
+
+          <!-- Slip Details Grid (Contains ONLY required fields) -->
+          <div class="slip-details-grid">
+            
+            <div class="slip-meta-item">
+              <span class="slip-meta-label">Customer Name</span>
+              <span class="slip-meta-value" id="slip-customer-name">John Doe</span>
+            </div>
+
+            <div class="slip-meta-item">
+              <span class="slip-meta-label">Contact Details</span>
+              <span class="slip-meta-value" id="slip-contact-details">john@example.com | 9876543210</span>
+            </div>
+
+            <div class="slip-meta-item">
+              <span class="slip-meta-label">Destination</span>
+              <span class="slip-meta-value" id="slip-destination">Ooty, Tamil Nadu</span>
+            </div>
+
+            <div class="slip-meta-item">
+              <span class="slip-meta-label">Selected Package</span>
+              <span class="slip-meta-value" id="slip-selected-package">Ooty Weekend Escape</span>
+            </div>
+
+            <div class="slip-meta-item">
+              <span class="slip-meta-label">Travel Dates</span>
+              <span class="slip-meta-value" id="slip-travel-dates">16 Nov 2026 to 19 Nov 2026</span>
+            </div>
+
+            <div class="slip-meta-item">
+              <span class="slip-meta-label">Number of Travellers</span>
+              <span class="slip-meta-value" id="slip-travellers">2 Adults, 1 Child (Total: 3)</span>
+            </div>
+
+            <div class="slip-meta-item">
+              <span class="slip-meta-label">Hotel Preference</span>
+              <span class="slip-meta-value" id="slip-hotel-pref">DELUXE CLASS (4-STAR)</span>
+            </div>
+
+            <div class="slip-meta-item">
+              <span class="slip-meta-label">Transportation Preference</span>
+              <span class="slip-meta-value" id="slip-transport-pref">PRIVATE AC CAB</span>
+            </div>
+
+          </div>
+
+          <!-- Total Amount Box -->
+          <div class="slip-amount-strip">
+            <span class="slip-amount-label">Total Estimated Amount:</span>
+            <span class="slip-amount-val" id="slip-total-amount">₹20,499</span>
+          </div>
+
+          <!-- Slip Verification Footer -->
+          <div class="slip-footer-note">
+            <div class="slip-qr-box">
+              <div class="slip-qr-code">
+                <i class="fas fa-qrcode"></i>
+              </div>
+              <div>
+                <strong>Official Travel Voucher</strong><br>
+                <span id="slip-date-issued">Issued: 15 Nov 2026</span> • Present this voucher at hotel check-in.
+              </div>
+            </div>
+            <div>
+              <strong>WANDERLUST Travel Agency</strong><br>
+              Toll-Free: 1800-123-WANDER | support@wanderlust-travels.com
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       13. Contact Section and Footer
+       ========================================================================= -->
+  <footer class="footer-contact" id="contact">
+    <div class="container">
+      
+      <!-- Quick Contact Info Cards -->
+      <div class="contact-quick-cards">
+        
+        <div class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <h4 class="contact-card-title">Office Address</h4>
+          <p class="contact-card-val">
+            45 Ocean Pearl Boulevard, Marine Drive, Mumbai, MH - 400020, India.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+          <h4 class="contact-card-title">Customer Support</h4>
+          <p class="contact-card-val">
+            support@wanderlust-travels.com<br>bookings@wanderlust.com
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
+          <h4 class="contact-card-title">Contact Numbers</h4>
+          <p class="contact-card-val">
+            +91 98765 43210<br>Toll-Free: 1800-123-WANDER
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-clock"></i></div>
+          <h4 class="contact-card-title">Business Hours</h4>
+          <p class="contact-card-val">
+            Mon – Sat: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 4:00 PM
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Main Footer Columns -->
+      <div class="footer-main-grid">
+        
+        <!-- Brand column -->
+        <div class="footer-col-brand">
+          <a href="#home" class="brand-logo" aria-label="Wanderlust">
+            <div class="brand-icon">
+              <i class="fas fa-compass"></i>
+            </div>
+            <div class="brand-text">
+              <span class="brand-title">WANDER<span style="color: var(--color-sky-primary)">LUST</span></span>
+              <span class="brand-tagline">Explore the World</span>
+            </div>
+          </a>
+          <p class="footer-desc">
+            WANDERLUST is an IATA accredited global travel and tourism agency dedicated to providing seamless holiday packages, luxury stays, and customized journeys across India and international destinations.
+          </p>
+          <ul class="social-links-list">
+            <li><a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#" class="social-link" aria-label="Twitter X"><i class="fab fa-x-twitter"></i></a></li>
+            <li><a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li class="footer-link-item"><a href="#destinations"><i class="fas fa-chevron-right"></i> Destinations</a></li>
+            <li class="footer-link-item"><a href="#hotels"><i class="fas fa-chevron-right"></i> Luxury Hotels</a></li>
+            <li class="footer-link-item"><a href="#packages"><i class="fas fa-chevron-right"></i> Travel Packages</a></li>
+            <li class="footer-link-item"><a href="#comparison"><i class="fas fa-chevron-right"></i> Compare Tours</a></li>
+            <li class="footer-link-item"><a href="#attractions"><i class="fas fa-chevron-right"></i> Attractions</a></li>
+          </ul>
+        </div>
+
+        <!-- Top Destinations -->
+        <div>
+          <h4 class="footer-col-title">Top Destinations</h4>
+          <ul class="footer-links-list">
+            <li class="footer-link-item"><a href="#destinations"><i class="fas fa-map-pin"></i> Ooty Hills</a></li>
+            <li class="footer-link-item"><a href="#destinations"><i class="fas fa-map-pin"></i> Kodaikanal Lake</a></li>
+            <li class="footer-link-item"><a href="#destinations"><i class="fas fa-map-pin"></i> Goa Beaches</a></li>
+            <li class="footer-link-item"><a href="#destinations"><i class="fas fa-map-pin"></i> Manali Snow</a></li>
+            <li class="footer-link-item"><a href="#destinations"><i class="fas fa-map-pin"></i> Kerala Backwaters</a></li>
+            <li class="footer-link-item"><a href="#destinations"><i class="fas fa-map-pin"></i> Bali & Maldives</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div>
+          <h4 class="footer-col-title">Travel Newsletter</h4>
+          <div class="newsletter-box">
+            <p>Subscribe to receive secret flash discounts, flight fare alerts, and seasonal travel inspiration.</p>
+            <form class="newsletter-form">
+              <input type="email" class="newsletter-input" placeholder="Your email address" required>
+              <button type="submit" class="btn-newsletter" aria-label="Subscribe">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+            <small style="color: var(--color-gray-400); font-size: 0.75rem;">We respect your privacy. Unsubscribe anytime.</small>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 WANDERLUST Travel Agency. All Rights Reserved. Crafted with passion for global explorers.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       Modals and Toast Notifications
+       ========================================================================= -->
+  <!-- Destination Details Modal -->
+  <div class="modal-overlay" id="destination-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      <div id="modal-body-content">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toast-notification">
+    <i class="fas fa-info-circle" style="color: var(--color-sky-light); font-size: 1.25rem;"></i>
+    <span id="toast-message">Notification message</span>
+  </div>
+
+  <!-- Master JavaScript File -->
+  <script src="js/script.js"></script>
+</body>
+</html>

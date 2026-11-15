@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 360" width="400" height="360">
+  <defs>
+    <linearGradient id="prodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <radialGradient id="prodBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0b1329" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="360" rx="16" fill="url(#prodBg)"/>
+  <circle cx="200" cy="180" r="130" fill="#00d2ff" fill-opacity="0.06"/>
+  
+      <!-- Case -->
+      <rect x="130" y="140" width="140" height="110" rx="35" fill="#f8fafc" stroke="#cbd5e1" stroke-width="3"/>
+      <line x1="130" y1="175" x2="270" y2="175" stroke="#94a3b8" stroke-width="1.5"/>
+      <circle cx="200" cy="195" r="3" fill="#10b981"/>
+      <!-- Floating Pod -->
+      <g transform="translate(180, 50)">
+        <circle cx="20" cy="20" r="18" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+        <rect x="14" y="32" width="12" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+        <ellipse cx="8" cy="20" rx="7" ry="12" fill="#0f172a"/>
+      </g>
+      <text x="200" y="290" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">AirPods Pro</text>
+    
+</svg>

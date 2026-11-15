@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <linearGradient id="catGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="catBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0a192f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="300" height="300" fill="#0b1329"/>
+  <circle cx="150" cy="150" r="130" fill="url(#catBg)"/>
+  
+      <rect x="85" y="50" width="130" height="200" rx="30" fill="#0f172a" stroke="#22d3ee" stroke-width="4"/>
+      <circle cx="150" cy="105" r="32" fill="#1e293b" stroke="#22d3ee" stroke-width="3"/>
+      <circle cx="150" cy="105" r="16" fill="url(#catGrad)"/>
+      <circle cx="150" cy="185" r="24" fill="#1e293b" stroke="#22d3ee" stroke-width="3"/>
+      <circle cx="150" cy="185" r="10" fill="url(#catGrad)"/>
+    
+</svg>

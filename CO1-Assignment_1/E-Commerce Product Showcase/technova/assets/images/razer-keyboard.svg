@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 360" width="400" height="360">
+  <defs>
+    <linearGradient id="prodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <radialGradient id="prodBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0b1329" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="360" rx="16" fill="url(#prodBg)"/>
+  <circle cx="200" cy="180" r="130" fill="#00d2ff" fill-opacity="0.06"/>
+  
+      <rect x="70" y="110" width="260" height="120" rx="10" fill="#09090b" stroke="#10b981" stroke-width="3"/>
+      <!-- Key grids -->
+      <g fill="#18181b" stroke="#22c55e" stroke-width="1">
+        <rect x="85" y="125" width="20" height="15" rx="3"/>
+        <rect x="110" y="125" width="20" height="15" rx="3"/>
+        <rect x="135" y="125" width="20" height="15" rx="3"/>
+        <rect x="160" y="125" width="20" height="15" rx="3"/>
+        <rect x="185" y="125" width="20" height="15" rx="3"/>
+        <rect x="210" y="125" width="20" height="15" rx="3"/>
+        <rect x="235" y="125" width="20" height="15" rx="3"/>
+        <rect x="260" y="125" width="20" height="15" rx="3"/>
+        <rect x="285" y="125" width="30" height="15" rx="3"/>
+        
+        <rect x="85" y="145" width="25" height="15" rx="3"/>
+        <rect x="115" y="145" width="20" height="15" rx="3"/>
+        <rect x="140" y="145" width="20" height="15" rx="3"/>
+        <rect x="165" y="145" width="20" height="15" rx="3"/>
+        <rect x="190" y="145" width="20" height="15" rx="3"/>
+        <rect x="215" y="145" width="20" height="15" rx="3"/>
+        <rect x="240" y="145" width="20" height="15" rx="3"/>
+        <rect x="265" y="145" width="50" height="15" rx="3"/>
+
+        <!-- Space bar -->
+        <rect x="135" y="195" width="100" height="18" rx="4" fill="#15803d"/>
+      </g>
+      <text x="200" y="270" fill="#4ade80" font-size="13" font-weight="bold" font-family="sans-serif" text-anchor="middle">Razer BlackWidow V4</text>
+    
+</svg>
