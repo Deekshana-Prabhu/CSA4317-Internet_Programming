@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONLINE EXAMINATION PORTAL - University Examination and Quiz Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ======================================================== -->
+  <!-- MAIN APPLICATION HEADER                                  -->
+  <!-- ======================================================== -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo-group">
+        <div class="university-emblem">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <div class="header-titles">
+          <h1 class="main-title">ONLINE EXAMINATION PORTAL</h1>
+          <p class="subtitle">University Examination and Quiz Management System</p>
+        </div>
+      </div>
+      <div class="header-status" id="header-status">
+        <span class="system-badge"><span class="pulse-dot"></span> System Active</span>
+        <span class="portal-session" id="live-clock">--:--:--</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- MAIN CONTENT CONTAINER (SPA VIEWS)                       -->
+  <!-- ======================================================== -->
+  <main class="main-content" id="main-content">
+
+    <!-- ---------------------------------------------------- -->
+    <!-- VIEW 1: WELCOME & STUDENT REGISTRATION               -->
+    <!-- ---------------------------------------------------- -->
+    <section class="view-panel active" id="view-welcome">
+      <div class="welcome-container">
+        
+        <div class="welcome-banner">
+          <div class="banner-badge">Academic Year 2026–2027</div>
+          <h2>Welcome to the University Online Assessment Portal</h2>
+          <p>Please enter your registered student credentials and select your assigned examination to proceed with the computer-based assessment.</p>
+        </div>
+
+        <div class="form-card">
+          <div class="form-card-header">
+            <div class="header-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div>
+              <h3>Candidate Examination Entry</h3>
+              <p class="card-desc">All candidate details are verified against university records</p>
+            </div>
+          </div>
+
+          <form id="registration-form" novalidate>
+            <!-- Error Banner -->
+            <div class="alert alert-danger" id="form-error-alert" style="display: none;" role="alert">
+              <span class="alert-icon">⚠️</span>
+              <span class="alert-text" id="form-error-msg"></span>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="student-name">Student Full Name <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <span class="input-icon">👤</span>
+                  <input type="text" id="student-name" name="studentName" placeholder="e.g. Alex Morgan" autocomplete="name" required>
+                </div>
+                <small class="field-hint">Enter your official name as per university hall ticket</small>
+              </div>
+
+              <div class="form-group">
+                <label for="reg-number">Register / Hall Ticket Number <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <span class="input-icon">🆔</span>
+                  <input type="text" id="reg-number" name="regNumber" placeholder="e.g. 26CS1084" autocomplete="off" required>
+                </div>
+                <small class="field-hint">Alphanumeric register code (e.g. 26CS1084)</small>
+              </div>
+
+              <div class="form-group">
+                <label for="department-select">Academic Department <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <span class="input-icon">🏛️</span>
+                  <select id="department-select" name="department" required>
+                    <option value="" disabled selected>-- Select Your Department --</option>
+                    <option value="Department of Computer Science & Engineering">Department of Computer Science & Engineering</option>
+                    <option value="Department of Information Technology">Department of Information Technology</option>
+                    <option value="Department of Electronics & Communication">Department of Electronics & Communication</option>
+                    <option value="Department of Electrical & Electronics">Department of Electrical & Electronics</option>
+                    <option value="Department of Mechanical Engineering">Department of Mechanical Engineering</option>
+                    <option value="Department of Civil Engineering">Department of Civil Engineering</option>
+                    <option value="Department of Artificial Intelligence & Data Science">Department of Artificial Intelligence & Data Science</option>
+                  </select>
+                </div>
+                <small class="field-hint">Choose your enrolled department</small>
+              </div>
+
+              <div class="form-group">
+                <label for="exam-select">Select Examination Paper <span class="required">*</span></label>
+                <div class="input-wrapper">
+                  <span class="input-icon">📝</span>
+                  <select id="exam-select" name="examCourse" required>
+                    <option value="" disabled selected>-- Select Examination Paper --</option>
+                    <option value="javascript">JavaScript Fundamentals (10 MCQs - 10 Marks)</option>
+                    <option value="htmlcss">HTML and CSS Basics (10 MCQs - 10 Marks)</option>
+                    <option value="computer">Computer Fundamentals (10 MCQs - 10 Marks)</option>
+                  </select>
+                </div>
+                <small class="field-hint">Select the assessment scheduled for this session</small>
+              </div>
+            </div>
+
+            <!-- Examination Overview Cards -->
+            <div class="exam-preview-boxes">
+              <div class="preview-box">
+                <span class="p-icon">⏱️</span>
+                <div>
+                  <strong class="p-title">Duration</strong>
+                  <span class="p-val">10 Minutes</span>
+                </div>
+              </div>
+              <div class="preview-box">
+                <span class="p-icon">📊</span>
+                <div>
+                  <strong class="p-title">Total Questions</strong>
+                  <span class="p-val">10 Questions</span>
+                </div>
+              </div>
+              <div class="preview-box">
+                <span class="p-icon">🎯</span>
+                <div>
+                  <strong class="p-title">Total Marks</strong>
+                  <span class="p-val">10 Marks (1/Q)</span>
+                </div>
+              </div>
+              <div class="preview-box">
+                <span class="p-icon">✅</span>
+                <div>
+                  <strong class="p-title">Pass Criterion</strong>
+                  <span class="p-val">40% (4 Marks)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-lg" id="btn-start-examination">
+                <span>Proceed to Instructions</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------- -->
+    <!-- VIEW 2: EXAMINATION INSTRUCTIONS                     -->
+    <!-- ---------------------------------------------------- -->
+    <section class="view-panel" id="view-instructions">
+      <div class="instructions-container">
+        
+        <div class="card instructions-card">
+          <div class="instructions-header">
+            <div class="header-icon icon-lavender">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <div>
+              <h2>Examination Guidelines & Instructions</h2>
+              <p class="subtitle-text">Read the regulations carefully before starting the examination clock</p>
+            </div>
+          </div>
+
+          <!-- Verified Candidate Information Bar -->
+          <div class="candidate-summary-bar">
+            <div class="summary-item">
+              <span class="s-label">Student Name</span>
+              <strong class="s-value" id="inst-student-name">--</strong>
+            </div>
+            <div class="summary-item">
+              <span class="s-label">Register Number</span>
+              <strong class="s-value" id="inst-reg-no">--</strong>
+            </div>
+            <div class="summary-item">
+              <span class="s-label">Department</span>
+              <strong class="s-value" id="inst-dept">--</strong>
+            </div>
+            <div class="summary-item">
+              <span class="s-label">Examination Paper</span>
+              <strong class="s-value highlight" id="inst-exam-name">--</strong>
+            </div>
+          </div>
+
+          <!-- Rule List -->
+          <div class="rules-section">
+            <h4 class="rules-heading">General Rules & Evaluation Scheme:</h4>
+            <ul class="rules-list">
+              <li>
+                <span class="rule-num">1</span>
+                <div>
+                  <strong>Question Format:</strong> The examination comprises exactly <strong>10 Multiple Choice Questions (MCQs)</strong>, loaded dynamically from the examination repository.
+                </div>
+              </li>
+              <li>
+                <span class="rule-num">2</span>
+                <div>
+                  <strong>Marking Scheme:</strong> Total maximum marks is <strong>10 Marks</strong> (1 mark per correct answer). There is <strong>no negative marking</strong> for incorrect responses.
+                </div>
+              </li>
+              <li>
+                <span class="rule-num">3</span>
+                <div>
+                  <strong>Mandatory Questions:</strong> All 10 questions are <strong>mandatory</strong>. The system will prompt you if any question remains unanswered prior to manual submission.
+                </div>
+              </li>
+              <li>
+                <span class="rule-num">4</span>
+                <div>
+                  <strong>Duration & Timer:</strong> Total allotted time is exactly <strong>10 minutes (600 seconds)</strong>. The countdown timer runs automatically and is verified against the system timestamp to remain strictly accurate even if browser tabs are switched.
+                </div>
+              </li>
+              <li>
+                <span class="rule-num">5</span>
+                <div>
+                  <strong>Critical Warning:</strong> A visual warning alert will trigger when <strong>2 minutes remain</strong> on the clock.
+                </div>
+              </li>
+              <li>
+                <span class="rule-num">6</span>
+                <div>
+                  <strong>Automatic Submission:</strong> When the countdown timer reaches <strong>00:00</strong>, the examination will be submitted automatically, and all answered questions will be evaluated immediately.
+                </div>
+              </li>
+            </ul>
+
+            <!-- Question Palette Legend Guide -->
+            <h4 class="rules-heading mt-4">Question Palette Status Indicators:</h4>
+            <div class="palette-legend-guide">
+              <div class="legend-badge-item">
+                <span class="palette-circle palette-not-visited">1</span>
+                <div>
+                  <strong>Not Visited (Grey)</strong>
+                  <p>Question has not been opened yet</p>
+                </div>
+              </div>
+              <div class="legend-badge-item">
+                <span class="palette-circle palette-current">2</span>
+                <div>
+                  <strong>Current (Blue)</strong>
+                  <p>Active question currently displayed</p>
+                </div>
+              </div>
+              <div class="legend-badge-item">
+                <span class="palette-circle palette-answered">3</span>
+                <div>
+                  <strong>Answered (Green)</strong>
+                  <p>Response has been selected & saved</p>
+                </div>
+              </div>
+              <div class="legend-badge-item">
+                <span class="palette-circle palette-review">4</span>
+                <div>
+                  <strong>Marked for Review (Orange)</strong>
+                  <p>Flagged for later review by candidate</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Candidate Honor Code Declaration -->
+            <div class="declaration-box">
+              <label class="checkbox-container">
+                <input type="checkbox" id="chk-declaration">
+                <span class="checkmark"></span>
+                <span class="declaration-text">
+                  I hereby declare that I have read and understood all the above instructions and regulations. I will abide by the university examination code of conduct and will not indulge in any unfair means.
+                </span>
+              </label>
+            </div>
+
+            <div class="instructions-actions">
+              <button type="button" class="btn btn-secondary" id="btn-back-to-welcome">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                <span>Back to Candidate Entry</span>
+              </button>
+
+              <button type="button" class="btn btn-success btn-lg" id="btn-start-test" disabled>
+                <span>Start Test Now</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------- -->
+    <!-- VIEW 3: ACTIVE QUIZ & EXAMINATION INTERFACE          -->
+    <!-- ---------------------------------------------------- -->
+    <section class="view-panel" id="view-quiz">
+      <div class="quiz-container">
+
+        <!-- Quiz Top Candidate & Exam Status Bar -->
+        <div class="quiz-topbar">
+          <div class="topbar-candidate">
+            <div class="candidate-avatar">
+              <span id="quiz-student-avatar">JD</span>
+            </div>
+            <div class="candidate-meta">
+              <span class="name" id="quiz-student-name">John Doe</span>
+              <span class="reg" id="quiz-reg-no">Reg: 26CS1001</span>
+            </div>
+          </div>
+
+          <div class="topbar-center">
+            <span class="exam-title-badge" id="quiz-exam-title">JavaScript Fundamentals</span>
+            <div class="progress-wrap">
+              <div class="progress-label">
+                <span>Progress: <strong id="progress-count">0/10</strong> Answered</span>
+                <span id="progress-percent">0%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Countdown Timer Widget -->
+          <div class="topbar-timer" id="timer-box">
+            <div class="timer-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="timer-content">
+              <span class="timer-label">Time Remaining</span>
+              <span class="timer-clock" id="timer-display">10:00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Minute Timer Warning Toast -->
+        <div class="timer-warning-banner" id="timer-warning-banner" style="display: none;">
+          <span class="warning-icon">⏳</span>
+          <span class="warning-text"><strong>Attention:</strong> Less than 2 minutes remaining! Please review and finalize your answers.</span>
+        </div>
+
+        <!-- Main Examination Work Area: Question Column + Sidebar Palette -->
+        <div class="quiz-main-layout">
+          
+          <!-- Left: Dynamic Question Presentation Card -->
+          <div class="quiz-question-column">
+            <div class="card question-card" id="question-card">
+              
+              <!-- Question Header -->
+              <div class="question-header">
+                <div class="q-number-badge">
+                  <span class="badge-label">Question</span>
+                  <span class="badge-number" id="current-question-num">1</span>
+                  <span class="badge-total">of 10</span>
+                </div>
+                <div class="q-meta-tags">
+                  <span class="tag tag-marks">1 Mark</span>
+                  <span class="tag tag-status" id="q-status-tag">Not Answered</span>
+                  <span class="tag tag-review" id="q-review-tag" style="display: none;">Review Flagged</span>
+                </div>
+              </div>
+
+              <!-- Question Text Area (Loaded Dynamically via DHTML) -->
+              <div class="question-body">
+                <p class="question-text" id="question-text">
+                  Loading question data dynamically...
+                </p>
+              </div>
+
+              <!-- Options Container (Populated dynamically via JavaScript DOM createElement) -->
+              <div class="options-container" id="options-container">
+                <!-- Dynamically generated options will be appended here -->
+              </div>
+
+              <!-- Question Action Bar (Mark for Review & Clear Answer) -->
+              <div class="question-secondary-actions">
+                <button type="button" class="btn btn-outline-warning" id="btn-mark-review">
+                  <span class="btn-icon">🚩</span>
+                  <span id="btn-mark-review-text">Mark for Review</span>
+                </button>
+                <button type="button" class="btn btn-outline-danger" id="btn-clear-answer">
+                  <span class="btn-icon">✖</span>
+                  <span>Clear Answer</span>
+                </button>
+              </div>
+
+              <!-- Question Primary Navigation Bar (Previous, Next, Submit) -->
+              <div class="question-nav-actions">
+                <button type="button" class="btn btn-secondary" id="btn-prev-question">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                  </svg>
+                  <span>Previous</span>
+                </button>
+
+                <div class="nav-middle-indicator">
+                  <span id="question-quick-index">Question 1 of 10</span>
+                </div>
+
+                <div class="nav-right-group">
+                  <button type="button" class="btn btn-primary" id="btn-next-question">
+                    <span>Next</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn btn-success" id="btn-submit-exam">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Submit Examination</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right: Sidebar Question Palette (1–10) & Status Breakdown -->
+          <aside class="quiz-sidebar">
+            <div class="card palette-card">
+              <div class="palette-header">
+                <h4>Question Navigation Palette</h4>
+                <p>Click any number to jump directly to that question</p>
+              </div>
+
+              <!-- Question Palette Grid (1-10) Dynamically generated & managed -->
+              <div class="palette-grid" id="palette-grid">
+                <!-- Dynamically populated via script.js -->
+              </div>
+
+              <!-- Live Palette Status Legend with Live Counters -->
+              <div class="palette-stats-legend">
+                <div class="stat-legend-item">
+                  <span class="legend-color-box answered"></span>
+                  <span class="legend-name">Answered</span>
+                  <strong class="legend-val" id="stat-count-answered">0</strong>
+                </div>
+                <div class="stat-legend-item">
+                  <span class="legend-color-box review"></span>
+                  <span class="legend-name">Marked for Review</span>
+                  <strong class="legend-val" id="stat-count-review">0</strong>
+                </div>
+                <div class="stat-legend-item">
+                  <span class="legend-color-box current"></span>
+                  <span class="legend-name">Current Question</span>
+                  <strong class="legend-val" id="stat-count-current">1</strong>
+                </div>
+                <div class="stat-legend-item">
+                  <span class="legend-color-box not-visited"></span>
+                  <span class="legend-name">Not Visited</span>
+                  <strong class="legend-val" id="stat-count-notvisited">9</strong>
+                </div>
+              </div>
+
+              <!-- Direct Submission Shortcut -->
+              <div class="palette-footer-action">
+                <button type="button" class="btn btn-outline-success btn-block" id="btn-palette-submit">
+                  <span>Finish & Submit Exam</span>
+                </button>
+              </div>
+
+            </div>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------- -->
+    <!-- VIEW 4: EXAMINATION RESULT & PERFORMANCE REPORT      -->
+    <!-- ---------------------------------------------------- -->
+    <section class="view-panel" id="view-result">
+      <div class="result-container">
+        
+        <!-- Scorecard Card with Clean University Layout -->
+        <div class="card scorecard-card" id="printable-scorecard">
+          
+          <!-- Scorecard Official University Header -->
+          <div class="scorecard-header">
+            <div class="university-crest">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            <div class="scorecard-title-group">
+              <span class="university-tag">DEPARTMENT OF UNIVERSITY EXAMINATIONS</span>
+              <h2>OFFICIAL CANDIDATE EXAMINATION SCORECARD</h2>
+              <p class="scorecard-subtitle">Computer-Based Assessment Performance Report & Evaluation Sheet</p>
+            </div>
+            <div class="result-status-stamp" id="result-status-stamp">
+              <span class="stamp-text" id="stamp-text">PASS</span>
+            </div>
+          </div>
+
+          <!-- Candidate & Examination Official Meta Information -->
+          <div class="candidate-meta-grid">
+            <div class="meta-field">
+              <span class="lbl">Candidate Name:</span>
+              <strong class="val" id="res-student-name">--</strong>
+            </div>
+            <div class="meta-field">
+              <span class="lbl">Register / Hall Ticket No:</span>
+              <strong class="val" id="res-reg-number">--</strong>
+            </div>
+            <div class="meta-field">
+              <span class="lbl">Department:</span>
+              <strong class="val" id="res-department">--</strong>
+            </div>
+            <div class="meta-field">
+              <span class="lbl">Examination Paper:</span>
+              <strong class="val" id="res-exam-name">--</strong>
+            </div>
+            <div class="meta-field">
+              <span class="lbl">Date of Assessment:</span>
+              <strong class="val" id="res-exam-date">--</strong>
+            </div>
+            <div class="meta-field">
+              <span class="lbl">Time Taken:</span>
+              <strong class="val" id="res-time-taken">--</strong>
+            </div>
+          </div>
+
+          <!-- Score Showcase Section with Animated Circular Gauge & Remarks -->
+          <div class="score-showcase-row">
+            
+            <!-- Circular Animated Score Gauge -->
+            <div class="circular-score-card">
+              <div class="svg-gauge-container">
+                <svg class="progress-ring" width="180" height="180">
+                  <circle class="progress-ring__circle-bg" stroke="#e2e8f0" stroke-width="14" fill="transparent" r="72" cx="90" cy="90"/>
+                  <circle class="progress-ring__circle" id="score-ring-circle" stroke="#2563eb" stroke-width="14" stroke-dasharray="452.39" stroke-dashoffset="452.39" stroke-linecap="round" fill="transparent" r="72" cx="90" cy="90"/>
+                </svg>
+                <div class="gauge-center-content">
+                  <span class="score-percent-val" id="res-percentage">0%</span>
+                  <span class="score-fraction" id="res-score-fraction">0 / 10</span>
+                </div>
+              </div>
+              <span class="gauge-caption">Overall Score & Percentage</span>
+            </div>
+
+            <!-- Performance Remarks & Result Verdict -->
+            <div class="performance-remarks-card">
+              <div class="verdict-banner" id="verdict-banner">
+                <span class="verdict-icon" id="verdict-icon">🎉</span>
+                <div>
+                  <h3 id="verdict-heading">PASS</h3>
+                  <p class="verdict-grade" id="verdict-grade">Grade: A</p>
+                </div>
+              </div>
+              
+              <div class="remark-quote-box">
+                <span class="quote-label">Official Evaluation Remark:</span>
+                <p class="remark-text" id="res-performance-remark">
+                  Excellent Performance! Outstanding mastery of the subject matter.
+                </p>
+              </div>
+
+              <div class="criteria-note">
+                <span>Minimum Passing Standard: 40% (4 / 10 marks)</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Comprehensive Quantitative Breakdown Stats -->
+          <div class="stats-overview-grid">
+            <div class="stat-card stat-total">
+              <span class="st-icon">📋</span>
+              <span class="st-num" id="res-stat-total">10</span>
+              <span class="st-label">Total Questions</span>
+            </div>
+            <div class="stat-card stat-correct">
+              <span class="st-icon">✅</span>
+              <span class="st-num" id="res-stat-correct">0</span>
+              <span class="st-label">Correct Answers</span>
+            </div>
+            <div class="stat-card stat-incorrect">
+              <span class="st-icon">❌</span>
+              <span class="st-num" id="res-stat-incorrect">0</span>
+              <span class="st-label">Incorrect Answers</span>
+            </div>
+            <div class="stat-card stat-unanswered">
+              <span class="st-icon">⚠️</span>
+              <span class="st-num" id="res-stat-unanswered">0</span>
+              <span class="st-label">Unanswered</span>
+            </div>
+            <div class="stat-card stat-marks">
+              <span class="st-icon">🏅</span>
+              <span class="st-num" id="res-stat-obtained">0</span>
+              <span class="st-label">Marks Obtained</span>
+            </div>
+          </div>
+
+          <!-- Scorecard Actions: Print, Review, Retake, Return Home -->
+          <div class="scorecard-actions no-print">
+            <button type="button" class="btn btn-outline-primary" id="btn-print-result">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+              <span>Print Official Result</span>
+            </button>
+
+            <button type="button" class="btn btn-primary" id="btn-toggle-review">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span id="review-toggle-text">Detailed Answer Key & Review</span>
+            </button>
+
+            <button type="button" class="btn btn-outline-success" id="btn-retake-exam">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="1 4 1 10 7 10"></polyline>
+                <polyline points="23 20 23 14 17 14"></polyline>
+                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+              </svg>
+              <span>Retake Examination</span>
+            </button>
+
+            <button type="button" class="btn btn-secondary" id="btn-return-home">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              <span>Return to Home</span>
+            </button>
+          </div>
+
+          <!-- Question-Wise Detailed Answer Review Section (Populated dynamically) -->
+          <div class="detailed-review-section" id="detailed-review-section">
+            <div class="review-section-header">
+              <h3>Question-wise Answer Analysis & Explanations</h3>
+              <p>Compare candidate choices against official answers with comprehensive explanations</p>
+            </div>
+
+            <!-- List of Questions loaded dynamically using JavaScript DHTML -->
+            <div class="review-questions-list" id="review-questions-list">
+              <!-- Dynamically populated via script.js -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: SUBMISSION CONFIRMATION & VALIDATION DIALOG       -->
+  <!-- ======================================================== -->
+  <div class="modal-backdrop" id="modal-submit-confirm" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <div>
+            <h3 id="confirm-modal-title">Confirm Examination Submission</h3>
+            <p class="modal-sub">Review your status before submitting</p>
+          </div>
+          <button type="button" class="modal-close" id="btn-modal-close" aria-label="Close">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          
+          <!-- Summary table of candidate responses -->
+          <div class="submission-summary-box">
+            <div class="summary-tile answered">
+              <span class="tile-count" id="modal-answered-count">0</span>
+              <span class="tile-label">Answered</span>
+            </div>
+            <div class="summary-tile unanswered">
+              <span class="tile-count" id="modal-unanswered-count">0</span>
+              <span class="tile-label">Unanswered</span>
+            </div>
+            <div class="summary-tile review">
+              <span class="tile-count" id="modal-review-count">0</span>
+              <span class="tile-label">Marked for Review</span>
+            </div>
+          </div>
+
+          <!-- Unanswered Questions Alert (if any exist) -->
+          <div class="alert alert-warning" id="modal-unanswered-warning" style="display: none;">
+            <div class="alert-title">
+              <span>⚠️</span>
+              <strong>Unanswered Questions Alert!</strong>
+            </div>
+            <p id="modal-unanswered-list-msg">
+              You have unanswered questions. All 10 questions are mandatory!
+            </p>
+            <div class="unanswered-quick-links" id="unanswered-quick-links">
+              <!-- Dynamically populated buttons to jump to unanswered questions -->
+            </div>
+          </div>
+
+          <p class="modal-warning-notice">
+            Once submitted, your answers will be locked immediately and the examination score will be evaluated. This action cannot be undone.
+          </p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-modal-cancel">Return to Exam</button>
+          <button type="button" class="btn btn-success" id="btn-modal-confirm-submit">Confirm & Submit Exam</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: AUTO-SUBMIT TIMEOUT NOTICE                        -->
+  <!-- ======================================================== -->
+  <div class="modal-backdrop" id="modal-timeout-notice" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center">
+        <div class="timeout-header-icon">⏰</div>
+        <h3>Time Expired!</h3>
+        <p class="modal-text">
+          The 10-minute examination duration has elapsed. In accordance with university examination guidelines, your responses are being automatically submitted for evaluation.
+        </p>
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- APPLICATION FOOTER                                       -->
+  <!-- ======================================================== -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 Online Examination Portal &mdash; University Examination and Quiz Management System. All Rights Reserved.</p>
+      <p class="footer-subtext">Demonstrating JavaScript DOM Manipulation, Date Objects, Event Handling, Arrays, Objects, Exception Handling and DHTML.</p>
+    </div>
+  </footer>
+
+  <!-- ======================================================== -->
+  <!-- SCRIPTS                                                  -->
+  <!-- ======================================================== -->
+  <script src="script.js"></script>
+</body>
+</html>
