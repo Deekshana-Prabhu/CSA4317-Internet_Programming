@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Multispeciality Hospital | Online Appointment Booking</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans for modern healthcare aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       1. HEADER & TOP BAR
+       ====================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <!-- Top Emergency & Info Notification Bar -->
+    <div class="top-bar">
+      <div class="container top-bar-inner">
+        <div class="top-bar-item">
+          <span class="icon-pulse"></span>
+          <span><strong>24/7 Emergency Line:</strong> +1 (800) 273-9432</span>
+        </div>
+        <div class="top-bar-item hide-on-mobile">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span>Transparent Pricing & NABH Accredited Multispeciality Center</span>
+        </div>
+        <div class="top-bar-item">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span>OPD Hours: Mon - Sat 8:00 AM - 8:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav class="main-nav">
+      <div class="container nav-container">
+        <!-- Hospital Brand / Medical Cross Logo -->
+        <a href="#home" class="brand-logo" aria-label="Apex Multispeciality Hospital Home">
+          <div class="logo-icon-badge">
+            <svg class="medical-cross-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="hospital-name">APEX MULTISPECIALITY HOSPITAL</span>
+            <span class="hospital-tagline">Excellence in Healthcare & Patient Wellbeing</span>
+          </div>
+        </a>
+
+        <!-- Mobile Navigation Toggle Button -->
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Navigation Links -->
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#doctors" class="nav-link">Doctors</a></li>
+          <li class="nav-item"><a href="#book-appointment" class="nav-link">Book Appointment</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+          <li class="nav-item">
+            <a href="#book-appointment" class="btn btn-primary btn-sm nav-cta">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Instant Appointment</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         1. HERO SECTION & HOSPITAL BANNER
+         ====================================================================== -->
+    <section class="hero-section" id="home">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="trust-badge">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>NABH Accredited & Certified Multispeciality Care</span>
+          </div>
+
+          <h1 class="hero-title">Your Health, Our Priority</h1>
+          
+          <p class="hero-description">
+            Experience world-class healthcare with premier specialists, cutting-edge medical technology,
+            and compassionate patient-centered treatment. Seamlessly book consultations with leading
+            doctors across all key specialties in just a few clicks.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#book-appointment" class="btn btn-primary btn-lg">
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Book Appointment Now</span>
+            </a>
+            <a href="#doctors" class="btn btn-secondary btn-lg">
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>Explore Doctors</span>
+            </a>
+          </div>
+
+          <!-- Hospital Highlight Counters -->
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="stat-number">50+</span>
+              <span class="stat-label">Senior Specialists</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">25+</span>
+              <span class="stat-label">Clinical Departments</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">99.4%</span>
+              <span class="stat-label">Patient Satisfaction</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Emergency & Trauma</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Professional Hospital Banner Illustration / Image Card -->
+        <div class="hero-banner-wrapper">
+          <div class="hero-banner-card">
+            <div class="banner-badge-floating">
+              <div class="pulse-green"></div>
+              <span>Appointments Open for Today</span>
+            </div>
+            <img 
+              src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800" 
+              alt="Apex Multispeciality Hospital Modern Facility" 
+              class="hero-banner-img"
+              onerror="this.onerror=null; this.parentElement.classList.add('banner-fallback');"
+            />
+            <div class="banner-card-overlay">
+              <div class="overlay-item">
+                <svg class="icon-md text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <div>
+                  <h4>Zero Wait-Time OPD</h4>
+                  <p>Guaranteed priority schedule with digital booking</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Services Quick Bar -->
+    <section class="services-strip">
+      <div class="container services-grid">
+        <div class="service-pill">
+          <div class="service-icon-box">
+            <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
+          <div>
+            <h4>Cardiology Care</h4>
+            <p>Comprehensive heart screenings & surgeries</p>
+          </div>
+        </div>
+
+        <div class="service-pill">
+          <div class="service-icon-box">
+            <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 6v6l4 2"></path>
+            </svg>
+          </div>
+          <div>
+            <h4>Neurology Center</h4>
+            <p>Advanced stroke & neurological treatments</p>
+          </div>
+        </div>
+
+        <div class="service-pill">
+          <div class="service-icon-box">
+            <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <h4>Pediatric Care</h4>
+            <p>Gentle healthcare tailored for children</p>
+          </div>
+        </div>
+
+        <div class="service-pill">
+          <div class="service-icon-box">
+            <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div>
+            <h4>General Medicine</h4>
+            <p>Preventative wellness & chronic condition care</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         2. DOCTORS SECTION
+         ====================================================================== -->
+    <section class="section doctors-section" id="doctors">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-subtitle">EXPERT MEDICAL TEAM</div>
+          <h2 class="section-title">Meet Our Distinguished Doctors</h2>
+          <p class="section-desc">
+            Consult with certified, highly experienced specialists dedicated to providing individualized medical care across core specialties.
+          </p>
+        </div>
+
+        <!-- Specialty Filter Pills -->
+        <div class="filter-container">
+          <button class="filter-btn active" data-filter="all">All Specialties</button>
+          <button class="filter-btn" data-filter="Cardiology">Cardiology</button>
+          <button class="filter-btn" data-filter="Neurology">Neurology</button>
+          <button class="filter-btn" data-filter="Dermatology">Dermatology</button>
+          <button class="filter-btn" data-filter="Pediatrics">Pediatrics</button>
+          <button class="filter-btn" data-filter="Orthopedics">Orthopedics</button>
+          <button class="filter-btn" data-filter="General Medicine">General Medicine</button>
+        </div>
+
+        <!-- Doctor Cards Grid Container (Rendered dynamically or loaded via script.js) -->
+        <div class="doctors-grid" id="doctorsGrid">
+          <!-- Populated dynamically from doctors.json with fallback elements -->
+          <div class="doctors-loading-placeholder">
+            <div class="spinner"></div>
+            <p>Loading doctor profiles...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. APPOINTMENT BOOKING FORM SECTION
+         ====================================================================== -->
+    <section class="section booking-section" id="book-appointment">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-subtitle">SECURE APPOINTMENT PORTAL</div>
+          <h2 class="section-title">Schedule Your Consultation</h2>
+          <p class="section-desc">
+            Fill in the details below to reserve your appointment. Slots are confirmed instantly in real-time.
+          </p>
+        </div>
+
+        <!-- Dynamic Appointment Confirmation Card (Initially Hidden, Rendered after submission) -->
+        <div class="confirmation-wrapper" id="confirmationWrapper" style="display: none;">
+          <!-- Dynamically populated via DOM manipulation -->
+        </div>
+
+        <!-- Booking Form Container Card -->
+        <div class="booking-card" id="bookingCard">
+          <div class="booking-card-header">
+            <div class="header-icon-badge">
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div>
+              <h3 class="booking-card-title">Patient & Appointment Details</h3>
+              <p class="booking-card-subtitle">All fields marked with an asterisk (<span class="required-star">*</span>) are mandatory.</p>
+            </div>
+          </div>
+
+          <!-- Alert / Status Notification Banner -->
+          <div class="alert-banner" id="formAlert" style="display: none;" role="alert">
+            <span class="alert-icon" id="alertIcon"></span>
+            <span class="alert-message" id="alertMessage"></span>
+          </div>
+
+          <form id="appointmentForm" class="appointment-form" novalidate>
+            <div class="form-grid">
+              
+              <!-- Field 1: Patient Full Name -->
+              <div class="form-group" id="group-patientName">
+                <label for="patientName" class="form-label">
+                  Patient Full Name <span class="required-star">*</span>
+                </label>
+                <div class="input-with-icon">
+                  <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <input 
+                    type="text" 
+                    id="patientName" 
+                    name="patientName" 
+                    class="form-control" 
+                    placeholder="e.g. Johnathan Doe" 
+                    required 
+                    autocomplete="name"
+                  />
+                  <span class="validation-status-icon"></span>
+                </div>
+                <small class="error-text" id="error-patientName">Please enter a valid name (letters and spaces only, min 3 characters).</small>
+              </div>
+
+              <!-- Field 2: Email Address -->
+              <div class="form-group" id="group-email">
+                <label for="email" class="form-label">
+                  Email Address <span class="required-star">*</span>
+                </label>
+                <div class="input-with-icon">
+                  <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-control" 
+                    placeholder="e.g. john.doe@example.com" 
+                    required 
+                    autocomplete="email"
+                  />
+                  <span class="validation-status-icon"></span>
+                </div>
+                <small class="error-text" id="error-email">Please enter a valid email address (e.g. name@domain.com).</small>
+              </div>
+
+              <!-- Field 3: Mobile Number -->
+              <div class="form-group" id="group-phone">
+                <label for="phone" class="form-label">
+                  Mobile Number (10 Digits) <span class="required-star">*</span>
+                </label>
+                <div class="input-with-icon">
+                  <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    class="form-control" 
+                    placeholder="e.g. 9876543210" 
+                    maxlength="10" 
+                    required 
+                    autocomplete="tel"
+                  />
+                  <span class="validation-status-icon"></span>
+                </div>
+                <small class="error-text" id="error-phone">Phone number must contain exactly 10 digits.</small>
+              </div>
+
+              <!-- Field 4: Age -->
+              <div class="form-group" id="group-age">
+                <label for="age" class="form-label">
+                  Patient Age <span class="required-star">*</span>
+                </label>
+                <div class="input-with-icon">
+                  <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 14 14"></polyline>
+                  </svg>
+                  <input 
+                    type="number" 
+                    id="age" 
+                    name="age" 
+                    class="form-control" 
+                    placeholder="e.g. 35" 
+                    min="1" 
+                    max="120" 
+                    required 
+                  />
+                  <span class="validation-status-icon"></span>
+                </div>
+                <small class="error-text" id="error-age">Please enter a valid age between 1 and 120.</small>
+              </div>
+
+              <!-- Field 5: Gender (Radio Buttons) -->
+              <div class="form-group full-width-field" id="group-gender">
+                <label class="form-label">
+                  Gender <span class="required-star">*</span>
+                </label>
+                <div class="radio-pill-group">
+                  <label class="radio-pill">
+                    <input type="radio" name="gender" value="Male" required>
+                    <span class="pill-content">
+                      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="10" cy="14" r="5"></circle>
+                        <line x1="19" y1="5" x2="13.6" y2="10.4"></line>
+                        <line x1="19" y1="5" x2="14" y2="5"></line>
+                        <line x1="19" y1="5" x2="19" y2="10"></line>
+                      </svg>
+                      <span>Male</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-pill">
+                    <input type="radio" name="gender" value="Female">
+                    <span class="pill-content">
+                      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="9" r="5"></circle>
+                        <line x1="12" y1="14" x2="12" y2="21"></line>
+                        <line x1="9" y1="18" x2="15" y2="18"></line>
+                      </svg>
+                      <span>Female</span>
+                    </span>
+                  </label>
+
+                  <label class="radio-pill">
+                    <input type="radio" name="gender" value="Other">
+                    <span class="pill-content">
+                      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                      </svg>
+                      <span>Other</span>
+                    </span>
+                  </label>
+                </div>
+                <small class="error-text" id="error-gender">Please select a gender option.</small>
+              </div>
+
+              <!-- Field 6: Doctor Selection (Dropdown) -->
+              <div class="form-group" id="group-doctor">
+                <label for="doctorSelect" class="form-label">
+                  Select Doctor & Specialty <span class="required-star">*</span>
+                </label>
+                <div class="input-with-icon">
+                  <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <polyline points="16 11 18 13 22 9"></polyline>
+                  </svg>
+                  <select id="doctorSelect" name="doctorId" class="form-control select-control" required>
+                    <option value="" disabled selected>-- Choose a Doctor --</option>
+                  </select>
+                </div>
+                <div class="doctor-quick-meta" id="doctorQuickMeta" style="display: none;">
+                  <span class="badge-fee" id="quickFeeBadge">$0</span>
+                  <span class="badge-exp" id="quickExpBadge">0 Yrs Exp</span>
+                </div>
+                <small class="error-text" id="error-doctor">Please choose a doctor for your appointment.</small>
+              </div>
+
+              <!-- Field 7: Appointment Date Picker -->
+              <div class="form-group" id="group-date">
+                <label for="appointmentDate" class="form-label">
+                  Appointment Date <span class="required-star">*</span>
+                </label>
+                <div class="input-with-icon">
+                  <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <input 
+                    type="date" 
+                    id="appointmentDate" 
+                    name="appointmentDate" 
+                    class="form-control" 
+                    required 
+                  />
+                </div>
+                <small class="helper-text">Past dates are strictly disabled.</small>
+                <small class="error-text" id="error-date">Please select a valid future or current appointment date.</small>
+              </div>
+
+              <!-- Field 8: Available Time Slots Container (Fetched via AJAX Fetch API) -->
+              <div class="form-group full-width-field" id="group-slot">
+                <div class="slot-header-flex">
+                  <label class="form-label mb-0">
+                    Available Time Slot <span class="required-star">*</span>
+                  </label>
+                  <span class="slot-sync-status" id="slotSyncStatus">Select a doctor & date to see slots</span>
+                </div>
+
+                <!-- Hidden Input holding currently chosen timeSlot -->
+                <input type="hidden" id="selectedTimeSlot" name="timeSlot" value="" required>
+
+                <!-- Slots Dynamic Container -->
+                <div class="time-slots-container" id="timeSlotsContainer">
+                  <div class="slot-initial-notice">
+                    <svg class="icon-lg text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <p>Please select a <strong>Doctor</strong> and <strong>Appointment Date</strong> above to load real-time available time slots.</p>
+                  </div>
+                </div>
+                <small class="error-text" id="error-slot">Please select an available time slot from the list.</small>
+              </div>
+
+              <!-- Field 9: Reason for Visit (Textarea) -->
+              <div class="form-group full-width-field" id="group-reason">
+                <label for="visitReason" class="form-label">
+                  Reason for Visit / Symptoms (Optional)
+                </label>
+                <textarea 
+                  id="visitReason" 
+                  name="reason" 
+                  class="form-control textarea-control" 
+                  rows="3" 
+                  placeholder="Briefly describe your symptoms, existing medical conditions, or purpose of consultation..."
+                  maxlength="500"
+                ></textarea>
+                <small class="helper-text"><span id="charCount">0</span>/500 characters</small>
+              </div>
+
+            </div>
+
+            <!-- Form Action Buttons -->
+            <div class="form-actions">
+              <button type="button" id="btnResetForm" class="btn btn-outline">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2.5 2v6h6M21.5 22v-6h-6"></path>
+                  <path d="M22 11.5A10 10 0 0 0 3.2 7.2L2.5 8M2 12.5a10 10 0 0 0 18.8 4.2l.7-.7"></path>
+                </svg>
+                <span>Reset Form</span>
+              </button>
+
+              <button type="submit" id="btnSubmitAppointment" class="btn btn-primary btn-submit">
+                <span class="btn-spinner" id="btnSpinner" style="display: none;"></span>
+                <svg class="icon-sm btn-icon" id="btnSubmitIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span id="btnSubmitText">Confirm & Book Appointment</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. HOSPITAL HIGHLIGHTS & CONTACT SECTION
+         ====================================================================== -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-subtitle">VISIT & CONTACT</div>
+          <h2 class="section-title">We Are Here To Assist You</h2>
+          <p class="section-desc">
+            Reach out directly or visit our hospital premises for specialized consultations and emergency care.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Hospital Info Card -->
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <h3>Hospital Location</h3>
+            <p>Apex Multispeciality Hospital Tower<br>450 Healthcare Boulevard, Suite 100<br>Medical City, NY 10016</p>
+            <span class="contact-link">Valet Parking & Ambulance Bay Available</span>
+          </div>
+
+          <!-- Emergency Contacts Card -->
+          <div class="contact-card featured-contact-card">
+            <div class="contact-card-icon">
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <h3>Direct Contact & OPD</h3>
+            <p><strong>Emergency:</strong> 1800-273-9432 (Toll Free)<br>
+               <strong>Reception Desk:</strong> +1 (555) 019-2834<br>
+               <strong>Email:</strong> appointments@apexmultispeciality.com</p>
+            <span class="contact-link text-teal">24 Hours Immediate Response</span>
+          </div>
+
+          <!-- Working Hours Card -->
+          <div class="contact-card">
+            <div class="contact-card-icon">
+              <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3>OPD & Diagnostic Timings</h3>
+            <p><strong>Monday - Friday:</strong> 8:00 AM - 8:00 PM<br>
+               <strong>Saturday:</strong> 8:00 AM - 6:00 PM<br>
+               <strong>Sunday:</strong> Emergency & Trauma Only (24/7)</p>
+            <span class="contact-link">In-house Diagnostic Labs Open 24/7</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       5. FOOTER
+       ====================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+          <div class="logo-icon-badge small">
+            <svg class="medical-cross-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+            </svg>
+          </div>
+          <span class="footer-brand-title">APEX MULTISPECIALITY HOSPITAL</span>
+        </div>
+        <p class="footer-text">
+          Dedicated to clinical excellence, compassionate patient service, and pioneering healthcare innovations. Certified NABH standards for medical safety and hygiene.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Clinical Specialities</h4>
+        <ul class="footer-links">
+          <li><a href="#doctors">Cardiology & Vascular</a></li>
+          <li><a href="#doctors">Neurology & Brain Sciences</a></li>
+          <li><a href="#doctors">Dermatology & Cosmetology</a></li>
+          <li><a href="#doctors">Pediatrics & Neonatal Care</a></li>
+          <li><a href="#doctors">Orthopedics & Joint Care</a></li>
+          <li><a href="#doctors">General Internal Medicine</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Quick Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#doctors">Find a Doctor</a></li>
+          <li><a href="#book-appointment">Book Appointment</a></li>
+          <li><a href="#contact">Emergency Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Accreditation & Standards</h4>
+        <div class="accreditation-badges">
+          <span class="accreditation-tag">NABH ACCREDITED</span>
+          <span class="accreditation-tag">ISO 9001:2015</span>
+          <span class="accreditation-tag">JCI COMPLIANT</span>
+        </div>
+        <p class="footer-disclaimer">
+          For acute life-threatening medical emergencies, please dial 911 or head directly to our 24/7 Trauma Care Center.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Apex Multispeciality Hospital. All rights reserved.</p>
+        <p class="footer-credits">Vanilla JS, HTML5 & CSS3 Enterprise Healthcare Portal</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container for Quick Alerts -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Main JavaScript Application Logic -->
+  <script src="script.js"></script>
+</body>
+</html>

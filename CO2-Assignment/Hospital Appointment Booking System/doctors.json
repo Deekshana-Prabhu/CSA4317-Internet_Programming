@@ -1,0 +1,141 @@
+[
+  {
+    "id": "doc-1",
+    "name": "Dr. Sarah Jenkins",
+    "specialization": "Cardiology",
+    "qualification": "MD, DM (Cardiology), FACC",
+    "experience": "14 Years Experience",
+    "experienceYears": 14,
+    "fee": 120,
+    "rating": 4.9,
+    "reviewsCount": 184,
+    "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600",
+    "avatarFallback": "SJ",
+    "gender": "Female",
+    "about": "Senior Interventional Cardiologist specializing in preventive heart care, arrhythmia management, and hypertension.",
+    "defaultSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:30 AM",
+      "02:00 PM",
+      "03:30 PM",
+      "04:30 PM"
+    ]
+  },
+  {
+    "id": "doc-2",
+    "name": "Dr. Rajesh Kumar",
+    "specialization": "Neurology",
+    "qualification": "MD, DM (Neurology), FAAN",
+    "experience": "16 Years Experience",
+    "experienceYears": 16,
+    "fee": 150,
+    "rating": 4.9,
+    "reviewsCount": 210,
+    "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600",
+    "avatarFallback": "RK",
+    "gender": "Male",
+    "about": "Leading Neurologist with deep expertise in neuro-degenerative disorders, stroke rehabilitation, and chronic migraines.",
+    "defaultSlots": [
+      "09:30 AM",
+      "10:30 AM",
+      "11:45 AM",
+      "02:15 PM",
+      "03:45 PM",
+      "05:00 PM"
+    ]
+  },
+  {
+    "id": "doc-3",
+    "name": "Dr. Emily Chen",
+    "specialization": "Dermatology",
+    "qualification": "MD (Dermatology, Venereology & Leprosy)",
+    "experience": "10 Years Experience",
+    "experienceYears": 10,
+    "fee": 90,
+    "rating": 4.8,
+    "reviewsCount": 162,
+    "image": "https://images.unsplash.com/photo-1594824813583-05c09361329c?auto=format&fit=crop&q=80&w=600",
+    "avatarFallback": "EC",
+    "gender": "Female",
+    "about": "Certified Dermatologist focused on clinical dermatology, pediatric skin conditions, acne therapies, and laser treatments.",
+    "defaultSlots": [
+      "10:00 AM",
+      "11:15 AM",
+      "12:30 PM",
+      "02:30 PM",
+      "04:00 PM",
+      "05:15 PM"
+    ]
+  },
+  {
+    "id": "doc-4",
+    "name": "Dr. Marcus Vance",
+    "specialization": "Pediatrics",
+    "qualification": "MD, DCH (Pediatrics), FAAP",
+    "experience": "12 Years Experience",
+    "experienceYears": 12,
+    "fee": 85,
+    "rating": 4.9,
+    "reviewsCount": 195,
+    "image": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=600",
+    "avatarFallback": "MV",
+    "gender": "Male",
+    "about": "Compassionate Child Specialist focusing on neonatal healthcare, childhood immunization, and developmental milestones.",
+    "defaultSlots": [
+      "08:30 AM",
+      "09:45 AM",
+      "11:00 AM",
+      "01:30 PM",
+      "03:00 PM",
+      "04:15 PM"
+    ]
+  },
+  {
+    "id": "doc-5",
+    "name": "Dr. Elena Rostova",
+    "specialization": "Orthopedics",
+    "qualification": "MS (Orthopedics), MCh (Joint Replacement)",
+    "experience": "15 Years Experience",
+    "experienceYears": 15,
+    "fee": 130,
+    "rating": 4.8,
+    "reviewsCount": 178,
+    "image": "https://images.unsplash.com/photo-1559839734-9276949b9101?auto=format&fit=crop&q=80&w=600",
+    "avatarFallback": "ER",
+    "gender": "Female",
+    "about": "Orthopedic & Joint Reconstruction Surgeon specialized in sports injuries, arthroscopic surgeries, and arthritis management.",
+    "defaultSlots": [
+      "09:00 AM",
+      "10:15 AM",
+      "11:30 AM",
+      "02:00 PM",
+      "03:15 PM",
+      "04:45 PM"
+    ]
+  },
+  {
+    "id": "doc-6",
+    "name": "Dr. David Miller",
+    "specialization": "General Medicine",
+    "qualification": "MD (Internal Medicine), FACP",
+    "experience": "18 Years Experience",
+    "experienceYears": 18,
+    "fee": 75,
+    "rating": 4.9,
+    "reviewsCount": 240,
+    "image": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=600",
+    "avatarFallback": "DM",
+    "gender": "Male",
+    "about": "Senior Consultant in Internal Medicine providing comprehensive diagnostics, chronic disease care, and wellness evaluations.",
+    "defaultSlots": [
+      "08:00 AM",
+      "09:15 AM",
+      "10:30 AM",
+      "11:45 AM",
+      "02:00 PM",
+      "03:30 PM",
+      "04:45 PM"
+    ]
+  }
+]
