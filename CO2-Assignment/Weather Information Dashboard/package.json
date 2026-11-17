@@ -1,0 +1,21 @@
+{
+  "name": "weathernow-dashboard",
+  "version": "1.0.0",
+  "description": "WeatherNow – A Modern Real-Time Weather Information Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "weather",
+    "dashboard",
+    "xmlhttprequest",
+    "open-meteo",
+    "vanilla-js"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
