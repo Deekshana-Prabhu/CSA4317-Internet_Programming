@@ -1,0 +1,23 @@
+{
+  "name": "apex-student-registration-system",
+  "version": "1.0.0",
+  "description": "APEX Online Student Registration System with ExcelJS Backend Storage",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "apex",
+    "student-registration",
+    "exceljs",
+    "express"
+  ],
+  "author": "APEX",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2"
+  }
+}
