@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraNest | Curated Modern Living & Pastel Goods</title>
+  <!-- Google Fonts: Plus Jakarta Sans for clean modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement">
+    <div class="container announcement-content">
+      <span class="announcement-badge">✨ Spring Collection</span>
+      <p class="announcement-text">
+        Enjoy up to <strong>30% OFF</strong> curated pastel goods + <strong>FREE Shipping</strong> on all orders over $50!
+      </p>
+      <span class="announcement-code">Use code: <strong>PASTEL10</strong> for extra 10% off</span>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo" aria-label="AuraNest Home">
+        <span class="brand-icon">
+          <!-- Flower/Leaf SVG Icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7Z"/>
+            <circle cx="12" cy="9" r="3"/>
+          </svg>
+        </span>
+        <div class="brand-text">
+          <span class="brand-name">Aura<span>Nest</span></span>
+          <span class="brand-tagline">Curated Living</span>
+        </div>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search lamps, ceramics, diffusers, linen..." 
+            autocomplete="off"
+            aria-label="Search products"
+          >
+          <button id="search-clear-btn" class="search-clear-btn hidden" aria-label="Clear search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Live AJAX Reload Button -->
+        <button id="reload-data-btn" class="action-btn" title="Reload products from JSON via AJAX">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+            <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+            <path d="M16 21h5v-5"/>
+          </svg>
+          <span class="btn-label">Sync AJAX</span>
+        </button>
+
+        <!-- Shopping Cart Trigger Button -->
+        <button id="cart-toggle-btn" class="cart-trigger-btn" aria-label="View shopping cart">
+          <div class="cart-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+              <path d="M3 6h18"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            <span id="cart-badge" class="cart-badge">0</span>
+          </div>
+          <div class="cart-trigger-info">
+            <span class="cart-trigger-label">My Cart</span>
+            <span id="cart-trigger-total" class="cart-trigger-total">$0.00</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <span class="hero-pill">🌿 Mindful Aesthetics & Warm Living</span>
+        <h1 class="hero-title">
+          Harmonious essentials in <span class="highlight-pastel">soft pastel</span> tones.
+        </h1>
+        <p class="hero-description">
+          Elevate your daily ritual with artisanal ceramics, organic textiles, calming aromatherapy, and mindful home accents. Carefully crafted for serenity.
+        </p>
+        <div class="hero-features">
+          <div class="hero-feature-item">
+            <span class="feature-bullet pastel-sage">✓</span>
+            <span>Free Shipping Over $50</span>
+          </div>
+          <div class="hero-feature-item">
+            <span class="feature-bullet pastel-peach">✓</span>
+            <span>Up to 30% Seasonal Savings</span>
+          </div>
+          <div class="hero-feature-item">
+            <span class="feature-bullet pastel-lavender">✓</span>
+            <span>Instant Cart Recalculations</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="hero-floating-card card-1">
+            <span class="floating-badge">🔥 Bestseller</span>
+            <p class="floating-title">Ceramic Desk Lamp</p>
+            <span class="floating-price">$57.80 <del>$68.00</del></span>
+          </div>
+          <div class="hero-floating-card card-2">
+            <span class="floating-badge badge-discount">25% OFF</span>
+            <p class="floating-title">Ultrasonic Mist Diffuser</p>
+            <span class="floating-price">$28.50 <del>$38.00</del></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Store Section -->
+  <main class="main-content container" id="shop">
+    <!-- Filter & Toolbar Bar -->
+    <section class="toolbar-section" aria-label="Catalog Filters">
+      <!-- Category Filter Pills -->
+      <div class="category-nav-wrapper">
+        <div class="category-nav" id="category-nav" role="tablist">
+          <button class="category-pill active" data-category="all" role="tab" aria-selected="true">
+            All Products
+          </button>
+          <button class="category-pill" data-category="Home Decor" role="tab" aria-selected="false">
+            Home Decor
+          </button>
+          <button class="category-pill" data-category="Kitchen & Dining" role="tab" aria-selected="false">
+            Kitchen & Dining
+          </button>
+          <button class="category-pill" data-category="Wellness" role="tab" aria-selected="false">
+            Wellness
+          </button>
+          <button class="category-pill" data-category="Tech & Audio" role="tab" aria-selected="false">
+            Tech & Audio
+          </button>
+          <button class="category-pill" data-category="Apparel" role="tab" aria-selected="false">
+            Apparel
+          </button>
+        </div>
+      </div>
+
+      <!-- Controls Row: Sort, Filters & Live Item Counts -->
+      <div class="controls-row">
+        <!-- Results Counter & Active Query -->
+        <div class="results-meta">
+          <span id="results-count" class="results-count">Showing 12 items</span>
+          <span id="active-filter-indicator" class="active-filter-tag hidden">
+            Filter: <strong id="active-filter-name"></strong>
+            <button id="reset-filter-btn" aria-label="Remove filter">&times;</button>
+          </span>
+        </div>
+
+        <!-- Right Side: In-Stock Toggle & Sort Selector -->
+        <div class="controls-filters">
+          <label class="stock-toggle">
+            <input type="checkbox" id="stock-only-checkbox">
+            <span class="toggle-slider"></span>
+            <span class="toggle-label">In Stock Only</span>
+          </label>
+
+          <div class="sort-wrapper">
+            <label for="sort-select" class="sort-label">Sort by:</label>
+            <select id="sort-select" class="sort-select">
+              <option value="featured">Featured Picks</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="discount-desc">Biggest Discount</option>
+              <option value="rating-desc">Highest Rated</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AJAX Loading State -->
+    <div id="loading-state" class="state-container hidden">
+      <div class="loading-spinner"></div>
+      <p class="state-title">Loading Curated Goods...</p>
+      <p class="state-subtitle">Retrieving product catalog via Fetch AJAX</p>
+    </div>
+
+    <!-- Error State (with Retry & Fallback loader) -->
+    <div id="error-state" class="state-container hidden">
+      <div class="state-icon error-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <p class="state-title" id="error-title">Unable to Load Products</p>
+      <p class="state-subtitle" id="error-message">
+        A network issue or browser file security restriction occurred while fetching products.json.
+      </p>
+      <div class="state-actions">
+        <button id="retry-fetch-btn" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+            <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+            <path d="M16 21h5v-5"/>
+          </svg>
+          Retry AJAX Request
+        </button>
+        <button id="load-fallback-btn" class="btn btn-outline">
+          Load Embedded Catalog
+        </button>
+      </div>
+    </div>
+
+    <!-- Empty Filter / Search State -->
+    <div id="empty-state" class="state-container hidden">
+      <div class="state-icon empty-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.3-4.3"/>
+          <path d="M8 11h6"/>
+        </svg>
+      </div>
+      <p class="state-title">No Matching Products Found</p>
+      <p class="state-subtitle">Try adjusting your search terms or selecting a different category filter.</p>
+      <button id="clear-all-filters-btn" class="btn btn-primary">Reset All Filters</button>
+    </div>
+
+    <!-- Product Grid Container -->
+    <section class="products-container" aria-label="Product Listings">
+      <!-- Fallback Data Notice Banner (Shown when local file:// AJAX is blocked and fallback is active) -->
+      <div id="fallback-notice-banner" class="fallback-notice-banner hidden" role="status">
+        <div class="fallback-notice-content">
+          <span class="fallback-notice-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+          </span>
+          <div class="fallback-notice-text">
+            <strong>Using Embedded Fallback Catalog</strong>
+            <p id="fallback-notice-desc">
+              Direct AJAX <code>fetch('./products.json')</code> is restricted by browser security on local <code>file://</code> files. Launch with <strong>VS Code Live Server</strong> (or another local HTTP server) for live AJAX fetching.
+            </p>
+          </div>
+        </div>
+        <button id="banner-retry-btn" class="btn btn-secondary btn-sm" title="Retry actual AJAX fetch request">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+            <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+            <path d="M16 21h5v-5"/>
+          </svg>
+          <span>Retry AJAX Request</span>
+        </button>
+      </div>
+
+      <div id="products-grid" class="products-grid">
+        <!-- Dynamically rendered via JavaScript DOM manipulation -->
+      </div>
+    </section>
+
+    <!-- Trust & Perks Highlights -->
+    <section class="perks-section">
+      <div class="perk-card">
+        <div class="perk-icon pastel-sage">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="3" width="15" height="13"/>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
+        <div class="perk-info">
+          <h4>Complimentary Shipping</h4>
+          <p>Orders over $50 qualify for automated free carbon-neutral shipping.</p>
+        </div>
+      </div>
+
+      <div class="perk-card">
+        <div class="perk-icon pastel-peach">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="perk-info">
+          <h4>Mindfully Crafted</h4>
+          <p>Durable stoneware, 100% natural wax, and pure certified organic textiles.</p>
+        </div>
+      </div>
+
+      <div class="perk-card">
+        <div class="perk-icon pastel-lavender">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+            <path d="M21 3v5h-5"/>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+            <path d="M3 21v-5h5"/>
+          </svg>
+        </div>
+        <div class="perk-info">
+          <h4>30-Day Easy Returns</h4>
+          <p>Hassle-free, no-questions-asked returns with prepaid printable labels.</p>
+        </div>
+      </div>
+
+      <div class="perk-card">
+        <div class="perk-icon pastel-butter">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="5" width="20" height="14" rx="2"/>
+            <line x1="2" y1="10" x2="22" y2="10"/>
+          </svg>
+        </div>
+        <div class="perk-info">
+          <h4>Secure Instant Checkout</h4>
+          <p>Bank-grade SSL mock checkout with instant receipt calculation.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-Out Shopping Cart Drawer -->
+  <div id="cart-drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
+  <aside id="cart-drawer" class="cart-drawer" aria-labelledby="cart-drawer-title" aria-modal="true" role="dialog">
+    <!-- Drawer Header -->
+    <div class="cart-drawer-header">
+      <div class="cart-header-title-wrap">
+        <div class="cart-header-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+            <path d="M3 6h18"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
+        <div>
+          <h2 id="cart-drawer-title" class="cart-drawer-title">Shopping Cart</h2>
+          <span id="cart-items-count-text" class="cart-items-count-text">0 items selected</span>
+        </div>
+      </div>
+      <button id="cart-close-btn" class="close-btn" aria-label="Close cart drawer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress Tracker -->
+    <div class="shipping-progress-banner">
+      <div class="shipping-progress-text">
+        <span class="shipping-icon">🚚</span>
+        <span id="shipping-progress-msg">Add <strong>$50.00</strong> more to unlock <strong>FREE Shipping!</strong></span>
+      </div>
+      <div class="shipping-progress-bar-bg">
+        <div id="shipping-progress-bar" class="shipping-progress-bar" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Drawer Body: Item List or Empty State -->
+    <div class="cart-drawer-body">
+      <!-- Empty Cart Message -->
+      <div id="cart-empty-view" class="cart-empty-view">
+        <div class="empty-cart-illustration">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+            <path d="M3 6h18"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+            <line x1="10" y1="13" x2="14" y2="17"/>
+            <line x1="14" y1="13" x2="10" y2="17"/>
+          </svg>
+        </div>
+        <h3>Your shopping cart is empty</h3>
+        <p>Explore our curated pastel items and add pieces you love to get started.</p>
+        <button id="cart-start-shopping-btn" class="btn btn-primary">Start Browsing</button>
+      </div>
+
+      <!-- Active Cart Items List -->
+      <div id="cart-items-list" class="cart-items-list">
+        <!-- Rendered via JavaScript DHTML -->
+      </div>
+    </div>
+
+    <!-- Cart Drawer Footer: Calculations & Checkout -->
+    <div id="cart-drawer-footer" class="cart-drawer-footer">
+      <!-- Coupon / Promo Code Input -->
+      <div class="promo-box">
+        <div class="promo-input-group">
+          <input type="text" id="promo-code-input" placeholder="Promo code (e.g. PASTEL10)" uppercase>
+          <button id="apply-promo-btn" class="btn btn-secondary">Apply</button>
+        </div>
+        <div id="promo-status-msg" class="promo-status-msg hidden"></div>
+      </div>
+
+      <!-- Financial Calculations Breakdown -->
+      <div class="cart-calculations">
+        <div class="calc-row">
+          <span class="calc-label">Gross Subtotal:</span>
+          <span id="cart-gross-subtotal" class="calc-value">$0.00</span>
+        </div>
+        <div class="calc-row savings-row">
+          <span class="calc-label">Total Discounts Saved:</span>
+          <span id="cart-total-savings" class="calc-value savings-value">-$0.00</span>
+        </div>
+        <div id="promo-discount-row" class="calc-row promo-row hidden">
+          <span class="calc-label">Promo Code (<span id="active-promo-tag">PASTEL10</span>):</span>
+          <span id="cart-promo-discount" class="calc-value savings-value">-$0.00</span>
+        </div>
+        <div class="calc-row">
+          <span class="calc-label">Estimated Tax (8%):</span>
+          <span id="cart-tax-amount" class="calc-value">$0.00</span>
+        </div>
+        <div class="calc-row">
+          <span class="calc-label">Shipping:</span>
+          <span id="cart-shipping-fee" class="calc-value">$5.00</span>
+        </div>
+        <div class="calc-divider"></div>
+        <div class="calc-row grand-total-row">
+          <span class="calc-label">Grand Total:</span>
+          <span id="cart-grand-total" class="calc-value grand-total-value">$0.00</span>
+        </div>
+      </div>
+
+      <!-- Drawer Action Buttons -->
+      <div class="cart-actions-row">
+        <button id="clear-cart-btn" class="btn btn-outline-danger" title="Clear all items from cart">
+          Clear Cart
+        </button>
+        <button id="open-checkout-btn" class="btn btn-primary btn-checkout">
+          Proceed to Checkout
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal Section -->
+  <div id="checkout-modal" class="modal-backdrop hidden" aria-modal="true" role="dialog" aria-labelledby="checkout-modal-title">
+    <div class="modal-card checkout-modal-card">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-badge">Step 2 of 2</span>
+          <h2 id="checkout-modal-title" class="modal-title">Complete Your Order</h2>
+        </div>
+        <button id="checkout-close-btn" class="close-btn" aria-label="Close checkout">&times;</button>
+      </div>
+
+      <div class="checkout-modal-body">
+        <!-- Customer & Shipping Form -->
+        <form id="checkout-form" class="checkout-form" novalidate>
+          <div class="form-section">
+            <h3 class="form-section-title">
+              <span class="step-num">1</span> Contact & Shipping Details
+            </h3>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label for="cust-name">Full Name <span class="required">*</span></label>
+                <input 
+                  type="text" 
+                  id="cust-name" 
+                  name="fullName" 
+                  placeholder="e.g. Eleanor Vance" 
+                  required
+                >
+                <span class="field-error" id="cust-name-error">Please enter a valid name (at least 2 letters).</span>
+              </div>
+
+              <div class="form-group flex-1">
+                <label for="cust-email">Email Address <span class="required">*</span></label>
+                <input 
+                  type="email" 
+                  id="cust-email" 
+                  name="email" 
+                  placeholder="e.g. eleanor@example.com" 
+                  required
+                >
+                <span class="field-error" id="cust-email-error">Please enter a valid email address.</span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label for="cust-phone">Phone Number <span class="required">*</span></label>
+                <input 
+                  type="tel" 
+                  id="cust-phone" 
+                  name="phone" 
+                  placeholder="e.g. (555) 234-5678" 
+                  required
+                >
+                <span class="field-error" id="cust-phone-error">Please enter a valid contact phone number.</span>
+              </div>
+
+              <div class="form-group flex-2">
+                <label for="cust-address">Street Address <span class="required">*</span></label>
+                <input 
+                  type="text" 
+                  id="cust-address" 
+                  name="address" 
+                  placeholder="e.g. 742 Evergreen Terrace, Apt 4B" 
+                  required
+                >
+                <span class="field-error" id="cust-address-error">Street address is required.</span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label for="cust-city">City <span class="required">*</span></label>
+                <input type="text" id="cust-city" name="city" placeholder="e.g. Portland" required>
+                <span class="field-error" id="cust-city-error">City is required.</span>
+              </div>
+              <div class="form-group flex-1">
+                <label for="cust-zip">Postal / ZIP Code <span class="required">*</span></label>
+                <input type="text" id="cust-zip" name="zip" placeholder="e.g. 97201" required>
+                <span class="field-error" id="cust-zip-error">Valid postal code is required (5 digits).</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Options -->
+          <div class="form-section">
+            <h3 class="form-section-title">
+              <span class="step-num">2</span> Payment Method
+            </h3>
+            
+            <div class="payment-options-grid">
+              <label class="payment-option selected">
+                <input type="radio" name="paymentMethod" value="card" checked>
+                <div class="payment-card-content">
+                  <span class="payment-icon">💳</span>
+                  <span class="payment-name">Credit / Debit Card</span>
+                  <span class="payment-sub">Visa, Mastercard, Amex</span>
+                </div>
+              </label>
+
+              <label class="payment-option">
+                <input type="radio" name="paymentMethod" value="paypal">
+                <div class="payment-card-content">
+                  <span class="payment-icon">🅿️</span>
+                  <span class="payment-name">PayPal Mock</span>
+                  <span class="payment-sub">Safe 1-click checkout</span>
+                </div>
+              </label>
+
+              <label class="payment-option">
+                <input type="radio" name="paymentMethod" value="cod">
+                <div class="payment-card-content">
+                  <span class="payment-icon">📦</span>
+                  <span class="payment-name">Cash on Delivery</span>
+                  <span class="payment-sub">Pay when parcel arrives</span>
+                </div>
+              </label>
+            </div>
+
+            <!-- Mock Card Fields (Active when card selected) -->
+            <div id="card-fields-container" class="card-fields-box">
+              <div class="form-group">
+                <label for="mock-card-num">Card Number</label>
+                <input type="text" id="mock-card-num" placeholder="4532 •••• •••• 8892" maxlength="19">
+              </div>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label for="mock-card-exp">Expiry (MM/YY)</label>
+                  <input type="text" id="mock-card-exp" placeholder="08/28" maxlength="5">
+                </div>
+                <div class="form-group flex-1">
+                  <label for="mock-card-cvv">Security Code (CVV)</label>
+                  <input type="password" id="mock-card-cvv" placeholder="•••" maxlength="4">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Checkout Summary Box -->
+          <div class="checkout-summary-box">
+            <div class="summary-header">
+              <h4>Order Summary</h4>
+              <span id="checkout-items-summary-count">0 items</span>
+            </div>
+            <div id="checkout-mini-items" class="checkout-mini-items">
+              <!-- Mini items list rendered via JS -->
+            </div>
+            <div class="checkout-summary-calc">
+              <div class="calc-row">
+                <span>Subtotal:</span>
+                <span id="checkout-subtotal">$0.00</span>
+              </div>
+              <div class="calc-row savings-row">
+                <span>Discounts Saved:</span>
+                <span id="checkout-savings">-$0.00</span>
+              </div>
+              <div class="calc-row">
+                <span>Shipping:</span>
+                <span id="checkout-shipping">$0.00</span>
+              </div>
+              <div class="calc-row">
+                <span>Tax (8%):</span>
+                <span id="checkout-tax">$0.00</span>
+              </div>
+              <div class="calc-divider"></div>
+              <div class="calc-row grand-total-row">
+                <span>Total Amount Due:</span>
+                <span id="checkout-grand-total" class="grand-total-value">$0.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Order -->
+          <div class="checkout-submit-row">
+            <button type="button" id="cancel-checkout-btn" class="btn btn-outline">Back to Cart</button>
+            <button type="submit" id="place-order-btn" class="btn btn-primary btn-place-order">
+              <span class="btn-text">Place Order &amp; Pay</span>
+              <div class="btn-spinner hidden"></div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Confirmation Modal -->
+  <div id="confirmation-modal" class="modal-backdrop hidden" aria-modal="true" role="dialog">
+    <div class="modal-card confirmation-card">
+      <div class="confirmation-badge">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M20 6 9 17l-5-5"/>
+        </svg>
+      </div>
+      <h2 class="confirmation-title">Order Confirmed!</h2>
+      <p class="confirmation-subtitle">
+        Thank you for shopping with <strong>AuraNest</strong>. A confirmation email has been dispatched.
+      </p>
+
+      <!-- Order Receipt Details -->
+      <div class="receipt-box">
+        <div class="receipt-header">
+          <div>
+            <span class="receipt-label">Order Number:</span>
+            <strong id="receipt-order-id" class="receipt-code">#ORD-000000</strong>
+          </div>
+          <div>
+            <span class="receipt-label">Date:</span>
+            <span id="receipt-order-date">Nov 17, 2026</span>
+          </div>
+        </div>
+
+        <div class="receipt-customer-details">
+          <p><strong>Billed To:</strong> <span id="receipt-cust-name">-</span></p>
+          <p><strong>Shipping To:</strong> <span id="receipt-cust-address">-</span></p>
+          <p><strong>Payment Method:</strong> <span id="receipt-payment-method">Credit Card</span></p>
+        </div>
+
+        <div class="receipt-items-table">
+          <div class="receipt-table-header">
+            <span>Item</span>
+            <span class="align-center">Qty</span>
+            <span class="align-right">Total</span>
+          </div>
+          <div id="receipt-items-list" class="receipt-items-list">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <div class="receipt-totals">
+          <div class="calc-row">
+            <span>Subtotal:</span>
+            <span id="receipt-subtotal">$0.00</span>
+          </div>
+          <div class="calc-row savings-row">
+            <span>Total Savings:</span>
+            <span id="receipt-savings">-$0.00</span>
+          </div>
+          <div class="calc-row">
+            <span>Shipping:</span>
+            <span id="receipt-shipping">$0.00</span>
+          </div>
+          <div class="calc-row">
+            <span>Tax (8%):</span>
+            <span id="receipt-tax">$0.00</span>
+          </div>
+          <div class="calc-divider"></div>
+          <div class="calc-row grand-total-row">
+            <span>Grand Total Paid:</span>
+            <strong id="receipt-grand-total" class="grand-total-value">$0.00</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="confirmation-actions">
+        <button id="print-receipt-btn" class="btn btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"/>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+          </svg>
+          Print Receipt
+        </button>
+        <button id="confirmation-continue-btn" class="btn btn-primary">
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div id="quickview-modal" class="modal-backdrop hidden" aria-modal="true" role="dialog">
+    <div class="modal-card quickview-card">
+      <button id="quickview-close-btn" class="close-btn" aria-label="Close modal">&times;</button>
+      <div id="quickview-content" class="quickview-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notifications Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <span class="brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7Z"/>
+              <circle cx="12" cy="9" r="3"/>
+            </svg>
+          </span>
+          <span class="brand-name">Aura<span>Nest</span></span>
+        </div>
+        <p class="footer-desc">
+          Crafted with care using clean HTML5, CSS3 &amp; Vanilla JavaScript. Featuring AJAX Fetch, Regular Expression validations, and dynamic Math calculations.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Categories</h5>
+          <ul>
+            <li><a href="#" data-cat-link="Home Decor">Home Decor</a></li>
+            <li><a href="#" data-cat-link="Kitchen & Dining">Kitchen &amp; Dining</a></li>
+            <li><a href="#" data-cat-link="Wellness">Aromatherapy &amp; Wellness</a></li>
+            <li><a href="#" data-cat-link="Tech & Audio">Tech &amp; Audio</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>System Features</h5>
+          <ul>
+            <li><span>✓ Fetch API / AJAX</span></li>
+            <li><span>✓ Regex Input Validation</span></li>
+            <li><span>✓ Dynamic DHTML Updates</span></li>
+            <li><span>✓ Accurate JS Math Methods</span></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Help &amp; Support</h5>
+          <ul>
+            <li><a href="#shop">Track Orders</a></li>
+            <li><a href="#shop">Shipping Rates</a></li>
+            <li><a href="#shop">Terms of Service</a></li>
+            <li><a href="#shop">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 AuraNest Living Co. All rights reserved. Built for modern e-commerce excellence.</p>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
