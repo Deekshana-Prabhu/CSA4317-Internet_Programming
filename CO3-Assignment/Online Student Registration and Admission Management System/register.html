@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration | Apex Institute of Technology</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Professional Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="college-logo-badge" title="Apex Engineering College Crest">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <div class="college-info">
+          <h1>APEX INSTITUTE</h1>
+          <p>Admission Portal</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-label">Main Menu</div>
+        <a href="index.html" class="nav-item">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Home / Overview</span>
+        </a>
+        <a href="register.html" class="nav-item active">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+          <span>New Registration</span>
+        </a>
+        <a href="students" class="nav-item">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Student Details</span>
+        </a>
+
+        <div class="nav-label" style="margin-top: 16px;">Quick Links</div>
+        <a href="index.html#admission-steps" class="nav-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          <span>Admission Schedule</span>
+        </a>
+        <a href="index.html#departments" class="nav-item">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>Departments</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-card">
+          <div class="status-badge">
+            <span class="status-pulse"></span>
+            <span>Admissions Open</span>
+          </div>
+          <div class="status-text">Academic Session 2026 – 2027</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="portal-title-area">
+            <h2>New Student Registration</h2>
+            <p>Complete the candidate application form for engineering admissions</p>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <a href="students" class="btn btn-secondary btn-sm">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>View All Students</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <main class="content-body">
+        <!-- Backend error message container (rendered dynamically if redirected with error) -->
+        <div id="urlErrorBanner" class="alert alert-danger" style="display: none;">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <span id="urlErrorMessage">An error occurred during submission.</span>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-header-title">
+              <div class="header-icon">
+                <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+              </div>
+              <div>
+                <h3>Student Registration Form</h3>
+                <p>All mandatory fields are marked with an asterisk (<span class="required-asterisk">*</span>)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <!-- Registration Form with POST method to RegistrationServlet -->
+            <form action="register" method="POST" id="studentRegistrationForm" novalidate>
+
+              <!-- Section 1: Candidate Personal Details -->
+              <div class="form-section-header">
+                <span class="section-icon">
+                  <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </span>
+                <h4>1. Personal Information</h4>
+              </div>
+
+              <div class="form-grid">
+                <!-- Student Name -->
+                <div class="form-group">
+                  <label for="studentName" class="form-label">
+                    <span>Student Full Name <span class="required-asterisk">*</span></span>
+                  </label>
+                  <div class="input-container">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </span>
+                    <input type="text" id="studentName" name="studentName" class="form-control" placeholder="e.g. Rahul Sharma" required>
+                  </div>
+                  <span class="error-feedback" id="studentNameError"></span>
+                </div>
+
+                <!-- Register Number -->
+                <div class="form-group">
+                  <label for="registerNumber" class="form-label">
+                    <span>Register Number <span class="required-asterisk">*</span></span>
+                  </label>
+                  <div class="input-container">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </span>
+                    <input type="text" id="registerNumber" name="registerNumber" class="form-control" placeholder="e.g. REG2026001" required>
+                  </div>
+                  <span class="error-feedback" id="registerNumberError"></span>
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group">
+                  <label for="email" class="form-label">
+                    <span>Email Address <span class="required-asterisk">*</span></span>
+                  </label>
+                  <div class="input-container">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </span>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="e.g. rahul.sharma@example.com" required>
+                  </div>
+                  <span class="error-feedback" id="emailError"></span>
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="form-group">
+                  <label for="mobile" class="form-label">
+                    <span>Mobile Number (10 Digits) <span class="required-asterisk">*</span></span>
+                  </label>
+                  <div class="input-container">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </span>
+                    <input type="tel" id="mobile" name="mobile" class="form-control" placeholder="e.g. 9876543210" maxlength="10" required>
+                  </div>
+                  <span class="error-feedback" id="mobileError"></span>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="form-group">
+                  <label for="dob" class="form-label">
+                    <span>Date of Birth <span class="required-asterisk">*</span></span>
+                  </label>
+                  <div class="input-container">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </span>
+                    <input type="date" id="dob" name="dob" class="form-control" required>
+                  </div>
+                  <span class="error-feedback" id="dobError"></span>
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                  <label class="form-label">
+                    <span>Gender <span class="required-asterisk">*</span></span>
+                  </label>
+                  <div class="radio-group">
+                    <label class="radio-label">
+                      <input type="radio" name="gender" value="Male">
+                      <span>Male</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="gender" value="Female">
+                      <span>Female</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="gender" value="Other">
+                      <span>Other</span>
+                    </label>
+                  </div>
+                  <span class="error-feedback" id="genderError"></span>
+                </div>
+              </div>
+
+              <!-- Section 2: Residential Address -->
+              <div class="form-section-header">
+                <span class="section-icon">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </span>
+                <h4>2. Residential Information</h4>
+              </div>
+
+              <div class="form-grid">
+                <!-- Address -->
+                <div class="form-group full-width">
+                  <label for="address" class="form-label">
+                    <span>Residential Address <span class="required-asterisk">*</span></span>
+                  </label>
+                  <div class="input-container">
+                    <span class="input-icon" style="top: 24px;">
+                      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                    </span>
+                    <textarea id="address" name="address" class="form-control" placeholder="House/Flat No., Street Name, Area, City & PIN code" rows="3" required></textarea>
+                  </div>
+                  <span class="error-feedback" id="addressError"></span>
+                </div>
+
+                <!-- State -->
+                <div class="form-group full-width">
+                  <label for="state" class="form-label">
+                    <span>State / Union Territory <span class="required-asterisk">*</span></span>
+                  </label>
+                  <select id="state" name="state" class="form-control no-icon" required>
+                    <option value="">-- Select State --</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Delhi">Delhi (NCR)</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Other">Other State / Territory</option>
+                  </select>
+                  <span class="error-feedback" id="stateError"></span>
+                </div>
+              </div>
+
+              <!-- Section 3: Academic Details & Department Selection -->
+              <div class="form-section-header">
+                <span class="section-icon">
+                  <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </span>
+                <h4>3. Academic & Department Choices</h4>
+              </div>
+
+              <div class="form-grid">
+                <!-- Class 10 Marks -->
+                <div class="form-group">
+                  <label for="marks10" class="form-label">
+                    <span>Class 10 Marks (Percentage %) <span class="required-asterisk">*</span></span>
+                  </label>
+                  <div class="input-container">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+                    </span>
+                    <input type="number" id="marks10" name="marks10" class="form-control" placeholder="e.g. 88.5" min="0" max="100" step="0.01" required>
+                  </div>
+                  <span class="error-feedback" id="marks10Error"></span>
+                </div>
+
+                <!-- Class 12 Marks -->
+                <div class="form-group">
+                  <label for="marks12" class="form-label">
+                    <span>Class 12 Marks (Percentage %) <span class="required-asterisk">*</span></span>
+                  </label>
+                  <div class="input-container">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+                    </span>
+                    <input type="number" id="marks12" name="marks12" class="form-control" placeholder="e.g. 92.0" min="0" max="100" step="0.01" required>
+                  </div>
+                  <span class="error-feedback" id="marks12Error"></span>
+                </div>
+
+                <!-- Department Applied For -->
+                <div class="form-group">
+                  <label for="department" class="form-label">
+                    <span>Department (Primary Choice) <span class="required-asterisk">*</span></span>
+                  </label>
+                  <select id="department" name="department" class="form-control no-icon" required>
+                    <option value="">-- Select Primary Department --</option>
+                    <option value="AI & ML">AI & Machine Learning (AI & ML)</option>
+                    <option value="CSE">Computer Science & Engineering (CSE)</option>
+                    <option value="ECE">Electronics & Communication (ECE)</option>
+                    <option value="EEE">Electrical & Electronics (EEE)</option>
+                    <option value="IT">Information Technology (IT)</option>
+                    <option value="Mechanical">Mechanical Engineering</option>
+                    <option value="Civil">Civil Engineering</option>
+                  </select>
+                  <span class="error-feedback" id="departmentError"></span>
+                </div>
+
+                <!-- Preferred Department (Secondary Choice) -->
+                <div class="form-group">
+                  <label for="preferredDepartment" class="form-label">
+                    <span>Preferred Department (Secondary Choice) <span class="required-asterisk">*</span></span>
+                  </label>
+                  <select id="preferredDepartment" name="preferredDepartment" class="form-control no-icon" required>
+                    <option value="">-- Select Secondary Preference --</option>
+                    <option value="AI & ML">AI & Machine Learning (AI & ML)</option>
+                    <option value="CSE">Computer Science & Engineering (CSE)</option>
+                    <option value="ECE">Electronics & Communication (ECE)</option>
+                    <option value="EEE">Electrical & Electronics (EEE)</option>
+                    <option value="IT">Information Technology (IT)</option>
+                    <option value="Mechanical">Mechanical Engineering</option>
+                    <option value="Civil">Civil Engineering</option>
+                  </select>
+                  <span class="error-feedback" id="preferredDepartmentError"></span>
+                </div>
+              </div>
+
+              <!-- Form Buttons (Submit and Reset) -->
+              <div class="form-actions">
+                <button type="reset" class="btn btn-reset" id="resetBtn">
+                  <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                  <span>Reset Form</span>
+                </button>
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                  <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  <span>Submit Registration</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/validation.js"></script>
+  <script>
+    // Inspect query parameters for any backend error messages (e.g. duplicate register number)
+    const urlParams = new URLSearchParams(window.location.search);
+    const errorParam = urlParams.get('error');
+    const regNoParam = urlParams.get('regNo');
+    if (errorParam) {
+      const banner = document.getElementById('urlErrorBanner');
+      const msg = document.getElementById('urlErrorMessage');
+      banner.style.display = 'flex';
+      if (errorParam === 'duplicate') {
+        msg.textContent = `Registration Failed: A student with Register Number "${regNoParam || ''}" is already registered. Please use a unique register number.`;
+      } else if (errorParam === 'validation') {
+        msg.textContent = 'Registration Failed: Please ensure all required fields are correctly filled and marks are between 0 and 100.';
+      } else {
+        msg.textContent = decodeURIComponent(errorParam);
+      }
+      banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+</html>

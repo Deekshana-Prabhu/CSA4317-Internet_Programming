@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Admission Portal | Apex Institute of Technology</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Professional Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="college-logo-badge" title="Apex Engineering College Crest">
+          <!-- College Crest SVG Logo -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <div class="college-info">
+          <h1>APEX INSTITUTE</h1>
+          <p>Admission Portal</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-label">Main Menu</div>
+        <a href="index.html" class="nav-item active">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Home / Overview</span>
+        </a>
+        <a href="register.html" class="nav-item">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+          <span>New Registration</span>
+        </a>
+        <a href="students" class="nav-item">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Student Details</span>
+        </a>
+
+        <div class="nav-label" style="margin-top: 16px;">Information</div>
+        <a href="#admission-steps" class="nav-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          <span>Admission Schedule</span>
+        </a>
+        <a href="#departments" class="nav-item">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>Departments</span>
+        </a>
+        <a href="#eligibility" class="nav-item">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <span>Eligibility Criteria</span>
+        </a>
+        <a href="#contact-help" class="nav-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>Helpdesk</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-card">
+          <div class="status-badge">
+            <span class="status-pulse"></span>
+            <span>Admissions Open</span>
+          </div>
+          <div class="status-text">Academic Session 2026 – 2027</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="portal-title-area">
+            <h2>Student Admission Portal</h2>
+            <p>Apex Institute of Engineering & Technology (Approved by AICTE, Affiliated to Anna University)</p>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="session-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>Session: 2026-27</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <main class="content-body">
+        <!-- Hero Section -->
+        <section class="hero-card">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Undergraduate Engineering Admissions</span>
+            </div>
+            <h1 class="hero-title">Welcome to the <span>Student Admission Portal</span></h1>
+            <p class="hero-desc">
+              Begin your engineering journey at Apex Institute of Technology. Our online admission management system enables aspiring candidates to seamlessly register, select their specialized engineering branches, and track admission credentials in a fast, transparent, and paperless environment.
+            </p>
+            <div class="hero-actions">
+              <a href="register.html" class="btn btn-primary">
+                <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                <span>New Registration</span>
+              </a>
+              <a href="students" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span>View Student Details</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Stats Overview -->
+        <section class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            </div>
+            <div class="stat-info">
+              <h3>7</h3>
+              <p>Engineering Departments</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon lavender">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            </div>
+            <div class="stat-info">
+              <h3>NAAC A++</h3>
+              <p>Top Tier Accreditation</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon sky">
+              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            </div>
+            <div class="stat-info">
+              <h3>98.4%</h3>
+              <p>Campus Placement Rate</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            </div>
+            <div class="stat-info">
+              <h3>Fast-Track</h3>
+              <p>Direct Merit Allotment</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Admission Steps -->
+        <section class="card" id="admission-steps">
+          <div class="card-header">
+            <div class="card-header-title">
+              <div class="header-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              </div>
+              <div>
+                <h3>Admission Process (2026-27)</h3>
+                <p>Four simple steps to secure your engineering seat</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="steps-grid">
+              <div class="step-card">
+                <div class="step-number">1</div>
+                <h4>Online Application</h4>
+                <p>Fill out the registration form with your personal details, academic scores (Class 10 & 12), and preferred branches.</p>
+              </div>
+              <div class="step-card">
+                <div class="step-number">2</div>
+                <h4>Server Verification</h4>
+                <p>Java Servlet validates all credentials, ensures unique register numbers, and computes merit rank eligibility.</p>
+              </div>
+              <div class="step-card">
+                <div class="step-number">3</div>
+                <h4>Department Allotment</h4>
+                <p>Seats are allocated based on Class 12 PCM cutoff marks and student preferences across engineering disciplines.</p>
+              </div>
+              <div class="step-card">
+                <div class="step-number">4</div>
+                <h4>Confirmation Slip</h4>
+                <p>Instant digital confirmation generated with official registration number, ready for record viewing and printing.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Offered Departments -->
+        <section class="card" id="departments">
+          <div class="card-header">
+            <div class="card-header-title">
+              <div class="header-icon">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <div>
+                <h3>Offered Engineering Departments</h3>
+                <p>Undergraduate B.E. / B.Tech programs available for the upcoming academic cycle</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="dept-grid">
+              <div class="dept-badge-card">
+                <div class="dept-icon">
+                  <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                </div>
+                <div class="dept-info">
+                  <h4>AI & Machine Learning</h4>
+                  <p>Neural networks, deep learning, NLP, computer vision, and cognitive systems.</p>
+                </div>
+              </div>
+
+              <div class="dept-badge-card">
+                <div class="dept-icon">
+                  <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+                <div class="dept-info">
+                  <h4>Computer Science & Engg (CSE)</h4>
+                  <p>Algorithms, cloud architecture, cybersecurity, and full-stack software development.</p>
+                </div>
+              </div>
+
+              <div class="dept-badge-card">
+                <div class="dept-icon">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"></circle><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path></svg>
+                </div>
+                <div class="dept-info">
+                  <h4>Electronics & Comm. (ECE)</h4>
+                  <p>VLSI design, embedded systems, 5G wireless networks, and IoT hardware.</p>
+                </div>
+              </div>
+
+              <div class="dept-badge-card">
+                <div class="dept-icon">
+                  <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
+                <div class="dept-info">
+                  <h4>Electrical & Electronics (EEE)</h4>
+                  <p>Electric vehicles, renewable power grids, microcontrollers, and power electronics.</p>
+                </div>
+              </div>
+
+              <div class="dept-badge-card">
+                <div class="dept-icon">
+                  <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <div class="dept-info">
+                  <h4>Information Technology (IT)</h4>
+                  <p>Distributed databases, enterprise systems, DevOps, and mobile computing.</p>
+                </div>
+              </div>
+
+              <div class="dept-badge-card">
+                <div class="dept-icon">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </div>
+                <div class="dept-info">
+                  <h4>Mechanical Engineering</h4>
+                  <p>Robotics, CAD/CAM simulation, thermodynamics, and autonomous vehicle design.</p>
+                </div>
+              </div>
+
+              <div class="dept-badge-card">
+                <div class="dept-icon">
+                  <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"></path><line x1="9" y1="9" x2="9" y2="9.01"></line><line x1="9" y1="13" x2="9" y2="13.01"></line><line x1="9" y1="17" x2="9" y2="17.01"></line></svg>
+                </div>
+                <div class="dept-info">
+                  <h4>Civil Engineering</h4>
+                  <p>Smart infrastructure, structural mechanics, green architecture, and urban planning.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Eligibility and Helpdesk -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;" id="eligibility">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-header-title">
+                <div class="header-icon">
+                  <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                </div>
+                <div>
+                  <h3>Eligibility Criteria</h3>
+                  <p>Academic prerequisites for admission</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px;">
+                <li style="display: flex; gap: 10px; align-items: flex-start;">
+                  <span style="color: var(--success); font-weight: bold;">✔</span>
+                  <span><strong>Class 10:</strong> Pass certificate with minimum 50% aggregate marks from a recognized board.</span>
+                </li>
+                <li style="display: flex; gap: 10px; align-items: flex-start;">
+                  <span style="color: var(--success); font-weight: bold;">✔</span>
+                  <span><strong>Class 12 (HSC):</strong> Minimum 55% aggregate marks with Physics, Mathematics, and Chemistry.</span>
+                </li>
+                <li style="display: flex; gap: 10px; align-items: flex-start;">
+                  <span style="color: var(--success); font-weight: bold;">✔</span>
+                  <span><strong>Age Requirement:</strong> Minimum 15 years completed as of December 31, 2026.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" id="contact-help">
+            <div class="card-header">
+              <div class="card-header-title">
+                <div class="header-icon">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </div>
+                <div>
+                  <h3>Admissions Helpline</h3>
+                  <p>Contact our admission office for assistance</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <p><strong>Campus Address:</strong> Apex Institute of Technology, Innovation Campus, Knowledge Highway, Chennai - 600028</p>
+                <p><strong>Toll-Free Helpline:</strong> +91 98765 43210 / 1800-425-APEX</p>
+                <p><strong>Admission Email:</strong> admissions@apextech.edu.in</p>
+                <p><strong>Working Hours:</strong> Mon - Sat: 9:00 AM – 5:30 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/validation.js"></script>
+</body>
+</html>
