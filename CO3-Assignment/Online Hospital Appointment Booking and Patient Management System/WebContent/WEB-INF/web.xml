@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1"
+         metadata-complete="false">
+
+    <display-name>Online Hospital Appointment Booking and Patient Management System</display-name>
+    <description>Enterprise Multi-Speciality Hospital Management and Consultation Booking Portal</description>
+
+    <!-- Welcome File -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- 1. Patient Registration Servlet -->
+    <servlet>
+        <servlet-name>PatientRegisterServlet</servlet-name>
+        <servlet-class>PatientRegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PatientRegisterServlet</servlet-name>
+        <url-pattern>/PatientRegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PatientRegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <!-- 2. Patient Login & Dashboard Servlet -->
+    <servlet>
+        <servlet-name>PatientLoginServlet</servlet-name>
+        <servlet-class>PatientLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PatientLoginServlet</servlet-name>
+        <url-pattern>/PatientLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PatientLoginServlet</servlet-name>
+        <url-pattern>/patient-login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PatientLoginServlet</servlet-name>
+        <url-pattern>/patient-dashboard</url-pattern>
+    </servlet-mapping>
+
+    <!-- 3. Doctor Details Servlet -->
+    <servlet>
+        <servlet-name>DoctorServlet</servlet-name>
+        <servlet-class>DoctorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DoctorServlet</servlet-name>
+        <url-pattern>/DoctorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorServlet</servlet-name>
+        <url-pattern>/doctors</url-pattern>
+    </servlet-mapping>
+
+    <!-- 4. Appointment Booking Servlet -->
+    <servlet>
+        <servlet-name>AppointmentBookingServlet</servlet-name>
+        <servlet-class>AppointmentBookingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AppointmentBookingServlet</servlet-name>
+        <url-pattern>/AppointmentBookingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AppointmentBookingServlet</servlet-name>
+        <url-pattern>/booking</url-pattern>
+    </servlet-mapping>
+
+    <!-- 5. My Appointments Servlet -->
+    <servlet>
+        <servlet-name>MyAppointmentsServlet</servlet-name>
+        <servlet-class>MyAppointmentsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyAppointmentsServlet</servlet-name>
+        <url-pattern>/MyAppointmentsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyAppointmentsServlet</servlet-name>
+        <url-pattern>/my-appointments</url-pattern>
+    </servlet-mapping>
+
+    <!-- 6. Admin Login Servlet -->
+    <servlet>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <servlet-class>AdminLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <url-pattern>/AdminLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <url-pattern>/admin-login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <url-pattern>/admin-dashboard</url-pattern>
+    </servlet-mapping>
+
+    <!-- 7. Doctor Management Servlet -->
+    <servlet>
+        <servlet-name>DoctorManagementServlet</servlet-name>
+        <servlet-class>DoctorManagementServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DoctorManagementServlet</servlet-name>
+        <url-pattern>/DoctorManagementServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorManagementServlet</servlet-name>
+        <url-pattern>/admin/doctors</url-pattern>
+    </servlet-mapping>
+
+    <!-- 8. Appointment Management Servlet -->
+    <servlet>
+        <servlet-name>AppointmentManagementServlet</servlet-name>
+        <servlet-class>AppointmentManagementServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AppointmentManagementServlet</servlet-name>
+        <url-pattern>/AppointmentManagementServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AppointmentManagementServlet</servlet-name>
+        <url-pattern>/admin/appointments</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AppointmentManagementServlet</servlet-name>
+        <url-pattern>/admin/patients</url-pattern>
+    </servlet-mapping>
+
+    <!-- 9. Logout Servlet -->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <!-- 10. Patient Profile Servlet -->
+    <servlet>
+        <servlet-name>PatientProfileServlet</servlet-name>
+        <servlet-class>PatientProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PatientProfileServlet</servlet-name>
+        <url-pattern>/PatientProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PatientProfileServlet</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+
+    <!-- Session Timeout: 30 minutes -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
+    </session-config>
+
+</web-app>
