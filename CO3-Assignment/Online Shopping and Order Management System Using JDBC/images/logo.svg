@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(10, 8)">
+    <rect x="0" y="10" width="36" height="34" rx="8" fill="url(#logoGrad)" />
+    <path d="M 10 10 C 10 0, 26 0, 26 10" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+    <polygon points="18,18 20,24 26,26 20,28 18,34 16,28 10,26 16,24" fill="#FFFFFF" />
+  </g>
+  <text x="58" y="34" font-family="'Segoe UI', -apple-system, Roboto, sans-serif" font-size="24" font-weight="900" fill="#1E293B" letter-spacing="1">SHOP<tspan fill="#8B5CF6">ZONE</tspan></text>
+  <text x="59" y="47" font-family="'Segoe UI', -apple-system, Roboto, sans-serif" font-size="9" font-weight="600" fill="#64748B" letter-spacing="0.5">E-COMMERCE SYSTEM</text>
+</svg>

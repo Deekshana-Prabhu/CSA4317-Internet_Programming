@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPZONE - Everything You Need, All in One Place</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', var(--font-family); }
+    </style>
+</head>
+<body>
+
+<div class="app-wrapper">
+    <div class="sidebar-overlay"></div>
+
+    <!-- 1. VERTICAL SIDEBAR NAVIGATION -->
+    <aside class="app-sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon-box">🛍️</div>
+                <div class="brand-info">
+                    <span class="brand-name">SHOP<span>ZONE</span></span>
+                    <span class="brand-tagline">Everything You Need</span>
+                </div>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <span class="nav-section-title">Menu</span>
+            <a href="index.html" class="nav-item active">
+                <span class="nav-icon">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="products.html" class="nav-item">
+                <span class="nav-icon">✨</span>
+                <span>Browse Products</span>
+            </a>
+            <a href="cart.html" class="nav-item">
+                <span class="nav-icon">🛒</span>
+                <span>Shopping Cart</span>
+                <span class="nav-badge">0</span>
+            </a>
+            <a href="my-orders.html" class="nav-item">
+                <span class="nav-icon">📦</span>
+                <span>My Orders</span>
+            </a>
+
+            <span class="nav-section-title">Categories</span>
+            <a href="products.html?category=Electronics" class="nav-item">
+                <span class="nav-icon">⚡</span>
+                <span>Electronics</span>
+            </a>
+            <a href="products.html?category=Fashion" class="nav-item">
+                <span class="nav-icon">👗</span>
+                <span>Fashion</span>
+            </a>
+            <a href="products.html?category=Home+Appliances" class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span>Home Appliances</span>
+            </a>
+            <a href="products.html?category=Books" class="nav-item">
+                <span class="nav-icon">📚</span>
+                <span>Books</span>
+            </a>
+            <a href="products.html?category=Accessories" class="nav-item">
+                <span class="nav-icon">🎒</span>
+                <span>Accessories</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <!-- Rendered by app.js -->
+        </div>
+    </aside>
+
+    <!-- 2. MAIN CONTENT AREA -->
+    <main class="app-main">
+        <header class="top-header">
+            <button class="mobile-menu-toggle" aria-label="Toggle Sidebar Menu">☰</button>
+
+            <!-- Search Form -->
+            <form action="products.html" method="GET" class="header-search-form">
+                <select name="category" class="search-category-select">
+                    <option value="All">All Categories</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Home Appliances">Home Appliances</option>
+                    <option value="Books">Books</option>
+                    <option value="Accessories">Accessories</option>
+                </select>
+                <input type="text" name="search" class="search-input" placeholder="Search products, brands and more..." required>
+                <button type="submit" class="search-submit-btn">🔍</button>
+            </form>
+
+            <div class="header-actions">
+                <a href="cart.html" class="header-cart-btn">
+                    <span class="header-cart-icon">🛒</span>
+                    <span>Cart</span>
+                    <span class="header-cart-count">0</span>
+                </a>
+            </div>
+        </header>
+
+        <div class="content-canvas">
+            
+            <!-- User Status Alert -->
+            <div id="welcomeAlert" class="alert alert-info" style="display: none;"></div>
+
+            <!-- Hero Welcome Banner -->
+            <section class="hero-banner">
+                <div class="hero-content">
+                    <div class="hero-badge">✨ Official Store</div>
+                    <h1 class="hero-title">Welcome to <span>SHOPZONE</span></h1>
+                    <p class="hero-subtitle">
+                        Everything You Need, All in One Place. Explore our premium selection of electronics, modern fashion, home essentials, best-selling books, and everyday accessories at unbeatable prices.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="products.html" class="btn btn-primary btn-lg">Explore Catalog →</a>
+                        <a href="products.html?category=Electronics" class="btn btn-secondary btn-lg">Shop Electronics</a>
+                    </div>
+                </div>
+                <div class="hero-illustration">
+                    <img src="images/products/smartwatch.svg" alt="Featured Tech" style="max-height: 180px;">
+                </div>
+            </section>
+
+            <!-- Category Quick Tiles -->
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <h2>Explore Categories</h2>
+                    <p>Find exactly what you're looking for organized by collection</p>
+                </div>
+                <a href="products.html" class="btn btn-lavender btn-sm">View All Categories →</a>
+            </div>
+
+            <div class="category-grid">
+                <a href="products.html?category=Electronics" class="category-card">
+                    <div class="category-icon-box">⚡</div>
+                    <div class="category-details">
+                        <h4>Electronics</h4>
+                        <span>Audio, Wearables, Laptops</span>
+                    </div>
+                </a>
+                <a href="products.html?category=Fashion" class="category-card">
+                    <div class="category-icon-box">👗</div>
+                    <div class="category-details">
+                        <h4>Fashion</h4>
+                        <span>Apparel, Sportswear & Shoes</span>
+                    </div>
+                </a>
+                <a href="products.html?category=Home+Appliances" class="category-card">
+                    <div class="category-icon-box">🏠</div>
+                    <div class="category-details">
+                        <h4>Home Appliances</h4>
+                        <span>Kitchen & Living Essentials</span>
+                    </div>
+                </a>
+                <a href="products.html?category=Books" class="category-card">
+                    <div class="category-icon-box">📚</div>
+                    <div class="category-details">
+                        <h4>Books</h4>
+                        <span>Tech Guides & Best-Sellers</span>
+                    </div>
+                </a>
+                <a href="products.html?category=Accessories" class="category-card">
+                    <div class="category-icon-box">🎒</div>
+                    <div class="category-details">
+                        <h4>Accessories</h4>
+                        <span>Bags, Wallets & Everyday Carry</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Featured Products Grid -->
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <h2>Featured Products</h2>
+                    <p>Hand-picked top rated products ready for instant order</p>
+                </div>
+                <a href="products.html" class="btn btn-outline btn-sm">View All (14+) →</a>
+            </div>
+
+            <div class="product-grid" id="featuredGrid">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Value Proposition Highlights -->
+            <div class="category-grid" style="margin-top: 10px;">
+                <div class="category-card" style="cursor: default;">
+                    <div class="category-icon-box" style="background: var(--success-light); color: var(--success);">🚚</div>
+                    <div class="category-details">
+                        <h4>Free Express Delivery</h4>
+                        <span>On all orders with no minimum threshold</span>
+                    </div>
+                </div>
+                <div class="category-card" style="cursor: default;">
+                    <div class="category-icon-box" style="background: var(--primary-blue-light); color: var(--primary-blue);">🔒</div>
+                    <div class="category-details">
+                        <h4>Secure Payments</h4>
+                        <span>COD, UPI & Credit/Debit Card support</span>
+                    </div>
+                </div>
+                <div class="category-card" style="cursor: default;">
+                    <div class="category-icon-box" style="background: var(--lavender-subtle); color: var(--lavender);">↩️</div>
+                    <div class="category-details">
+                        <h4>7-Day Easy Returns</h4>
+                        <span>Hassle-free replacement guarantee</span>
+                    </div>
+                </div>
+                <div class="category-card" style="cursor: default;">
+                    <div class="category-icon-box" style="background: var(--warning-light); color: var(--warning);">🎧</div>
+                    <div class="category-details">
+                        <h4>24/7 Dedicated Support</h4>
+                        <span>Friendly customer service team</span>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="app-footer">
+                <div><strong>SHOPZONE</strong> - Online Shopping and Order Management System Using JDBC</div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="cart.html">Cart</a>
+                    <a href="my-orders.html">My Orders</a>
+                </div>
+            </footer>
+        </div>
+    </main>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const user = ShopDB.getUser();
+        if (user) {
+            const alertBox = document.getElementById('welcomeAlert');
+            alertBox.innerHTML = `👋 Welcome back, <strong>${user.name}</strong>! Ready to explore today's best deals?`;
+            alertBox.style.display = 'flex';
+        }
+
+        // Render top 6 products
+        const products = ShopDB.getProducts().slice(0, 6);
+        const grid = document.getElementById('featuredGrid');
+        grid.innerHTML = products.map(p => `
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="${p.image}" alt="${p.name}" loading="lazy">
+                    <div class="product-badge-group">
+                        <span class="badge-category">${p.category}</span>
+                        ${p.stock > 10 ? `<span class="badge-stock in-stock">${p.stock} in stock</span>` : 
+                          p.stock > 0 ? `<span class="badge-stock low-stock">Only ${p.stock} left!</span>` : 
+                          `<span class="badge-stock out-of-stock">Out of stock</span>`}
+                    </div>
+                </div>
+                <div class="product-body">
+                    <div class="product-header-line">
+                        <span class="product-id-pill">#${p.id}</span>
+                    </div>
+                    <h3 class="product-title">${p.name}</h3>
+                    <p class="product-desc">${p.description}</p>
+                    
+                    <div class="product-footer">
+                        <div class="product-price-box">
+                            <span class="product-price-label">Price</span>
+                            <span class="product-price">₹${p.price.toLocaleString('en-IN', {minimumFractionDigits: 2})}</span>
+                        </div>
+                        ${p.stock > 0 ? `
+                            <button onclick="handleAddToCart('${p.id}')" class="btn btn-primary btn-sm">
+                                🛒 Add to Cart
+                            </button>
+                        ` : `
+                            <button class="btn btn-secondary btn-sm disabled" disabled>Out of Stock</button>
+                        `}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    });
+
+    function handleAddToCart(productId) {
+        const res = ShopDB.addToCart(productId, 1);
+        showToast(res.message, res.success ? 'success' : 'error');
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFF6FF" /><stop offset="100%" stop-color="#EDE9FE" />
+    </linearGradient>
+    <linearGradient id="coverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EA580C" /><stop offset="100%" stop-color="#C2410C" />
+    </linearGradient>
+    <filter id="drop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#C2410C" flood-opacity="0.3" />
+    </filter>
+  </defs>
+  <rect width="400" height="300" rx="16" fill="url(#bg)" />
+  <g filter="url(#drop)" transform="translate(200, 150)">
+    <!-- Book Pages Edge -->
+    <rect x="-65" y="-85" width="145" height="170" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="2" />
+    <!-- Book Cover -->
+    <rect x="-75" y="-90" width="140" height="180" rx="8" fill="url(#coverGrad)" />
+    <!-- Spine Line -->
+    <line x1="-55" y1="-90" x2="-55" y2="90" stroke="#9A3412" stroke-width="4" />
+    <!-- Coffee Cup Icon for Java -->
+    <circle cx="-5" cy="-20" r="22" fill="#FFFFFF" fill-opacity="0.2" />
+    <text x="-5" y="-12" font-family="'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900" fill="#FFFFFF" text-anchor="middle">Γÿò</text>
+    <!-- Title Text -->
+    <text x="-5" y="20" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF" text-anchor="middle">JAVA</text>
+    <text x="-5" y="38" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600" fill="#FED7AA" text-anchor="middle">COMPLETE GUIDE</text>
+    <rect x="-35" y="52" width="60" height="4" rx="2" fill="#FFFFFF" fill-opacity="0.5" />
+  </g>
+  <rect x="20" y="20" width="65" height="26" rx="13" fill="#EA580C" fill-opacity="0.15" />
+  <text x="52" y="37" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#EA580C" text-anchor="middle">BOOKS</text>
+</svg>

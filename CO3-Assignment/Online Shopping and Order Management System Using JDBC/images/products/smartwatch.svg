@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFF6FF" />
+      <stop offset="100%" stop-color="#EDE9FE" />
+    </linearGradient>
+    <linearGradient id="strapGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#3B82F6" flood-opacity="0.25" />
+    </filter>
+  </defs>
+  <rect width="400" height="300" rx="16" fill="url(#bgGrad)" />
+  <g filter="url(#shadow)" transform="translate(200, 150)">
+    <!-- Top strap -->
+    <rect x="-35" y="-125" width="70" height="65" rx="10" fill="url(#strapGrad)" />
+    <!-- Bottom strap -->
+    <rect x="-35" y="60" width="70" height="65" rx="10" fill="url(#strapGrad)" />
+    <!-- Watch Case -->
+    <rect x="-58" y="-60" width="116" height="120" rx="28" fill="#1E293B" stroke="#8B5CF6" stroke-width="4" />
+    <!-- Crown Button -->
+    <rect x="58" y="-20" width="8" height="24" rx="4" fill="#8B5CF6" />
+    <!-- Screen -->
+    <rect x="-48" y="-50" width="96" height="100" rx="20" fill="url(#screenGrad)" />
+    <!-- Display Elements -->
+    <circle cx="0" cy="-5" r="28" fill="none" stroke="#38BDF8" stroke-width="4" stroke-dasharray="140 40" stroke-linecap="round"/>
+    <circle cx="0" cy="-5" r="20" fill="none" stroke="#A855F7" stroke-width="3" stroke-dasharray="80 30" stroke-linecap="round"/>
+    <text x="0" y="0" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">10:45</text>
+    <text x="0" y="16" font-family="'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="600" fill="#38BDF8" text-anchor="middle">♥ 74 BPM</text>
+    <rect x="-24" y="26" width="48" height="12" rx="6" fill="#8B5CF6" fill-opacity="0.3" />
+    <text x="0" y="35" font-family="'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#C4B5FD" text-anchor="middle">8,450 STEPS</text>
+  </g>
+  <rect x="20" y="20" width="85" height="26" rx="13" fill="#8B5CF6" fill-opacity="0.15" />
+  <text x="62" y="37" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#7C3AED" text-anchor="middle">SMART TECH</text>
+</svg>

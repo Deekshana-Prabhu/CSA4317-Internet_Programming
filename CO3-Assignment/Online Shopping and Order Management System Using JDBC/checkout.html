@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout & Order Placement - SHOPZONE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', var(--font-family); }
+    </style>
+</head>
+<body>
+
+<div class="app-wrapper">
+    <div class="sidebar-overlay"></div>
+
+    <!-- 1. VERTICAL SIDEBAR NAVIGATION -->
+    <aside class="app-sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon-box">🛍️</div>
+                <div class="brand-info">
+                    <span class="brand-name">SHOP<span>ZONE</span></span>
+                    <span class="brand-tagline">Everything You Need</span>
+                </div>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <span class="nav-section-title">Menu</span>
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="products.html" class="nav-item">
+                <span class="nav-icon">✨</span>
+                <span>Browse Products</span>
+            </a>
+            <a href="cart.html" class="nav-item active">
+                <span class="nav-icon">🛒</span>
+                <span>Shopping Cart</span>
+                <span class="nav-badge">0</span>
+            </a>
+            <a href="my-orders.html" class="nav-item">
+                <span class="nav-icon">📦</span>
+                <span>My Orders</span>
+            </a>
+
+            <span class="nav-section-title">Checkout Progress</span>
+            <div style="padding: 10px 14px; font-size: 13px; color: var(--text-muted);">
+                <div style="color: var(--success); font-weight: 700; margin-bottom: 6px;">✓ 1. Shopping Cart</div>
+                <div style="color: var(--primary-blue-hover); font-weight: 800; margin-bottom: 6px;">● 2. Delivery & Payment</div>
+                <div style="color: var(--text-light); font-weight: 600;">○ 3. Order Confirmation</div>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <!-- Rendered by app.js -->
+        </div>
+    </aside>
+
+    <!-- 2. MAIN CONTENT AREA -->
+    <main class="app-main">
+        <header class="top-header">
+            <button class="mobile-menu-toggle" aria-label="Toggle Sidebar Menu">☰</button>
+            <div style="font-size: 18px; font-weight: 800; color: var(--text-main);">Checkout & Order Placement</div>
+            <div class="header-actions">
+                <a href="cart.html" class="btn btn-secondary btn-sm">← Back to Cart</a>
+            </div>
+        </header>
+
+        <div class="content-canvas">
+            <div id="authNotice" class="alert alert-warning" style="display: none;"></div>
+
+            <div class="cart-layout">
+                <!-- Delivery Details Form -->
+                <div class="form-card" style="margin: 0; max-width: 100%;">
+                    <div style="margin-bottom: 22px;">
+                        <h2 style="font-size: 22px; font-weight: 800; color: var(--text-main);">Shipping & Delivery Details</h2>
+                        <p style="font-size: 13px; color: var(--text-muted);">Confirm recipient contact, address, and select payment method.</p>
+                    </div>
+
+                    <form id="checkoutForm" onsubmit="event.preventDefault(); handlePlaceOrder();">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div class="form-group">
+                                <label for="customerId">Customer ID *</label>
+                                <input type="text" id="customerId" class="form-control" readonly style="background: var(--lavender-light); font-weight: 700; color: var(--lavender-hover);" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerName">Customer Name *</label>
+                                <input type="text" id="customerName" class="form-control" placeholder="Recipient Full Name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number (10 Digits) *</label>
+                            <input type="tel" id="mobile" class="form-control" placeholder="e.g. 9876543210" maxlength="10" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deliveryAddress">Complete Delivery Address *</label>
+                            <textarea id="deliveryAddress" class="form-control" rows="3" placeholder="House/Flat No., Street, City, State, PIN Code" required></textarea>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="form-group" style="margin-top: 26px;">
+                            <label style="font-size: 15px; font-weight: 800; margin-bottom: 10px;">Select Payment Method *</label>
+                            <div class="payment-methods-grid">
+                                <div class="payment-option-card selected" onclick="selectPayment(this)">
+                                    <input type="radio" name="paymentMethod" value="Cash on Delivery" checked>
+                                    <span class="payment-option-icon">💵</span>
+                                    <span class="payment-option-title">Cash on Delivery</span>
+                                    <span style="font-size: 11px; color: var(--text-muted);">Pay upon delivery</span>
+                                </div>
+                                <div class="payment-option-card" onclick="selectPayment(this)">
+                                    <input type="radio" name="paymentMethod" value="UPI">
+                                    <span class="payment-option-icon">⚡</span>
+                                    <span class="payment-option-title">UPI Instant</span>
+                                    <span style="font-size: 11px; color: var(--text-muted);">GPay, PhonePe, Paytm</span>
+                                </div>
+                                <div class="payment-option-card" onclick="selectPayment(this)">
+                                    <input type="radio" name="paymentMethod" value="Credit/Debit Card">
+                                    <span class="payment-option-icon">💳</span>
+                                    <span class="payment-option-title">Credit / Debit Card</span>
+                                    <span style="font-size: 11px; color: var(--text-muted);">Visa, MasterCard, RuPay</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btnPlaceOrder" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 20px;">
+                            Place Order →
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right: Summary -->
+                <div class="summary-card" id="checkoutSummary">
+                    <!-- Injected via JavaScript -->
+                </div>
+            </div>
+
+            <footer class="app-footer">
+                <div><strong>SHOPZONE</strong> - Online Shopping and Order Management System Using JDBC</div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="cart.html">Cart</a>
+                    <a href="my-orders.html">My Orders</a>
+                </div>
+            </footer>
+        </div>
+    </main>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cart = ShopDB.getCart();
+        if (!cart || cart.length === 0) {
+            alert('Your cart is empty! Redirecting to products...');
+            window.location.href = 'products.html';
+            return;
+        }
+
+        const user = ShopDB.getUser();
+        if (user) {
+            document.getElementById('customerId').value = user.id;
+            document.getElementById('customerName').value = user.name;
+            document.getElementById('mobile').value = user.mobile;
+            document.getElementById('deliveryAddress').value = user.address;
+        } else {
+            document.getElementById('customerId').value = 'CUST1001';
+            document.getElementById('customerName').value = 'Guest Shopper';
+            document.getElementById('mobile').value = '9876543210';
+            document.getElementById('deliveryAddress').value = '402, MG Road, Bengaluru, Karnataka - 560001';
+            const notice = document.getElementById('authNotice');
+            notice.innerHTML = `💡 <strong>Note:</strong> You can <a href="login.html" style="font-weight: 700; text-decoration: underline;">Log In</a> or <a href="register.html" style="font-weight: 700; text-decoration: underline;">Register</a> to track orders under your profile, or proceed with guest details below.`;
+            notice.style.display = 'block';
+        }
+
+        renderSummary();
+    });
+
+    function renderSummary() {
+        const cart = ShopDB.getCart();
+        const total = ShopDB.getCartTotal();
+        const totalItems = ShopDB.getCartCount();
+
+        document.getElementById('btnPlaceOrder').textContent = `Place Order (₹${total.toLocaleString('en-IN', {minimumFractionDigits: 2})}) →`;
+
+        document.getElementById('checkoutSummary').innerHTML = `
+            <h3 class="summary-title">Selected Products (${totalItems})</h3>
+            <div style="display: flex; flex-direction: column; gap: 12px; max-height: 280px; overflow-y: auto; padding-right: 6px; margin-bottom: 20px;">
+                ${cart.map(i => `
+                    <div style="display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                        <div style="width: 44px; height: 44px; background: var(--hero-gradient); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; padding: 4px;">
+                            <img src="${i.image}" alt="" style="max-height: 36px; object-fit: contain;">
+                        </div>
+                        <div style="flex: 1; min-width: 0;">
+                            <div style="font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                ${i.name}
+                            </div>
+                            <div style="font-size: 11px; color: var(--text-muted);">
+                                Qty: ${i.quantity} × ₹${i.price.toLocaleString('en-IN')}
+                            </div>
+                        </div>
+                        <div style="font-size: 13px; font-weight: 800;">
+                            ₹${(i.price * i.quantity).toLocaleString('en-IN', {minimumFractionDigits: 2})}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+
+            <div class="summary-row">
+                <span>Items Subtotal</span>
+                <span style="font-weight: 700;">₹${total.toLocaleString('en-IN', {minimumFractionDigits: 2})}</span>
+            </div>
+            <div class="summary-row">
+                <span>Delivery Charges</span>
+                <span style="font-weight: 700; color: var(--success);">FREE</span>
+            </div>
+            <div class="summary-row total-row">
+                <span>Payable Amount</span>
+                <span class="price">₹${total.toLocaleString('en-IN', {minimumFractionDigits: 2})}</span>
+            </div>
+            <div style="margin-top: 20px; font-size: 12px; color: var(--text-muted); background: var(--bg-page); padding: 12px; border-radius: var(--radius-md);">
+                📦 Inventory is verified and decremented upon order confirmation.
+            </div>
+        `;
+    }
+
+    function selectPayment(card) {
+        document.querySelectorAll('.payment-option-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        const radio = card.querySelector('input[type="radio"]');
+        if (radio) radio.checked = true;
+    }
+
+    function handlePlaceOrder() {
+        const customerId = document.getElementById('customerId').value.trim();
+        const customerName = document.getElementById('customerName').value.trim();
+        const mobile = document.getElementById('mobile').value.trim();
+        const deliveryAddress = document.getElementById('deliveryAddress').value.trim();
+        const paymentRadio = document.querySelector('input[name="paymentMethod"]:checked');
+        const paymentMethod = paymentRadio ? paymentRadio.value : 'Cash on Delivery';
+
+        if (!customerName || !mobile || !deliveryAddress) {
+            alert('Please fill all delivery details!');
+            return;
+        }
+
+        if (!/^[0-9]{10}$/.test(mobile)) {
+            alert('Please provide a valid 10-digit mobile number!');
+            return;
+        }
+
+        const res = ShopDB.placeOrder({
+            customerId,
+            customerName,
+            mobile,
+            deliveryAddress,
+            paymentMethod
+        });
+
+        if (res.success) {
+            window.location.href = 'order-success.html';
+        } else {
+            alert('Error: ' + res.message);
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Catalogue - SHOPZONE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', var(--font-family); }
+        .filter-pill-bar { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 24px; }
+        .filter-pill { padding: 8px 16px; border-radius: var(--radius-full); background: #FFFFFF; border: 1px solid var(--border-color); font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all var(--transition-normal); white-space: nowrap; cursor: pointer; }
+        .filter-pill:hover { border-color: var(--lavender); color: var(--lavender-hover); }
+        .filter-pill.active { background: var(--accent-gradient); color: #FFFFFF; border-color: transparent; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25); }
+    </style>
+</head>
+<body>
+
+<div class="app-wrapper">
+    <div class="sidebar-overlay"></div>
+
+    <!-- 1. VERTICAL SIDEBAR NAVIGATION -->
+    <aside class="app-sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon-box">🛍️</div>
+                <div class="brand-info">
+                    <span class="brand-name">SHOP<span>ZONE</span></span>
+                    <span class="brand-tagline">Everything You Need</span>
+                </div>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <span class="nav-section-title">Menu</span>
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="products.html" class="nav-item active">
+                <span class="nav-icon">✨</span>
+                <span>Browse Products</span>
+            </a>
+            <a href="cart.html" class="nav-item">
+                <span class="nav-icon">🛒</span>
+                <span>Shopping Cart</span>
+                <span class="nav-badge">0</span>
+            </a>
+            <a href="my-orders.html" class="nav-item">
+                <span class="nav-icon">📦</span>
+                <span>My Orders</span>
+            </a>
+
+            <span class="nav-section-title">Categories</span>
+            <a href="products.html?category=Electronics" class="nav-item">
+                <span class="nav-icon">⚡</span>
+                <span>Electronics</span>
+            </a>
+            <a href="products.html?category=Fashion" class="nav-item">
+                <span class="nav-icon">👗</span>
+                <span>Fashion</span>
+            </a>
+            <a href="products.html?category=Home+Appliances" class="nav-item">
+                <span class="nav-icon">🏠</span>
+                <span>Home Appliances</span>
+            </a>
+            <a href="products.html?category=Books" class="nav-item">
+                <span class="nav-icon">📚</span>
+                <span>Books</span>
+            </a>
+            <a href="products.html?category=Accessories" class="nav-item">
+                <span class="nav-icon">🎒</span>
+                <span>Accessories</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <!-- Rendered by app.js -->
+        </div>
+    </aside>
+
+    <!-- 2. MAIN CONTENT AREA -->
+    <main class="app-main">
+        <header class="top-header">
+            <button class="mobile-menu-toggle" aria-label="Toggle Sidebar Menu">☰</button>
+
+            <!-- Search Form -->
+            <form id="searchForm" class="header-search-form" onsubmit="event.preventDefault(); applyFilters();">
+                <select id="searchCategory" class="search-category-select">
+                    <option value="All">All Categories</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Home Appliances">Home Appliances</option>
+                    <option value="Books">Books</option>
+                    <option value="Accessories">Accessories</option>
+                </select>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search products by title, description...">
+                <button type="submit" class="search-submit-btn">🔍</button>
+            </form>
+
+            <div class="header-actions">
+                <a href="cart.html" class="header-cart-btn">
+                    <span class="header-cart-icon">🛒</span>
+                    <span>Cart</span>
+                    <span class="header-cart-count">0</span>
+                </a>
+            </div>
+        </header>
+
+        <div class="content-canvas">
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <h2 id="catalogTitle">Complete Product Catalogue</h2>
+                    <p id="catalogSubtitle">Showing 14 verified products available in inventory</p>
+                </div>
+                <button id="clearFiltersBtn" onclick="clearFilters()" class="btn btn-secondary btn-sm" style="display: none;">Clear Filters ✕</button>
+            </div>
+
+            <!-- Filter Pills Bar -->
+            <div class="filter-pill-bar">
+                <button onclick="setCategoryFilter('All')" class="filter-pill active" data-cat="All">All Products</button>
+                <button onclick="setCategoryFilter('Electronics')" class="filter-pill" data-cat="Electronics">⚡ Electronics</button>
+                <button onclick="setCategoryFilter('Fashion')" class="filter-pill" data-cat="Fashion">👗 Fashion</button>
+                <button onclick="setCategoryFilter('Home Appliances')" class="filter-pill" data-cat="Home Appliances">🏠 Home Appliances</button>
+                <button onclick="setCategoryFilter('Books')" class="filter-pill" data-cat="Books">📚 Books</button>
+                <button onclick="setCategoryFilter('Accessories')" class="filter-pill" data-cat="Accessories">🎒 Accessories</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="product-grid" id="productsGrid">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <footer class="app-footer">
+                <div><strong>SHOPZONE</strong> - Online Shopping and Order Management System Using JDBC</div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="cart.html">Cart</a>
+                    <a href="my-orders.html">My Orders</a>
+                </div>
+            </footer>
+        </div>
+    </main>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/script.js"></script>
+<script>
+    let activeCategory = 'All';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const cat = params.get('category');
+        const query = params.get('search');
+
+        if (cat) {
+            activeCategory = cat;
+            document.getElementById('searchCategory').value = cat;
+        }
+        if (query) {
+            document.getElementById('searchInput').value = query;
+        }
+
+        renderProducts();
+    });
+
+    function setCategoryFilter(cat) {
+        activeCategory = cat;
+        document.getElementById('searchCategory').value = cat;
+        renderProducts();
+    }
+
+    function applyFilters() {
+        activeCategory = document.getElementById('searchCategory').value;
+        renderProducts();
+    }
+
+    function clearFilters() {
+        activeCategory = 'All';
+        document.getElementById('searchCategory').value = 'All';
+        document.getElementById('searchInput').value = '';
+        renderProducts();
+    }
+
+    function renderProducts() {
+        const query = document.getElementById('searchInput').value.trim().toLowerCase();
+        let products = ShopDB.getProducts();
+
+        // Update pills
+        document.querySelectorAll('.filter-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-cat').toLowerCase() === activeCategory.toLowerCase());
+        });
+
+        if (activeCategory !== 'All') {
+            products = products.filter(p => p.category.toLowerCase() === activeCategory.toLowerCase());
+        }
+
+        if (query) {
+            products = products.filter(p => p.name.toLowerCase().includes(query) || p.description.toLowerCase().includes(query));
+        }
+
+        const title = document.getElementById('catalogTitle');
+        const subtitle = document.getElementById('catalogSubtitle');
+        const clearBtn = document.getElementById('clearFiltersBtn');
+
+        if (query) {
+            title.textContent = `Search Results for "${query}"`;
+            clearBtn.style.display = 'inline-flex';
+        } else if (activeCategory !== 'All') {
+            title.textContent = `${activeCategory} Collection`;
+            clearBtn.style.display = 'inline-flex';
+        } else {
+            title.textContent = `Complete Product Catalogue`;
+            clearBtn.style.display = 'none';
+        }
+        subtitle.textContent = `Showing ${products.length} product(s) available in inventory`;
+
+        const grid = document.getElementById('productsGrid');
+        if (products.length === 0) {
+            grid.innerHTML = `
+                <div class="empty-state" style="grid-column: 1 / -1;">
+                    <div class="empty-state-icon">🔍</div>
+                    <h3>No Products Found</h3>
+                    <p>We couldn't find any products matching your selection. Try clearing filters or using different keywords.</p>
+                    <button onclick="clearFilters()" class="btn btn-primary">Browse All Products</button>
+                </div>
+            `;
+            return;
+        }
+
+        grid.innerHTML = products.map(p => `
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="${p.image}" alt="${p.name}" loading="lazy">
+                    <div class="product-badge-group">
+                        <span class="badge-category">${p.category}</span>
+                        ${p.stock > 10 ? `<span class="badge-stock in-stock">${p.stock} in stock</span>` : 
+                          p.stock > 0 ? `<span class="badge-stock low-stock">Only ${p.stock} left!</span>` : 
+                          `<span class="badge-stock out-of-stock">Out of stock</span>`}
+                    </div>
+                </div>
+                <div class="product-body">
+                    <div class="product-header-line">
+                        <span class="product-id-pill">ID: #${p.id}</span>
+                    </div>
+                    <h3 class="product-title">${p.name}</h3>
+                    <p class="product-desc">${p.description}</p>
+                    
+                    <div class="product-footer">
+                        <div class="product-price-box">
+                            <span class="product-price-label">Price</span>
+                            <span class="product-price">₹${p.price.toLocaleString('en-IN', {minimumFractionDigits: 2})}</span>
+                        </div>
+                        
+                        ${p.stock > 0 ? `
+                            <div class="product-card-form">
+                                <input type="number" id="qty_${p.id}" value="1" min="1" max="${p.stock}" class="product-qty-input">
+                                <button onclick="addToCartWithQty('${p.id}')" class="btn btn-primary btn-sm">
+                                    🛒 Add
+                                </button>
+                            </div>
+                        ` : `
+                            <button class="btn btn-secondary btn-sm disabled" disabled>Sold Out</button>
+                        `}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function addToCartWithQty(productId) {
+        const input = document.getElementById('qty_' + productId);
+        const qty = parseInt(input ? input.value : 1) || 1;
+        const res = ShopDB.addToCart(productId, qty);
+        showToast(res.message, res.success ? 'success' : 'error');
+    }
+</script>
+</body>
+</html>
