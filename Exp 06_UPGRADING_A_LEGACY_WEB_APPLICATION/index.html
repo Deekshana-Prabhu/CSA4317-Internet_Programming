@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RegisterHub – Modern, professional, and interactive commercial registration portal built with HTML5 standards and client-side validation.">
+  <title>RegisterHub – Modern Commercial Registration Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Mobile Top Bar for Smaller Screens -->
+  <header class="mobile-topbar" id="mobileTopbar">
+    <div class="mobile-brand">
+      <div class="brand-logo-mini">
+        <svg viewBox="0 0 32 32" class="mini-shield" aria-hidden="true">
+          <defs>
+            <linearGradient id="miniBrandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2563eb" />
+              <stop offset="100%" stop-color="#7c3aed" />
+            </linearGradient>
+          </defs>
+          <rect x="3" y="3" width="26" height="26" rx="7" fill="url(#miniBrandGrad)" />
+          <path d="M10 16l4 4 8-8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        </svg>
+      </div>
+      <div class="mobile-brand-title">RegisterHub</div>
+    </div>
+    <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle navigation menu">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+  </header>
+
+  <!-- Sidebar Overlay for Mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Main Application Wrapper -->
+  <div class="app-layout">
+    
+    <!-- ==========================================
+         LEFT SIDEBAR NAVIGATION
+         ========================================== -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <div class="brand-container">
+          <div class="brand-logo">
+            <svg viewBox="0 0 32 32" class="brand-shield-svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="sidebarBrandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2563eb" />
+                  <stop offset="50%" stop-color="#4f46e5" />
+                  <stop offset="100%" stop-color="#7c3aed" />
+                </linearGradient>
+              </defs>
+              <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#sidebarBrandGrad)" />
+              <path d="M10 16.5l4 4 8-8.5" stroke="#ffffff" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            </svg>
+          </div>
+          <div class="brand-info">
+            <h1 class="brand-name">RegisterHub</h1>
+            <p class="brand-subtitle">Commercial Portal</p>
+          </div>
+        </div>
+        <div class="sidebar-portal-badge">Enterprise Edition</div>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="sidebar-nav" aria-label="Primary Navigation">
+        <div class="nav-group-title">MAIN NAVIGATION</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="#home" class="nav-link active" data-section="home">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              </span>
+              <span class="nav-label">Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#registration" class="nav-link" data-section="registration">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7.5" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+              </span>
+              <span class="nav-label">Registration</span>
+              <span class="nav-pill-badge">Primary</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#registered-users" class="nav-link" data-section="registered-users">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </span>
+              <span class="nav-label">Registered Users</span>
+              <span class="sidebar-counter" id="sidebarUserCount">0</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#features" class="nav-link" data-section="features">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </span>
+              <span class="nav-label">Features</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link" data-section="about">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              </span>
+              <span class="nav-label">About</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="quick-status-card">
+          <div class="status-indicator">
+            <span class="pulse-dot"></span>
+            <span class="status-title">System Status: Active</span>
+          </div>
+          <p class="status-text">Client Validation &amp; Local Storage Ready</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==========================================
+         MAIN CONTENT REGION
+         ========================================== -->
+    <main class="main-content" id="mainContent">
+
+      <!-- ==========================================
+           SECTION: HOME
+           ========================================== -->
+      <section id="home" class="content-section">
+        <div class="section-container">
+          
+          <!-- Hero Banner -->
+          <div class="hero-banner">
+            <div class="hero-badge">
+              <span class="badge-dot"></span> Fast, Modern &amp; Secure Registration
+            </div>
+            <h1 class="hero-title">
+              Next-Generation Onboarding with <span class="gradient-text">RegisterHub</span>
+            </h1>
+            <p class="hero-lead">
+              Experience seamless user registration powered by modern web standards. Featuring real-time constraint validation, responsive input controls, live password strength analysis, and persistent client-side member storage.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#registration" class="btn btn-primary btn-lg">
+                <span>Start Registration</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="#registered-users" class="btn btn-secondary btn-lg">
+                <span>View Directory</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              </a>
+              <a href="#features" class="btn btn-outline btn-lg">
+                <span>Platform Features</span>
+              </a>
+            </div>
+
+            <!-- Quick Key Highlights Grid -->
+            <div class="hero-stats-grid">
+              <div class="stat-card">
+                <div class="stat-number">Instant</div>
+                <div class="stat-label">Client Validation</div>
+                <p class="stat-desc">Native browser verification with immediate visual cues</p>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Privacy First</div>
+                <p class="stat-desc">Zero tracking scripts and zero backend dependencies</p>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">Persistent</div>
+                <div class="stat-label">Local Storage</div>
+                <p class="stat-desc">Registered profiles saved safely in your browser</p>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">Mobile</div>
+                <div class="stat-label">Touch Optimized</div>
+                <p class="stat-desc">Native dial pads, calendars, and color controls</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SECTION: REGISTRATION (MAIN FOCUS)
+           ========================================== -->
+      <section id="registration" class="content-section">
+        <div class="section-container">
+          
+          <div class="section-header">
+            <span class="section-badge">Member Onboarding</span>
+            <h2 class="section-heading">Registration Form</h2>
+            <p class="section-subheading">
+              Complete the registration details below to create your account. All client-side constraints, formats, and required fields are validated in real-time.
+            </p>
+          </div>
+
+          <!-- The Registration Form Card -->
+          <div class="form-wrapper-card">
+            
+            <div class="form-header-bar">
+              <div class="form-header-title">
+                <div class="form-header-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </div>
+                <div>
+                  <h3 class="reg-title">Account Registration</h3>
+                  <p class="reg-subtitle">Fields marked with an asterisk (<span class="required-star">*</span>) are mandatory.</p>
+                </div>
+              </div>
+              <div class="form-progress-indicator">
+                <div class="progress-info-row">
+                  <span class="progress-label">Form Completion</span>
+                  <span class="progress-percent" id="formProgressPercent">0%</span>
+                </div>
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill" id="formProgressBarFill" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main Form -->
+            <form id="studentRegistrationForm" class="modern-form" novalidate>
+              
+              <div class="form-grid-2">
+                
+                <!-- Full Name -->
+                <div class="form-group" id="groupFullName">
+                  <label for="regFullName" class="form-label">
+                    Full Name <span class="required-star">*</span>
+                  </label>
+                  <div class="input-with-icon">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </span>
+                    <input 
+                      type="text" 
+                      id="regFullName" 
+                      name="fullName" 
+                      class="form-control" 
+                      placeholder="e.g. Alexander Hamilton" 
+                      required 
+                      minlength="3" 
+                      maxlength="50" 
+                      pattern="[A-Za-z\s]{3,50}" 
+                      title="Name must contain letters and spaces only (3-50 characters)"
+                      autocomplete="name"
+                    >
+                  </div>
+                  <span class="validation-message" id="msgFullName">Please enter a valid full name (letters only, min 3 chars).</span>
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group" id="groupEmail">
+                  <label for="regEmail" class="form-label">
+                    Email Address <span class="required-star">*</span>
+                  </label>
+                  <div class="input-with-icon">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </span>
+                    <input 
+                      type="email" 
+                      id="regEmail" 
+                      name="email" 
+                      class="form-control" 
+                      placeholder="alexander@example.com" 
+                      required 
+                      autocomplete="email"
+                    >
+                  </div>
+                  <span class="validation-message" id="msgEmail">Please provide a valid email address (e.g. name@domain.com).</span>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="form-group" id="groupPhone">
+                  <label for="regPhone" class="form-label">
+                    Phone Number <span class="required-star">*</span>
+                  </label>
+                  <div class="input-with-icon">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </span>
+                    <input 
+                      type="tel" 
+                      id="regPhone" 
+                      name="phone" 
+                      class="form-control" 
+                      placeholder="e.g. 9876543210" 
+                      required 
+                      pattern="[0-9]{10}" 
+                      title="Please enter a valid 10-digit mobile number"
+                      autocomplete="tel"
+                    >
+                  </div>
+                  <span class="validation-message" id="msgPhone">Please enter a 10-digit numeric mobile number.</span>
+                </div>
+
+                <!-- Password with Strength Indicator -->
+                <div class="form-group" id="groupPassword">
+                  <label for="regPassword" class="form-label">
+                    Password <span class="required-star">*</span>
+                  </label>
+                  <div class="input-with-icon password-group">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </span>
+                    <input 
+                      type="password" 
+                      id="regPassword" 
+                      name="password" 
+                      class="form-control" 
+                      placeholder="Min. 8 chars with uppercase &amp; digit" 
+                      required 
+                      minlength="8" 
+                      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                      title="At least 8 characters, with 1 uppercase, 1 lowercase, and 1 number"
+                      autocomplete="new-password"
+                    >
+                    <button type="button" class="btn-toggle-eye" id="btnToggleRegPassword" aria-label="Toggle password visibility">👁️</button>
+                  </div>
+                  <!-- Password Strength Meter -->
+                  <div class="password-meter-wrap" id="passwordMeterWrap">
+                    <div class="password-meter-bar">
+                      <div class="password-meter-fill" id="passwordMeterFill"></div>
+                    </div>
+                    <span class="password-meter-label" id="passwordMeterLabel">Strength: Empty</span>
+                  </div>
+                  <span class="validation-message" id="msgPassword">Must be at least 8 characters with 1 uppercase letter, 1 lowercase letter, and 1 digit.</span>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="form-group" id="groupDob">
+                  <label for="regDob" class="form-label">
+                    Date of Birth <span class="required-star">*</span>
+                  </label>
+                  <div class="input-with-icon">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </span>
+                    <input 
+                      type="date" 
+                      id="regDob" 
+                      name="dob" 
+                      class="form-control" 
+                      required 
+                      max="2012-12-31" 
+                      min="1920-01-01"
+                    >
+                  </div>
+                  <span class="validation-message" id="msgDob">Please specify your date of birth (must be at least 14 years old).</span>
+                </div>
+
+                <!-- Age -->
+                <div class="form-group" id="groupAge">
+                  <label for="regAge" class="form-label">
+                    Age <span class="required-star">*</span>
+                  </label>
+                  <div class="input-with-icon">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </span>
+                    <input 
+                      type="number" 
+                      id="regAge" 
+                      name="age" 
+                      class="form-control" 
+                      placeholder="18" 
+                      required 
+                      min="14" 
+                      max="120" 
+                      step="1"
+                    >
+                  </div>
+                  <span class="validation-message" id="msgAge">Age must be between 14 and 120.</span>
+                </div>
+
+              </div>
+
+              <!-- Gender Radio Group -->
+              <div class="form-group-full" id="groupGender">
+                <label class="form-label">Gender <span class="required-star">*</span></label>
+                <div class="radio-card-group">
+                  <label class="radio-card">
+                    <input type="radio" name="gender" value="Male" required>
+                    <span class="radio-visual"></span>
+                    <span class="radio-label">Male</span>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="gender" value="Female">
+                    <span class="radio-visual"></span>
+                    <span class="radio-label">Female</span>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="gender" value="Non-Binary">
+                    <span class="radio-visual"></span>
+                    <span class="radio-label">Non-Binary</span>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="gender" value="Prefer not to say">
+                    <span class="radio-visual"></span>
+                    <span class="radio-label">Prefer not to say</span>
+                  </label>
+                </div>
+                <span class="validation-message" id="msgGender">Please select your gender option.</span>
+              </div>
+
+              <div class="form-grid-2">
+                
+                <!-- Website URL -->
+                <div class="form-group" id="groupWebsite">
+                  <label for="regWebsite" class="form-label">
+                    Portfolio / Website URL
+                  </label>
+                  <div class="input-with-icon">
+                    <span class="input-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </span>
+                    <input 
+                      type="url" 
+                      id="regWebsite" 
+                      name="website" 
+                      class="form-control" 
+                      placeholder="https://myportfolio.dev"
+                    >
+                  </div>
+                  <span class="validation-message" id="msgWebsite">URL must begin with http:// or https://</span>
+                </div>
+
+                <!-- Favorite Color -->
+                <div class="form-group" id="groupColor">
+                  <label for="regColor" class="form-label">
+                    Brand Accent Color
+                  </label>
+                  <div class="color-picker-input-group">
+                    <input 
+                      type="color" 
+                      id="regColor" 
+                      name="favColor" 
+                      class="color-picker-control" 
+                      value="#2563eb"
+                    >
+                    <span class="color-text-display" id="regColorVal">#2563eb</span>
+                  </div>
+                  <span class="input-hint">Select a customized profile accent shade.</span>
+                </div>
+
+              </div>
+
+              <!-- Satisfaction Rating -->
+              <div class="form-group-full" id="groupRating">
+                <div class="slider-header-flex">
+                  <label for="regRating" class="form-label">
+                    Onboarding Experience Rating (1 - 10)
+                  </label>
+                  <div class="rating-badge" id="ratingBadge">
+                    <span id="ratingNumber">9</span> / 10 (<span id="ratingText">Excellent</span>)
+                  </div>
+                </div>
+                <input 
+                  type="range" 
+                  id="regRating" 
+                  name="rating" 
+                  min="1" 
+                  max="10" 
+                  value="9" 
+                  step="1" 
+                  class="custom-slider"
+                >
+                <div class="slider-ticks">
+                  <span>1 (Poor)</span>
+                  <span>5 (Average)</span>
+                  <span>10 (Outstanding)</span>
+                </div>
+              </div>
+
+              <!-- Additional Message -->
+              <div class="form-group-full" id="groupMessage">
+                <div class="textarea-header-flex">
+                  <label for="regMessage" class="form-label">Additional Comments / Bio</label>
+                  <span class="char-counter" id="charCounter">0 / 500</span>
+                </div>
+                <textarea 
+                  id="regMessage" 
+                  name="message" 
+                  class="form-control textarea-control" 
+                  rows="3" 
+                  maxlength="500" 
+                  placeholder="Share any special interests, background, or goals..."
+                ></textarea>
+              </div>
+
+              <!-- Form Action Buttons -->
+              <div class="form-actions-row">
+                <button type="submit" class="btn btn-primary btn-lg" id="btnSubmitForm">
+                  <span>Complete Registration</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+                <button type="reset" class="btn btn-outline btn-lg" id="btnResetForm">
+                  <span>Reset Form</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                </button>
+              </div>
+
+            </form>
+
+            <!-- Success Confirmation Receipt Card -->
+            <div class="form-success-receipt" id="formSuccessReceipt" style="display: none;">
+              <div class="receipt-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" class="receipt-check-svg"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <h4 class="receipt-title">Registration Successfully Submitted!</h4>
+              <p class="receipt-sub">
+                Your profile has been validated and recorded into the persistent Member Directory without reloading the page.
+              </p>
+              
+              <div class="receipt-details-card" id="receiptSummaryContent">
+                <!-- Dynamically populated by JavaScript -->
+              </div>
+
+              <div class="receipt-actions">
+                <a href="#registered-users" class="btn btn-primary btn-lg" id="btnJumpToDirectory">
+                  <span>View in Directory</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                </a>
+                <button class="btn btn-outline btn-lg" id="btnRegisterAnother">
+                  <span>Register Another Member</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SECTION: REGISTERED USERS
+           ========================================== -->
+      <section id="registered-users" class="content-section">
+        <div class="section-container">
+          
+          <div class="section-header">
+            <span class="section-badge">Member Directory</span>
+            <h2 class="section-heading">Registered Users</h2>
+            <p class="section-subheading">
+              Browse submitted registration profiles stored in browser memory via the HTML5 Web Storage API.
+            </p>
+          </div>
+
+          <!-- Directory Toolbar -->
+          <div class="directory-toolbar-card">
+            <div class="search-box-wrap">
+              <span class="search-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </span>
+              <input type="search" id="directorySearchInput" class="form-control" placeholder="Search members by name or email...">
+            </div>
+
+            <div class="toolbar-stats-actions">
+              <div class="directory-count-badge" id="directoryCountBadge">0 Members</div>
+              <button class="btn btn-sm btn-danger-outline" id="btnClearAllUsers" title="Wipe stored records">
+                <span>Clear All Records</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Users Display Container -->
+          <div class="users-cards-grid" id="usersCardsGrid">
+            <!-- Dynamically populated by JS -->
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SECTION: FEATURES
+           ========================================== -->
+      <section id="features" class="content-section">
+        <div class="section-container">
+          
+          <div class="section-header">
+            <span class="section-badge">Platform Capabilities</span>
+            <h2 class="section-heading">Modern Features &amp; Standards</h2>
+            <p class="section-subheading">
+              RegisterHub leverages standard HTML5 APIs to deliver high performance, instant feedback, and zero reliance on heavy external frameworks.
+            </p>
+          </div>
+
+          <div class="grid-3">
+            
+            <div class="feature-card">
+              <div class="card-icon-wrap icon-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+              </div>
+              <h3 class="card-title">Native Form Validation</h3>
+              <p class="card-text">
+                Eliminates slow JavaScript regular expression libraries. The browser engine handles validation directly via declarative attributes such as <code>required</code>, <code>pattern</code>, <code>min</code>, and <code>max</code>.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="card-icon-wrap icon-purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <h3 class="card-title">Rich Input Controls</h3>
+              <p class="card-text">
+                Specialized controls for email, phone, calendar dates, slider ranges, and color pickers seamlessly trigger tailored mobile keyboards and OS-native pickers.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="card-icon-wrap icon-emerald">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+              </div>
+              <h3 class="card-title">Persistent Web Storage</h3>
+              <p class="card-text">
+                Uses the HTML5 <code>localStorage</code> API to store registered accounts across sessions without server round-trips or slow 4KB cookie overhead.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="card-icon-wrap icon-cyan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              </div>
+              <h3 class="card-title">Responsive Design</h3>
+              <p class="card-text">
+                Carefully crafted CSS Flexbox and Grid layouts ensure smooth, fluid rendering across desktops, laptops, tablets, and smartphones.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="card-icon-wrap icon-amber">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              </div>
+              <h3 class="card-title">Live Password Meter</h3>
+              <p class="card-text">
+                Analyzes password entropy dynamically as you type, evaluating length, uppercase letters, digits, and special characters.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="card-icon-wrap icon-rose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <h3 class="card-title">Accessibility &amp; Semantics</h3>
+              <p class="card-text">
+                Built with proper semantic landmark tags (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>) for WCAG compliance and assistive technologies.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SECTION: ABOUT
+           ========================================== -->
+      <section id="about" class="content-section">
+        <div class="section-container">
+          
+          <div class="section-header">
+            <span class="section-badge">Platform Overview</span>
+            <h2 class="section-heading">About RegisterHub</h2>
+            <p class="section-subheading">
+              A high-performance registration portal demonstrating how modern web standards replace legacy form workflows.
+            </p>
+          </div>
+
+          <div class="about-card-container">
+            <div class="about-main-info">
+              <h3 class="about-title">Built with Pure Modern Web Standards</h3>
+              <p class="about-text">
+                RegisterHub is designed to demonstrate high-efficiency web development. By harnessing standard HTML5 Constraint Validation APIs, CSS3 design tokens, and modern JavaScript, it delivers a commercial-grade onboarding experience with zero npm packages, zero external CDNs, and zero backend latency.
+              </p>
+              
+              <div class="tech-pills-row">
+                <span class="tech-pill">HTML5 Semantic Architecture</span>
+                <span class="tech-pill">CSS3 Custom Properties</span>
+                <span class="tech-pill">Vanilla JavaScript ES6+</span>
+                <span class="tech-pill">Web Storage API</span>
+                <span class="tech-pill">100% Offline Compatible</span>
+              </div>
+            </div>
+
+            <div class="faq-accordion-list">
+              <div class="faq-item">
+                <h4 class="faq-question">Where are registered user records stored?</h4>
+                <p class="faq-answer">Profiles are stored in your web browser using HTML5 <code>localStorage</code>. They persist across browser reloads and tab closures without transmitting your data to remote servers.</p>
+              </div>
+
+              <div class="faq-item">
+                <h4 class="faq-question">How does client-side validation operate?</h4>
+                <p class="faq-answer">The browser's native Constraint Validation API enforces all field rules (patterns, min/max lengths, email syntax). Visual feedback and helper prompts appear automatically before form submission.</p>
+              </div>
+
+              <div class="faq-item">
+                <h4 class="faq-question">Can I run this portal directly from disk?</h4>
+                <p class="faq-answer">Yes! You can double-click <code>index.html</code> directly. No web server, Node.js installation, or network connection is required.</p>
+              </div>
+            </div>
+
+            <div class="about-footer-row">
+              <div class="about-cta-text">
+                Ready to add a new profile? Jump straight into registration.
+              </div>
+              <a href="#registration" class="btn btn-primary">
+                <span>Register Now</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Professional Page Footer -->
+          <footer class="app-page-footer">
+            <div class="footer-copy">
+              <p><strong>RegisterHub Portal</strong> • Commercial Registration Platform</p>
+              <p class="footer-sub">Crafted with HTML5, CSS3, and Vanilla JavaScript • Fast, Secure &amp; Responsive</p>
+            </div>
+          </footer>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Back to Top Floating Button -->
+  <button class="btn-back-to-top" id="btnBackToTop" aria-label="Scroll back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <!-- Global Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Application JavaScript Link -->
+  <script src="script.js"></script>
+</body>
+</html>
