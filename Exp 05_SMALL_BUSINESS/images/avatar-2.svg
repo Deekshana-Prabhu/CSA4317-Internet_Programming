@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <circle cx="50" cy="50" r="48" fill="#FDF3E7" stroke="#F4A261" stroke-width="2"/>
+  <!-- Man with stylish glasses and beard -->
+  <circle cx="50" cy="42" r="18" fill="#F5CBA7"/>
+  <!-- Hair -->
+  <path d="M32 38 C30 20, 70 20, 68 38 C60 26, 40 26, 32 38 Z" fill="#2C1810"/>
+  <!-- Glasses -->
+  <rect x="37" y="38" width="11" height="9" rx="2" fill="none" stroke="#3D2314" stroke-width="2"/>
+  <rect x="52" y="38" width="11" height="9" rx="2" fill="none" stroke="#3D2314" stroke-width="2"/>
+  <line x1="48" y1="42" x2="52" y2="42" stroke="#3D2314" stroke-width="2"/>
+  <!-- Eyes -->
+  <circle cx="42" cy="42" r="1.5" fill="#2C1810"/>
+  <circle cx="57" cy="42" r="1.5" fill="#2C1810"/>
+  <!-- Smile & Neat Beard -->
+  <path d="M38 48 C38 60, 62 60, 62 48 C56 56, 44 56, 38 48 Z" fill="#2C1810"/>
+  <path d="M46 51 Q 50 54 54 51" stroke="#FFFFFF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Shirt -->
+  <path d="M22 84 C24 64, 76 64, 78 84 Z" fill="#4A2E1B"/>
+  <polygon points="46,65 50,75 54,65" fill="#FAF5EE"/>
+</svg>
