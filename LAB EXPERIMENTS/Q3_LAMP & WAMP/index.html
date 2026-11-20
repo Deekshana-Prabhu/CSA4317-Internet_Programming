@@ -1,0 +1,4191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAMP & WAMP STACKS - Development Environment & Architecture</title>
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS VARIABLES
+       Light background with Blue, Purple, and Orange Accents
+       ========================================================================== */
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8faff;
+      
+      --text-main: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      
+      /* Vibrant Tri-Color Theme: Blue, Purple, Orange */
+      --accent-blue: #2563eb;
+      --accent-blue-light: #dbeafe;
+      --accent-blue-hover: #1d4ed8;
+      
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #ede9fe;
+      --accent-purple-hover: #6d28d9;
+      
+      --accent-orange: #f97316;
+      --accent-orange-light: #ffedd5;
+      --accent-orange-hover: #ea580c;
+      
+      --accent-cyan: #0891b2;
+      --accent-cyan-light: #cffafe;
+      
+      --accent-emerald: #10b981;
+      --accent-emerald-light: #d1fae5;
+      
+      --accent-rose: #ef4444;
+      --accent-rose-light: #fee2e2;
+      
+      --border-subtle: #e2e8f0;
+      --border-hover: #cbd5e1;
+      
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+      
+      --sidebar-width: 270px;
+      --transition-fast: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background gradient accents */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -160px;
+      right: -120px;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.07) 0%, rgba(37, 99, 235, 0.05) 50%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: -160px;
+      left: 180px;
+      width: 680px;
+      height: 680px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.06) 0%, rgba(37, 99, 235, 0.04) 50%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ==========================================================================
+       SIDEBAR NAVIGATION
+       ========================================================================== */
+    .sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--bg-surface);
+      border-right: 1px solid var(--border-subtle);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-normal);
+    }
+
+    .brand-container {
+      padding: 24px 20px 20px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-orange));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      flex-shrink: 0;
+    }
+
+    .brand-logo svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+
+    .brand-tagline {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-top: 3px;
+    }
+
+    .nav-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-category {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      padding: 10px 12px 4px 12px;
+      margin-top: 6px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+
+    .nav-link:hover {
+      background-color: var(--bg-surface-elevated);
+      color: var(--accent-blue);
+      transform: translateX(3px);
+    }
+
+    .nav-link.active {
+      background: linear-gradient(90deg, var(--accent-blue-light), #f0f7ff);
+      color: var(--accent-blue);
+      font-weight: 750;
+    }
+
+    .nav-link.active::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 4px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      background: linear-gradient(180deg, var(--accent-blue), var(--accent-purple));
+    }
+
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+      flex-shrink: 0;
+    }
+
+    .nav-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sidebar-footer {
+      padding: 14px 18px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #fafbfc;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--accent-emerald-light);
+      color: #065f46;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent-emerald);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    /* Mobile Header */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0 18px;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 40;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mobile-menu-btn {
+      background: none;
+      border: 1px solid var(--border-subtle);
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-menu-btn svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 45;
+    }
+
+    /* ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== */
+    .main-wrapper {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      min-width: 0;
+      padding: 36px 44px 90px 44px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding-top: 48px;
+      margin-bottom: 64px;
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background-color: var(--accent-blue-light);
+      color: var(--accent-blue);
+      margin-bottom: 10px;
+    }
+
+    .section-tag.purple {
+      background-color: var(--accent-purple-light);
+      color: var(--accent-purple);
+    }
+
+    .section-tag.orange {
+      background-color: var(--accent-orange-light);
+      color: var(--accent-orange);
+    }
+
+    .section-tag.cyan {
+      background-color: var(--accent-cyan-light);
+      color: var(--accent-cyan);
+    }
+
+    .section-title {
+      font-size: 2.15rem;
+      font-weight: 850;
+      color: var(--text-main);
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+    }
+
+    .section-subtitle {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      max-width: 780px;
+    }
+
+    /* ==========================================================================
+       HERO & HOMEPAGE INTRO
+       ========================================================================== */
+    .hero-box {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(240, 247, 255, 0.9));
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 44px 40px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+
+    .hero-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-orange));
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 750;
+      color: var(--accent-blue);
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-title {
+      font-size: 2.9rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 50%, var(--accent-orange) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 820px;
+      margin-bottom: 28px;
+      line-height: 1.55;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: var(--radius-md);
+      font-size: 0.92rem;
+      font-weight: 650;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: 1px solid transparent;
+      outline: none;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-blue);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-blue-hover);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .btn-purple {
+      background-color: var(--accent-purple);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+    }
+
+    .btn-purple:hover {
+      background-color: var(--accent-purple-hover);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .btn-orange {
+      background-color: var(--accent-orange);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+    }
+
+    .btn-orange:hover {
+      background-color: var(--accent-orange-hover);
+      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: #ffffff;
+      color: var(--text-secondary);
+      border-color: var(--border-subtle);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border-color: var(--text-light);
+      transform: translateY(-2px);
+    }
+
+    /* Attractive Visual Architecture Illustration */
+    .hero-illustration-banner {
+      background-color: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-top: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .illustration-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pipeline-visual {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .pipe-step {
+      background-color: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      text-align: center;
+      flex: 1;
+      min-width: 140px;
+      transition: all var(--transition-fast);
+    }
+
+    .pipe-step:hover {
+      border-color: var(--accent-blue);
+      background-color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pipe-icon {
+      width: 28px;
+      height: 28px;
+      margin: 0 auto 6px auto;
+      color: var(--accent-blue);
+    }
+
+    .pipe-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .pipe-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .pipe-arrow {
+      color: var(--accent-orange);
+      font-size: 1.2rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Two Large Interactive Cards on Hero */
+    .hero-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 32px;
+    }
+
+    .stack-hero-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .stack-hero-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: rgba(37, 99, 235, 0.4);
+    }
+
+    .stack-hero-card.wamp-card:hover {
+      border-color: rgba(124, 58, 237, 0.4);
+    }
+
+    .stack-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 750;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      width: fit-content;
+      margin-bottom: 14px;
+    }
+
+    .stack-hero-card.lamp-card .stack-card-badge {
+      background-color: var(--accent-blue-light);
+      color: var(--accent-blue);
+    }
+
+    .stack-hero-card.wamp-card .stack-card-badge {
+      background-color: var(--accent-purple-light);
+      color: var(--accent-purple);
+    }
+
+    .stack-hero-title {
+      font-size: 1.7rem;
+      font-weight: 850;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .stack-hero-formula {
+      font-size: 0.95rem;
+      font-weight: 750;
+      color: var(--text-secondary);
+      background-color: var(--bg-surface-elevated);
+      padding: 9px 14px;
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+      border: 1px dashed var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stack-hero-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      flex-grow: 1;
+      line-height: 1.5;
+    }
+
+    .stack-layer-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .layer-pill {
+      font-size: 0.76rem;
+      font-weight: 650;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      background-color: #f1f5f9;
+      color: var(--text-secondary);
+    }
+
+    .layer-pill.os-diff {
+      background-color: var(--accent-orange-light);
+      color: var(--accent-orange-hover);
+      font-weight: 750;
+    }
+
+    .stack-card-action {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 750;
+      font-size: 0.9rem;
+      color: var(--accent-blue);
+      margin-top: auto;
+    }
+
+    .stack-hero-card.wamp-card .stack-card-action {
+      color: var(--accent-purple);
+    }
+
+    /* ==========================================================================
+       COMPONENT EXPLANATION (INDIVIDUAL VISUAL CARDS)
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .component-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px 22px;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .component-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-blue);
+    }
+
+    .component-card.border-purple:hover {
+      border-color: var(--accent-purple);
+    }
+
+    .component-card.border-orange:hover {
+      border-color: var(--accent-orange);
+    }
+
+    .comp-icon-box {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .comp-icon-box svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .comp-role-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .comp-title {
+      font-size: 1.3rem;
+      font-weight: 850;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .comp-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      flex-grow: 1;
+    }
+
+    .comp-points li {
+      position: relative;
+      padding-left: 18px;
+      line-height: 1.45;
+    }
+
+    .comp-points li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent-orange);
+      font-weight: 800;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .comp-card-click-hint {
+      margin-top: 16px;
+      font-size: 0.76rem;
+      font-weight: 650;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* "How Components Work Together" Pipeline Card */
+    .integration-summary-box {
+      background: linear-gradient(135deg, #ffffff, #fdfbf7);
+      border: 1px solid var(--border-subtle);
+      border-left: 4px solid var(--accent-orange);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .integration-summary-title {
+      font-size: 1.15rem;
+      font-weight: 850;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .integration-summary-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Architecture Flow Diagram */
+    .arch-flow-diagram {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+
+    .diagram-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .diagram-title {
+      font-size: 0.98rem;
+      font-weight: 750;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .flow-chain {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: relative;
+    }
+
+    .flow-node {
+      flex: 1;
+      background-color: var(--bg-surface-elevated);
+      border: 2px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .flow-node:hover {
+      border-color: var(--accent-blue);
+      background-color: #ffffff;
+      transform: scale(1.03);
+      box-shadow: var(--shadow-md);
+    }
+
+    .flow-node.highlight-orange:hover {
+      border-color: var(--accent-orange);
+    }
+
+    .flow-node-icon {
+      width: 30px;
+      height: 30px;
+      margin: 0 auto 6px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flow-node-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .flow-node-layer {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .flow-arrow {
+      color: var(--accent-orange);
+      font-size: 1.3rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .flow-arrow svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent-orange);
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    /* Stack Difference Highlight Banner */
+    .diff-banner {
+      background: linear-gradient(135deg, rgba(255, 237, 213, 0.7), rgba(237, 233, 254, 0.7));
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .diff-banner-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--accent-orange);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .diff-banner-text {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       APACHE WORKING PROCESS & INTEGRATION
+       ========================================================================== */
+    .apache-role-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 28px;
+    }
+
+    .steps-timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .step-card {
+      background-color: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      position: relative;
+      transition: all var(--transition-fast);
+    }
+
+    .step-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-blue);
+      background-color: #ffffff;
+    }
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-orange));
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .step-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Integration Breakdown Cards */
+    .integration-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .integration-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .integration-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .integration-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+    }
+
+    .badge-apache-php {
+      background-color: var(--accent-blue-light);
+      color: var(--accent-blue);
+    }
+
+    .badge-php-mysql {
+      background-color: var(--accent-orange-light);
+      color: var(--accent-orange);
+    }
+
+    .integration-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* EXPANDABLE ACCORDIONS */
+    .expandable-container {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .expandable-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all var(--transition-fast);
+    }
+
+    .expandable-header {
+      padding: 16px 20px;
+      background-color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      font-weight: 750;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .expandable-header:hover {
+      background-color: var(--bg-surface-elevated);
+      color: var(--accent-blue);
+    }
+
+    .expand-icon {
+      width: 20px;
+      height: 20px;
+      transition: transform var(--transition-fast);
+      color: var(--text-muted);
+    }
+
+    .expandable-card.open .expand-icon {
+      transform: rotate(180deg);
+      color: var(--accent-blue);
+    }
+
+    .expandable-body {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+      background-color: #fafbfc;
+      border-top: 1px solid transparent;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .expandable-card.open .expandable-body {
+      padding: 18px 20px;
+      max-height: 600px;
+      border-top-color: var(--border-subtle);
+    }
+
+    /* REQUEST-RESPONSE SIMULATOR */
+    .simulator-container {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      color: #ffffff;
+      box-shadow: var(--shadow-xl);
+      margin-bottom: 28px;
+    }
+
+    .sim-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .sim-title {
+      font-size: 1.2rem;
+      font-weight: 850;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #f8fafc;
+    }
+
+    .sim-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sim-track {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 26px 18px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .sim-nodes {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .sim-node {
+      background-color: #1e293b;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      padding: 14px 12px;
+      width: 140px;
+      text-align: center;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    .sim-node.active-node {
+      border-color: #38bdf8;
+      background-color: #0c4a6e;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+      transform: scale(1.06);
+    }
+
+    .sim-node-icon {
+      width: 32px;
+      height: 32px;
+      margin: 0 auto 6px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #38bdf8;
+    }
+
+    .sim-node-name {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .sim-node-status {
+      font-size: 0.7rem;
+      color: #94a3b8;
+      margin-top: 3px;
+    }
+
+    .sim-wire {
+      flex: 1;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      margin: 0 6px;
+      border-radius: 2px;
+    }
+
+    .sim-console {
+      background: #090d16;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.82rem;
+      height: 105px;
+      overflow-y: auto;
+      color: #cbd5e1;
+    }
+
+    .sim-console-line {
+      margin-bottom: 5px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .sim-console-time {
+      color: #64748b;
+    }
+
+    .sim-console-text.highlight {
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       LAMP VS WAMP COMPARISON
+       ========================================================================== */
+    .comparison-summary-boxes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .formula-box {
+      background-color: var(--bg-surface);
+      border: 2px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .formula-box.lamp-formula {
+      border-color: rgba(37, 99, 235, 0.4);
+      background: linear-gradient(to bottom, #ffffff, #f6faff);
+    }
+
+    .formula-box.wamp-formula {
+      border-color: rgba(124, 58, 237, 0.4);
+      background: linear-gradient(to bottom, #ffffff, #faf7ff);
+    }
+
+    .formula-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .lamp-formula .formula-tag {
+      background-color: var(--accent-blue-light);
+      color: var(--accent-blue);
+    }
+
+    .wamp-formula .formula-tag {
+      background-color: var(--accent-purple-light);
+      color: var(--accent-purple);
+    }
+
+    .formula-text {
+      font-size: 1.3rem;
+      font-weight: 850;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .formula-text span.os-highlight {
+      color: var(--accent-blue);
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+    }
+
+    .wamp-formula .formula-text span.os-highlight {
+      color: var(--accent-purple);
+    }
+
+    .formula-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Comparison Table */
+    .table-responsive {
+      overflow-x: auto;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .comparison-table th {
+      background-color: #f8fafc;
+      padding: 16px 18px;
+      font-weight: 750;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+
+    .comparison-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      vertical-align: middle;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table tr:hover td {
+      background-color: #fbfdff;
+    }
+
+    .param-cell {
+      font-weight: 750;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .badge-diff {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 750;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+    }
+
+    .badge-blue {
+      background-color: var(--accent-blue-light);
+      color: var(--accent-blue);
+    }
+
+    .badge-purple {
+      background-color: var(--accent-purple-light);
+      color: var(--accent-purple);
+    }
+
+    .badge-orange {
+      background-color: var(--accent-orange-light);
+      color: var(--accent-orange-hover);
+    }
+
+    .badge-green {
+      background-color: var(--accent-emerald-light);
+      color: #065f46;
+    }
+
+    /* ==========================================================================
+       INSTALLATION GUIDES & CHECKLISTS
+       ========================================================================== */
+    .install-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 10px;
+    }
+
+    .tab-btn {
+      padding: 9px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: none;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+    }
+
+    .tab-btn:hover {
+      background-color: var(--bg-surface-elevated);
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      background-color: var(--accent-blue);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .checklist-progress-bar {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 10px;
+      background-color: #e2e8f0;
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-orange));
+      border-radius: var(--radius-full);
+      transition: width var(--transition-normal);
+    }
+
+    .progress-count {
+      font-size: 0.85rem;
+      font-weight: 750;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+
+    .install-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .install-step-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: all var(--transition-fast);
+    }
+
+    .install-step-card.completed {
+      border-color: var(--accent-emerald);
+      background-color: #fbfdfc;
+    }
+
+    .step-checkbox {
+      margin-top: 3px;
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+      accent-color: var(--accent-emerald);
+    }
+
+    .step-card-content {
+      flex: 1;
+    }
+
+    .step-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .step-name {
+      font-size: 0.98rem;
+      font-weight: 750;
+      color: var(--text-main);
+    }
+
+    .step-pill {
+      font-size: 0.7rem;
+      font-weight: 750;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      background-color: #f1f5f9;
+      color: var(--text-muted);
+    }
+
+    .code-block {
+      background-color: #0f172a;
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: #38bdf8;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+      border: 1px solid #1e293b;
+    }
+
+    .code-text {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .copy-btn {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.72rem;
+      font-weight: 650;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+      margin-left: 10px;
+    }
+
+    .copy-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #38bdf8;
+    }
+
+    .copy-btn.copied {
+      background-color: var(--accent-emerald);
+      border-color: var(--accent-emerald);
+      color: #ffffff;
+    }
+
+    .config-card-box {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .config-card-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .wamp-status-guide {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .tray-state {
+      background-color: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    .tray-icon-circle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      margin: 0 auto 5px auto;
+    }
+
+    .tray-red { background-color: #ef4444; }
+    .tray-orange { background-color: #f59e0b; }
+    .tray-green { background-color: #10b981; }
+
+    /* ==========================================================================
+       KNOWLEDGE QUIZ
+       ========================================================================== */
+    .quiz-container {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+    }
+
+    .quiz-score-badge {
+      font-size: 0.92rem;
+      font-weight: 800;
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      background-color: var(--accent-purple-light);
+      color: var(--accent-purple);
+    }
+
+    .quiz-question-card {
+      margin-bottom: 24px;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .quiz-q-num {
+      font-size: 0.72rem;
+      font-weight: 750;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+    }
+
+    .quiz-q-text {
+      font-size: 1rem;
+      font-weight: 750;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-opt {
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      background-color: #ffffff;
+      border: 1.5px solid var(--border-subtle);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quiz-opt:hover:not(.disabled) {
+      border-color: var(--accent-blue);
+      background-color: #f8faff;
+      transform: translateX(3px);
+    }
+
+    .quiz-opt.selected-correct {
+      background-color: var(--accent-emerald-light);
+      border-color: var(--accent-emerald);
+      color: #065f46;
+      font-weight: 750;
+    }
+
+    .quiz-opt.selected-wrong {
+      background-color: var(--accent-rose-light);
+      border-color: var(--accent-rose);
+      color: #991b1b;
+      font-weight: 750;
+    }
+
+    .quiz-explanation {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      display: none;
+    }
+
+    .quiz-explanation.show {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .quiz-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 24px;
+    }
+
+    /* ==========================================================================
+       QUICK REVISION FLASHCARDS
+       ========================================================================== */
+    .revision-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .revision-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-normal);
+      border-top: 4px solid var(--accent-blue);
+    }
+
+    .revision-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .revision-card.purple-border {
+      border-top-color: var(--accent-purple);
+    }
+
+    .revision-card.orange-border {
+      border-top-color: var(--accent-orange);
+    }
+
+    .rev-tag {
+      font-size: 0.7rem;
+      font-weight: 750;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
+    .rev-name {
+      font-size: 1.2rem;
+      font-weight: 850;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .rev-def {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      flex-grow: 1;
+    }
+
+    .rev-fact {
+      font-size: 0.76rem;
+      background-color: var(--bg-surface-elevated);
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      border-left: 3px solid var(--accent-orange);
+    }
+
+    /* ==========================================================================
+       MODAL INSPECTOR FOR COMPONENTS
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-card {
+      background-color: var(--bg-surface);
+      border-radius: var(--radius-xl);
+      max-width: 580px;
+      width: 100%;
+      padding: 30px;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--border-subtle);
+      position: relative;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close-btn:hover {
+      background-color: var(--bg-surface-elevated);
+      color: var(--text-main);
+    }
+
+    .modal-icon-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent-blue-light);
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 850;
+      color: var(--text-main);
+      margin-bottom: 3px;
+    }
+
+    .modal-subtitle {
+      font-size: 0.88rem;
+      color: var(--accent-blue);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .modal-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .modal-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .modal-meta-item {
+      background-color: var(--bg-surface-elevated);
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+    }
+
+    .modal-meta-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 750;
+      text-transform: uppercase;
+    }
+
+    .modal-meta-val {
+      font-size: 0.88rem;
+      font-weight: 750;
+      color: var(--text-main);
+      margin-top: 2px;
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-xl);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 200;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 28px;
+      margin-top: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .components-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .revision-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .steps-timeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .integration-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .sidebar-backdrop.open {
+        display: block;
+      }
+      .mobile-header {
+        display: flex;
+      }
+      .main-wrapper {
+        margin-left: 0;
+        padding: 80px 18px 50px 18px;
+      }
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      .hero-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .components-grid {
+        grid-template-columns: 1fr;
+      }
+      .comparison-summary-boxes {
+        grid-template-columns: 1fr;
+      }
+      .steps-timeline {
+        grid-template-columns: 1fr;
+      }
+      .revision-grid {
+        grid-template-columns: 1fr;
+      }
+      .flow-chain {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 4px 0;
+      }
+      .sim-nodes {
+        flex-direction: column;
+        gap: 14px;
+      }
+      .sim-node {
+        width: 100%;
+      }
+      .sim-wire {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE TOP BAR -->
+  <header class="mobile-header">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div class="brand-logo" style="width:34px; height:34px;">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div>
+        <div class="brand-title" style="font-size:1.05rem;">LAMP &amp; WAMP STACKS</div>
+        <div class="brand-tagline" style="font-size:0.62rem;">Web Architecture</div>
+      </div>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+      <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </header>
+
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand-container">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="brand-meta">
+        <div class="brand-title">LAMP &amp; WAMP</div>
+        <div class="brand-tagline">Understand &bull; Compare &bull; Build</div>
+      </div>
+    </div>
+
+    <nav class="nav-scroll">
+      <div class="nav-category">Overview</div>
+      <a href="#home" class="nav-link active">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <span>Home</span>
+      </a>
+
+      <div class="nav-category">Core Stacks</div>
+      <a href="#lamp" class="nav-link">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </span>
+        <span>LAMP Stack</span>
+      </a>
+      <a href="#wamp" class="nav-link">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg>
+        </span>
+        <span>WAMP Stack</span>
+      </a>
+
+      <div class="nav-category">Components &amp; Architecture</div>
+      <a href="#components" class="nav-link">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </span>
+        <span>Component Cards</span>
+      </a>
+      <a href="#apache" class="nav-link">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </span>
+        <span>Apache &amp; Integration</span>
+      </a>
+      <a href="#comparison" class="nav-link">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </span>
+        <span>Comparison</span>
+      </a>
+
+      <div class="nav-category">Guides &amp; Testing</div>
+      <a href="#installation" class="nav-link">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/></svg>
+        </span>
+        <span>Installation Guide</span>
+      </a>
+      <a href="#quiz" class="nav-link">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </span>
+        <span>Knowledge Quiz</span>
+      </a>
+      <a href="#revision" class="nav-link">
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </span>
+        <span>Quick Revision</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span>Practical Lab</span>
+      <span class="status-badge">
+        <span class="status-dot"></span> Online
+      </span>
+    </div>
+  </aside>
+
+  <!-- MAIN VIEWPORT -->
+  <main class="main-wrapper">
+    <div class="container">
+
+      <!-- ==========================================
+           1. HOMEPAGE & HERO SECTION
+           ========================================== -->
+      <section id="home" style="padding-top:10px;">
+        <div class="hero-box">
+          <div class="hero-badge">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            College Web Tech Lab &bull; Practical Assignment
+          </div>
+          <h1 class="hero-title"><span class="gradient-text">LAMP &amp; WAMP STACKS</span></h1>
+          <p class="hero-subtitle">
+            An interactive, visual educational guide to dynamic web application environments. Understand how the <strong>Operating System</strong>, <strong>Apache Web Server</strong>, <strong>MySQL Database</strong>, and <strong>PHP Scripting Language</strong> collaborate seamlessly to power modern web solutions.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#lamp" class="btn btn-primary">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Explore LAMP
+            </a>
+            <a href="#wamp" class="btn btn-purple">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg>
+              Explore WAMP
+            </a>
+            <a href="#apache" class="btn btn-orange">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Apache Integration
+            </a>
+            <a href="#comparison" class="btn btn-secondary">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              Compare Stacks
+            </a>
+          </div>
+
+          <!-- Attractive Visual Architecture Pipeline Illustration -->
+          <div class="hero-illustration-banner">
+            <div class="illustration-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              The Web Request Processing Pipeline
+            </div>
+            <div class="pipeline-visual">
+              <div class="pipe-step">
+                <div class="pipe-icon" style="color:var(--accent-blue);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <div class="pipe-title">1. Client Browser</div>
+                <div class="pipe-sub">Sends HTTP Request</div>
+              </div>
+              <div class="pipe-arrow">&rarr;</div>
+              <div class="pipe-step">
+                <div class="pipe-icon" style="color:var(--accent-orange);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div class="pipe-title">2. Apache Server</div>
+                <div class="pipe-sub">Port 80/443 Routing</div>
+              </div>
+              <div class="pipe-arrow">&rarr;</div>
+              <div class="pipe-step">
+                <div class="pipe-icon" style="color:var(--accent-purple);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <div class="pipe-title">3. PHP Engine</div>
+                <div class="pipe-sub">Executes Script Logic</div>
+              </div>
+              <div class="pipe-arrow">&rarr;</div>
+              <div class="pipe-step">
+                <div class="pipe-icon" style="color:var(--accent-emerald);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                </div>
+                <div class="pipe-title">4. MySQL Database</div>
+                <div class="pipe-sub">Port 3306 Query Data</div>
+              </div>
+              <div class="pipe-arrow">&rarr;</div>
+              <div class="pipe-step">
+                <div class="pipe-icon" style="color:var(--accent-blue);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <div class="pipe-title">5. Rendered HTML</div>
+                <div class="pipe-sub">Delivered to Client</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two Large Interactive Overview Cards -->
+          <div class="hero-cards-grid">
+            <!-- LAMP HERO CARD -->
+            <div class="stack-hero-card lamp-card" onclick="location.href='#lamp'">
+              <span class="stack-card-badge">Linux Enterprise Architecture</span>
+              <div class="stack-hero-title">
+                <span>LAMP STACK</span>
+              </div>
+              <div class="stack-hero-formula">
+                <span>Linux + Apache + MySQL + PHP</span>
+                <span style="color:var(--accent-blue); font-weight:800;">[L.A.M.P]</span>
+              </div>
+              <p class="stack-hero-desc">
+                The open-source industry standard. Highly secure, cost-free, and powers the vast majority of web hosting environments, cloud VPS platforms, and internet servers worldwide.
+              </p>
+              <div class="stack-layer-pills">
+                <span class="layer-pill os-diff">OS: Linux</span>
+                <span class="layer-pill">Web Server: Apache</span>
+                <span class="layer-pill">Database: MySQL</span>
+                <span class="layer-pill">Scripting: PHP</span>
+              </div>
+              <div class="stack-card-action">
+                <span>Explore LAMP Details</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </div>
+            </div>
+
+            <!-- WAMP HERO CARD -->
+            <div class="stack-hero-card wamp-card" onclick="location.href='#wamp'">
+              <span class="stack-card-badge">Windows Developer Environment</span>
+              <div class="stack-hero-title">
+                <span>WAMP STACK</span>
+              </div>
+              <div class="stack-hero-formula">
+                <span>Windows + Apache + MySQL + PHP</span>
+                <span style="color:var(--accent-purple); font-weight:800;">[W.A.M.P]</span>
+              </div>
+              <p class="stack-hero-desc">
+                The Windows-native software bundle. Features one-click desktop installation, graphical system tray service management, and is optimized for fast local web development and testing.
+              </p>
+              <div class="stack-layer-pills">
+                <span class="layer-pill os-diff" style="background:var(--accent-purple-light); color:var(--accent-purple);">OS: Windows</span>
+                <span class="layer-pill">Web Server: Apache</span>
+                <span class="layer-pill">Database: MySQL</span>
+                <span class="layer-pill">Scripting: PHP</span>
+              </div>
+              <div class="stack-card-action">
+                <span>Explore WAMP Details</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           2. LAMP STACK OVERVIEW SECTION
+           ========================================== -->
+      <section id="lamp">
+        <div class="section-header">
+          <span class="section-tag">Linux Stack</span>
+          <h2 class="section-title">LAMP Stack Architecture</h2>
+          <p class="section-subtitle">
+            A cohesive suite of four open-source technologies working in unison to build and serve high-performance dynamic web applications.
+          </p>
+        </div>
+
+        <!-- 4 Separate Interactive Cards for LAMP -->
+        <div class="components-grid">
+          <!-- LINUX -->
+          <div class="component-card" onclick="openComponentModal('linux')">
+            <div class="comp-icon-box" style="background-color: #eff6ff; color: #2563eb;">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C9.5 2 7.5 3.5 7.5 5.5c0 .7.2 1.4.6 2C6.8 8.6 6 10.2 6 12c0 2 .8 3.8 2 5v2c0 1.7 1.8 3 4 3s4-1.3 4-3v-2c1.2-1.2 2-3 2-5 0-1.8-.8-3.4-2.1-4.5.4-.6.6-1.3.6-2C16.5 3.5 14.5 2 12 2zm-1.5 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm3 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm-1.5 1.5c1 0 1.5.5 1.5 1s-.5 1-1.5 1-1.5-.5-1.5-1 .5-1 1.5-1z"/>
+              </svg>
+            </div>
+            <div class="comp-role-badge">Base Layer &bull; Operating System</div>
+            <h3 class="comp-title">LINUX</h3>
+            <ul class="comp-points">
+              <li>Open-source operating system.</li>
+              <li>Provides the platform to run the web server.</li>
+              <li>Commonly used in web hosting.</li>
+            </ul>
+            <div class="comp-card-click-hint">
+              <span>Inspect details</span> &rarr;
+            </div>
+          </div>
+
+          <!-- APACHE -->
+          <div class="component-card" onclick="openComponentModal('apache')">
+            <div class="comp-icon-box" style="background-color: #fff7ed; color: #ea580c;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                <line x1="6" y1="18" x2="6.01" y2="18"/>
+              </svg>
+            </div>
+            <div class="comp-role-badge">Web Server</div>
+            <h3 class="comp-title">APACHE</h3>
+            <ul class="comp-points">
+              <li>Web server software.</li>
+              <li>Receives HTTP requests.</li>
+              <li>Delivers web pages to browsers.</li>
+              <li>Connects browser requests with PHP processing.</li>
+            </ul>
+            <div class="comp-card-click-hint">
+              <span>Inspect details</span> &rarr;
+            </div>
+          </div>
+
+          <!-- MYSQL -->
+          <div class="component-card" onclick="openComponentModal('mysql')">
+            <div class="comp-icon-box" style="background-color: #f0fdf4; color: #16a34a;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            </div>
+            <div class="comp-role-badge">Database Management</div>
+            <h3 class="comp-title">MYSQL</h3>
+            <ul class="comp-points">
+              <li>Relational database management system.</li>
+              <li>Stores user information and application data.</li>
+              <li>Retrieves and manages records.</li>
+            </ul>
+            <div class="comp-card-click-hint">
+              <span>Inspect details</span> &rarr;
+            </div>
+          </div>
+
+          <!-- PHP -->
+          <div class="component-card" onclick="openComponentModal('php')">
+            <div class="comp-icon-box" style="background-color: #faf5ff; color: #7c3aed;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+                <line x1="14" y1="4" x2="10" y2="20"/>
+              </svg>
+            </div>
+            <div class="comp-role-badge">Scripting Language</div>
+            <h3 class="comp-title">PHP</h3>
+            <ul class="comp-points">
+              <li>Server-side scripting language.</li>
+              <li>Processes form submissions.</li>
+              <li>Communicates with MySQL.</li>
+              <li>Generates dynamic web pages.</li>
+            </ul>
+            <div class="comp-card-click-hint">
+              <span>Inspect details</span> &rarr;
+            </div>
+          </div>
+        </div>
+
+        <!-- Relationship Visual Diagram: Linux -> Apache -> PHP -> MySQL -->
+        <div class="arch-flow-diagram">
+          <div class="diagram-header">
+            <div class="diagram-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              LAMP Relationship Flow: Linux &rarr; Apache &rarr; PHP &rarr; MySQL
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Click any node to inspect function</div>
+          </div>
+
+          <div class="flow-chain">
+            <div class="flow-node" onclick="openComponentModal('linux')" title="Click for Linux details">
+              <div class="flow-node-icon" style="color:var(--accent-blue);">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 7.5 3.5 7.5 5.5c0 .7.2 1.4.6 2C6.8 8.6 6 10.2 6 12c0 2 .8 3.8 2 5v2c0 1.7 1.8 3 4 3s4-1.3 4-3v-2c1.2-1.2 2-3 2-5 0-1.8-.8-3.4-2.1-4.5.4-.6.6-1.3.6-2C16.5 3.5 14.5 2 12 2z"/></svg>
+              </div>
+              <div class="flow-node-title">Linux</div>
+              <div class="flow-node-layer">Host OS Platform</div>
+            </div>
+
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+
+            <div class="flow-node" onclick="openComponentModal('apache')" title="Click for Apache details">
+              <div class="flow-node-icon" style="color:var(--accent-orange);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
+              </div>
+              <div class="flow-node-title">Apache</div>
+              <div class="flow-node-layer">Web Server Engine</div>
+            </div>
+
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+
+            <div class="flow-node" onclick="openComponentModal('php')" title="Click for PHP details">
+              <div class="flow-node-icon" style="color:var(--accent-purple);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div class="flow-node-title">PHP</div>
+              <div class="flow-node-layer">Script Processing</div>
+            </div>
+
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+
+            <div class="flow-node" onclick="openComponentModal('mysql')" title="Click for MySQL details">
+              <div class="flow-node-icon" style="color:var(--accent-emerald);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+              </div>
+              <div class="flow-node-title">MySQL</div>
+              <div class="flow-node-layer">Database Storage</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           3. WAMP STACK OVERVIEW SECTION
+           ========================================== -->
+      <section id="wamp">
+        <div class="section-header">
+          <span class="section-tag purple">Windows Stack</span>
+          <h2 class="section-title">WAMP Stack Architecture</h2>
+          <p class="section-subtitle">
+            A developer-friendly environment built specifically for Microsoft Windows, packaged for swift local coding and testing.
+          </p>
+        </div>
+
+        <!-- 4 Separate Interactive Cards for WAMP -->
+        <div class="components-grid">
+          <!-- WINDOWS -->
+          <div class="component-card border-purple" onclick="openComponentModal('windows')">
+            <div class="comp-icon-box" style="background-color: #ede9fe; color: #7c3aed;">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 5.4l7.6-1v7H3V5.4zm0 8.2h7.6v7L3 19.6v-6zm9.2-9.4l8.8-1.2v8.6h-8.8V4.2zm0 9.4h8.8v8.6l-8.8-1.2V13.6z"/>
+              </svg>
+            </div>
+            <div class="comp-role-badge">Base Layer &bull; Operating System</div>
+            <h3 class="comp-title">WINDOWS</h3>
+            <ul class="comp-points">
+              <li>Operating system.</li>
+              <li>Provides the environment for the web server.</li>
+            </ul>
+            <div class="comp-card-click-hint">
+              <span>Inspect details</span> &rarr;
+            </div>
+          </div>
+
+          <!-- APACHE (WAMP) -->
+          <div class="component-card" onclick="openComponentModal('apache')">
+            <div class="comp-icon-box" style="background-color: #fff7ed; color: #ea580c;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                <line x1="6" y1="18" x2="6.01" y2="18"/>
+              </svg>
+            </div>
+            <div class="comp-role-badge">Web Server</div>
+            <h3 class="comp-title">APACHE</h3>
+            <ul class="comp-points">
+              <li>Handles HTTP requests.</li>
+              <li>Serves website files.</li>
+              <li>Passes PHP requests for processing.</li>
+            </ul>
+            <div class="comp-card-click-hint">
+              <span>Inspect details</span> &rarr;
+            </div>
+          </div>
+
+          <!-- MYSQL (WAMP) -->
+          <div class="component-card" onclick="openComponentModal('mysql')">
+            <div class="comp-icon-box" style="background-color: #f0fdf4; color: #16a34a;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            </div>
+            <div class="comp-role-badge">Database Management</div>
+            <h3 class="comp-title">MYSQL</h3>
+            <ul class="comp-points">
+              <li>Stores and retrieves application data.</li>
+            </ul>
+            <div class="comp-card-click-hint">
+              <span>Inspect details</span> &rarr;
+            </div>
+          </div>
+
+          <!-- PHP (WAMP) -->
+          <div class="component-card" onclick="openComponentModal('php')">
+            <div class="comp-icon-box" style="background-color: #faf5ff; color: #7c3aed;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                <line x1="14" y1="4" x2="10" y2="20"/>
+              </svg>
+            </div>
+            <div class="comp-role-badge">Scripting Language</div>
+            <h3 class="comp-title">PHP</h3>
+            <ul class="comp-points">
+              <li>Executes server-side scripts.</li>
+              <li>Creates dynamic web content.</li>
+            </ul>
+            <div class="comp-card-click-hint">
+              <span>Inspect details</span> &rarr;
+            </div>
+          </div>
+        </div>
+
+        <!-- WAMP Architecture Diagram -->
+        <div class="arch-flow-diagram">
+          <div class="diagram-header">
+            <div class="diagram-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              WAMP Architecture: Windows &rarr; Apache &rarr; PHP &rarr; MySQL
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Click any node to view function</div>
+          </div>
+
+          <div class="flow-chain">
+            <div class="flow-node" onclick="openComponentModal('windows')" style="border-color:var(--accent-purple);" title="Click for Windows details">
+              <div class="flow-node-icon" style="color:var(--accent-purple);">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.4l7.6-1v7H3V5.4zm0 8.2h7.6v7L3 19.6v-6zm9.2-9.4l8.8-1.2v8.6h-8.8V4.2zm0 9.4h8.8v8.6l-8.8-1.2V13.6z"/></svg>
+              </div>
+              <div class="flow-node-title">Windows</div>
+              <div class="flow-node-layer" style="color:var(--accent-purple); font-weight:700;">Host OS Platform</div>
+            </div>
+
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24" style="stroke:var(--accent-purple);"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+
+            <div class="flow-node" onclick="openComponentModal('apache')" title="Click for Apache details">
+              <div class="flow-node-icon" style="color:var(--accent-orange);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
+              </div>
+              <div class="flow-node-title">Apache</div>
+              <div class="flow-node-layer">Web Server Engine</div>
+            </div>
+
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24" style="stroke:var(--accent-purple);"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+
+            <div class="flow-node" onclick="openComponentModal('php')" title="Click for PHP details">
+              <div class="flow-node-icon" style="color:var(--accent-purple);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div class="flow-node-title">PHP</div>
+              <div class="flow-node-layer">Script Processing</div>
+            </div>
+
+            <div class="flow-arrow">
+              <svg viewBox="0 0 24 24" style="stroke:var(--accent-purple);"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+
+            <div class="flow-node" onclick="openComponentModal('mysql')" title="Click for MySQL details">
+              <div class="flow-node-icon" style="color:var(--accent-emerald);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+              </div>
+              <div class="flow-node-title">MySQL</div>
+              <div class="flow-node-layer">Database Storage</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Highlight Difference Banner -->
+        <div class="diff-banner">
+          <div class="diff-banner-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="diff-banner-text">
+            <strong>Key Distinction:</strong> WAMP operates natively on <strong>Microsoft Windows</strong> instead of Linux. The application layers (Apache, MySQL, and PHP) remain identical in role, allowing Windows developers to build and test code locally with graphical controls without needing a virtual machine.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           4. COMPONENT CARDS & COHESIVE INTEGRATION
+           ========================================== -->
+      <section id="components">
+        <div class="section-header">
+          <span class="section-tag orange">Core Components Matrix</span>
+          <h2 class="section-title">Key Components of Web Stacks</h2>
+          <p class="section-subtitle">
+            An individual breakdown of each technology across both LAMP and WAMP, their architectural responsibilities, and how they unite into a synchronized pipeline.
+          </p>
+        </div>
+
+        <!-- 5 Individual Visual Component Cards -->
+        <div class="components-grid">
+          <!-- 1. LINUX -->
+          <div class="component-card" onclick="openComponentModal('linux')">
+            <div class="comp-icon-box" style="background:#eff6ff; color:#2563eb;">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 7.5 3.5 7.5 5.5c0 .7.2 1.4.6 2C6.8 8.6 6 10.2 6 12c0 2 .8 3.8 2 5v2c0 1.7 1.8 3 4 3s4-1.3 4-3v-2c1.2-1.2 2-3 2-5 0-1.8-.8-3.4-2.1-4.5.4-.6.6-1.3.6-2C16.5 3.5 14.5 2 12 2z"/></svg>
+            </div>
+            <div class="comp-role-badge">Base Layer &bull; Linux OS</div>
+            <h3 class="comp-title">Linux</h3>
+            <ul class="comp-points">
+              <li>Free, open-source Unix-like kernel &amp; operating system.</li>
+              <li>Manages file systems, network sockets, memory &amp; CPU processes.</li>
+              <li>High-security permission model designed for production web servers.</li>
+            </ul>
+            <div class="comp-card-click-hint"><span>Click to view technical specs</span> &rarr;</div>
+          </div>
+
+          <!-- 2. WINDOWS -->
+          <div class="component-card border-purple" onclick="openComponentModal('windows')">
+            <div class="comp-icon-box" style="background:#ede9fe; color:#7c3aed;">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.4l7.6-1v7H3V5.4zm0 8.2h7.6v7L3 19.6v-6zm9.2-9.4l8.8-1.2v8.6h-8.8V4.2zm0 9.4h8.8v8.6l-8.8-1.2V13.6z"/></svg>
+            </div>
+            <div class="comp-role-badge">Base Layer &bull; Windows OS</div>
+            <h3 class="comp-title">Windows</h3>
+            <ul class="comp-points">
+              <li>Microsoft's desktop operating system with intuitive GUI.</li>
+              <li>Provides background service hosting via Windows Service Control.</li>
+              <li>Enables local offline development directly on developer PCs.</li>
+            </ul>
+            <div class="comp-card-click-hint"><span>Click to view technical specs</span> &rarr;</div>
+          </div>
+
+          <!-- 3. APACHE -->
+          <div class="component-card border-orange" onclick="openComponentModal('apache')">
+            <div class="comp-icon-box" style="background:#fff7ed; color:#ea580c;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
+            </div>
+            <div class="comp-role-badge">Web Server Daemon</div>
+            <h3 class="comp-title">Apache</h3>
+            <ul class="comp-points">
+              <li>Listens on TCP Port 80 (HTTP) &amp; Port 443 (HTTPS).</li>
+              <li>Directly serves static assets (.html, .css, .js, images).</li>
+              <li>Dispatches `.php` requests to the PHP interpreter runtime.</li>
+            </ul>
+            <div class="comp-card-click-hint"><span>Click to view technical specs</span> &rarr;</div>
+          </div>
+
+          <!-- 4. MYSQL -->
+          <div class="component-card" onclick="openComponentModal('mysql')">
+            <div class="comp-icon-box" style="background:#f0fdf4; color:#16a34a;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <div class="comp-role-badge">Database Engine</div>
+            <h3 class="comp-title">MySQL</h3>
+            <ul class="comp-points">
+              <li>Relational Database Management System (RDBMS) on Port 3306.</li>
+              <li>Stores structured tables with ACID transaction safety.</li>
+              <li>Executes SQL queries sent from PHP scripts to retrieve data.</li>
+            </ul>
+            <div class="comp-card-click-hint"><span>Click to view technical specs</span> &rarr;</div>
+          </div>
+
+          <!-- 5. PHP -->
+          <div class="component-card border-purple" onclick="openComponentModal('php')">
+            <div class="comp-icon-box" style="background:#faf5ff; color:#7c3aed;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div class="comp-role-badge">Scripting Language</div>
+            <h3 class="comp-title">PHP</h3>
+            <ul class="comp-points">
+              <li>Server-side scripting engine executing business application logic.</li>
+              <li>Processes form inputs, cookies, sessions &amp; authentication.</li>
+              <li>Builds SQL queries for MySQL and renders personalized HTML.</li>
+            </ul>
+            <div class="comp-card-click-hint"><span>Click to view technical specs</span> &rarr;</div>
+          </div>
+        </div>
+
+        <!-- How Components Work Together Section -->
+        <div class="integration-summary-box">
+          <div class="integration-summary-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            How These Components Work Together
+          </div>
+          <p class="integration-summary-desc">
+            The power of LAMP and WAMP stems from their <strong>layered synchronization</strong>: The <strong>Operating System</strong> (Linux/Windows) provisions memory, network sockets, and file system security. The <strong>Apache Web Server</strong> acts as the public concierge listening on ports 80/443. When a browser requests dynamic content, Apache delegates execution to the <strong>PHP interpreter</strong>. PHP connects to the <strong>MySQL database</strong> on port 3306 using structured SQL, extracts requested records, merges data into HTML templates, and passes the generated web page back to Apache, which serves the final HTTP response to the client.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           5. ROLE OF APACHE & INTEGRATION (PHP & MYSQL)
+           ========================================== -->
+      <section id="apache">
+        <div class="section-header">
+          <span class="section-tag orange">Core Engine &bull; Integration</span>
+          <h2 class="section-title">Apache Web Server &amp; Integration</h2>
+          <p class="section-subtitle">
+            Understand Apache's central role in handling client requests, delivering web pages, and deeply integrating with PHP and MySQL.
+          </p>
+        </div>
+
+        <!-- 6 Step Request-Response Visual Process -->
+        <div class="apache-role-box">
+          <div style="font-size:1.1rem; font-weight:800; color:var(--text-main); margin-bottom:4px;">
+            The Request-Response Lifecycle Flow
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-secondary);">
+            Visual step-by-step flow from user browser request to final rendered page:
+          </p>
+
+          <div class="steps-timeline">
+            <!-- STEP 1 -->
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <div class="step-title">User Enters URL</div>
+              <div class="step-desc">
+                User enters a website address (e.g. <code>http://localhost/profile.php</code>) in the client web browser.
+              </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <div class="step-title">Browser Sends Request</div>
+              <div class="step-desc">
+                Browser translates the domain name via DNS and transmits an HTTP GET/POST request across the network.
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <div class="step-title">Apache Receives Request</div>
+              <div class="step-desc">
+                Apache listens on Port 80 (HTTP) or 443 (HTTPS), parses incoming HTTP headers, and identifies the target resource.
+              </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <div class="step-title">Static vs. Dynamic Routing</div>
+              <div class="step-desc">
+                Apache serves static files (.html, .css) directly from disk, or forwards executable <code>.php</code> files to the PHP module.
+              </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="step-card">
+              <div class="step-number">5</div>
+              <div class="step-title">PHP &amp; MySQL Processing</div>
+              <div class="step-desc">
+                PHP processes application code and queries MySQL on Port 3306 for necessary records, generating output HTML.
+              </div>
+            </div>
+
+            <!-- STEP 6 -->
+            <div class="step-card">
+              <div class="step-number">6</div>
+              <div class="step-title">Response Delivered</div>
+              <div class="step-desc">
+                Apache packages the rendered HTML with HTTP 200 OK headers and transmits the response back to the client browser.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Integration Cards (Apache -> PHP, PHP -> MySQL) -->
+        <div class="integration-grid">
+          <!-- APACHE + PHP INTEGRATION -->
+          <div class="integration-card">
+            <div class="integration-card-header">
+              <span class="integration-badge badge-apache-php">Apache &harr; PHP Integration</span>
+            </div>
+            <h4 style="font-size:1.05rem; font-weight:800; color:var(--text-main); margin-bottom:8px;">How Apache Communicates with PHP</h4>
+            <p class="integration-text">
+              Apache connects to PHP primarily through two proven integration architectures:
+            </p>
+            <ul style="margin-top:8px; padding-left:18px; font-size:0.88rem; color:var(--text-secondary); line-height:1.5;">
+              <li><strong>mod_php (Embedded Apache Module):</strong> The PHP interpreter runs inside Apache's worker processes. Fast execution with zero IPC overhead, common on traditional LAMP/WAMP installations.</li>
+              <li><strong>PHP-FPM (FastCGI Process Manager):</strong> Apache acts as a reverse proxy, delegating requests to a separate PHP daemon via Unix domain socket or TCP port 9000. Provides superior concurrency and memory isolation.</li>
+            </ul>
+          </div>
+
+          <!-- PHP + MYSQL INTEGRATION -->
+          <div class="integration-card">
+            <div class="integration-card-header">
+              <span class="integration-badge badge-php-mysql">PHP &harr; MySQL Integration</span>
+            </div>
+            <h4 style="font-size:1.05rem; font-weight:800; color:var(--text-main); margin-bottom:8px;">How PHP Communicates with MySQL</h4>
+            <p class="integration-text">
+              PHP connects to the MySQL server engine using native client library drivers:
+            </p>
+            <ul style="margin-top:8px; padding-left:18px; font-size:0.88rem; color:var(--text-secondary); line-height:1.5;">
+              <li><strong>PDO (PHP Data Objects):</strong> A database abstraction layer providing secure prepared statements, SQL injection prevention, and standardized transaction management across databases.</li>
+              <li><strong>MySQLi Extension:</strong> A dedicated driver built specifically for MySQL, supporting procedural and object-oriented syntax, dual query caching, and binary protocol statements over port 3306.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Expandable Deep-Dive Explanations -->
+        <div class="expandable-container">
+          <!-- Accordion 1: Apache Config Details -->
+          <div class="expandable-card" id="accCard1">
+            <div class="expandable-header" onclick="toggleAccordion('accCard1')">
+              <span>Deep Dive: Apache Configuration Files (httpd.conf &amp; apache2.conf)</span>
+              <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="expandable-body">
+              <p>Apache's behavior is controlled by core configuration files located at <code>/etc/apache2/apache2.conf</code> (on Ubuntu/Debian) or <code>httpd.conf</code> (in WampServer):</p>
+              <ul style="margin:8px 0 0 18px; line-height:1.6;">
+                <li><strong>DocumentRoot:</strong> Defines the public web root directory (default: <code>/var/www/html</code> on Linux, <code>C:\wamp64\www</code> on Windows).</li>
+                <li><strong>DirectoryIndex:</strong> Prioritizes default landing files (e.g., <code>DirectoryIndex index.php index.html</code>).</li>
+                <li><strong>Listen Directive:</strong> Configures network listening ports (e.g. <code>Listen 80</code> for HTTP and <code>Listen 443</code> for SSL/TLS).</li>
+                <li><strong>Virtual Hosts:</strong> Allows a single Apache instance to host dozens of independent domain names with distinct document roots.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Accordion 2: PHP Configuration Details -->
+          <div class="expandable-card" id="accCard2">
+            <div class="expandable-header" onclick="toggleAccordion('accCard2')">
+              <span>Deep Dive: PHP Engine Configuration (php.ini)</span>
+              <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="expandable-body">
+              <p>The PHP runtime behavior is managed through the central <code>php.ini</code> configuration file:</p>
+              <ul style="margin:8px 0 0 18px; line-height:1.6;">
+                <li><strong>extension=mysqli &amp; extension=pdo_mysql:</strong> Must be enabled to allow PHP to open connections to MySQL.</li>
+                <li><strong>memory_limit:</strong> Controls maximum RAM consumption per script execution (e.g. <code>128M</code> or <code>256M</code>).</li>
+                <li><strong>upload_max_filesize &amp; post_max_size:</strong> Dictates the maximum payload allowed when users upload files via HTML forms.</li>
+                <li><strong>display_errors:</strong> Set to <code>On</code> during local development in WAMP, but disabled in production LAMP for security.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Animated Simulation Demonstration -->
+        <div class="simulator-container" style="margin-top:28px;">
+          <div class="sim-header">
+            <div class="sim-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Live Request-Response Simulator
+            </div>
+            <div class="sim-controls">
+              <button class="btn btn-primary" id="simStartBtn" onclick="runSimulation()" style="background:#0284c7; border:none; padding:8px 16px; font-size:0.85rem;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Simulate Request
+              </button>
+              <button class="btn btn-secondary" onclick="resetSimulation()" style="background:rgba(255,255,255,0.1); color:#ffffff; border:1px solid rgba(255,255,255,0.2); padding:8px 14px; font-size:0.85rem;">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Simulation Flow Diagram -->
+          <div class="sim-track">
+            <div class="sim-nodes">
+              <!-- Node 1: Browser -->
+              <div class="sim-node" id="nodeBrowser">
+                <div class="sim-node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div class="sim-node-name">1. Browser</div>
+                <div class="sim-node-status" id="statusBrowser">Client Ready</div>
+              </div>
+
+              <div class="sim-wire"></div>
+
+              <!-- Node 2: Apache -->
+              <div class="sim-node" id="nodeApache">
+                <div class="sim-node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
+                </div>
+                <div class="sim-node-name">2. Apache</div>
+                <div class="sim-node-status" id="statusApache">Listening :80</div>
+              </div>
+
+              <div class="sim-wire"></div>
+
+              <!-- Node 3: PHP -->
+              <div class="sim-node" id="nodePHP">
+                <div class="sim-node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <div class="sim-node-name">3. PHP Engine</div>
+                <div class="sim-node-status" id="statusPHP">Idle</div>
+              </div>
+
+              <div class="sim-wire"></div>
+
+              <!-- Node 4: MySQL -->
+              <div class="sim-node" id="nodeMySQL">
+                <div class="sim-node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                </div>
+                <div class="sim-node-name">4. MySQL DB</div>
+                <div class="sim-node-status" id="statusMySQL">Listening :3306</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Console Logger -->
+          <div class="sim-console" id="simConsole">
+            <div class="sim-console-line">
+              <span class="sim-console-time">[00:00:00]</span>
+              <span class="sim-console-text">Ready. Click "Simulate Request" to observe data flow through the stack.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           6. LAMP VS WAMP COMPARISON SECTION
+           ========================================== -->
+      <section id="comparison">
+        <div class="section-header">
+          <span class="section-tag cyan">Side-by-Side</span>
+          <h2 class="section-title">LAMP vs. WAMP Comparison</h2>
+          <p class="section-subtitle">
+            A comprehensive matrix contrasting operating systems, server configurations, databases, scripting runtimes, and real-world deployment targets.
+          </p>
+        </div>
+
+        <!-- Formula Highlight Boxes -->
+        <div class="comparison-summary-boxes">
+          <div class="formula-box lamp-formula">
+            <span class="formula-tag">Linux Stack</span>
+            <div class="formula-text">
+              LAMP = <span class="os-highlight">Linux</span> + Apache + MySQL + PHP
+            </div>
+            <p class="formula-desc">
+              Linux delivers open-source security, terminal-based remote administration, and stability for public cloud hosting.
+            </p>
+          </div>
+
+          <div class="formula-box wamp-formula">
+            <span class="formula-tag">Windows Stack</span>
+            <div class="formula-text">
+              WAMP = <span class="os-highlight">Windows</span> + Apache + MySQL + PHP
+            </div>
+            <p class="formula-desc">
+              Windows delivers desktop convenience, graphical tray toggles, and zero-configuration local workstation testing.
+            </p>
+          </div>
+        </div>
+
+        <!-- Clean Comparison Table -->
+        <div class="table-responsive">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature / Dimension</th>
+                <th>LAMP Stack</th>
+                <th>WAMP Stack</th>
+                <th>Architectural Significance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="param-cell">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  Operating System
+                </td>
+                <td><span class="badge-diff badge-blue">Linux</span> (Ubuntu, Debian, CentOS, RHEL)</td>
+                <td><span class="badge-diff badge-purple">Windows</span> (Windows 10, Windows 11)</td>
+                <td><strong style="color:var(--accent-orange);">Sole Architectural Difference</strong></td>
+              </tr>
+              <tr>
+                <td class="param-cell">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
+                  Web Server
+                </td>
+                <td>Apache HTTP Server (Native Linux binary)</td>
+                <td>Apache HTTP Server (Win64 build)</td>
+                <td>Identical server core listening on port 80/443</td>
+              </tr>
+              <tr>
+                <td class="param-cell">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                  Database Engine
+                </td>
+                <td>MySQL / MariaDB</td>
+                <td>MySQL / MariaDB</td>
+                <td>Identical relational engine on TCP port 3306</td>
+              </tr>
+              <tr>
+                <td class="param-cell">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  Programming Language
+                </td>
+                <td>PHP (System package runtime)</td>
+                <td>PHP (Pre-compiled Windows binaries)</td>
+                <td>Identical PHP scripting engine and language syntax</td>
+              </tr>
+              <tr>
+                <td class="param-cell">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/></svg>
+                  Cost &amp; Licensing
+                </td>
+                <td>100% Free &amp; Open Source (FOSS)</td>
+                <td>WampServer is free; Windows OS requires license</td>
+                <td>LAMP incurs zero operating system licensing fees</td>
+              </tr>
+              <tr>
+                <td class="param-cell">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  Configuration Method
+                </td>
+                <td>Terminal command line (<code>/etc/apache2/</code>)</td>
+                <td>Graphical system tray menu + editable config text files</td>
+                <td>WAMP allows one-click switching of PHP versions</td>
+              </tr>
+              <tr>
+                <td class="param-cell">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7.5" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+                  Common Usage
+                </td>
+                <td>Live production websites, cloud VPS, enterprise host</td>
+                <td>Local desktop development, student practical labs</td>
+                <td>LAMP powers live servers; WAMP accelerates local builds</td>
+              </tr>
+              <tr>
+                <td class="param-cell">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>
+                  Installation Effort
+                </td>
+                <td>Sequential terminal package installation via <code>apt</code></td>
+                <td>All-in-one graphical installer executable (<code>.exe</code>)</td>
+                <td>WAMP packages all tools into a single setup wizard</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           7. INSTALLATION GUIDES & CONFIGURATION
+           ========================================== -->
+      <section id="installation">
+        <div class="section-header">
+          <span class="section-tag cyan">Step-by-Step Practical</span>
+          <h2 class="section-title">Installation &amp; Configuration Guides</h2>
+          <p class="section-subtitle">
+            Complete, tested step-by-step procedures for Ubuntu Linux (LAMP) and Microsoft Windows (WAMP) with copyable terminal commands, verification, and configuration details.
+          </p>
+        </div>
+
+        <!-- Tab Controls -->
+        <div class="install-tabs">
+          <button class="tab-btn active" onclick="switchInstallTab('lampTab', this)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 7.5 3.5 7.5 5.5c0 .7.2 1.4.6 2C6.8 8.6 6 10.2 6 12c0 2 .8 3.8 2 5v2c0 1.7 1.8 3 4 3s4-1.3 4-3v-2c1.2-1.2 2-3 2-5 0-1.8-.8-3.4-2.1-4.5.4-.6.6-1.3.6-2C16.5 3.5 14.5 2 12 2z"/></svg>
+            LAMP on Ubuntu Linux
+          </button>
+          <button class="tab-btn" onclick="switchInstallTab('wampTab', this)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.4l7.6-1v7H3V5.4zm0 8.2h7.6v7L3 19.6v-6zm9.2-9.4l8.8-1.2v8.6h-8.8V4.2zm0 9.4h8.8v8.6l-8.8-1.2V13.6z"/></svg>
+            WAMP on Windows
+          </button>
+        </div>
+
+        <!-- LAMP TAB CONTENT -->
+        <div id="lampTab" class="tab-content active">
+          <!-- Checklist Progress -->
+          <div class="checklist-progress-bar">
+            <div>
+              <strong style="color:var(--text-main);">Ubuntu Linux Installation Checklist</strong>
+              <div style="font-size:0.78rem; color:var(--text-muted);">Check off commands as you execute them</div>
+            </div>
+            <div class="progress-track" style="max-width:260px;">
+              <div class="progress-fill" id="lampProgressFill"></div>
+            </div>
+            <div class="progress-count" id="lampProgressCount">0 of 6 (0%)</div>
+          </div>
+
+          <div class="install-steps-list">
+            <!-- Step 1 -->
+            <div class="install-step-card" id="lampCard1">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('lamp', 1, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 1: Update packages</div>
+                  <span class="step-pill">Terminal</span>
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:6px;">
+                  Synchronize the package repository index to ensure the latest versions are fetched.
+                </p>
+                <div class="code-block">
+                  <span class="code-text" id="codeLamp1">sudo apt update</span>
+                  <button class="copy-btn" onclick="copyCommand('codeLamp1', this)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="install-step-card" id="lampCard2">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('lamp', 2, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 2: Install Apache</div>
+                  <span class="step-pill">Web Server</span>
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:6px;">
+                  Install the Apache2 web server daemon and default configuration files.
+                </p>
+                <div class="code-block">
+                  <span class="code-text" id="codeLamp2">sudo apt install apache2</span>
+                  <button class="copy-btn" onclick="copyCommand('codeLamp2', this)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="install-step-card" id="lampCard3">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('lamp', 3, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 3: Install MySQL</div>
+                  <span class="step-pill">Database</span>
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:6px;">
+                  Install MySQL server for relational database storage and user records.
+                </p>
+                <div class="code-block">
+                  <span class="code-text" id="codeLamp3">sudo apt install mysql-server</span>
+                  <button class="copy-btn" onclick="copyCommand('codeLamp3', this)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="install-step-card" id="lampCard4">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('lamp', 4, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 4: Install PHP</div>
+                  <span class="step-pill">Language &amp; Modules</span>
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:6px;">
+                  Install the PHP runtime, the Apache integration module, and the MySQL database driver.
+                </p>
+                <div class="code-block">
+                  <span class="code-text" id="codeLamp4">sudo apt install php libapache2-mod-php php-mysql</span>
+                  <button class="copy-btn" onclick="copyCommand('codeLamp4', this)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="install-step-card" id="lampCard5">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('lamp', 5, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 5: Restart Apache</div>
+                  <span class="step-pill">Systemctl</span>
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:6px;">
+                  Restart the Apache service to load the newly installed PHP module into memory.
+                </p>
+                <div class="code-block">
+                  <span class="code-text" id="codeLamp5">sudo systemctl restart apache2</span>
+                  <button class="copy-btn" onclick="copyCommand('codeLamp5', this)">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="install-step-card" id="lampCard6">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('lamp', 6, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 6: Test installation</div>
+                  <span class="step-pill">Verification</span>
+                </div>
+                <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:6px;">
+                  Open <a href="http://localhost" target="_blank" style="color:var(--accent-blue); font-weight:700;">http://localhost</a> in your web browser. You should see the standard Apache2 Ubuntu Default Welcome Page.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Configuration Details Card for LAMP -->
+          <div class="config-card-box">
+            <div class="config-card-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              Essential LAMP Post-Installation Configuration
+            </div>
+            <div style="font-size:0.88rem; color:var(--text-secondary); line-height:1.55;">
+              <p><strong>1. Verify PHP Integration:</strong> Create a test script <code>/var/www/html/info.php</code> containing <code>&lt;?php phpinfo(); ?&gt;</code> and visit <code>http://localhost/info.php</code> to confirm all modules.</p>
+              <p style="margin-top:6px;"><strong>2. Secure MySQL Installation:</strong> Execute <code>sudo mysql_secure_installation</code> to set a root password, remove anonymous users, and disallow remote root login.</p>
+              <p style="margin-top:6px;"><strong>3. Set Web Root Permissions:</strong> Run <code>sudo chown -R www-data:www-data /var/www/html</code> to grant Apache proper read/write ownership.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WAMP TAB CONTENT -->
+        <div id="wampTab" class="tab-content">
+          <!-- Checklist Progress -->
+          <div class="checklist-progress-bar">
+            <div>
+              <strong style="color:var(--text-main);">Windows WampServer Checklist</strong>
+              <div style="font-size:0.78rem; color:var(--text-muted);">Track your Windows setup milestone progress</div>
+            </div>
+            <div class="progress-track" style="max-width:260px;">
+              <div class="progress-fill" id="wampProgressFill"></div>
+            </div>
+            <div class="progress-count" id="wampProgressCount">0 of 7 (0%)</div>
+          </div>
+
+          <div class="install-steps-list">
+            <!-- Step 1 -->
+            <div class="install-step-card" id="wampCard1">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('wamp', 1, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 1: Download WampServer</div>
+                  <span class="step-pill">Download</span>
+                </div>
+                <p style="font-size:0.88rem; color:var(--text-secondary);">
+                  Download WampServer from its official portal. Choose the 64-bit (x64) or 32-bit (x86) version matching your Windows OS.
+                </p>
+                <div style="margin-top:10px;">
+                  <a href="https://www.wampserver.com/en/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:7px 15px; font-size:0.84rem;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Official WampServer Website (https://www.wampserver.com/en/)
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="install-step-card" id="wampCard2">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('wamp', 2, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 2: Install Microsoft Visual C++ Redistributables</div>
+                  <span class="step-pill">Prerequisite</span>
+                </div>
+                <p style="font-size:0.88rem; color:var(--text-secondary);">
+                  Install the required Microsoft Visual C++ redistributables (VC9 through VC17). Apache and PHP Windows binaries require these runtimes.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="install-step-card" id="wampCard3">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('wamp', 3, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 3: Run the WampServer installer</div>
+                  <span class="step-pill">Setup Wizard</span>
+                </div>
+                <p style="font-size:0.88rem; color:var(--text-secondary);">
+                  Right-click the downloaded setup file and select <strong>Run as administrator</strong> to initiate the installation wizard.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="install-step-card" id="wampCard4">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('wamp', 4, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 4: Select installation directory</div>
+                  <span class="step-pill">Path Config</span>
+                </div>
+                <p style="font-size:0.88rem; color:var(--text-secondary);">
+                  Select the installation directory (default recommended: <code>C:\wamp64</code> or <code>C:\wamp</code>).
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="install-step-card" id="wampCard5">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('wamp', 5, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 5: Complete installation and launch WampServer</div>
+                  <span class="step-pill">Launch</span>
+                </div>
+                <p style="font-size:0.88rem; color:var(--text-secondary);">
+                  Complete the setup wizard, select your preferred default web browser and text editor, and start WampServer.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="install-step-card" id="wampCard6">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('wamp', 6, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 6: Wait until the WampServer icon indicates services are running</div>
+                  <span class="step-pill">Status Monitor</span>
+                </div>
+                <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:10px;">
+                  Look at the WampServer icon in the Windows notification area (system tray). Wait until it turns completely <strong>GREEN</strong>.
+                </p>
+
+                <!-- Tray States -->
+                <div class="wamp-status-guide">
+                  <div class="tray-state">
+                    <div class="tray-icon-circle tray-red"></div>
+                    <strong style="color:#ef4444;">RED ICON</strong>
+                    <div>All services stopped</div>
+                  </div>
+                  <div class="tray-state">
+                    <div class="tray-icon-circle tray-orange"></div>
+                    <strong style="color:#f59e0b;">ORANGE ICON</strong>
+                    <div>1 service running (partial)</div>
+                  </div>
+                  <div class="tray-state">
+                    <div class="tray-icon-circle tray-green"></div>
+                    <strong style="color:#10b981;">GREEN ICON</strong>
+                    <div>All services online (Apache + MySQL)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 7 -->
+            <div class="install-step-card" id="wampCard7">
+              <input type="checkbox" class="step-checkbox" onchange="updateChecklistProgress('wamp', 7, this)">
+              <div class="step-card-content">
+                <div class="step-header-row">
+                  <div class="step-name">Step 7: Open http://localhost in the browser</div>
+                  <span class="step-pill">Verification</span>
+                </div>
+                <p style="font-size:0.88rem; color:var(--text-secondary);">
+                  Open your browser and navigate to <a href="http://localhost" target="_blank" style="color:var(--accent-purple); font-weight:700;">http://localhost</a> to view the WampServer Dashboard, PHP version information, and phpMyAdmin.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Configuration Details Card for WAMP -->
+          <div class="config-card-box">
+            <div class="config-card-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              Essential WAMP Configuration &amp; Port Troubleshooting
+            </div>
+            <div style="font-size:0.88rem; color:var(--text-secondary); line-height:1.55;">
+              <p><strong>1. Resolving Port 80 Conflicts (IIS / Skype):</strong> If WampServer remains Orange, another program (like IIS or Skype) is using port 80. Left-click WampServer icon &rarr; <em>Apache &rarr; httpd.conf</em>, change <code>Listen 80</code> to <code>Listen 8080</code>, and access via <code>http://localhost:8080</code>.</p>
+              <p style="margin-top:6px;"><strong>2. Web Document Root:</strong> Place your PHP website projects into <code>C:\wamp64\www\myproject\</code> and access them at <code>http://localhost/myproject/</code>.</p>
+              <p style="margin-top:6px;"><strong>3. Accessing Database GUI (phpMyAdmin):</strong> Open <code>http://localhost/phpmyadmin</code>. The default username is <code>root</code> with no password (blank).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           8. KNOWLEDGE QUIZ SECTION
+           ========================================== -->
+      <section id="quiz">
+        <div class="section-header">
+          <span class="section-tag purple">Self Assessment</span>
+          <h2 class="section-title">Knowledge Quiz</h2>
+          <p class="section-subtitle">
+            Validate your mastery of LAMP and WAMP architecture, Apache request routing, shared components, and installation procedures.
+          </p>
+        </div>
+
+        <div class="quiz-container">
+          <div class="quiz-header">
+            <div>
+              <span style="font-size:1.1rem; font-weight:800; color:var(--text-main);">Stack Architecture Mastery Check</span>
+              <div style="font-size:0.82rem; color:var(--text-muted);">5 Questions &bull; Instant Feedback &bull; Score Display</div>
+            </div>
+            <div class="quiz-score-badge" id="quizScoreDisplay">Score: 0 / 5</div>
+          </div>
+
+          <div id="quizQuestionsContainer">
+            <!-- Dynamically populated by JavaScript -->
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-secondary" onclick="resetQuiz()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              Retake Quiz
+            </button>
+            <div id="quizResultNote" style="font-weight:750; font-size:0.92rem; color:var(--accent-purple);"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           9. QUICK REVISION FLASHCARDS
+           ========================================== -->
+      <section id="revision">
+        <div class="section-header">
+          <span class="section-tag">Key Takeaways</span>
+          <h2 class="section-title">Quick Revision Flashcards</h2>
+          <p class="section-subtitle">
+            Concise 1&ndash;2 sentence summaries of every core stack component for rapid review and exam preparation.
+          </p>
+        </div>
+
+        <div class="revision-grid">
+          <!-- Flashcard 1: Linux -->
+          <div class="revision-card">
+            <span class="rev-tag">Operating System</span>
+            <h3 class="rev-name">Linux</h3>
+            <p class="rev-def">
+              An open-source, Unix-like operating system that serves as the secure, stable foundation for LAMP hosting environments.
+            </p>
+            <div class="rev-fact">Powers over 70% of public Internet web servers.</div>
+          </div>
+
+          <!-- Flashcard 2: Windows -->
+          <div class="revision-card purple-border">
+            <span class="rev-tag">Operating System</span>
+            <h3 class="rev-name">Windows</h3>
+            <p class="rev-def">
+              Microsoft's graphical operating system that provides a comfortable local development base for WAMP installations.
+            </p>
+            <div class="rev-fact">Allows building web apps natively on desktop Windows.</div>
+          </div>
+
+          <!-- Flashcard 3: Apache -->
+          <div class="revision-card orange-border">
+            <span class="rev-tag">Web Server</span>
+            <h3 class="rev-name">Apache</h3>
+            <p class="rev-def">
+              The HTTP web server software that accepts client browser requests, delivers static files, and routes PHP scripts.
+            </p>
+            <div class="rev-fact">Listens on Port 80 for HTTP and Port 443 for HTTPS.</div>
+          </div>
+
+          <!-- Flashcard 4: MySQL -->
+          <div class="revision-card">
+            <span class="rev-tag">Database</span>
+            <h3 class="rev-name">MySQL</h3>
+            <p class="rev-def">
+              A robust relational database management system (RDBMS) that stores, queries, and organizes structured site data.
+            </p>
+            <div class="rev-fact">Communicates via SQL queries on default Port 3306.</div>
+          </div>
+
+          <!-- Flashcard 5: PHP -->
+          <div class="revision-card purple-border">
+            <span class="rev-tag">Language</span>
+            <h3 class="rev-name">PHP</h3>
+            <p class="rev-def">
+              A server-side scripting language that executes business logic, queries MySQL, and outputs dynamic HTML to Apache.
+            </p>
+            <div class="rev-fact">Embedded directly within web templates or standalone scripts.</div>
+          </div>
+
+          <!-- Flashcard 6: LAMP Stack -->
+          <div class="revision-card">
+            <span class="rev-tag">Full Architecture</span>
+            <h3 class="rev-name">LAMP Stack</h3>
+            <p class="rev-def">
+              Linux + Apache + MySQL + PHP: The premier 100% open-source software stack engineered for live production web hosting.
+            </p>
+            <div class="rev-fact">Cost-free software stack with high performance &amp; stability.</div>
+          </div>
+
+          <!-- Flashcard 7: WAMP Stack -->
+          <div class="revision-card purple-border">
+            <span class="rev-tag">Full Architecture</span>
+            <h3 class="rev-name">WAMP Stack</h3>
+            <p class="rev-def">
+              Windows + Apache + MySQL + PHP: A developer-centric package providing one-click local server setup on Microsoft Windows.
+            </p>
+            <div class="rev-fact">Features graphical tray controls for swift local testing.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+        <div>
+          <strong>LAMP &amp; WAMP STACKS</strong> &bull; College Web Technology Practical Assignment
+        </div>
+        <div>
+          Understand &bull; Compare &bull; Build
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- ==========================================
+       COMPONENT DETAILS MODAL (INTERACTIVE INSPECTOR)
+       ========================================== -->
+  <div class="modal-overlay" id="compModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeComponentModal()" aria-label="Close modal">&times;</button>
+      <div class="modal-icon-badge" id="modalIcon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+      </div>
+      <h3 class="modal-title" id="modalTitle">Component Title</h3>
+      <div class="modal-subtitle" id="modalSubtitle">Layer Category</div>
+      <p class="modal-desc" id="modalDesc">Detailed description of this technology and how it interacts within the web stack.</p>
+
+      <div class="modal-meta-grid">
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Primary Role</div>
+          <div class="modal-meta-val" id="modalRole">-</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Stack Context</div>
+          <div class="modal-meta-val" id="modalStack">-</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Default Port / Config</div>
+          <div class="modal-meta-val" id="modalPort">-</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="modal-meta-label">Licensing Model</div>
+          <div class="modal-meta-val" id="modalLicense">-</div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" onclick="closeComponentModal()" style="width:100%;">
+        Got it
+      </button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toastBox">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMsg">Command copied to clipboard!</span>
+  </div>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT LOGIC
+       ========================================================================== */
+  -->
+  <script>
+    /* ==========================================================================
+       1. DATA DEFINITIONS FOR COMPONENTS & QUIZ
+       ========================================================================== */
+    const componentData = {
+      linux: {
+        title: "Linux Operating System",
+        subtitle: "Base Foundation Layer (LAMP)",
+        role: "Host Operating System & Kernel",
+        stack: "LAMP Exclusive Foundation",
+        port: "/etc/, systemd units",
+        license: "GPL / Open Source (Free)",
+        desc: "Linux is an open-source, Unix-compatible operating system kernel. In the LAMP stack, Linux acts as the foundational layer providing process isolation, user permissions, networking sockets, file system access, and system resources necessary for Apache, MySQL, and PHP to operate smoothly and securely in production hosting environments.",
+        iconSvg: `<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 7.5 3.5 7.5 5.5c0 .7.2 1.4.6 2C6.8 8.6 6 10.2 6 12c0 2 .8 3.8 2 5v2c0 1.7 1.8 3 4 3s4-1.3 4-3v-2c1.2-1.2 2-3 2-5 0-1.8-.8-3.4-2.1-4.5.4-.6.6-1.3.6-2C16.5 3.5 14.5 2 12 2z"/></svg>`
+      },
+      windows: {
+        title: "Microsoft Windows",
+        subtitle: "Base Foundation Layer (WAMP)",
+        role: "Host Desktop OS Environment",
+        stack: "WAMP Exclusive Foundation",
+        port: "C:\\wamp64\\, Windows Services",
+        license: "Proprietary Commercial License",
+        desc: "Microsoft Windows provides the desktop environment for WAMP. Instead of managing servers through a headless terminal, Windows users can run Apache, MySQL, and PHP through WampServer's intuitive system tray icons and configuration dialogs, ideal for rapid local programming and testing.",
+        iconSvg: `<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.4l7.6-1v7H3V5.4zm0 8.2h7.6v7L3 19.6v-6zm9.2-9.4l8.8-1.2v8.6h-8.8V4.2zm0 9.4h8.8v8.6l-8.8-1.2V13.6z"/></svg>`
+      },
+      apache: {
+        title: "Apache HTTP Server",
+        subtitle: "Web Server Daemon Layer",
+        role: "HTTP / HTTPS Request Dispatcher",
+        stack: "Shared by LAMP & WAMP",
+        port: "Port 80 (HTTP) / 443 (HTTPS)",
+        license: "Apache License 2.0 (Open Source)",
+        desc: "Apache is the web server software responsible for listening for incoming HTTP requests from client web browsers. When an incoming request arrives, Apache evaluates the request, serves static assets (HTML, CSS, JavaScript, images) directly from disk, or passes executable .php scripts to the PHP runtime engine for dynamic interpretation.",
+        iconSvg: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg>`
+      },
+      mysql: {
+        title: "MySQL Relational Database",
+        subtitle: "Database Management System (RDBMS)",
+        role: "Structured Data Storage & Querying",
+        stack: "Shared by LAMP & WAMP",
+        port: "Default TCP Port 3306",
+        license: "GPL / Commercial Dual License",
+        desc: "MySQL is a powerful relational database management system (RDBMS) that stores application records such as user accounts, blog posts, transactions, and product inventories. PHP communicates with MySQL using SQL queries (via PDO or MySQLi) to create, read, update, and delete application data efficiently.",
+        iconSvg: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`
+      },
+      php: {
+        title: "PHP Hypertext Preprocessor",
+        subtitle: "Server-Side Scripting Language",
+        role: "Dynamic Business Logic & HTML Rendering",
+        stack: "Shared by LAMP & WAMP",
+        port: "Integrated Module / FastCGI (9000)",
+        license: "PHP License (Open Source)",
+        desc: "PHP is a server-side scripting language engineered specifically for web development. When Apache hands a requested PHP file over, the PHP interpreter executes the code, runs conditional logic, connects to MySQL to fetch records, and outputs rendered HTML markup back to Apache to return to the user.",
+        iconSvg: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`
+      }
+    };
+
+    const quizData = [
+      {
+        question: "What does the letter 'L' stand for in the LAMP stack, and how does it differ from WAMP?",
+        options: [
+          "Linux (LAMP uses Linux whereas WAMP uses Windows)",
+          "Lightweight (LAMP is a lighter version of WAMP)",
+          "Localhost (LAMP only runs on local developer machines)",
+          "Lua (LAMP uses the Lua scripting language)"
+        ],
+        correct: 0,
+        explanation: "In LAMP, 'L' stands for Linux, while in WAMP, 'W' stands for Windows. Both stacks share Apache, MySQL, and PHP."
+      },
+      {
+        question: "What is the primary role of the Apache web server when a browser requests a dynamic .php file?",
+        options: [
+          "Directly executes SQL queries against the hard drive",
+          "Receives the HTTP request and delegates PHP script execution to the PHP engine",
+          "Compiles C++ code inside the client's browser",
+          "Replaces the operating system kernel"
+        ],
+        correct: 1,
+        explanation: "Apache listens on port 80/443; when a .php file is requested, it hands execution to the PHP preprocessor module and serves the resulting HTML back to the browser."
+      },
+      {
+        question: "Which three components are completely identical in role across both LAMP and WAMP stacks?",
+        options: [
+          "Linux, Apache, and MySQL",
+          "Windows, PHP, and Apache",
+          "Apache, MySQL, and PHP",
+          "Linux, Windows, and MySQL"
+        ],
+        correct: 2,
+        explanation: "Both stacks share the exact same 'AMP' middle-to-back layers: Apache (web server), MySQL (database), and PHP (server scripting). Only the base OS differs."
+      },
+      {
+        question: "On Ubuntu Linux, which package management command is used to install Apache HTTP Server?",
+        options: [
+          "sudo apt install apache2",
+          "brew install apache-server",
+          "npm install apache",
+          "choco install apache2"
+        ],
+        correct: 0,
+        explanation: "Debian and Ubuntu distributions use APT (sudo apt install apache2) to install Apache HTTP Server."
+      },
+      {
+        question: "What does a GREEN WampServer system tray icon indicate on Windows?",
+        options: [
+          "All configured services (Apache and MySQL) are running properly",
+          "All services are completely stopped",
+          "Only MySQL is running while Apache is blocked",
+          "A critical installation error occurred"
+        ],
+        correct: 0,
+        explanation: "WampServer uses traffic light colors: Red means all services stopped, Orange means 1 service running, and Green indicates all services are active and running."
+      }
+    ];
+
+    /* ==========================================================================
+       2. NAVIGATION & SCROLL SPY
+       ========================================================================== */
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      sidebarBackdrop.classList.toggle('open');
+    });
+
+    sidebarBackdrop.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      sidebarBackdrop.classList.remove('open');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove('open');
+          sidebarBackdrop.classList.remove('open');
+        }
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      let currentSectionId = '';
+      const scrollPos = window.scrollY + 120;
+
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      if (currentSectionId) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+
+    /* ==========================================================================
+       3. EXPANDABLE ACCORDIONS
+       ========================================================================== */
+    function toggleAccordion(cardId) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.classList.toggle('open');
+      }
+    }
+
+    /* ==========================================================================
+       4. COMPONENT MODAL INSPECTOR
+       ========================================================================== */
+    const compModal = document.getElementById('compModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalRole = document.getElementById('modalRole');
+    const modalStack = document.getElementById('modalStack');
+    const modalPort = document.getElementById('modalPort');
+    const modalLicense = document.getElementById('modalLicense');
+    const modalIcon = document.getElementById('modalIcon');
+
+    function openComponentModal(key) {
+      const data = componentData[key];
+      if (!data) return;
+
+      modalTitle.textContent = data.title;
+      modalSubtitle.textContent = data.subtitle;
+      modalDesc.textContent = data.desc;
+      modalRole.textContent = data.role;
+      modalStack.textContent = data.stack;
+      modalPort.textContent = data.port;
+      modalLicense.textContent = data.license;
+      modalIcon.innerHTML = data.iconSvg;
+
+      compModal.classList.add('open');
+    }
+
+    function closeComponentModal() {
+      compModal.classList.remove('open');
+    }
+
+    compModal.addEventListener('click', (e) => {
+      if (e.target === compModal) closeComponentModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && compModal.classList.contains('open')) {
+        closeComponentModal();
+      }
+    });
+
+    /* ==========================================================================
+       5. REQUEST-RESPONSE SIMULATION
+       ========================================================================== */
+    let simTimeout = null;
+    let isSimulating = false;
+
+    function resetSimulation() {
+      if (simTimeout) clearTimeout(simTimeout);
+      isSimulating = false;
+
+      const nodes = ['nodeBrowser', 'nodeApache', 'nodePHP', 'nodeMySQL'];
+      nodes.forEach(id => {
+        document.getElementById(id).classList.remove('active-node');
+      });
+
+      document.getElementById('statusBrowser').textContent = 'Client Ready';
+      document.getElementById('statusApache').textContent = 'Listening :80';
+      document.getElementById('statusPHP').textContent = 'Idle';
+      document.getElementById('statusMySQL').textContent = 'Listening :3306';
+
+      const consoleBox = document.getElementById('simConsole');
+      consoleBox.innerHTML = `
+        <div class="sim-console-line">
+          <span class="sim-console-time">[00:00:00]</span>
+          <span class="sim-console-text">Ready. Click "Simulate Request" to observe data flow through the stack.</span>
+        </div>
+      `;
+      document.getElementById('simStartBtn').disabled = false;
+    }
+
+    function logSim(timeStr, text, isHighlight = false) {
+      const consoleBox = document.getElementById('simConsole');
+      const line = document.createElement('div');
+      line.className = 'sim-console-line';
+      line.innerHTML = `
+        <span class="sim-console-time">[${timeStr}]</span>
+        <span class="sim-console-text ${isHighlight ? 'highlight' : ''}">${text}</span>
+      `;
+      consoleBox.appendChild(line);
+      consoleBox.scrollTop = consoleBox.scrollHeight;
+    }
+
+    function runSimulation() {
+      if (isSimulating) return;
+      isSimulating = true;
+      document.getElementById('simStartBtn').disabled = true;
+
+      const consoleBox = document.getElementById('simConsole');
+      consoleBox.innerHTML = '';
+
+      const bNode = document.getElementById('nodeBrowser');
+      const aNode = document.getElementById('nodeApache');
+      const pNode = document.getElementById('nodePHP');
+      const mNode = document.getElementById('nodeMySQL');
+
+      // STEP 1: Browser initiates request
+      logSim('00:00:01', 'BROWSER: User navigates to http://localhost/users.php', true);
+      bNode.classList.add('active-node');
+      document.getElementById('statusBrowser').textContent = 'Sending GET /users.php';
+
+      simTimeout = setTimeout(() => {
+        // STEP 2: Apache receives HTTP request
+        bNode.classList.remove('active-node');
+        aNode.classList.add('active-node');
+        document.getElementById('statusBrowser').textContent = 'Waiting for response...';
+        document.getElementById('statusApache').textContent = 'Port 80: Handing to PHP';
+        logSim('00:00:02', 'APACHE: Received HTTP GET /users.php on Port 80. Dispatching to PHP-FPM / mod_php.');
+
+        simTimeout = setTimeout(() => {
+          // STEP 3: PHP executes code logic
+          aNode.classList.remove('active-node');
+          pNode.classList.add('active-node');
+          document.getElementById('statusApache').textContent = 'Processing in PHP...';
+          document.getElementById('statusPHP').textContent = 'Executing script logic';
+          logSim('00:00:03', 'PHP: Interpreting script. Needs user records. Opening connection to MySQL on Port 3306 via PDO.');
+
+          simTimeout = setTimeout(() => {
+            // STEP 4: MySQL queries data
+            pNode.classList.remove('active-node');
+            mNode.classList.add('active-node');
+            document.getElementById('statusPHP').textContent = 'Waiting on DB query';
+            document.getElementById('statusMySQL').textContent = 'Executing SQL query';
+            logSim('00:00:04', 'MYSQL: Executed query: "SELECT id, name FROM users;". Returned 5 records.');
+
+            simTimeout = setTimeout(() => {
+              // STEP 5: PHP renders HTML template
+              mNode.classList.remove('active-node');
+              pNode.classList.add('active-node');
+              document.getElementById('statusMySQL').textContent = 'Query completed';
+              document.getElementById('statusPHP').textContent = 'Rendering HTML output';
+              logSim('00:00:05', 'PHP: Database rows formatted into dynamic HTML. Returning output buffer to Apache.');
+
+              simTimeout = setTimeout(() => {
+                // STEP 6: Apache returns HTTP 200 OK
+                pNode.classList.remove('active-node');
+                aNode.classList.add('active-node');
+                document.getElementById('statusPHP').textContent = 'Idle';
+                document.getElementById('statusApache').textContent = 'Sending HTTP 200 OK';
+                logSim('00:00:06', 'APACHE: Bundled response headers and body. Transmitted HTTP 200 OK to Browser.');
+
+                simTimeout = setTimeout(() => {
+                  // STEP 7: Browser renders completed webpage
+                  aNode.classList.remove('active-node');
+                  bNode.classList.add('active-node');
+                  document.getElementById('statusApache').textContent = 'Listening :80';
+                  document.getElementById('statusBrowser').textContent = 'Page Rendered (200 OK)';
+                  logSim('00:00:07', 'BROWSER: Received HTML document. DOM painted successfully in 8ms!', true);
+
+                  simTimeout = setTimeout(() => {
+                    bNode.classList.remove('active-node');
+                    document.getElementById('statusBrowser').textContent = 'Client Ready';
+                    isSimulating = false;
+                    document.getElementById('simStartBtn').disabled = false;
+                  }, 2000);
+                }, 1000);
+              }, 1000);
+            }, 1000);
+          }, 1000);
+        }, 1000);
+      }, 1000);
+    }
+
+    /* ==========================================================================
+       6. INSTALLATION TABS & CHECKLIST TRACKER
+       ========================================================================== */
+    function switchInstallTab(tabId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      btn.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    const checklistState = {
+      lamp: [false, false, false, false, false, false],
+      wamp: [false, false, false, false, false, false, false]
+    };
+
+    function updateChecklistProgress(stack, stepIndex, checkbox) {
+      const idx = stepIndex - 1;
+      checklistState[stack][idx] = checkbox.checked;
+
+      const card = document.getElementById(`${stack}Card${stepIndex}`);
+      if (card) {
+        if (checkbox.checked) {
+          card.classList.add('completed');
+        } else {
+          card.classList.remove('completed');
+        }
+      }
+
+      const total = checklistState[stack].length;
+      const completed = checklistState[stack].filter(Boolean).length;
+      const percent = Math.round((completed / total) * 100);
+
+      const fill = document.getElementById(`${stack}ProgressFill`);
+      const count = document.getElementById(`${stack}ProgressCount`);
+
+      if (fill && count) {
+        fill.style.width = `${percent}%`;
+        count.textContent = `${completed} of ${total} (${percent}%)`;
+      }
+
+      if (completed === total) {
+        showToast(`Outstanding! All ${stack.toUpperCase()} installation steps completed!`);
+      }
+    }
+
+    /* ==========================================================================
+       7. CLIPBOARD COPY UTILITY WITH FALLBACK
+       ========================================================================== */
+    function copyCommand(elemId, btn) {
+      const elem = document.getElementById(elemId);
+      if (!elem) return;
+      const textToCopy = elem.textContent.trim();
+
+      const markCopied = () => {
+        btn.classList.add('copied');
+        btn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Copied!
+        `;
+        showToast(`Copied: "${textToCopy}"`);
+
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          `;
+        }, 2200);
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(markCopied).catch(() => {
+          fallbackCopyText(textToCopy, markCopied);
+        });
+      } else {
+        fallbackCopyText(textToCopy, markCopied);
+      }
+    }
+
+    function fallbackCopyText(text, callback) {
+      try {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        if (successful) {
+          callback();
+        } else {
+          showToast(`Please copy manually: ${text}`);
+        }
+      } catch (err) {
+        showToast(`Please copy manually: ${text}`);
+      }
+    }
+
+    /* ==========================================================================
+       8. KNOWLEDGE QUIZ RENDERER & SCORING
+       ========================================================================== */
+    const userAnswers = {};
+
+    function renderQuiz() {
+      const container = document.getElementById('quizQuestionsContainer');
+      container.innerHTML = '';
+
+      quizData.forEach((q, qIndex) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-question-card';
+        card.id = `qCard${qIndex}`;
+
+        let optionsHtml = '';
+        q.options.forEach((opt, optIndex) => {
+          optionsHtml += `
+            <div class="quiz-opt" id="opt_${qIndex}_${optIndex}" onclick="selectAnswer(${qIndex}, ${optIndex})">
+              <span style="font-weight:700; width:22px; color:var(--text-muted);">${String.fromCharCode(65 + optIndex)}.</span>
+              <span>${opt}</span>
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="quiz-q-num">Question ${qIndex + 1} of ${quizData.length}</div>
+          <div class="quiz-q-text">${q.question}</div>
+          <div class="quiz-options">${optionsHtml}</div>
+          <div class="quiz-explanation" id="explain_${qIndex}"></div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      updateScoreDisplay();
+    }
+
+    function selectAnswer(qIndex, optIndex) {
+      if (userAnswers[qIndex] !== undefined) return;
+
+      userAnswers[qIndex] = optIndex;
+      const q = quizData[qIndex];
+      const selectedElem = document.getElementById(`opt_${qIndex}_${optIndex}`);
+      const explainElem = document.getElementById(`explain_${qIndex}`);
+
+      q.options.forEach((_, i) => {
+        const el = document.getElementById(`opt_${qIndex}_${i}`);
+        el.classList.add('disabled');
+      });
+
+      if (optIndex === q.correct) {
+        selectedElem.classList.add('selected-correct');
+        explainElem.innerHTML = `<strong>Correct!</strong> ${q.explanation}`;
+        explainElem.style.backgroundColor = '#d1fae5';
+        explainElem.style.color = '#065f46';
+      } else {
+        selectedElem.classList.add('selected-wrong');
+        const correctElem = document.getElementById(`opt_${qIndex}_${q.correct}`);
+        correctElem.classList.add('selected-correct');
+        explainElem.innerHTML = `<strong>Incorrect.</strong> ${q.explanation}`;
+        explainElem.style.backgroundColor = '#fee2e2';
+        explainElem.style.color = '#991b1b';
+      }
+      explainElem.classList.add('show');
+
+      updateScoreDisplay();
+    }
+
+    function updateScoreDisplay() {
+      let score = 0;
+      let answeredCount = 0;
+
+      quizData.forEach((q, i) => {
+        if (userAnswers[i] !== undefined) {
+          answeredCount++;
+          if (userAnswers[i] === q.correct) {
+            score++;
+          }
+        }
+      });
+
+      const display = document.getElementById('quizScoreDisplay');
+      display.textContent = `Score: ${score} / ${quizData.length}`;
+
+      const note = document.getElementById('quizResultNote');
+      if (answeredCount === quizData.length) {
+        if (score === 5) {
+          note.textContent = "Perfect 5/5! Full Stack Architecture Master!";
+          note.style.color = "#10b981";
+        } else if (score >= 3) {
+          note.textContent = "Great job! You have a solid grasp of LAMP and WAMP.";
+          note.style.color = "var(--accent-blue)";
+        } else {
+          note.textContent = "Good try! Review the cards above and retake the quiz.";
+          note.style.color = "var(--accent-purple)";
+        }
+      } else {
+        note.textContent = `${answeredCount} of ${quizData.length} answered`;
+      }
+    }
+
+    function resetQuiz() {
+      for (const k in userAnswers) {
+        delete userAnswers[k];
+      }
+      renderQuiz();
+      document.getElementById('quizResultNote').textContent = "";
+      showToast("Quiz has been reset. Good luck!");
+    }
+
+    /* ==========================================================================
+       9. TOAST NOTIFICATION
+       ========================================================================== */
+    let toastTimeout = null;
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastBox');
+      const msgElem = document.getElementById('toastMsg');
+      msgElem.textContent = msg;
+
+      toast.classList.add('show');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    /* ==========================================================================
+       INITIALIZATION
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderQuiz();
+    });
+  </script>
+</body>
+</html>
