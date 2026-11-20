@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Web Design – Fixed, Fluid & Responsive Layouts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Mobile Header Bar -->
+  <header class="mobile-nav-bar">
+    <div class="brand">
+      <div class="brand-symbol">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">AURA STUDIO</span>
+        <span class="brand-sub">Layout Masterclass</span>
+      </div>
+    </div>
+    <button class="mobile-toggle-btn" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </header>
+
+  <div class="layout-wrapper">
+    <!-- Left Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-symbol">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">AURA STUDIO</span>
+            <span class="brand-sub">Layout Systems</span>
+          </div>
+        </div>
+        <div class="version-tag">Interactive Guide</div>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebarNav">
+        <a href="#home" class="nav-item active" data-section="home">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span class="nav-label">Home</span>
+        </a>
+        <a href="#fixed-layout" class="nav-item" data-section="fixed-layout">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+            <line x1="9" y1="4" x2="9" y2="20"></line>
+            <line x1="15" y1="4" x2="15" y2="20"></line>
+          </svg>
+          <span class="nav-label">Fixed Layout</span>
+        </a>
+        <a href="#fluid-layout" class="nav-item" data-section="fluid-layout">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <polyline points="9 21 3 21 3 15"></polyline>
+            <line x1="21" y1="3" x2="14" y2="10"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+          <span class="nav-label">Fluid Layout</span>
+        </a>
+        <a href="#responsive-layout" class="nav-item" data-section="responsive-layout">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+          <span class="nav-label">Responsive Layout</span>
+        </a>
+        <a href="#flexbox" class="nav-item" data-section="flexbox">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="18" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="18" rx="1"></rect>
+          </svg>
+          <span class="nav-label">Flexbox</span>
+        </a>
+        <a href="#css-grid" class="nav-item" data-section="css-grid">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span class="nav-label">CSS Grid</span>
+        </a>
+        <a href="#playground" class="nav-item" data-section="playground">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span class="nav-label">Playground</span>
+        </a>
+        <div class="nav-divider"></div>
+        <a href="#comparison" class="nav-item" data-section="comparison">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <span class="nav-label">Comparison</span>
+        </a>
+        <a href="#code-examples" class="nav-item" data-section="code-examples">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <span class="nav-label">Code Examples</span>
+        </a>
+        <a href="#conclusion" class="nav-item" data-section="conclusion">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <span class="nav-label">Insights</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="viewport-indicator">
+          <span class="pulse-dot"></span>
+          <span class="viewport-text" id="liveViewportWidth">1440px Viewport</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Sidebar Backdrop for Mobile -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- ==============================================
+           SECTION 1: HOME
+      =============================================== -->
+      <section id="home" class="page-section">
+        <div class="hero-container">
+          <div class="badge-pill">
+            <span class="badge-dot"></span>
+            Professional Web Architecture & Layout Engineering
+          </div>
+          <h1 class="hero-title">
+            RESPONSIVE WEB DESIGN
+            <span class="gradient-text">Fixed, Fluid & Responsive Layouts</span>
+          </h1>
+          <p class="hero-description">
+            Explore how modern digital interfaces adapt gracefully to any screen size. Learn the evolutionary leap from rigid pixel grids to fluid percentage containers and intelligent media-query architectures.
+          </p>
+
+          <!-- Device Illustrations Banner -->
+          <div class="devices-showcase">
+            <div class="device-card device-desktop">
+              <div class="device-bezel">
+                <div class="device-camera"></div>
+                <div class="device-screen">
+                  <div class="mini-ui">
+                    <div class="mini-ui-nav">
+                      <span class="mini-dot"></span>
+                      <span class="mini-dot"></span>
+                      <span class="mini-dot"></span>
+                      <div class="mini-bar-search"></div>
+                    </div>
+                    <div class="mini-ui-hero"></div>
+                    <div class="mini-ui-cols">
+                      <div class="mini-ui-col"></div>
+                      <div class="mini-ui-col"></div>
+                      <div class="mini-ui-col"></div>
+                      <div class="mini-ui-col"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="device-stand"></div>
+              <div class="device-base"></div>
+              <div class="device-caption">
+                <strong>Desktop</strong>
+                <span>1200px+ &bull; Multi-column</span>
+              </div>
+            </div>
+
+            <div class="device-card device-tablet">
+              <div class="device-bezel">
+                <div class="device-camera"></div>
+                <div class="device-screen">
+                  <div class="mini-ui">
+                    <div class="mini-ui-nav">
+                      <span class="mini-dot"></span>
+                      <div class="mini-bar-search"></div>
+                    </div>
+                    <div class="mini-ui-hero"></div>
+                    <div class="mini-ui-cols">
+                      <div class="mini-ui-col"></div>
+                      <div class="mini-ui-col"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="device-caption">
+                <strong>Tablet</strong>
+                <span>768px - 1024px &bull; 2-Column</span>
+              </div>
+            </div>
+
+            <div class="device-card device-mobile">
+              <div class="device-bezel">
+                <div class="device-island"></div>
+                <div class="device-screen">
+                  <div class="mini-ui">
+                    <div class="mini-ui-nav">
+                      <div class="mini-hamburger"></div>
+                    </div>
+                    <div class="mini-ui-hero"></div>
+                    <div class="mini-ui-cols mobile-stack">
+                      <div class="mini-ui-col"></div>
+                      <div class="mini-ui-col"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="device-caption">
+                <strong>Mobile</strong>
+                <span>320px - 480px &bull; Stacked</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Home Interactive Live Preview Simulator Micro-Demo -->
+          <div class="home-live-preview-card">
+            <div class="home-preview-header">
+              <div class="home-preview-title-box">
+                <span class="live-pulse-dot"></span>
+                <div>
+                  <h4 class="home-preview-heading">Interactive Live Preview</h4>
+                  <p class="home-preview-sub">Watch how layout structure, navigation and cards dynamically adapt to screen widths in real time.</p>
+                </div>
+              </div>
+              <div class="home-preview-controls">
+                <div class="btn-group" id="homeDeviceGroup">
+                  <button class="btn-toggle active" id="homeViewDesktop" data-home-width="960">Desktop (960px)</button>
+                  <button class="btn-toggle" id="homeViewTablet" data-home-width="680">Tablet (680px)</button>
+                  <button class="btn-toggle" id="homeViewMobile" data-home-width="360">Mobile (360px)</button>
+                </div>
+                <div class="slider-control-group">
+                  <label for="homeWidthSlider">Width:</label>
+                  <input type="range" id="homeWidthSlider" min="320" max="960" step="10" value="960">
+                  <span class="value-badge badge-gradient" id="homeWidthBadge">960px</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="home-preview-stage">
+              <div class="home-preview-frame" id="homePreviewFrame">
+                <div class="home-mock-nav">
+                  <div class="hm-brand">✦ STUDIO ADAPT</div>
+                  <div class="hm-links" id="homeMockLinks">
+                    <span>Products</span>
+                    <span>Systems</span>
+                    <span>About</span>
+                    <span class="hm-btn">Launch</span>
+                  </div>
+                  <div class="hm-hamburger" id="homeMockHamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+
+                <div class="home-mock-hero">
+                  <span class="hm-tag">Fluid &amp; Intelligent</span>
+                  <h5>Multi-Device Responsive Architecture</h5>
+                  <p>When screen size narrows, multi-column grids dynamically stack, navigation consolidates, and typography scales.</p>
+                </div>
+
+                <div class="home-mock-grid" id="homeMockGrid">
+                  <div class="home-mock-card">
+                    <span class="hm-badge">Auto Grid</span>
+                    <h6>01. Proportional</h6>
+                    <p>Fluid percentages scale evenly.</p>
+                  </div>
+                  <div class="home-mock-card">
+                    <span class="hm-badge">Responsive</span>
+                    <h6>02. Media Query</h6>
+                    <p>Rearranges at breakpoints.</p>
+                  </div>
+                  <div class="home-mock-card">
+                    <span class="hm-badge">Flex Engine</span>
+                    <h6>03. Alignment</h6>
+                    <p>Clean vertical centering.</p>
+                  </div>
+                  <div class="home-mock-card">
+                    <span class="hm-badge">Intelligent</span>
+                    <h6>04. Zero Shift</h6>
+                    <p>Prevents horizontal scrolling.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Why Responsive Design Matters -->
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon icon-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <h3>60%+ Mobile Web Traffic</h3>
+              <p>Over half of global internet visitors access websites via smartphones. Rigid desktop designs immediately alienate users on handheld devices.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon icon-purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+              </div>
+              <h3>Device Fragmentation</h3>
+              <p>Users browse across thousands of screen resolutions—from compact budget phones to high-DPI 4K monitors, foldable displays, and tablets.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon icon-indigo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                </svg>
+              </div>
+              <h3>Single Codebase & SEO</h3>
+              <p>Responsive architecture serves identical HTML to all devices, eliminating fragmented subdomains (`m.site.com`) while boosting Google search indexing.</p>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Cards for Layout Models -->
+          <div class="section-sub-header">
+            <h2>Three Core Layout Models</h2>
+            <p>Select any layout architecture to explore live interactive demonstrations and engineering principles.</p>
+          </div>
+
+          <div class="layout-selector-grid">
+            <a href="#fixed-layout" class="layout-choice-card">
+              <div class="card-tag">Rigid Baseline</div>
+              <div class="card-visual visual-fixed">
+                <div class="mock-grid-fixed">
+                  <span class="metric-label">960px Fixed</span>
+                </div>
+              </div>
+              <h3>Fixed Layout</h3>
+              <p>Pixel-defined width containers. Exact sizing regardless of viewport dimensions.</p>
+              <div class="card-cta">Explore Fixed Layout &rarr;</div>
+            </a>
+
+            <a href="#fluid-layout" class="layout-choice-card">
+              <div class="card-tag tag-purple">Proportional Scaling</div>
+              <div class="card-visual visual-fluid">
+                <div class="mock-grid-fluid">
+                  <span class="metric-label">100% / % Widths</span>
+                </div>
+              </div>
+              <h3>Fluid Layout</h3>
+              <p>Percentage-based dimensions that scale continuously with screen width.</p>
+              <div class="card-cta">Explore Fluid Layout &rarr;</div>
+            </a>
+
+            <a href="#responsive-layout" class="layout-choice-card">
+              <div class="card-tag tag-gradient">Modern Standard</div>
+              <div class="card-visual visual-responsive">
+                <div class="mock-grid-responsive">
+                  <span class="metric-label">Media Queries + Grid</span>
+                </div>
+              </div>
+              <h3>Responsive Layout</h3>
+              <p>Fluid grids, flexible media, and breakpoint queries rearranging components smartly.</p>
+              <div class="card-cta">Explore Responsive Layout &rarr;</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           SECTION 2: FIXED LAYOUT
+      =============================================== -->
+      <section id="fixed-layout" class="page-section">
+        <div class="section-header">
+          <div class="badge-pill">Layout Architecture 01</div>
+          <h2 class="section-title">Fixed Layout Architecture</h2>
+          <p class="section-subtitle">
+            Defined strictly in absolute pixel units (e.g. <code>width: 960px</code>). The layout maintains its explicit geometric dimensions regardless of the viewer's screen or window size.
+          </p>
+        </div>
+
+        <div class="interactive-stage">
+          <div class="stage-top-bar">
+            <div class="stage-info">
+              <span class="stage-title">Interactive Fixed-Width Container Simulator</span>
+              <span class="stage-hint">Adjust the container width or toggle viewport simulation to inspect clipping & overflow</span>
+            </div>
+            <div class="stage-controls">
+              <span class="control-label">Container Width:</span>
+              <div class="btn-group">
+                <button class="btn-toggle active" data-fixed-width="960">960px</button>
+                <button class="btn-toggle" data-fixed-width="800">800px</button>
+                <button class="btn-toggle" data-fixed-width="1140">1140px</button>
+              </div>
+              <div class="slider-control-group">
+                <label for="fixedWidthSlider">Slider:</label>
+                <input type="range" id="fixedWidthSlider" min="600" max="1200" step="20" value="960">
+                <span class="value-badge" id="fixedWidthBadge">960px</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Viewport Simulator Box -->
+          <div class="viewport-outer-container">
+            <div class="viewport-ruler">
+              <span class="ruler-mark">0px</span>
+              <span class="ruler-mark">375px (Mobile)</span>
+              <span class="ruler-mark">768px (Tablet)</span>
+              <span class="ruler-mark">1024px</span>
+              <span class="ruler-mark">1200px (Desktop)</span>
+            </div>
+
+            <div class="fixed-viewport-frame" id="fixedViewportFrame">
+              <div class="overflow-alert" id="fixedOverflowAlert">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>Horizontal Overflow Detected! Screen width is smaller than the 960px container. Horizontal scrolling is required.</span>
+              </div>
+
+              <!-- Fixed Content Container -->
+              <div class="fixed-demo-container" id="fixedDemoContainer">
+                <div class="fixed-demo-header">
+                  <div class="fixed-logo">STUDIO FIXED</div>
+                  <div class="fixed-nav-items">
+                    <span>Navigation Item 1</span>
+                    <span>Navigation Item 2</span>
+                    <span>Navigation Item 3</span>
+                    <span>Contact Us</span>
+                  </div>
+                </div>
+
+                <div class="fixed-demo-banner">
+                  <h3>Fixed 960px Grid System</h3>
+                  <p>In a fixed layout, every column, sidebar, and container has hardcoded pixel boundaries.</p>
+                  <span class="spec-chip">width: <span id="fixedCssWidth">960px</span></span>
+                </div>
+
+                <div class="fixed-demo-body">
+                  <div class="fixed-sidebar">
+                    <h4>Sidebar</h4>
+                    <p>Fixed width: <strong>260px</strong></p>
+                    <div class="mock-lines">
+                      <div class="line"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                    </div>
+                  </div>
+                  <div class="fixed-main">
+                    <h4>Main Content Area</h4>
+                    <p>Calculated width: <strong>Remaining px</strong></p>
+                    <div class="mock-cards-row">
+                      <div class="fixed-subcard">Article Card A (200px)</div>
+                      <div class="fixed-subcard">Article Card B (200px)</div>
+                      <div class="fixed-subcard">Article Card C (200px)</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="fixed-demo-footer">
+                  <span>Fixed Footer &bull; Hardcoded Margins: margin: 0 auto;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="viewport-resizer-bar">
+            <span class="resizer-label">Simulate Screen Viewing Width:</span>
+            <div class="btn-group">
+              <button class="btn-secondary" id="setFixedViewMobile">Mobile (375px)</button>
+              <button class="btn-secondary" id="setFixedViewTablet">Tablet (768px)</button>
+              <button class="btn-secondary active" id="setFixedViewDesktop">Desktop (1200px)</button>
+            </div>
+            <span class="resizer-current">Viewing Frame: <strong id="fixedFrameWidthDisplay">1200px</strong></span>
+          </div>
+        </div>
+
+        <!-- Pros & Cons Grid -->
+        <div class="pros-cons-grid">
+          <div class="pro-card">
+            <div class="card-title-row">
+              <div class="icon-circle icon-green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <h3>Advantages of Fixed Layouts</h3>
+            </div>
+            <ul class="styled-list">
+              <li><strong>Pixel-Perfect Visual Fidelity:</strong> Designers maintain complete predictability over text wrapping, typography line-height, and image positioning.</li>
+              <li><strong>Fixed Media Alignment:</strong> Images, banners, and third-party widgets never deform or scale awkwardly.</li>
+              <li><strong>Straightforward Development:</strong> No complex media query breakpoints or flexible grid calculations required.</li>
+              <li><strong>Historically Dominant:</strong> Standardized early 2000s desktop web design around 960px 12-column grids.</li>
+            </ul>
+          </div>
+
+          <div class="con-card">
+            <div class="card-title-row">
+              <div class="icon-circle icon-red">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <h3>Limitations of Fixed Layouts</h3>
+            </div>
+            <ul class="styled-list">
+              <li><strong>Severe Mobile Usability Issues:</strong> Displays smaller than the container width require clumsy horizontal scrolling or unreadable pinch-to-zoom.</li>
+              <li><strong>Wasted Screen Real Estate:</strong> On high-resolution wide displays (1440p, 4K), massive white empty margins surround a tiny central column.</li>
+              <li><strong>Negative SEO Impact:</strong> Search engines penalize pages that fail mobile-friendliness audits and viewport compliance.</li>
+              <li><strong>Legacy Approach:</strong> Outdated for modern multi-device cross-platform web applications.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           SECTION 3: FLUID LAYOUT
+      =============================================== -->
+      <section id="fluid-layout" class="page-section">
+        <div class="section-header">
+          <div class="badge-pill tag-purple">Layout Architecture 02</div>
+          <h2 class="section-title">Fluid Layout Architecture</h2>
+          <p class="section-subtitle">
+            Built with relative percentage units (<code>%</code>, <code>vw</code>, <code>rem</code>) and constraints like <code>max-width</code>. Containers expand and contract continuously like liquid adapting to the browser window.
+          </p>
+        </div>
+
+        <div class="interactive-stage">
+          <div class="stage-top-bar">
+            <div class="stage-info">
+              <span class="stage-title">Interactive Fluid Width Simulator</span>
+              <span class="stage-hint">Drag the slider to observe continuous percentage-based recalculations</span>
+            </div>
+            <div class="stage-controls">
+              <div class="slider-control-group wide-slider">
+                <label for="fluidWidthSlider">Simulated Viewport:</label>
+                <input type="range" id="fluidWidthSlider" min="320" max="1150" step="10" value="950">
+                <span class="value-badge badge-purple" id="fluidWidthBadge">950px</span>
+              </div>
+              <div class="toggle-switch-container">
+                <label class="switch">
+                  <input type="checkbox" id="fluidMaxWidthToggle" checked>
+                  <span class="slider round"></span>
+                </label>
+                <span class="toggle-text">Enable <code>max-width: 1100px</code></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fluid Visual Container Frame -->
+          <div class="fluid-preview-wrapper" id="fluidPreviewWrapper">
+            <div class="fluid-demo-container" id="fluidDemoContainer">
+              <!-- Header -->
+              <div class="fluid-header">
+                <div class="fluid-brand">FLUID STUDIO <span class="tag-inline">width: 100%</span></div>
+                <div class="fluid-nav">
+                  <span>Home (25%)</span>
+                  <span>Portfolio (25%)</span>
+                  <span>About (25%)</span>
+                  <span>Contact (25%)</span>
+                </div>
+              </div>
+
+              <!-- Proportional Columns Row -->
+              <div class="fluid-columns-row">
+                <div class="fluid-col col-left">
+                  <div class="col-pill">Width: 25%</div>
+                  <h4>Sidebar Panel</h4>
+                  <p>Allocated <strong>25%</strong> of container width.</p>
+                  <div class="calculated-metric" id="fluidLeftCalculated">Computed: ~237px</div>
+                </div>
+
+                <div class="fluid-col col-center">
+                  <div class="col-pill">Width: 50%</div>
+                  <h4>Main Article Stream</h4>
+                  <p>Allocated <strong>50%</strong> of container width. Text dynamically reflows and scales continuously.</p>
+                  <div class="calculated-metric" id="fluidCenterCalculated">Computed: ~475px</div>
+                </div>
+
+                <div class="fluid-col col-right">
+                  <div class="col-pill">Width: 25%</div>
+                  <h4>Insights Widget</h4>
+                  <p>Allocated <strong>25%</strong> of container width.</p>
+                  <div class="calculated-metric" id="fluidRightCalculated">Computed: ~237px</div>
+                </div>
+              </div>
+
+              <!-- Dynamic 4-card percentage row -->
+              <div class="fluid-cards-row">
+                <div class="fluid-mini-card">
+                  <span class="pct-tag">25%</span>
+                  <h5>Metric A</h5>
+                  <span class="fluid-num">99.8%</span>
+                </div>
+                <div class="fluid-mini-card">
+                  <span class="pct-tag">25%</span>
+                  <h5>Metric B</h5>
+                  <span class="fluid-num">1.2ms</span>
+                </div>
+                <div class="fluid-mini-card">
+                  <span class="pct-tag">25%</span>
+                  <h5>Metric C</h5>
+                  <span class="fluid-num">4.9/5</span>
+                </div>
+                <div class="fluid-mini-card">
+                  <span class="pct-tag">25%</span>
+                  <h5>Metric D</h5>
+                  <span class="fluid-num">840+</span>
+                </div>
+              </div>
+
+              <div class="fluid-footer">
+                <span>width: 100%; box-sizing: border-box;</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <span class="formula-title">The Classic Fluid Grid Formula:</span>
+            <code>Target Width &divide; Context Width = Resulting Percentage (%)</code>
+            <span class="formula-example">Example: 300px column inside a 1200px grid &rarr; (300 &divide; 1200) &times; 100 = <strong>25%</strong></span>
+          </div>
+        </div>
+
+        <!-- Pros & Cons Grid -->
+        <div class="pros-cons-grid">
+          <div class="pro-card">
+            <div class="card-title-row">
+              <div class="icon-circle icon-green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <h3>Advantages of Fluid Layouts</h3>
+            </div>
+            <ul class="styled-list">
+              <li><strong>Seamless Adaptability:</strong> Resizes smoothly to any intermediate monitor or browser window width without clipping.</li>
+              <li><strong>No Rigid Breakpoint Gaps:</strong> Content flows proportionally without sudden, jarring layout jumps.</li>
+              <li><strong>Zero Screen Real Estate Waste:</strong> Elements stretch naturally to utilize wide screens when desired.</li>
+              <li><strong>Clean Unit Hierarchy:</strong> Pairing percentages with <code>rem</code> units creates elegant typography scaling.</li>
+            </ul>
+          </div>
+
+          <div class="con-card">
+            <div class="card-title-row">
+              <div class="icon-circle icon-red">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <h3>Limitations of Fluid Layouts</h3>
+            </div>
+            <ul class="styled-list">
+              <li><strong>Squished Columns on Mobile:</strong> Without media queries to stack items, a 3-column 25%/50%/25% layout on a 360px mobile screen becomes unreadably narrow (60px wide columns!).</li>
+              <li><strong>Excessive Line Length on Wide Monitors:</strong> Text columns that stretch to 100% on 32-inch monitors cause severe eye fatigue unless capped by <code>max-width</code>.</li>
+              <li><strong>Aspect Ratio Distortion:</strong> Fixed aspect ratio graphics or photos can break alignment if column proportions distort.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           SECTION 4: RESPONSIVE LAYOUT
+      =============================================== -->
+      <section id="responsive-layout" class="page-section">
+        <div class="section-header">
+          <div class="badge-pill tag-gradient">Layout Architecture 03</div>
+          <h2 class="section-title">Responsive Layout Architecture</h2>
+          <p class="section-subtitle">
+            The gold standard of contemporary web design. Combines fluid proportion grids, flexible media (<code>img { max-width: 100%; }</code>), and CSS3 <code>@media</code> queries to restructure page components intelligently across screen breakpoints.
+          </p>
+        </div>
+
+        <div class="interactive-stage">
+          <div class="stage-top-bar">
+            <div class="stage-info">
+              <span class="stage-title">Breakpoint & Structural Rearrangement Visualizer</span>
+              <span class="stage-hint">Switch between screen presets or drag the slider to watch components rearrange dynamically</span>
+            </div>
+            <div class="stage-controls">
+              <div class="device-preset-buttons">
+                <button class="preset-btn" data-width="375">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                  </svg>
+                  Mobile (375px)
+                </button>
+                <button class="preset-btn" data-width="768">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                  </svg>
+                  Tablet (768px)
+                </button>
+                <button class="preset-btn active" data-width="1100">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                  Desktop (1100px)
+                </button>
+              </div>
+              <div class="slider-control-group">
+                <label for="responsiveWidthSlider">Width:</label>
+                <input type="range" id="responsiveWidthSlider" min="320" max="1100" step="10" value="1100">
+                <span class="value-badge badge-gradient" id="responsiveWidthBadge">1100px</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Breakpoint Indicator Banner -->
+          <div class="breakpoint-status-bar">
+            <div class="bp-indicator bp-mobile" id="bpMobileIndicator">
+              <span class="bp-dot"></span>
+              <span>Mobile (&le; 640px)</span>
+            </div>
+            <div class="bp-indicator bp-tablet" id="bpTabletIndicator">
+              <span class="bp-dot"></span>
+              <span>Tablet (641px - 1024px)</span>
+            </div>
+            <div class="bp-indicator bp-desktop active" id="bpDesktopIndicator">
+              <span class="bp-dot"></span>
+              <span>Desktop (&ge; 1025px)</span>
+            </div>
+            <div class="active-rule-pill" id="activeRulePill">
+              Active Rule: <code>@media (min-width: 1025px)</code>
+            </div>
+          </div>
+
+          <!-- Responsive Simulated Canvas -->
+          <div class="responsive-canvas-wrapper">
+            <div class="responsive-demo-frame" id="responsiveDemoFrame">
+              <!-- Mock Header -->
+              <header class="resp-site-header">
+                <div class="resp-logo">
+                  <span class="logo-icon">✦</span> AURA DIGITAL
+                </div>
+                <!-- Desktop Nav -->
+                <nav class="resp-desktop-nav" id="respDesktopNav">
+                  <a href="javascript:void(0)" class="resp-link">Products</a>
+                  <a href="javascript:void(0)" class="resp-link">Solutions</a>
+                  <a href="javascript:void(0)" class="resp-link">Case Studies</a>
+                  <a href="javascript:void(0)" class="resp-btn-nav">Get Started</a>
+                </nav>
+                <!-- Mobile Hamburger Button -->
+                <button class="resp-mobile-menu-btn" id="respMobileMenuBtn" aria-label="Menu">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </button>
+              </header>
+
+              <!-- Responsive Hero Layout -->
+              <div class="resp-hero">
+                <div class="resp-hero-text">
+                  <span class="resp-tag">Smart Adaptive Layout</span>
+                  <h3>Restructure Layout at Every Breakpoint</h3>
+                  <p>Notice how navigation collapses, hero content aligns vertically on mobile, and cards reflow from 3 columns into 2, then into 1 single column.</p>
+                  <div class="resp-hero-actions">
+                    <button class="btn-primary-sm">Start Trial</button>
+                    <button class="btn-outline-sm">Documentation</button>
+                  </div>
+                </div>
+                <div class="resp-hero-graphic">
+                  <div class="mock-graphic-box">
+                    <div class="graphic-circle"></div>
+                    <div class="graphic-bars">
+                      <div class="hbar" style="width: 80%"></div>
+                      <div class="hbar" style="width: 60%"></div>
+                      <div class="hbar" style="width: 40%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Responsive Cards Grid -->
+              <div class="resp-cards-grid" id="respCardsGrid">
+                <div class="resp-card">
+                  <div class="resp-card-icon icon-blue">01</div>
+                  <h4>Fluid Media</h4>
+                  <p>Images automatically scale with <code>max-width: 100%</code> and maintain proportional aspect ratios without overflow.</p>
+                </div>
+                <div class="resp-card">
+                  <div class="resp-card-icon icon-purple">02</div>
+                  <h4>Breakpoint Logic</h4>
+                  <p>Content breaks and reflows only when the layout demands it, not tied to specific phone models.</p>
+                </div>
+                <div class="resp-card">
+                  <div class="resp-card-icon icon-indigo">03</div>
+                  <h4>Intrinsic Sizing</h4>
+                  <p>Combining modern Flexbox and CSS Grid enables layouts that self-arrange with minimal media queries.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Pillars of Responsive Web Design -->
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-number">01</div>
+            <h4>Fluid Grids</h4>
+            <p>Moving away from fixed pixels to relative units (<code>%</code>, <code>vw</code>, <code>fr</code>) so elements resize proportionally within parent containers.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-number">02</div>
+            <h4>Flexible Media</h4>
+            <p>Applying <code>max-width: 100%; height: auto;</code> prevents images, SVGs, and videos from exceeding their containing element's boundary.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-number">03</div>
+            <h4>CSS Media Queries</h4>
+            <p>Applying style blocks selectively based on viewport width, orientation, resolution, or pointer precision.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-number">04</div>
+            <h4>Responsive Typography</h4>
+            <p>Utilizing modern <code>clamp(min, preferred, max)</code> functions to fluidly scale font sizes without discrete breakpoint hops.</p>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           SECTION 5: CSS FLEXBOX
+      =============================================== -->
+      <section id="flexbox" class="page-section">
+        <div class="section-header">
+          <div class="badge-pill">Modern Layout Engine</div>
+          <h2 class="section-title">CSS Flexible Box (Flexbox)</h2>
+          <p class="section-subtitle">
+            A one-dimensional layout model designed for distributing space along a single axis (either row or column). Essential for navigation bars, item alignment, card contents, and dynamic spacing.
+          </p>
+        </div>
+
+        <div class="interactive-stage">
+          <div class="stage-top-bar">
+            <div class="stage-info">
+              <span class="stage-title">Interactive Flexbox Playground</span>
+              <span class="stage-hint">Manipulate parent container properties and inspect the real-time visual alignment & CSS output</span>
+            </div>
+            <div class="stage-controls">
+              <button class="btn-secondary" id="resetFlexboxBtn">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="1 4 1 10 7 10"></polyline>
+                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                </svg>
+                Reset Controls
+              </button>
+            </div>
+          </div>
+
+          <div class="playground-layout">
+            <!-- Left Controls Panel -->
+            <div class="playground-controls">
+              <!-- flex-direction -->
+              <div class="control-field">
+                <label>flex-direction:</label>
+                <div class="select-group" id="flexDirectionGroup">
+                  <button class="control-btn active" data-prop="flexDirection" data-val="row">row</button>
+                  <button class="control-btn" data-prop="flexDirection" data-val="row-reverse">row-reverse</button>
+                  <button class="control-btn" data-prop="flexDirection" data-val="column">column</button>
+                  <button class="control-btn" data-prop="flexDirection" data-val="column-reverse">col-reverse</button>
+                </div>
+              </div>
+
+              <!-- justify-content -->
+              <div class="control-field">
+                <label>justify-content (Main Axis):</label>
+                <div class="select-group" id="justifyContentGroup">
+                  <button class="control-btn active" data-prop="justifyContent" data-val="flex-start">flex-start</button>
+                  <button class="control-btn" data-prop="justifyContent" data-val="center">center</button>
+                  <button class="control-btn" data-prop="justifyContent" data-val="flex-end">flex-end</button>
+                  <button class="control-btn" data-prop="justifyContent" data-val="space-between">space-between</button>
+                  <button class="control-btn" data-prop="justifyContent" data-val="space-around">space-around</button>
+                  <button class="control-btn" data-prop="justifyContent" data-val="space-evenly">space-evenly</button>
+                </div>
+              </div>
+
+              <!-- align-items -->
+              <div class="control-field">
+                <label>align-items (Cross Axis):</label>
+                <div class="select-group" id="alignItemsGroup">
+                  <button class="control-btn active" data-prop="alignItems" data-val="stretch">stretch</button>
+                  <button class="control-btn" data-prop="alignItems" data-val="flex-start">flex-start</button>
+                  <button class="control-btn" data-prop="alignItems" data-val="center">center</button>
+                  <button class="control-btn" data-prop="alignItems" data-val="flex-end">flex-end</button>
+                </div>
+              </div>
+
+              <!-- flex-wrap -->
+              <div class="control-field">
+                <label>flex-wrap:</label>
+                <div class="select-group" id="flexWrapGroup">
+                  <button class="control-btn" data-prop="flexWrap" data-val="nowrap">nowrap</button>
+                  <button class="control-btn active" data-prop="flexWrap" data-val="wrap">wrap</button>
+                  <button class="control-btn" data-prop="flexWrap" data-val="wrap-reverse">wrap-reverse</button>
+                </div>
+              </div>
+
+              <!-- gap -->
+              <div class="control-field">
+                <label>gap:</label>
+                <div class="select-group" id="flexGapGroup">
+                  <button class="control-btn" data-prop="gap" data-val="8px">8px</button>
+                  <button class="control-btn active" data-prop="gap" data-val="16px">16px</button>
+                  <button class="control-btn" data-prop="gap" data-val="24px">24px</button>
+                  <button class="control-btn" data-prop="gap" data-val="32px">32px</button>
+                </div>
+              </div>
+
+              <!-- Item count modifier -->
+              <div class="control-field">
+                <label>Item Count:</label>
+                <div class="count-controller">
+                  <button class="btn-sm" id="removeFlexItemBtn">&minus; Remove</button>
+                  <span class="item-count-badge" id="flexItemCountBadge">4 Items</span>
+                  <button class="btn-sm" id="addFlexItemBtn">&plus; Add</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Visual Canvas & Generated Code -->
+            <div class="playground-display">
+              <div class="canvas-header">
+                <span class="canvas-tag">Live Flex Container (.container)</span>
+                <span class="axis-hint" id="flexAxisHint">Main Axis: Horizontal &bull; Cross Axis: Vertical</span>
+              </div>
+
+              <div class="flex-canvas" id="flexCanvas">
+                <div class="flex-box-item" data-item="1">
+                  <span class="item-id">Item 1</span>
+                  <span class="item-size">flex-grow: 0</span>
+                </div>
+                <div class="flex-box-item" data-item="2">
+                  <span class="item-id">Item 2</span>
+                  <span class="item-size">flex-grow: 0</span>
+                </div>
+                <div class="flex-box-item" data-item="3">
+                  <span class="item-id">Item 3</span>
+                  <span class="item-size">flex-grow: 0</span>
+                </div>
+                <div class="flex-box-item" data-item="4">
+                  <span class="item-id">Item 4</span>
+                  <span class="item-size">flex-grow: 0</span>
+                </div>
+              </div>
+
+              <!-- Live Generated CSS Code -->
+              <div class="code-output-card">
+                <div class="code-output-header">
+                  <span>Generated CSS Rules</span>
+                  <button class="copy-btn-sm" id="copyFlexCssBtn">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy CSS</span>
+                  </button>
+                </div>
+                <pre class="code-preview" id="flexCodeOutput"><code>.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 16px;
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           SECTION 6: CSS GRID
+      =============================================== -->
+      <section id="css-grid" class="page-section">
+        <div class="section-header">
+          <div class="badge-pill tag-indigo">Modern Layout Engine</div>
+          <h2 class="section-title">CSS Grid Layout</h2>
+          <p class="section-subtitle">
+            A comprehensive two-dimensional grid system managing columns and rows simultaneously. Revolutionizes macro-layouts, multi-card dashboards, galleries, and complex asymmetric structures.
+          </p>
+        </div>
+
+        <div class="interactive-stage">
+          <div class="stage-top-bar">
+            <div class="stage-info">
+              <span class="stage-title">Interactive CSS Grid Playground</span>
+              <span class="stage-hint">Switch column tracks, auto-fit algorithms, and gap spacings with instantaneous visual update</span>
+            </div>
+            <div class="stage-controls">
+              <button class="btn-secondary" id="resetGridBtn">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="1 4 1 10 7 10"></polyline>
+                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                </svg>
+                Reset Grid
+              </button>
+            </div>
+          </div>
+
+          <div class="playground-layout">
+            <!-- Grid Controls -->
+            <div class="playground-controls">
+              <!-- Grid Template Columns Presets -->
+              <div class="control-field">
+                <label>grid-template-columns:</label>
+                <div class="select-group" id="gridColumnsGroup">
+                  <button class="control-btn" data-grid-cols="repeat(2, 1fr)">2 Columns (1fr 1fr)</button>
+                  <button class="control-btn active" data-grid-cols="repeat(3, 1fr)">3 Columns (1fr 1fr 1fr)</button>
+                  <button class="control-btn" data-grid-cols="repeat(4, 1fr)">4 Columns (1fr 1fr 1fr 1fr)</button>
+                  <button class="control-btn" data-grid-cols="repeat(auto-fit, minmax(180px, 1fr))">Auto-Fit (Responsive)</button>
+                  <button class="control-btn" data-grid-cols="240px 1fr">Sidebar + Main (240px 1fr)</button>
+                </div>
+              </div>
+
+              <!-- Grid Gap -->
+              <div class="control-field">
+                <label>gap:</label>
+                <div class="select-group" id="gridGapGroup">
+                  <button class="control-btn" data-gap="8px">8px</button>
+                  <button class="control-btn active" data-gap="16px">16px</button>
+                  <button class="control-btn" data-gap="24px">24px</button>
+                  <button class="control-btn" data-gap="32px">32px</button>
+                </div>
+              </div>
+
+              <!-- Row Height -->
+              <div class="control-field">
+                <label>grid-auto-rows:</label>
+                <div class="select-group" id="gridRowsGroup">
+                  <button class="control-btn" data-row-height="auto">auto</button>
+                  <button class="control-btn active" data-row-height="110px">110px</button>
+                  <button class="control-btn" data-row-height="140px">140px</button>
+                </div>
+              </div>
+
+              <!-- Grid Item Count -->
+              <div class="control-field">
+                <label>Item Count:</label>
+                <div class="count-controller">
+                  <button class="btn-sm" id="removeGridItemBtn">&minus; Remove</button>
+                  <span class="item-count-badge" id="gridItemCountBadge">6 Items</span>
+                  <button class="btn-sm" id="addGridItemBtn">&plus; Add</button>
+                </div>
+              </div>
+
+              <!-- Feature Callout -->
+              <div class="pro-tip-box">
+                <strong>Why <code>auto-fit + minmax()</code> is magical:</strong>
+                <p>It creates fully responsive card grids that automatically calculate the optimal column count without writing a single media query!</p>
+              </div>
+            </div>
+
+            <!-- Visual Grid Canvas -->
+            <div class="playground-display">
+              <div class="canvas-header">
+                <span class="canvas-tag">Live Grid Container (.grid-container)</span>
+                <span class="axis-hint" id="gridTrackHint">Tracks: 3 Columns &bull; Gap: 16px</span>
+              </div>
+
+              <div class="grid-canvas" id="gridCanvas">
+                <div class="grid-box-item" data-grid-id="1">
+                  <span class="grid-num">Cell 1</span>
+                  <span class="grid-meta">1fr</span>
+                </div>
+                <div class="grid-box-item" data-grid-id="2">
+                  <span class="grid-num">Cell 2</span>
+                  <span class="grid-meta">1fr</span>
+                </div>
+                <div class="grid-box-item" data-grid-id="3">
+                  <span class="grid-num">Cell 3</span>
+                  <span class="grid-meta">1fr</span>
+                </div>
+                <div class="grid-box-item" data-grid-id="4">
+                  <span class="grid-num">Cell 4</span>
+                  <span class="grid-meta">1fr</span>
+                </div>
+                <div class="grid-box-item" data-grid-id="5">
+                  <span class="grid-num">Cell 5</span>
+                  <span class="grid-meta">1fr</span>
+                </div>
+                <div class="grid-box-item" data-grid-id="6">
+                  <span class="grid-num">Cell 6</span>
+                  <span class="grid-meta">1fr</span>
+                </div>
+              </div>
+
+              <!-- Live Generated CSS Code -->
+              <div class="code-output-card">
+                <div class="code-output-header">
+                  <span>Generated Grid CSS</span>
+                  <button class="copy-btn-sm" id="copyGridCssBtn">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy CSS</span>
+                  </button>
+                </div>
+                <pre class="code-preview" id="gridCodeOutput"><code>.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 110px;
+  gap: 16px;
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           SECTION 7: RESPONSIVE PLAYGROUND SIMULATOR
+      =============================================== -->
+      <section id="playground" class="page-section">
+        <div class="section-header">
+          <div class="badge-pill tag-gradient">Fully Functional Simulator</div>
+          <h2 class="section-title">Responsive Device Simulator</h2>
+          <p class="section-subtitle">
+            Experience a realistic web design studio preview environment. Test how an authentic multi-section production website seamlessly adapts across desktop, tablet, and mobile screens.
+          </p>
+        </div>
+
+        <div class="simulator-wrapper">
+          <!-- Control Bar Above Simulator -->
+          <div class="simulator-toolbar">
+            <div class="device-switchers">
+              <button class="sim-btn active" data-sim-device="desktop" data-sim-width="1140">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                Desktop (1140px)
+              </button>
+              <button class="sim-btn" data-sim-device="tablet" data-sim-width="768">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                Tablet (768px)
+              </button>
+              <button class="sim-btn" data-sim-device="mobile" data-sim-width="375">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+                Mobile (375px)
+              </button>
+              <button class="sim-btn" data-sim-device="fluid" data-sim-width="100%">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+                Full Fluid (100%)
+              </button>
+            </div>
+
+            <!-- Viewport Slider -->
+            <div class="sim-slider-box">
+              <label for="simWidthSlider">Adjust Width:</label>
+              <input type="range" id="simWidthSlider" min="320" max="1140" step="10" value="1140">
+              <span class="sim-width-readout" id="simWidthReadout">1140px</span>
+            </div>
+          </div>
+
+          <!-- Mock Browser Shell -->
+          <div class="mock-browser-window">
+            <div class="browser-chrome">
+              <div class="browser-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <div class="browser-address-bar">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" class="lock-icon">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span class="url-text">https://aura-design.co/preview/production-app</span>
+              </div>
+              <div class="browser-meta-badge" id="browserMetaBadge">
+                <span class="mode-tag">DESKTOP VIEW</span> &bull; 1140px
+              </div>
+            </div>
+
+            <!-- Browser Viewport Container -->
+            <div class="browser-viewport-stage">
+              <div class="sim-resizable-frame" id="simResizableFrame">
+                <!-- Inner Simulated Website -->
+                <div class="sim-website">
+                  <!-- Navigation Bar -->
+                  <header class="sim-site-header">
+                    <div class="sim-site-brand">
+                      <div class="sim-logo-mark">A</div>
+                      <span class="sim-brand-title">AURA STUDIO</span>
+                    </div>
+
+                    <!-- Simulated Desktop Links -->
+                    <div class="sim-nav-links">
+                      <a href="javascript:void(0)" class="sim-link active">Home</a>
+                      <a href="javascript:void(0)" class="sim-link">Work</a>
+                      <a href="javascript:void(0)" class="sim-link">Services</a>
+                      <a href="javascript:void(0)" class="sim-link">Pricing</a>
+                      <a href="javascript:void(0)" class="sim-btn-contact">Contact Us</a>
+                    </div>
+
+                    <!-- Simulated Mobile Hamburger -->
+                    <div class="sim-hamburger" id="simMobileMenuToggle">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                  </header>
+
+                  <!-- Collapsible Mobile Drawer in Simulator -->
+                  <div class="sim-mobile-drawer" id="simMobileDrawer">
+                    <a href="javascript:void(0)">Home</a>
+                    <a href="javascript:void(0)">Work</a>
+                    <a href="javascript:void(0)">Services</a>
+                    <a href="javascript:void(0)">Pricing</a>
+                    <a href="javascript:void(0)" class="drawer-cta">Contact Us</a>
+                  </div>
+
+                  <!-- Hero Banner -->
+                  <section class="sim-hero-section">
+                    <div class="sim-hero-content">
+                      <span class="sim-pill">Digital Agency &bull; Est. 2026</span>
+                      <h2>Crafting High-Performance Responsive Web Experiences</h2>
+                      <p>We architect intuitive digital products that scale fluidly across every contemporary device, screen resolution, and human interface.</p>
+                      <div class="sim-hero-buttons">
+                        <button class="sim-btn-primary">View Case Studies</button>
+                        <button class="sim-btn-secondary">Our Process</button>
+                      </div>
+                    </div>
+                    <div class="sim-hero-illustration">
+                      <div class="mock-stats-card">
+                        <div class="stat-header">
+                          <span>Live Performance</span>
+                          <span class="live-dot"></span>
+                        </div>
+                        <div class="stat-big">99.9%</div>
+                        <div class="stat-bar-outer">
+                          <div class="stat-bar-inner"></div>
+                        </div>
+                        <div class="stat-meta">Zero Layout Shift &bull; Mobile Ready</div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- 3 Feature Cards that Reflow Responsive -->
+                  <section class="sim-features-section">
+                    <div class="sim-section-header">
+                      <h3>Engineering Capabilities</h3>
+                      <p>Designed with fluid columns, flex alignment, and CSS Grid auto-flow.</p>
+                    </div>
+
+                    <div class="sim-cards-row">
+                      <div class="sim-card">
+                        <div class="sim-icon-box box-blue">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                          </svg>
+                        </div>
+                        <h4>Responsive Layouts</h4>
+                        <p>Adaptive grids that dynamically adjust columns, typography, and whitespace according to viewport width.</p>
+                        <span class="card-link">Learn More &rarr;</span>
+                      </div>
+
+                      <div class="sim-card">
+                        <div class="sim-icon-box box-purple">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polygon points="12 6 12 12 16 14"></polygon>
+                          </svg>
+                        </div>
+                        <h4>Blazing Speed</h4>
+                        <p>Optimized asset loading, modern CSS architectures, and zero bloated JavaScript libraries.</p>
+                        <span class="card-link">Learn More &rarr;</span>
+                      </div>
+
+                      <div class="sim-card">
+                        <div class="sim-icon-box box-indigo">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                          </svg>
+                        </div>
+                        <h4>Universal Accessibility</h4>
+                        <p>High-contrast touch targets, WCAG AA compliance, and accessible semantic HTML structures.</p>
+                        <span class="card-link">Learn More &rarr;</span>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- Responsive Two-Column Media Section -->
+                  <section class="sim-media-section">
+                    <div class="sim-media-grid">
+                      <div class="sim-media-visual">
+                        <div class="mock-device-preview">
+                          <div class="mock-code-banner">
+                            <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="sim-media-text">
+                        <h3>Built from the Ground Up for Fluidity</h3>
+                        <p>Modern layouts do not rely on brittle fixed pixel wrappers. By integrating flexible containers and CSS media queries, our layouts withstand future screen sizes.</p>
+                        <div class="sim-check-list">
+                          <div>&check; Percentage & Rem scaling</div>
+                          <div>&check; Flexbox one-dimensional micro-layouts</div>
+                          <div>&check; CSS Grid two-dimensional page structure</div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- Simulated Footer -->
+                  <footer class="sim-site-footer">
+                    <div class="sim-footer-col">
+                      <h5>AURA STUDIO</h5>
+                      <p>Modern responsive layouts engineered with precision.</p>
+                    </div>
+                    <div class="sim-footer-col">
+                      <h6>Navigation</h6>
+                      <span>Overview</span>
+                      <span>Case Studies</span>
+                      <span>About Us</span>
+                    </div>
+                    <div class="sim-footer-col">
+                      <h6>Resources</h6>
+                      <span>Design Systems</span>
+                      <span>CSS Architecture</span>
+                      <span>Performance</span>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           SECTION 8: COMPARISON MATRIX
+      =============================================== -->
+      <section id="comparison" class="page-section">
+        <div class="section-header">
+          <div class="badge-pill">Architectural Evaluation</div>
+          <h2 class="section-title">Layout Architecture Comparison</h2>
+          <p class="section-subtitle">
+            A comprehensive side-by-side analysis contrasting Fixed, Fluid, and Responsive layout methodologies across critical technical parameters.
+          </p>
+        </div>
+
+        <!-- Interactive Comparison Filter Bar -->
+        <div class="comparison-filter-bar">
+          <span class="filter-label">Interactive Focus:</span>
+          <div class="btn-group" id="comparisonFilterGroup">
+            <button class="btn-toggle active" data-highlight="all">View All Layouts</button>
+            <button class="btn-toggle" data-highlight="fixed">Highlight Fixed</button>
+            <button class="btn-toggle" data-highlight="fluid">Highlight Fluid</button>
+            <button class="btn-toggle" data-highlight="resp">Highlight Responsive</button>
+          </div>
+        </div>
+
+        <div class="table-responsive-container">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th class="col-feature">Design Dimension</th>
+                <th class="col-fixed">Fixed Layout</th>
+                <th class="col-fluid">Fluid Layout</th>
+                <th class="col-resp highlight-col">Responsive Layout</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Primary Sizing Units</strong></td>
+                <td><span class="unit-pill">px (Pixels)</span></td>
+                <td><span class="unit-pill unit-purple">% (Percentages), vw</span></td>
+                <td><span class="unit-pill unit-blue">%, rem, vw, fr, clamp()</span></td>
+              </tr>
+              <tr>
+                <td><strong>Screen Adaptation</strong></td>
+                <td><span class="status-bad">&cross; None</span> (Maintains static pixel width)</td>
+                <td><span class="status-warn">&sim; Proportional</span> (Expands / squishes uniformly)</td>
+                <td><span class="status-good">&check; Intelligent</span> (Restructures via breakpoints)</td>
+              </tr>
+              <tr>
+                <td><strong>Mobile Usability</strong></td>
+                <td>Poor; requires horizontal scrolling or zoom</td>
+                <td>Moderate; columns get cramped on small phones</td>
+                <td>Excellent; collapses into vertical single-column</td>
+              </tr>
+              <tr>
+                <td><strong>Large Displays (4K/Ultrawide)</strong></td>
+                <td>Unused white gaps surrounding narrow container</td>
+                <td>Can stretch excessively unless capped with <code>max-width</code></td>
+                <td>Optimal; scales gracefully with max-width limits</td>
+              </tr>
+              <tr>
+                <td><strong>CSS Media Queries</strong></td>
+                <td>Not utilized</td>
+                <td>Rarely used or secondary</td>
+                <td>Crucial core foundation (<code>@media</code>)</td>
+              </tr>
+              <tr>
+                <td><strong>Modern Layout Engines</strong></td>
+                <td>Floats, fixed positioning, tables</td>
+                <td>Percentages, inline-block, floats</td>
+                <td>CSS Flexbox + CSS Grid + Media Queries</td>
+              </tr>
+              <tr>
+                <td><strong>Maintenance Complexity</strong></td>
+                <td>Low (single fixed canvas)</td>
+                <td>Medium (calculating percentage math)</td>
+                <td>Medium-High (multi-breakpoint testing)</td>
+              </tr>
+              <tr>
+                <td><strong>Primary Industry Role</strong></td>
+                <td>Legacy sites, print-like emails</td>
+                <td>Data dashboards, liquid widgets</td>
+                <td>Industry Standard for all contemporary websites</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           SECTION 9: CODE EXAMPLES
+      =============================================== -->
+      <section id="code-examples" class="page-section">
+        <div class="section-header">
+          <div class="badge-pill">Developer Reference</div>
+          <h2 class="section-title">Production Code Examples</h2>
+          <p class="section-subtitle">
+            Clean, copy-ready HTML5 and CSS3 implementations illustrating each layout strategy and modern layout technique.
+          </p>
+        </div>
+
+        <div class="code-tabs-wrapper">
+          <div class="code-tab-nav">
+            <button class="code-tab-btn active" data-tab="tab-fixed">Fixed Container</button>
+            <button class="code-tab-btn" data-tab="tab-fluid">Fluid Percentages</button>
+            <button class="code-tab-btn" data-tab="tab-responsive">Media Queries</button>
+            <button class="code-tab-btn" data-tab="tab-flexbox">Flexbox Navbar & Cards</button>
+            <button class="code-tab-btn" data-tab="tab-grid">CSS Grid Auto-Fit</button>
+          </div>
+
+          <!-- Tab Content 1: Fixed -->
+          <div class="code-tab-pane active" id="tab-fixed">
+            <div class="code-card">
+              <div class="code-card-header">
+                <span class="code-lang">CSS &bull; Fixed-Width Container</span>
+                <button class="copy-code-btn" data-target="code-fixed-snippet">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copy Code</span>
+                </button>
+              </div>
+              <pre><code id="code-fixed-snippet">/* Fixed-Width Layout Pattern */
+.fixed-container {
+  /* Hardcoded pixel width */
+  width: 960px;
+  
+  /* Horizontally center the container on larger displays */
+  margin: 0 auto;
+  
+  /* Fixed padding */
+  padding: 24px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+.fixed-sidebar {
+  float: left;
+  width: 260px;
+}
+
+.fixed-content {
+  float: right;
+  width: 660px;
+}
+
+/* Clearfix for float containment */
+.fixed-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- Tab Content 2: Fluid -->
+          <div class="code-tab-pane" id="tab-fluid">
+            <div class="code-card">
+              <div class="code-card-header">
+                <span class="code-lang">CSS &bull; Fluid Percentage Layout with Max-Width</span>
+                <button class="copy-code-btn" data-target="code-fluid-snippet">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copy Code</span>
+                </button>
+              </div>
+              <pre><code id="code-fluid-snippet">/* Fluid Layout Pattern */
+.fluid-wrapper {
+  /* Scales with viewport width */
+  width: 92%;
+  
+  /* Cap container width to prevent over-stretching on ultrawide monitors */
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.fluid-columns {
+  display: flex;
+  gap: 3%;
+}
+
+.fluid-sidebar {
+  /* Allocated 25% of the flexible parent */
+  width: 25%;
+}
+
+.fluid-main {
+  /* Allocated remaining proportional space */
+  width: 72%;
+}
+
+/* Proportional Fluid Images */
+img.fluid-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- Tab Content 3: Responsive Media Queries -->
+          <div class="code-tab-pane" id="tab-responsive">
+            <div class="code-card">
+              <div class="code-card-header">
+                <span class="code-lang">CSS &bull; Mobile-First Media Queries</span>
+                <button class="copy-code-btn" data-target="code-resp-snippet">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copy Code</span>
+                </button>
+              </div>
+              <pre><code id="code-resp-snippet">/* Base Styles: Mobile First (Phone: &lt; 640px) */
+.page-grid {
+  display: flex;
+  flex-direction: column; /* Stack vertically on phones */
+  gap: 16px;
+  padding: 16px;
+}
+
+.nav-menu {
+  display: none; /* Collapse menu on mobile into drawer */
+}
+
+/* Tablet Breakpoint (min-width: 768px) */
+@media (min-width: 768px) {
+  .page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    gap: 24px;
+    padding: 32px;
+  }
+}
+
+/* Desktop Breakpoint (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .page-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .nav-menu {
+    display: flex; /* Reveal full horizontal navigation */
+    gap: 20px;
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- Tab Content 4: Flexbox -->
+          <div class="code-tab-pane" id="tab-flexbox">
+            <div class="code-card">
+              <div class="code-card-header">
+                <span class="code-lang">CSS &bull; Responsive Flexbox Navigation & Cards</span>
+                <button class="copy-code-btn" data-target="code-flex-snippet">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copy Code</span>
+                </button>
+              </div>
+              <pre><code id="code-flex-snippet">/* Modern Flexbox Header Navigation */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Space logo & links apart */
+  align-items: center;            /* Center vertically */
+  padding: 16px 32px;
+  background: #ffffff;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+/* Flexbox Cards that Wrap Gracefully */
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-item {
+  flex: 1 1 280px; /* grow, shrink, 280px min-width */
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- Tab Content 5: CSS Grid -->
+          <div class="code-tab-pane" id="tab-grid">
+            <div class="code-card">
+              <div class="code-card-header">
+                <span class="code-lang">CSS &bull; Auto-Fit Responsive Grid</span>
+                <button class="copy-code-btn" data-target="code-grid-snippet">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copy Code</span>
+                </button>
+              </div>
+              <pre><code id="code-grid-snippet">/* Zero-Media-Query Responsive Card Grid */
+.responsive-grid {
+  display: grid;
+  
+  /* Automatically wraps and fills columns based on available width!
+     Each card is at least 260px, expanding equally to fill remaining space */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  
+  gap: 24px;
+  padding: 24px 0;
+}
+
+.grid-card {
+  padding: 28px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -8px rgba(99, 102, 241, 0.15);
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           SECTION 10: CONCLUSION & INSIGHTS
+      =============================================== -->
+      <section id="conclusion" class="page-section">
+        <div class="section-header">
+          <div class="badge-pill">Architectural Synthesis</div>
+          <h2 class="section-title">Conclusions & Modern Best Practices</h2>
+          <p class="section-subtitle">
+            How contemporary web development synthesizes fixed precision, fluid scaling, and responsive breakpoint restructuring into cohesive digital experiences.
+          </p>
+        </div>
+
+        <div class="conclusion-cards-grid">
+          <div class="insight-card">
+            <div class="insight-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
+            </div>
+            <h4>When is Fixed Layout Useful?</h4>
+            <p>Fixed pixel dimensions remain valuable for micro-components like icons (24px &times; 24px), avatar badges, modal popups, banner ads, and email templates where absolute visual constraints must be guaranteed across non-standard rendering engines.</p>
+          </div>
+
+          <div class="insight-card">
+            <div class="insight-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+            <h4>When is Fluid Layout Useful?</h4>
+            <p>Fluid percentages excel in data visualization dashboards, video playback canvases, reading progress bars, and split-screen comparison tools where elements should dynamically utilize all available viewport width without abrupt shifts.</p>
+          </div>
+
+          <div class="insight-card highlight-insight">
+            <div class="insight-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <h4>Why Responsive Layout is the Modern Standard</h4>
+            <p>Responsive design is not merely a styling technique—it is an accessibility and business imperative. By restructuring content dynamically with media queries and modern CSS (Flexbox + Grid), a single codebase caters to billions of diverse devices seamlessly.</p>
+          </div>
+        </div>
+
+        <!-- Five Core Best Practices -->
+        <div class="best-practices-box">
+          <h3>The Five Golden Rules of Responsive Engineering</h3>
+          <div class="rules-list">
+            <div class="rule-item">
+              <span class="rule-num">1</span>
+              <div>
+                <strong>Adopt a Mobile-First Mindset:</strong> Write base styles for mobile screens first, then progressively enhance for larger screens using <code>min-width</code> media queries.
+              </div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-num">2</span>
+              <div>
+                <strong>Design Breakpoints Around Content, Not Devices:</strong> Introduce breakpoints when your content begins to look cramped or awkward, rather than memorizing specific phone resolutions.
+              </div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-num">3</span>
+              <div>
+                <strong>Pair Flexbox and Grid Harmoniously:</strong> Utilize CSS Grid for the macro 2D layout (pages, templates, galleries) and Flexbox for 1D micro components (navbars, card internals, badges).
+              </div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-num">4</span>
+              <div>
+                <strong>Leverage Modern Fluid Sizing Functions:</strong> Replace rigid font steps with CSS <code>clamp(1rem, 2.5vw, 2.5rem)</code> for silky-smooth typography scaling.
+              </div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-num">5</span>
+              <div>
+                <strong>Always Test on Genuine Hardware:</strong> Emulators are powerful, but nothing replaces testing tactile interactions, notch cutouts, and touch targets on real mobile devices.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Knowledge Check Widget -->
+        <div class="quiz-container">
+          <div class="quiz-header">
+            <span class="quiz-badge">Knowledge Check</span>
+            <h3>Test Your Understanding</h3>
+            <p>Verify your mastery of layout concepts with these instant interactive questions.</p>
+          </div>
+
+          <div class="quiz-item" data-quiz="q1">
+            <p class="quiz-q">1. Which layout model is characterized by maintaining identical pixel dimensions regardless of screen size?</p>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-answer="wrong">Fluid Layout</button>
+              <button class="quiz-opt" data-answer="correct">Fixed Layout</button>
+              <button class="quiz-opt" data-answer="wrong">Responsive Layout</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-item" data-quiz="q2">
+            <p class="quiz-q">2. Which CSS layout technology is specifically engineered for two-dimensional (columns AND rows) arrangements?</p>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-answer="wrong">CSS Flexbox</button>
+              <button class="quiz-opt" data-answer="correct">CSS Grid</button>
+              <button class="quiz-opt" data-answer="wrong">Float Layout</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-item" data-quiz="q3">
+            <p class="quiz-q">3. What is the fundamental CSS feature that enables Responsive layouts to alter styles based on viewport conditions?</p>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-answer="correct">CSS Media Queries (@media)</button>
+              <button class="quiz-opt" data-answer="wrong">CSS Transforms</button>
+              <button class="quiz-opt" data-answer="wrong">CSS Animations</button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Page Footer -->
+      <footer class="app-footer">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <strong>RESPONSIVE WEB DESIGN</strong>
+            <span>Fixed, Fluid & Responsive Layout Studio Guide</span>
+          </div>
+          <div class="footer-notes">
+            <span>Crafted with HTML5, CSS3 & Modern JavaScript</span>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Toast Notification element -->
+  <div class="toast-notification" id="toastNotification">
+    <span class="toast-icon">&check;</span>
+    <span class="toast-message" id="toastMessage">Copied to clipboard!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
