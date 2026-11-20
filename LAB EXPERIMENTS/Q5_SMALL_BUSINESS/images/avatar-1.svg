@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <circle cx="50" cy="50" r="48" fill="#FDECE9" stroke="#E88D7D" stroke-width="2"/>
+  <!-- Woman with bun and apron/baking enthusiast -->
+  <circle cx="50" cy="42" r="18" fill="#F4A261"/>
+  <!-- Hair -->
+  <circle cx="50" cy="22" r="10" fill="#4A2E1B"/>
+  <path d="M30 40 C30 24, 70 24, 70 40 C65 28, 35 28, 30 40 Z" fill="#4A2E1B"/>
+  <!-- Face features -->
+  <circle cx="44" cy="42" r="2" fill="#2C1810"/>
+  <circle cx="56" cy="42" r="2" fill="#2C1810"/>
+  <path d="M46 50 Q 50 54 54 50" stroke="#C85A32" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Blushing cheeks -->
+  <circle cx="41" cy="46" r="3" fill="#E88D7D" opacity="0.6"/>
+  <circle cx="59" cy="46" r="3" fill="#E88D7D" opacity="0.6"/>
+  <!-- Shoulders / Blouse -->
+  <path d="M22 84 C24 64, 76 64, 78 84 Z" fill="#E88D7D"/>
+  <!-- Necklace -->
+  <path d="M44 65 Q 50 70 56 65" stroke="#F4A261" stroke-width="2" fill="none"/>
+</svg>

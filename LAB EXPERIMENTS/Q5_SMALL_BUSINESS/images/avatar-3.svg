@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <circle cx="50" cy="50" r="48" fill="#FDECE9" stroke="#E88D7D" stroke-width="2"/>
+  <!-- Young woman with wavy hair -->
+  <circle cx="50" cy="44" r="18" fill="#F8D7DA"/>
+  <!-- Wavy Hair -->
+  <path d="M28 42 C26 20, 74 20, 72 42 C76 58, 68 68, 64 74 C58 58, 65 35, 50 32 C35 35, 42 58, 36 74 C32 68, 24 58, 28 42 Z" fill="#78350F"/>
+  <!-- Eyes -->
+  <circle cx="43" cy="44" r="2" fill="#2C1810"/>
+  <circle cx="57" cy="44" r="2" fill="#2C1810"/>
+  <path d="M41 40 Q 43 38 46 39" stroke="#451A03" stroke-width="1.5" fill="none"/>
+  <path d="M54 39 Q 57 38 59 40" stroke="#451A03" stroke-width="1.5" fill="none"/>
+  <!-- Smile -->
+  <path d="M46 52 Q 50 56 54 52" stroke="#E11D48" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Cheeks -->
+  <circle cx="40" cy="48" r="3" fill="#FB7185" opacity="0.5"/>
+  <circle cx="60" cy="48" r="3" fill="#FB7185" opacity="0.5"/>
+  <!-- Dress -->
+  <path d="M24 84 C26 66, 74 66, 76 84 Z" fill="#F4A261"/>
+</svg>

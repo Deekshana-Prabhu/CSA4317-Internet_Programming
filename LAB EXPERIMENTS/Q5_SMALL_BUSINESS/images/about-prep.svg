@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" width="600" height="420">
+  <defs>
+    <radialGradient id="prepBg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#FFFDF9" />
+      <stop offset="65%" stop-color="#FDF1E8" />
+      <stop offset="100%" stop-color="#F7DFD2" />
+    </radialGradient>
+    <filter id="prepShadow" x="-20%" y="-10%" width="140%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#5C341D" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="600" height="420" fill="url(#prepBg)"/>
+
+  <!-- Marble Countertop -->
+  <g filter="url(#prepShadow)">
+    <rect x="40" y="310" width="520" height="70" rx="6" fill="#F4EDE4"/>
+    <rect x="40" y="310" width="520" height="12" fill="#E2D4C3"/>
+    <!-- Marble veining -->
+    <path d="M80 340 Q 200 330 320 350 Q 440 335 520 345" stroke="#D1BEAA" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Oval Cane Proofing Basket (Banneton) on Left -->
+  <g transform="translate(140, 240)" filter="url(#prepShadow)">
+    <ellipse cx="0" cy="40" rx="90" ry="25" fill="#754728"/>
+    <ellipse cx="0" cy="30" rx="86" ry="22" fill="#C59B6D"/>
+    <!-- Rattan spiral grooves -->
+    <ellipse cx="0" cy="30" rx="72" ry="17" fill="none" stroke="#FAF5EE" stroke-width="2"/>
+    <ellipse cx="0" cy="30" rx="58" ry="13" fill="none" stroke="#FAF5EE" stroke-width="2"/>
+    <ellipse cx="0" cy="30" rx="44" ry="9" fill="none" stroke="#FAF5EE" stroke-width="2"/>
+    <!-- Rising dough inside basket with dusted flour -->
+    <ellipse cx="0" cy="18" rx="76" ry="32" fill="#FCEAD2"/>
+    <!-- Flour dusting spiral -->
+    <ellipse cx="0" cy="18" rx="60" ry="22" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="8 6"/>
+  </g>
+
+  <!-- Dough Shaping & Baker's Bench Knife (Scraper) Center -->
+  <g transform="translate(350, 260)" filter="url(#prepShadow)">
+    <!-- Floured surface cloud -->
+    <ellipse cx="0" cy="45" rx="140" ry="25" fill="#FFFFFF" opacity="0.6"/>
+
+    <!-- Artisan Sourdough Dough Mass -->
+    <path d="M-80 35 
+             C -90 -10, -50 -45, 0 -45 
+             C 50 -45, 90 -10, 80 35 
+             C 50 48, -50 48, -80 35 Z" 
+          fill="#FDE8CE"/>
+    
+    <!-- Dough fold / elasticity crease -->
+    <path d="M-40 -10 Q 0 15 40 -10" stroke="#E5C5A0" stroke-width="3" fill="none"/>
+    <path d="M-20 -25 Q 0 -15 20 -25" stroke="#E5C5A0" stroke-width="2.5" fill="none"/>
+
+    <!-- Flour dust highlights -->
+    <ellipse cx="10" cy="-20" rx="30" ry="12" fill="#FFFFFF" opacity="0.5"/>
+
+    <!-- Baker's Stainless Steel Bench Scraper / Dough Cutter -->
+    <g transform="translate(85, -20) rotate(15)">
+      <!-- Wood Handle -->
+      <rect x="-10" y="-35" width="20" height="35" rx="5" fill="#8C5832"/>
+      <rect x="-6" y="-30" width="12" height="6" rx="2" fill="#5E381E"/>
+      <!-- Steel Blade -->
+      <path d="M-35 0 L35 0 L32 50 L-32 50 Z" fill="#E5D6C5" stroke="#B8A796" stroke-width="1.5"/>
+      <line x1="-25" y1="42" x2="25" y2="42" stroke="#FFFFFF" stroke-width="2"/>
+      <!-- Measurement scale markings on scraper -->
+      <line x1="-20" y1="10" x2="-20" y2="18" stroke="#8C7A68" stroke-width="1"/>
+      <line x1="-10" y1="10" x2="-10" y2="22" stroke="#8C7A68" stroke-width="1"/>
+      <line x1="0" y1="10" x2="0" y2="18" stroke="#8C7A68" stroke-width="1"/>
+      <line x1="10" y1="10" x2="10" y2="22" stroke="#8C7A68" stroke-width="1"/>
+      <line x1="20" y1="10" x2="20" y2="18" stroke="#8C7A68" stroke-width="1"/>
+    </g>
+  </g>
+
+  <!-- Vintage Kitchen Weighing Scale (Back Right) -->
+  <g transform="translate(480, 190)" filter="url(#prepShadow)">
+    <!-- Base -->
+    <path d="M-30 65 L-40 100 L40 100 L30 65 Z" fill="#E88D7D"/>
+    <!-- Dial -->
+    <circle cx="0" cy="50" r="32" fill="#FFFDF8" stroke="#D97736" stroke-width="3"/>
+    <circle cx="0" cy="50" r="28" stroke="#E5C5A0" stroke-width="1" stroke-dasharray="2 3" fill="none"/>
+    <!-- Needle -->
+    <line x1="0" y1="50" x2="10" y2="30" stroke="#C1121F" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="0" cy="50" r="4" fill="#3B1E0E"/>
+    <!-- Bowl Bracket & Brass Bowl -->
+    <rect x="-4" y="0" width="8" height="20" fill="#B8A796"/>
+    <ellipse cx="0" cy="0" rx="45" ry="12" fill="#F4A261"/>
+    <path d="M-45 0 C-45 25, 45 25, 45 0 Z" fill="#D97736"/>
+    <!-- White Flour in bowl -->
+    <ellipse cx="0" cy="-2" rx="35" ry="8" fill="#FFFDF8"/>
+  </g>
+
+  <!-- Floating flour puff -->
+  <g fill="#FFFFFF" opacity="0.6">
+    <circle cx="320" cy="140" r="4"/>
+    <circle cx="350" cy="120" r="6"/>
+    <circle cx="370" cy="150" r="5"/>
+    <circle cx="330" cy="170" r="3"/>
+  </g>
+</svg>

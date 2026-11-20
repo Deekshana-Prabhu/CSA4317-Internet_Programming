@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="700" height="450">
+  <defs>
+    <linearGradient id="offerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4A2E1B" />
+      <stop offset="100%" stop-color="#28150C" />
+    </linearGradient>
+    <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F4A261" />
+      <stop offset="50%" stop-color="#E88D7D" />
+      <stop offset="100%" stop-color="#D9534F" />
+    </linearGradient>
+    <filter id="offerGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="700" height="450" rx="16" fill="url(#offerBg)"/>
+
+  <!-- Decorative Warm Sparkles & Flour Dust -->
+  <g fill="#F4A261" opacity="0.35">
+    <circle cx="90" cy="80" r="5"/>
+    <circle cx="620" cy="90" r="6"/>
+    <circle cx="120" cy="380" r="4"/>
+    <circle cx="600" cy="370" r="5"/>
+    <polygon points="140,50 143,58 150,60 143,62 140,70 137,62 130,60 137,58"/>
+    <polygon points="560,340 563,348 570,350 563,352 560,360 557,352 550,350 557,348"/>
+  </g>
+
+  <!-- Wicker Artisan Gift Basket / Hamper -->
+  <g transform="translate(350, 240)" filter="url(#offerGlow)">
+    <!-- Basket Shadow -->
+    <ellipse cx="0" cy="140" rx="210" ry="25" fill="#140A05" opacity="0.5"/>
+    
+    <!-- Basket Body -->
+    <path d="M-180 30 L-140 140 L140 140 L180 30 Z" fill="#8C5832"/>
+    <!-- Woven weave pattern -->
+    <g stroke="#663E20" stroke-width="4">
+      <line x1="-165" y1="55" x2="165" y2="55"/>
+      <line x1="-155" y1="85" x2="155" y2="85"/>
+      <line x1="-145" y1="115" x2="145" y2="115"/>
+      <!-- Vertical weaves -->
+      <line x1="-110" y1="30" x2="-90" y2="140"/>
+      <line x1="-60" y1="30" x2="-45" y2="140"/>
+      <line x1="0" y1="30" x2="0" y2="140"/>
+      <line x1="60" y1="30" x2="45" y2="140"/>
+      <line x1="110" y1="30" x2="90" y2="140"/>
+    </g>
+
+    <!-- Linen Napkin Peeking Out -->
+    <path d="M-170 30 Q -80 60 0 25 Q 90 55 170 30 L 160 10 Q 0 -5 -160 10 Z" fill="#FFF8F0"/>
+    <path d="M-100 45 L-70 105 L-40 40" fill="#FDECE9" stroke="#E88D7D" stroke-width="1.5"/>
+
+    <!-- Inside Basket Goods -->
+    <!-- French Baguettes leaning -->
+    <g transform="translate(-80, -30) rotate(-18)">
+      <rect x="-16" y="-120" width="32" height="150" rx="16" fill="#D97736"/>
+      <ellipse cx="0" cy="-80" rx="10" ry="4" fill="#FFE2B8" transform="rotate(30 0 -80)"/>
+      <ellipse cx="0" cy="-45" rx="10" ry="4" fill="#FFE2B8" transform="rotate(30 0 -45)"/>
+      <ellipse cx="0" cy="-10" rx="10" ry="4" fill="#FFE2B8" transform="rotate(30 0 -10)"/>
+    </g>
+    <g transform="translate(-40, -40) rotate(-5)">
+      <rect x="-14" y="-130" width="28" height="150" rx="14" fill="#C86A2B"/>
+      <ellipse cx="0" cy="-90" rx="9" ry="4" fill="#FFE2B8" transform="rotate(30 0 -90)"/>
+      <ellipse cx="0" cy="-55" rx="9" ry="4" fill="#FFE2B8" transform="rotate(30 0 -55)"/>
+    </g>
+
+    <!-- Golden Artisan Croissant in center -->
+    <g transform="translate(10, 10)">
+      <path d="M-60 15 C-50 -25, 50 -25, 60 15 C30 22, -30 22, -60 15 Z" fill="#E88D48"/>
+      <path d="M-30 0 Q 0 -16 30 0" stroke="#FFE9D1" stroke-width="3.5" fill="none"/>
+    </g>
+
+    <!-- Strawberry Tart & Jar of Organic Berry Jam -->
+    <g transform="translate(90, 5)">
+      <!-- Jam Jar -->
+      <rect x="-25" y="-45" width="50" height="55" rx="6" fill="#A8283B"/>
+      <rect x="-27" y="-55" width="54" height="12" rx="3" fill="#FFF8F0"/>
+      <rect x="-20" y="-28" width="40" height="24" rx="2" fill="#FAF1E6"/>
+      <text x="0" y="-12" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#4A2E1B" text-anchor="middle" font-weight="bold">BERRY JAM</text>
+      <!-- Twine ribbon -->
+      <line x1="-27" y1="-46" x2="27" y2="-46" stroke="#C57538" stroke-width="2"/>
+    </g>
+
+    <!-- Big Pink & Gold Ribbon on Basket -->
+    <g transform="translate(0, 45)">
+      <!-- Bow Loops -->
+      <path d="M0 0 C-40 -40, -80 0, 0 10 Z" fill="url(#ribbonGrad)"/>
+      <path d="M0 0 C40 -40, 80 0, 0 10 Z" fill="url(#ribbonGrad)"/>
+      <!-- Knot -->
+      <ellipse cx="0" cy="5" rx="12" ry="10" fill="#E88D7D"/>
+      <!-- Tails -->
+      <path d="M-5 12 Q -25 50 -35 70 Q -25 60 -5 20 Z" fill="#D9534F"/>
+      <path d="M5 12 Q 25 50 35 70 Q 25 60 5 20 Z" fill="#D9534F"/>
+    </g>
+  </g>
+
+  <!-- Big Offer Badge Overlay -->
+  <g transform="translate(560, 95)" filter="url(#offerGlow)">
+    <circle cx="0" cy="0" r="62" fill="#E88D7D" stroke="#FFECC7" stroke-width="3"/>
+    <text x="0" y="-14" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="600">SAVE UP TO</text>
+    <text x="0" y="20" font-family="'Playfair Display', Georgia, serif" font-size="34" fill="#FFFFFF" text-anchor="middle" font-weight="900">25%</text>
+    <text x="0" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#FFF8F0" text-anchor="middle" letter-spacing="1">WEEKEND DEAL</text>
+  </g>
+</svg>
