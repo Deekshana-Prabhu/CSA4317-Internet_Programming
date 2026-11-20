@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RegisterHub – Smart User Registration Portal featuring real-time client-side validation, password strength analysis, localStorage record management, and receipt generation.">
+  <title>RegisterHub – Smart User Registration Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- App Layout Container -->
+  <div class="app-container">
+
+    <!-- =====================================================================
+         SIDEBAR NAVIGATION
+         ===================================================================== -->
+    <aside class="sidebar" id="sidebar">
+      
+      <!-- Sidebar Brand Header -->
+      <div class="sidebar-brand">
+        <div class="brand-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <h1 class="brand-title">Register<span>Hub</span></h1>
+          <span class="brand-badge">Smart Portal v2.4</span>
+        </div>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close sidebar navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">MAIN NAVIGATION</div>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#home" class="nav-link active" data-section="home">
+              <span class="nav-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </span>
+              <span class="nav-text">Home Overview</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#register" class="nav-link" data-section="register">
+              <span class="nav-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="8.5" cy="7" r="4"></circle>
+                  <line x1="20" y1="8" x2="20" y2="14"></line>
+                  <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+              </span>
+              <span class="nav-text">Registration Form</span>
+              <span class="nav-pill" id="sidebar-progress-pill">0%</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#records" class="nav-link" data-section="records">
+              <span class="nav-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </span>
+              <span class="nav-text">Registered Users</span>
+              <span class="nav-count-badge" id="sidebar-count-badge">0</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#summary" class="nav-link" data-section="summary">
+              <span class="nav-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </span>
+              <span class="nav-text">Summary Receipt</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#about" class="nav-link" data-section="about">
+              <span class="nav-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+              </span>
+              <span class="nav-text">About Validation</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Status Card -->
+      <div class="sidebar-status-card">
+        <div class="status-indicator-row">
+          <span class="status-pulse-dot"></span>
+          <span class="status-heading">Client-Side Sandbox</span>
+        </div>
+        <p class="status-desc">All user records persist securely in your browser's <code>localStorage</code>.</p>
+        <div class="status-metrics">
+          <div class="metric-item">
+            <span class="metric-val" id="metric-records-count">0</span>
+            <span class="metric-lbl">Saved Users</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-val" id="metric-fields-progress">0%</span>
+            <span class="metric-lbl">Form Progress</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <p class="footer-small-text">&copy; 2026 RegisterHub Portal</p>
+        <span class="footer-pill">HTML5 &bull; CSS3 &bull; Vanilla JS</span>
+      </div>
+
+    </aside>
+
+    <!-- Mobile Sidebar Backdrop -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- =====================================================================
+         MAIN CONTENT AREA
+         ===================================================================== -->
+    <div class="main-wrapper">
+      
+      <!-- Top Mobile / Compact Header Bar -->
+      <header class="top-header">
+        <div class="header-left">
+          <button type="button" class="mobile-toggle-btn" id="mobile-toggle-btn" aria-label="Toggle navigation menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="header-brand-mobile">
+            <span class="header-logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <polyline points="16 11 18 13 22 9"></polyline>
+              </svg>
+            </span>
+            <span class="mobile-brand-name">Register<span>Hub</span></span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <a href="#register" class="btn-sm btn-primary-gradient">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Register Now</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Scrollable Content -->
+      <main class="content-body" id="main-content">
+
+        <!-- ===================================================================
+             SECTION 1: HOME (Hero, Features, Visual Illustration)
+             =================================================================== -->
+        <section class="portal-section" id="home">
+          
+          <!-- Hero Banner -->
+          <div class="hero-card">
+            <div class="hero-badge">
+              <span class="sparkle-icon">&#10024;</span> Intelligent Client-Side Registration Portal
+            </div>
+            <h2 class="hero-title">
+              Empowering Smart Registrations with <span class="gradient-text">Real-Time Validation</span>
+            </h2>
+            <p class="hero-description">
+              Welcome to <strong>RegisterHub</strong>, a next-generation user registration portal crafted with vanilla web standards.
+              Experience instant client-side syntax checks, live password entropy scoring, progress completion tracking, and browser-based demo storage — all running directly in your browser.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#register" class="btn btn-primary btn-lg" id="btn-hero-register">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="8.5" cy="7" r="4"></circle>
+                  <line x1="20" y1="8" x2="20" y2="14"></line>
+                  <line x1="23" y1="11" x2="17" y2="11"></line>
+                </svg>
+                <span>Register Now</span>
+              </a>
+              <a href="#records" class="btn btn-secondary btn-lg">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                <span>View Registered Users</span>
+              </a>
+            </div>
+
+            <!-- Hero Highlights Badges -->
+            <div class="hero-highlights">
+              <div class="highlight-pill">
+                <span class="pill-check">&#10003;</span> 100% Client-Side Engine
+              </div>
+              <div class="highlight-pill">
+                <span class="pill-check">&#10003;</span> Real-Time Error Feedback
+              </div>
+              <div class="highlight-pill">
+                <span class="pill-check">&#10003;</span> Multi-Rule Password Meter
+              </div>
+              <div class="highlight-pill">
+                <span class="pill-check">&#10003;</span> Instant Printable Receipt
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature Cards Section -->
+          <div class="section-heading-wrap">
+            <span class="sub-label">CORE ADVANTAGES</span>
+            <h3 class="section-title">Designed for Accuracy, Speed &amp; Security</h3>
+          </div>
+
+          <div class="features-grid">
+            
+            <!-- Feature Card 1 -->
+            <div class="feature-card feature-blue">
+              <div class="feature-icon-wrapper">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <polyline points="9 12 11 14 15 10"></polyline>
+                </svg>
+              </div>
+              <h4 class="feature-title">Secure Instant Validation</h4>
+              <p class="feature-text">
+                Every field validates on typing and blur with customized regex rules, pattern constraints, and live error alerts to guarantee spotless data accuracy.
+              </p>
+              <div class="feature-tag">Regex + HTML5 Guard</div>
+            </div>
+
+            <!-- Feature Card 2 -->
+            <div class="feature-card feature-purple">
+              <div class="feature-icon-wrapper">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  <circle cx="12" cy="16" r="1.5"></circle>
+                </svg>
+              </div>
+              <h4 class="feature-title">Multi-Tier Password Analyzer</h4>
+              <p class="feature-text">
+                Live password entropy meter evaluating character length, uppercase, lowercase, numbers, and special symbols with animated strength meter bars.
+              </p>
+              <div class="feature-tag">Live Entropy Scoring</div>
+            </div>
+
+            <!-- Feature Card 3 -->
+            <div class="feature-card feature-teal">
+              <div class="feature-icon-wrapper">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <circle cx="10" cy="13" r="1.5"></circle>
+                  <line x1="13.5" y1="13" x2="16" y2="13"></line>
+                  <circle cx="10" cy="17" r="1.5"></circle>
+                  <line x1="13.5" y1="17" x2="16" y2="17"></line>
+                </svg>
+              </div>
+              <h4 class="feature-title">Intuitive UX &amp; Local Records</h4>
+              <p class="feature-text">
+                Dynamic completion progress percentage, character countdown, printable summaries, and browser localStorage records with live search and deletion.
+              </p>
+              <div class="feature-tag">Zero Backend Setup</div>
+            </div>
+
+          </div>
+
+          <!-- Visual Illustration: Registration Process Flow -->
+          <div class="process-card">
+            <div class="process-header">
+              <div>
+                <span class="sub-label">INTERACTIVE WORKFLOW</span>
+                <h4 class="process-card-title">How RegisterHub Validates &amp; Manages Registrations</h4>
+              </div>
+              <span class="process-badge">4-Stage Pipeline</span>
+            </div>
+
+            <div class="process-steps-track">
+              
+              <!-- Step 1 -->
+              <div class="process-step">
+                <div class="step-num-node">
+                  <span>1</span>
+                </div>
+                <div class="step-content">
+                  <div class="step-icon-mini">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                  </div>
+                  <h5 class="step-title">Enter Profile Details</h5>
+                  <p class="step-desc">Input Full Name, Email, Phone, Birth Date, Gender, Country &amp; Address.</p>
+                </div>
+              </div>
+
+              <!-- Connecting Line Arrow -->
+              <div class="process-connector" aria-hidden="true">&#10140;</div>
+
+              <!-- Step 2 -->
+              <div class="process-step">
+                <div class="step-num-node">
+                  <span>2</span>
+                </div>
+                <div class="step-content">
+                  <div class="step-icon-mini">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                  </div>
+                  <h5 class="step-title">Security &amp; Credentials</h5>
+                  <p class="step-desc">Create a robust password meeting complexity criteria and confirm match.</p>
+                </div>
+              </div>
+
+              <!-- Connecting Line Arrow -->
+              <div class="process-connector" aria-hidden="true">&#10140;</div>
+
+              <!-- Step 3 -->
+              <div class="process-step">
+                <div class="step-num-node">
+                  <span>3</span>
+                </div>
+                <div class="step-content">
+                  <div class="step-icon-mini">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                  </div>
+                  <h5 class="step-title">Instant Verification</h5>
+                  <p class="step-desc">Real-time script evaluates constraints, updates progress bar &amp; shows feedback.</p>
+                </div>
+              </div>
+
+              <!-- Connecting Line Arrow -->
+              <div class="process-connector" aria-hidden="true">&#10140;</div>
+
+              <!-- Step 4 -->
+              <div class="process-step">
+                <div class="step-num-node">
+                  <span>4</span>
+                </div>
+                <div class="step-content">
+                  <div class="step-icon-mini">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                  </div>
+                  <h5 class="step-title">Summary &amp; Storage</h5>
+                  <p class="step-desc">Generate unique ID, view printable receipt, and save to local demo database.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ===================================================================
+             SECTION 2: USER REGISTRATION FORM
+             =================================================================== -->
+        <section class="portal-section" id="register">
+          
+          <div class="section-heading-wrap">
+            <span class="sub-label">REGISTRATION PORTAL</span>
+            <h3 class="section-title">Smart User Registration Form</h3>
+            <p class="section-subtitle">Please complete the form below. All required fields (<span class="req-star">*</span>) undergo instant client-side validation.</p>
+          </div>
+
+          <!-- Form Card Container -->
+          <div class="card form-card">
+            
+            <!-- Progress Tracker Header -->
+            <div class="form-progress-box">
+              <div class="progress-meta">
+                <div class="progress-title-group">
+                  <span class="progress-title">Form Completion Progress</span>
+                  <span class="progress-caption" id="progress-status-caption">0 of 10 required items completed</span>
+                </div>
+                <span class="progress-percent" id="completion-percent">0%</span>
+              </div>
+              <div class="progress-track-bg">
+                <div class="progress-fill-bar" id="progress-bar-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Global Form Alert (Shows on submission attempt if errors exist) -->
+            <div class="alert-box d-none" id="form-alert-box" role="alert">
+              <div class="alert-icon-wrap" id="alert-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+              </div>
+              <div class="alert-message-wrap" id="alert-message-text"></div>
+            </div>
+
+            <!-- The Registration Form -->
+            <form id="registration-form" novalidate autocomplete="off">
+
+              <!-- Subsection: Personal Information -->
+              <div class="form-subsection">
+                <div class="subsection-header">
+                  <span class="subsection-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                  </span>
+                  <h4 class="subsection-title">1. Personal &amp; Contact Information</h4>
+                </div>
+
+                <div class="form-grid">
+                  
+                  <!-- 1. Full Name -->
+                  <div class="form-group col-span-12 col-md-6" id="group-fullname">
+                    <label for="fullname" class="form-label">
+                      Full Name <span class="req-star" aria-hidden="true">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                      <span class="input-leading-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                          <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                      </span>
+                      <input
+                        type="text"
+                        id="fullname"
+                        name="fullname"
+                        class="form-control"
+                        placeholder="e.g. Alexander Hamilton"
+                        required
+                        minlength="3"
+                        maxlength="60"
+                        aria-describedby="fullname-error"
+                      >
+                      <span class="status-icon-indicator" aria-hidden="true"></span>
+                    </div>
+                    <div class="field-error-message" id="fullname-error" aria-live="polite"></div>
+                  </div>
+
+                  <!-- 2. Email Address -->
+                  <div class="form-group col-span-12 col-md-6" id="group-email">
+                    <label for="email" class="form-label">
+                      Email Address <span class="req-star" aria-hidden="true">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                      <span class="input-leading-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                          <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                      </span>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="e.g. alexander@example.com"
+                        required
+                        maxlength="80"
+                        aria-describedby="email-error"
+                      >
+                      <span class="status-icon-indicator" aria-hidden="true"></span>
+                    </div>
+                    <div class="field-error-message" id="email-error" aria-live="polite"></div>
+                  </div>
+
+                  <!-- 3. Phone Number -->
+                  <div class="form-group col-span-12 col-md-6" id="group-phone">
+                    <label for="phone" class="form-label">
+                      Phone Number <span class="req-star" aria-hidden="true">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                      <span class="input-leading-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                      </span>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        class="form-control"
+                        placeholder="e.g. 9876543210 (10 digits)"
+                        required
+                        maxlength="15"
+                        aria-describedby="phone-error"
+                      >
+                      <span class="status-icon-indicator" aria-hidden="true"></span>
+                    </div>
+                    <div class="field-error-message" id="phone-error" aria-live="polite"></div>
+                  </div>
+
+                  <!-- 4. Date of Birth -->
+                  <div class="form-group col-span-12 col-md-6" id="group-dob">
+                    <label for="dob" class="form-label">
+                      Date of Birth <span class="req-star" aria-hidden="true">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                      <span class="input-leading-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                          <line x1="16" y1="2" x2="16" y2="6"></line>
+                          <line x1="8" y1="2" x2="8" y2="6"></line>
+                          <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                      </span>
+                      <input
+                        type="date"
+                        id="dob"
+                        name="dob"
+                        class="form-control"
+                        required
+                        aria-describedby="dob-error"
+                      >
+                      <span class="status-icon-indicator" aria-hidden="true"></span>
+                    </div>
+                    <div class="field-error-message" id="dob-error" aria-live="polite"></div>
+                  </div>
+
+                  <!-- 5. Gender Selection -->
+                  <div class="form-group col-span-12 col-md-6" id="group-gender">
+                    <label for="gender" class="form-label">
+                      Gender <span class="req-star" aria-hidden="true">*</span>
+                    </label>
+                    <div class="input-wrapper select-wrapper">
+                      <span class="input-leading-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="12" cy="12" r="9"></circle>
+                          <path d="M12 3a9 9 0 0 0 0 18"></path>
+                        </svg>
+                      </span>
+                      <select
+                        id="gender"
+                        name="gender"
+                        class="form-control select-control"
+                        required
+                        aria-describedby="gender-error"
+                      >
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Non-Binary">Non-Binary</option>
+                        <option value="Prefer not to say">Prefer not to say</option>
+                      </select>
+                      <span class="select-dropdown-caret" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </span>
+                      <span class="status-icon-indicator" aria-hidden="true"></span>
+                    </div>
+                    <div class="field-error-message" id="gender-error" aria-live="polite"></div>
+                  </div>
+
+                  <!-- 6. Country Selection -->
+                  <div class="form-group col-span-12 col-md-6" id="group-country">
+                    <label for="country" class="form-label">
+                      Country <span class="req-star" aria-hidden="true">*</span>
+                    </label>
+                    <div class="input-wrapper select-wrapper">
+                      <span class="input-leading-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="2" y1="12" x2="22" y2="12"></line>
+                          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                      </span>
+                      <select
+                        id="country"
+                        name="country"
+                        class="form-control select-control"
+                        required
+                        aria-describedby="country-error"
+                      >
+                        <option value="" disabled selected>Select Country</option>
+                        <option value="United States">United States</option>
+                        <option value="India">India</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="France">France</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="United Arab Emirates">United Arab Emirates</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="Other">Other Country</option>
+                      </select>
+                      <span class="select-dropdown-caret" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </span>
+                      <span class="status-icon-indicator" aria-hidden="true"></span>
+                    </div>
+                    <div class="field-error-message" id="country-error" aria-live="polite"></div>
+                  </div>
+
+                  <!-- 7. Address Field -->
+                  <div class="form-group col-span-12" id="group-address">
+                    <label for="address" class="form-label">
+                      Address <span class="req-star" aria-hidden="true">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                      <span class="input-leading-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                      </span>
+                      <input
+                        type="text"
+                        id="address"
+                        name="address"
+                        class="form-control"
+                        placeholder="Street address, apartment, suite, city, postal code"
+                        required
+                        minlength="5"
+                        maxlength="150"
+                        aria-describedby="address-error"
+                      >
+                      <span class="status-icon-indicator" aria-hidden="true"></span>
+                    </div>
+                    <div class="field-error-message" id="address-error" aria-live="polite"></div>
+                  </div>
+
+                  <!-- 8. Preferred Contact Method -->
+                  <div class="form-group col-span-12" id="group-contact-method">
+                    <label class="form-label">
+                      Preferred Contact Method <span class="req-star" aria-hidden="true">*</span>
+                    </label>
+                    <div class="contact-method-options" role="radiogroup" aria-label="Preferred Contact Method">
+                      <label class="radio-card">
+                        <input type="radio" name="contact-method" value="Email" checked>
+                        <span class="radio-tile">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                          </svg>
+                          <span class="radio-label">Email</span>
+                        </span>
+                      </label>
+
+                      <label class="radio-card">
+                        <input type="radio" name="contact-method" value="Phone Call">
+                        <span class="radio-tile">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                          </svg>
+                          <span class="radio-label">Phone Call</span>
+                        </span>
+                      </label>
+
+                      <label class="radio-card">
+                        <input type="radio" name="contact-method" value="SMS">
+                        <span class="radio-tile">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                          </svg>
+                          <span class="radio-label">SMS</span>
+                        </span>
+                      </label>
+
+                      <label class="radio-card">
+                        <input type="radio" name="contact-method" value="WhatsApp">
+                        <span class="radio-tile">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                          </svg>
+                          <span class="radio-label">WhatsApp</span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Subsection: Account Security & Passwords -->
+              <div class="form-subsection">
+                <div class="subsection-header">
+                  <span class="subsection-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                  </span>
+                  <h4 class="subsection-title">2. Account Credentials &amp; Security</h4>
+                </div>
+
+                <div class="form-grid">
+                  
+                  <!-- 9. Password -->
+                  <div class="form-group col-span-12 col-md-6" id="group-password">
+                    <label for="password" class="form-label">
+                      Password <span class="req-star" aria-hidden="true">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                      <span class="input-leading-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                      </span>
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control has-action-btn"
+                        placeholder="Create strong password"
+                        required
+                        minlength="8"
+                        maxlength="64"
+                        aria-describedby="password-error"
+                      >
+                      <button
+                        type="button"
+                        class="btn-field-action btn-toggle-password"
+                        id="toggle-password"
+                        aria-label="Toggle password visibility"
+                        title="Show or hide password"
+                      >
+                        <svg class="icon-eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg class="icon-eye-closed d-none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                          <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                      </button>
+                      <span class="status-icon-indicator" aria-hidden="true"></span>
+                    </div>
+
+                    <!-- Password Strength Meter -->
+                    <div class="pwd-strength-container" id="strength-meter-wrap">
+                      <div class="pwd-strength-header">
+                        <span class="strength-caption">Security Level:</span>
+                        <span class="strength-badge" id="strength-badge">None</span>
+                      </div>
+                      <div class="strength-bars-track">
+                        <div class="strength-segment" id="seg-1"></div>
+                        <div class="strength-segment" id="seg-2"></div>
+                        <div class="strength-segment" id="seg-3"></div>
+                      </div>
+                    </div>
+
+                    <div class="field-error-message" id="password-error" aria-live="polite"></div>
+                  </div>
+
+                  <!-- 10. Confirm Password -->
+                  <div class="form-group col-span-12 col-md-6" id="group-confirm-password">
+                    <div class="label-with-addon">
+                      <label for="confirm-password" class="form-label">
+                        Confirm Password <span class="req-star" aria-hidden="true">*</span>
+                      </label>
+                      <span class="pwd-match-pill d-none" id="match-pill">Matches</span>
+                    </div>
+                    <div class="input-wrapper">
+                      <span class="input-leading-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                      </span>
+                      <input
+                        type="password"
+                        id="confirm-password"
+                        name="confirm-password"
+                        class="form-control has-action-btn"
+                        placeholder="Re-enter password"
+                        required
+                        maxlength="64"
+                        aria-describedby="confirm-password-error"
+                      >
+                      <button
+                        type="button"
+                        class="btn-field-action btn-toggle-password"
+                        id="toggle-confirm-password"
+                        aria-label="Toggle confirm password visibility"
+                        title="Show or hide password"
+                      >
+                        <svg class="icon-eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg class="icon-eye-closed d-none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                          <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                      </button>
+                      <span class="status-icon-indicator" aria-hidden="true"></span>
+                    </div>
+                    <div class="field-error-message" id="confirm-password-error" aria-live="polite"></div>
+                  </div>
+
+                  <!-- Live Password Criteria Checklist -->
+                  <div class="col-span-12">
+                    <div class="pwd-rules-card" id="pwd-rules-box">
+                      <span class="rules-header-title">Password Complexity Criteria:</span>
+                      <div class="rules-grid">
+                        <div class="rule-item" id="rule-len">
+                          <span class="rule-icon">&#9675;</span>
+                          <span class="rule-text">Minimum 8 characters</span>
+                        </div>
+                        <div class="rule-item" id="rule-upper">
+                          <span class="rule-icon">&#9675;</span>
+                          <span class="rule-text">Uppercase letter (A-Z)</span>
+                        </div>
+                        <div class="rule-item" id="rule-lower">
+                          <span class="rule-icon">&#9675;</span>
+                          <span class="rule-text">Lowercase letter (a-z)</span>
+                        </div>
+                        <div class="rule-item" id="rule-num-sym">
+                          <span class="rule-icon">&#9675;</span>
+                          <span class="rule-text">Number &amp; Special Symbol (0-9, @, #, etc.)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Subsection: Message & Consents -->
+              <div class="form-subsection">
+                <div class="subsection-header">
+                  <span class="subsection-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                  </span>
+                  <h4 class="subsection-title">3. Registration Message &amp; Agreement</h4>
+                </div>
+
+                <div class="form-grid">
+                  
+                  <!-- 11. Message Field -->
+                  <div class="form-group col-span-12" id="group-message">
+                    <div class="label-with-addon">
+                      <label for="message" class="form-label">
+                        Message / Statement of Purpose <span class="req-star" aria-hidden="true">*</span>
+                      </label>
+                      <div class="char-counter" id="char-counter">
+                        <span id="char-count">0</span> / 250 characters (min 10)
+                      </div>
+                    </div>
+                    <div class="textarea-wrapper">
+                      <textarea
+                        id="message"
+                        name="message"
+                        class="form-control textarea-control"
+                        rows="3"
+                        placeholder="Tell us about yourself or your purpose for registering with RegisterHub..."
+                        required
+                        minlength="10"
+                        maxlength="250"
+                        aria-describedby="message-error"
+                      ></textarea>
+                    </div>
+                    <div class="field-error-message" id="message-error" aria-live="polite"></div>
+                  </div>
+
+                  <!-- 12. Checkboxes -->
+                  <div class="col-span-12 checkboxes-stack">
+                    
+                    <!-- Terms and Conditions (Required) -->
+                    <div class="checkbox-box" id="group-terms">
+                      <label class="custom-checkbox-label">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <span class="custom-checkbox-box">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        </span>
+                        <span class="checkbox-caption">
+                          I agree to the <a href="#about" class="text-link">Terms and Conditions</a> and accept the client-side data privacy policy. <span class="req-star">*</span>
+                        </span>
+                      </label>
+                      <div class="field-error-message" id="terms-error" aria-live="polite"></div>
+                    </div>
+
+                    <!-- Newsletter Updates (Optional) -->
+                    <div class="checkbox-box" id="group-newsletter">
+                      <label class="custom-checkbox-label">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <span class="custom-checkbox-box">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        </span>
+                        <span class="checkbox-caption">
+                          Receive occasional feature announcements and security best practice guides.
+                        </span>
+                      </label>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Form Action Buttons -->
+              <div class="form-actions-bar">
+                <button type="submit" class="btn btn-primary btn-submit-form" id="btn-submit">
+                  <span class="btn-spinner d-none" id="submit-spinner"></span>
+                  <svg id="submit-btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span id="submit-btn-text">Submit Registration</span>
+                </button>
+
+                <button type="button" class="btn btn-secondary btn-reset-form" id="btn-trigger-reset">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                    <path d="M3 3v5h5"></path>
+                  </svg>
+                  <span>Reset Form</span>
+                </button>
+              </div>
+
+            </form>
+
+          </div>
+
+        </section>
+
+        <!-- ===================================================================
+             SECTION 3: REGISTRATION SUMMARY (Receipt & Actions)
+             =================================================================== -->
+        <section class="portal-section" id="summary">
+          
+          <div class="section-heading-wrap">
+            <span class="sub-label">CONFIRMATION &amp; RECEIPT</span>
+            <h3 class="section-title">Registration Summary</h3>
+            <p class="section-subtitle">Official registration record and verifiable verification summary.</p>
+          </div>
+
+          <!-- Empty State (When no user has registered in current session) -->
+          <div class="card empty-state-card" id="summary-empty-state">
+            <div class="empty-icon-wrap">
+              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+              </svg>
+            </div>
+            <h4 class="empty-title">No Registration Summary Yet</h4>
+            <p class="empty-text">Complete and submit the registration form to generate your formatted registration summary receipt.</p>
+            <a href="#register" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Go to Registration Form</span>
+            </a>
+          </div>
+
+          <!-- Active Summary Receipt Card (Shown once registered) -->
+          <div class="card summary-receipt-card d-none" id="summary-receipt-card">
+            
+            <!-- Receipt Header -->
+            <div class="receipt-header">
+              <div class="receipt-brand-meta">
+                <div class="receipt-check-badge">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="receipt-heading">Registration Successfully Verified!</h4>
+                  <p class="receipt-subheading">Official Client-Side Verification Receipt</p>
+                </div>
+              </div>
+              <div class="receipt-id-box">
+                <span class="receipt-id-label">Registration ID</span>
+                <span class="receipt-id-val" id="receipt-reg-id">#RH-2026-000000</span>
+              </div>
+            </div>
+
+            <!-- Receipt Grid -->
+            <div class="receipt-grid">
+              
+              <div class="receipt-item">
+                <span class="receipt-label">Full Name</span>
+                <span class="receipt-val font-semibold" id="receipt-name">-</span>
+              </div>
+
+              <div class="receipt-item">
+                <span class="receipt-label">Email Address</span>
+                <span class="receipt-val" id="receipt-email">-</span>
+              </div>
+
+              <div class="receipt-item">
+                <span class="receipt-label">Phone Number</span>
+                <span class="receipt-val" id="receipt-phone">-</span>
+              </div>
+
+              <div class="receipt-item">
+                <span class="receipt-label">Date of Birth</span>
+                <span class="receipt-val" id="receipt-dob">-</span>
+              </div>
+
+              <div class="receipt-item">
+                <span class="receipt-label">Gender</span>
+                <span class="receipt-val" id="receipt-gender">-</span>
+              </div>
+
+              <div class="receipt-item">
+                <span class="receipt-label">Country</span>
+                <span class="receipt-val" id="receipt-country">-</span>
+              </div>
+
+              <div class="receipt-item receipt-col-full">
+                <span class="receipt-label">Address</span>
+                <span class="receipt-val" id="receipt-address">-</span>
+              </div>
+
+              <div class="receipt-item">
+                <span class="receipt-label">Preferred Contact</span>
+                <span class="receipt-val badge-contact" id="receipt-contact">-</span>
+              </div>
+
+              <div class="receipt-item">
+                <span class="receipt-label">Password Validation</span>
+                <span class="receipt-val badge-encrypted">&#10004; Verified &amp; Encrypted</span>
+              </div>
+
+              <div class="receipt-item">
+                <span class="receipt-label">Newsletter Subscription</span>
+                <span class="receipt-val" id="receipt-newsletter">-</span>
+              </div>
+
+              <div class="receipt-item">
+                <span class="receipt-label">Registration Timestamp</span>
+                <span class="receipt-val" id="receipt-timestamp">-</span>
+              </div>
+
+              <div class="receipt-item receipt-col-full">
+                <span class="receipt-label">Submitted Message</span>
+                <div class="receipt-message-quote" id="receipt-message">-</div>
+              </div>
+
+            </div>
+
+            <!-- Receipt Notice -->
+            <div class="receipt-demo-notice">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span><strong>Demonstration Notice:</strong> This summary was generated and stored locally in your browser. No personal information is transmitted to any cloud database.</span>
+            </div>
+
+            <!-- Receipt Actions -->
+            <div class="receipt-actions">
+              <button type="button" class="btn btn-primary" id="btn-print-summary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                  <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                <span>Print Registration Summary</span>
+              </button>
+
+              <button type="button" class="btn btn-secondary" id="btn-download-txt">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download Summary (.txt)</span>
+              </button>
+
+              <button type="button" class="btn btn-outline" id="btn-register-another">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>Register Another User</span>
+              </button>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- ===================================================================
+             SECTION 4: REGISTERED USERS (LocalStorage Registry & Search)
+             =================================================================== -->
+        <section class="portal-section" id="records">
+          
+          <div class="section-heading-wrap">
+            <span class="sub-label">LOCAL STORAGE REGISTRY</span>
+            <h3 class="section-title">Registered Users Management</h3>
+            <p class="section-subtitle">Real-time local registry demonstrating persistent client-side data management.</p>
+          </div>
+
+          <!-- Demo Disclaimer Alert -->
+          <div class="disclaimer-banner">
+            <div class="disclaimer-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <div class="disclaimer-content">
+              <strong class="disclaimer-headline">Frontend Demonstration Notice</strong>
+              <p class="disclaimer-text">
+                This is a client-side laboratory demonstration. Registrations are saved entirely in your browser's <code>localStorage</code> sandbox. No server or remote database is used, ensuring complete privacy during your test.
+              </p>
+            </div>
+          </div>
+
+          <!-- Registry Control Bar -->
+          <div class="card registry-card">
+            
+            <div class="registry-toolbar">
+              
+              <!-- Search Box -->
+              <div class="search-box-wrapper">
+                <span class="search-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </span>
+                <input
+                  type="text"
+                  id="search-input"
+                  class="search-input"
+                  placeholder="Search registered users by name or email..."
+                  aria-label="Search registered users by name or email"
+                >
+                <button type="button" class="search-clear-btn d-none" id="btn-clear-search" aria-label="Clear search">
+                  &times;
+                </button>
+              </div>
+
+              <!-- Toolbar Actions -->
+              <div class="toolbar-actions">
+                <button type="button" class="btn-sm btn-outline" id="btn-load-samples" title="Pre-fill 2 sample users for testing">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  <span>Load Sample Data</span>
+                </button>
+
+                <button type="button" class="btn-sm btn-danger-outline" id="btn-clear-records">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                  <span>Clear All</span>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Table Container -->
+            <div class="table-responsive">
+              <table class="records-table" id="records-table">
+                <thead>
+                  <tr>
+                    <th>Registration ID</th>
+                    <th>Full Name</th>
+                    <th>Email Address</th>
+                    <th>Phone</th>
+                    <th>Country</th>
+                    <th>Registered At</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="records-table-body">
+                  <!-- Dynamically Rendered by script.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Empty Records State in Table -->
+            <div class="empty-records-state d-none" id="empty-records-message">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <h5 class="empty-records-title" id="empty-records-title">No Registered Users Found</h5>
+              <p class="empty-records-desc" id="empty-records-desc">Use the registration form above to submit your first user record or click "Load Sample Data".</p>
+            </div>
+
+            <!-- Registry Footer Stats -->
+            <div class="registry-footer">
+              <span class="records-count-text" id="records-count-text">Showing 0 registered users</span>
+              <span class="storage-key-text">Storage Engine: <code>localStorage.registerhub_users</code></span>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- ===================================================================
+             SECTION 5: ABOUT CLIENT-SIDE VALIDATION & BEST PRACTICES
+             =================================================================== -->
+        <section class="portal-section" id="about">
+          
+          <div class="section-heading-wrap">
+            <span class="sub-label">ACADEMIC &amp; ENGINEERING CONTEXT</span>
+            <h3 class="section-title">About Client-Side Form Validation</h3>
+            <p class="section-subtitle">Understanding the critical role of frontend data verification in modern web architectures.</p>
+          </div>
+
+          <div class="about-grid">
+            
+            <!-- Article 1: Purpose & UX -->
+            <div class="card about-card">
+              <div class="about-card-icon blue">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <h4 class="about-card-title">The Purpose of Client-Side Validation</h4>
+              <p class="about-card-text">
+                Client-side validation is the initial line of interaction between users and an application. It provides immediate, contextual guidance before data ever leaves the client's browser, preventing frustrating form resubmissions and page reloads.
+              </p>
+              <ul class="about-bullets">
+                <li><strong>Instant Feedback:</strong> Alerts users to typographical slips, missing characters, or pattern mismatches in milliseconds.</li>
+                <li><strong>Network Conservation:</strong> Eliminates wasteful HTTP round trips for easily detectable input errors.</li>
+                <li><strong>Accessibility:</strong> Enhances usability with descriptive ARIA live regions and clear error messages.</li>
+              </ul>
+            </div>
+
+            <!-- Article 2: Importance of Accurate User Input -->
+            <div class="card about-card">
+              <div class="about-card-icon purple">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 14 14"></polyline>
+                </svg>
+              </div>
+              <h4 class="about-card-title">Importance of Accurate User Input</h4>
+              <p class="about-card-text">
+                Clean and reliable data collection is foundational for any platform. Inaccurate inputs lead to broken communication channels, security vulnerabilities, and database corruption.
+              </p>
+              <ul class="about-bullets">
+                <li><strong>Identity Integrity:</strong> Ensures email addresses, phone digits, and dates conform strictly to uniform schemas.</li>
+                <li><strong>Credential Strength:</strong> Enforces entropy requirements (uppercase, lowercase, numbers, symbols) to guard against brute-force breaches.</li>
+                <li><strong>Business Continuity:</strong> Accurate user contact methods ensure uninterrupted transaction receipts, confirmations, and alerts.</li>
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- Comparison Card: Client-Side vs Server-Side Validation -->
+          <div class="card comparison-card">
+            <h4 class="comparison-card-title">Client-Side vs. Server-Side Validation: A Dual-Defense Strategy</h4>
+            <p class="comparison-intro">
+              In production web applications, client-side validation handles <em>User Experience (UX)</em>, while server-side validation enforces <em>Security and Authority</em>. Both layers are indispensable.
+            </p>
+
+            <div class="table-responsive">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Attribute</th>
+                    <th>Client-Side Validation (RegisterHub)</th>
+                    <th>Server-Side Validation (Backend)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Execution Location</strong></td>
+                    <td>Directly within user's web browser (JavaScript &amp; HTML5)</td>
+                    <td>Web Application Server / API Gateway (Node.js, Python, Java)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Primary Objective</strong></td>
+                    <td>Instant user feedback, usability, typing guidance</td>
+                    <td>Uncompromising security, data integrity, business rules</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Response Speed</strong></td>
+                    <td>Instant (&lt; 1 millisecond), zero network latency</td>
+                    <td>Subject to network round-trip time (50ms – 500ms+)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Can Be Bypassed?</strong></td>
+                    <td>Yes (via DevTools or disabled JavaScript)</td>
+                    <td>No (mandatory gatekeeper before database insertion)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Demonstration Context</strong></td>
+                    <td>Complete frontend portal running via <code>index.html</code></td>
+                    <td>Simulated using browser <code>localStorage</code> sandbox</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- App Footer -->
+      <footer class="app-footer">
+        <div class="footer-container">
+          <div class="footer-left">
+            <span class="footer-brand-title">Register<span>Hub</span></span>
+            <span class="footer-separator">&bull;</span>
+            <span class="footer-desc">Smart User Registration Portal Demonstration</span>
+          </div>
+          <div class="footer-right">
+            <span>Built with HTML5 &bull; CSS3 &bull; Vanilla JavaScript</span>
+            <span class="footer-tag">100% Standalone (Open index.html)</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+
+  <!-- =======================================================================
+       SUCCESS POPUP MODAL (After Valid Form Submission)
+       ======================================================================= -->
+  <div class="modal-backdrop d-none" id="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-modal-title">
+    <div class="modal-card success-modal-card">
+      
+      <div class="success-icon-animation">
+        <div class="success-halo"></div>
+        <div class="success-icon-circle">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <span class="success-pill-tag">Registration Verified</span>
+      <h3 class="modal-title" id="success-modal-title">Registration Successful!</h3>
+      <p class="modal-desc">
+        Welcome to RegisterHub! Your information passed all client-side validation rules and has been saved to the browser demo registry.
+      </p>
+
+      <div class="modal-id-badge">
+        <span class="modal-id-label">Registration ID:</span>
+        <strong class="modal-id-val" id="popup-reg-id">#RH-2026-000000</strong>
+      </div>
+
+      <div class="modal-mini-summary" id="popup-mini-summary">
+        <!-- Injected via script.js -->
+      </div>
+
+      <div class="modal-actions-stacked">
+        <a href="#summary" class="btn btn-primary btn-block" id="btn-popup-view-summary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          <span>View Full Summary Receipt</span>
+        </a>
+
+        <div class="modal-actions-row">
+          <button type="button" class="btn btn-secondary" id="btn-popup-print">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            <span>Print Receipt</span>
+          </button>
+          
+          <button type="button" class="btn btn-outline" id="btn-popup-close">
+            <span>Dismiss</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       RESET CONFIRMATION MODAL
+       ======================================================================= -->
+  <div class="modal-backdrop d-none" id="reset-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
+    <div class="modal-card reset-modal-card">
+      <div class="reset-icon-circle">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </div>
+
+      <h3 class="modal-title" id="reset-modal-title">Reset Registration Form?</h3>
+      <p class="modal-desc">
+        Are you sure you want to clear all entered inputs? All fields, password ratings, and progress metrics will be reset to default.
+      </p>
+
+      <div class="modal-actions-row">
+        <button type="button" class="btn btn-secondary" id="btn-cancel-reset">Cancel</button>
+        <button type="button" class="btn btn-danger" id="btn-confirm-reset">Yes, Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+  <!-- Vanilla JavaScript Connection -->
+  <script src="script.js"></script>
+
+</body>
+</html>
