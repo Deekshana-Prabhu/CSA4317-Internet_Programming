@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LAMP vs WAMP: Comprehensive, modern educational guide to Web Development Environments, stack architectures, installations, Apache workflows, and comparisons.">
+  <title>LAMP vs WAMP &ndash; Web Development Environment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Mobile Sidebar Toggle -->
+  <button id="sidebarToggle" class="sidebar-toggle" aria-label="Toggle Navigation Sidebar">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Sidebar Overlay for Mobile -->
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+  <!-- Main Container -->
+  <div class="layout-container">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+            <circle cx="7" cy="8" r="1" fill="currentColor"/>
+            <circle cx="12" cy="8" r="1" fill="currentColor"/>
+            <circle cx="17" cy="8" r="1" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">StackMaster</span>
+          <span class="brand-subtitle">LAMP vs WAMP Lab</span>
+        </div>
+      </div>
+
+      <!-- Quick Progress Bar -->
+      <div class="reading-progress-wrapper" title="Page Scroll Progress">
+        <div class="progress-info">
+          <span>Reading Progress</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progressBar" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Sidebar Navigation Menu -->
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="#home" class="nav-link active">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </span>
+              <span>1. Home Overview</span>
+            </a>
+          </li>
+          <li>
+            <a href="#lamp-stack" class="nav-link">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </span>
+              <span>2. LAMP Stack</span>
+            </a>
+          </li>
+          <li>
+            <a href="#wamp-stack" class="nav-link">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="8" height="8" rx="1"/>
+                  <rect x="13" y="3" width="8" height="8" rx="1"/>
+                  <rect x="3" y="13" width="8" height="8" rx="1"/>
+                  <rect x="13" y="13" width="8" height="8" rx="1"/>
+                </svg>
+              </span>
+              <span>3. WAMP Stack</span>
+            </a>
+          </li>
+          <li>
+            <a href="#architecture" class="nav-link">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+              </span>
+              <span>4. Architecture</span>
+            </a>
+          </li>
+          <li>
+            <a href="#comparison" class="nav-link">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 20V10M12 20V4M6 20v-6"/>
+                </svg>
+              </span>
+              <span>5. Detailed Comparison</span>
+            </a>
+          </li>
+          <li>
+            <a href="#linux-install" class="nav-link">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="4 17 10 11 4 5"/>
+                  <line x1="12" y1="19" x2="20" y2="19"/>
+                </svg>
+              </span>
+              <span>6. Linux (LAMP) Setup</span>
+            </a>
+          </li>
+          <li>
+            <a href="#windows-install" class="nav-link">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+              </span>
+              <span>7. Windows (WAMP) Setup</span>
+            </a>
+          </li>
+          <li>
+            <a href="#role-of-apache" class="nav-link">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </span>
+              <span>8. Role of Apache</span>
+            </a>
+          </li>
+          <li>
+            <a href="#practical-examples" class="nav-link">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </span>
+              <span>9. Practical Examples</span>
+            </a>
+          </li>
+          <li>
+            <a href="#pros-cons" class="nav-link">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                </svg>
+              </span>
+              <span>10. Pros &amp; Cons</span>
+            </a>
+          </li>
+          <li>
+            <a href="#conclusion" class="nav-link">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </span>
+              <span>11. Decision Guide</span>
+            </a>
+          </li>
+          <li>
+            <a href="#quiz" class="nav-link">
+              <span class="nav-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </span>
+              <span>12. Knowledge Quiz</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer Badge -->
+      <div class="sidebar-footer">
+        <div class="quick-status-chip">
+          <span class="status-dot"></span>
+          <span>Interactive Lab v2.5</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+      
+      <!-- TOP STATUS / WELCOME BAR -->
+      <header class="content-header">
+        <div class="header-breadcrumb">
+          <span>Web Engineering &amp; Server Stacks</span>
+          <span class="divider">/</span>
+          <span class="current-crumb">LAMP vs WAMP Lab</span>
+        </div>
+        <div class="header-actions">
+          <a href="#quiz" class="btn-sm btn-outline">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            </svg>
+            Take Quiz
+          </a>
+          <a href="#comparison" class="btn-sm btn-primary">
+            Quick Comparison
+          </a>
+        </div>
+      </header>
+
+      <!-- ==============================================
+           SECTION 1: HOME / OVERVIEW
+      =============================================== -->
+      <section id="home" class="content-section hero-section">
+        <div class="hero-content">
+          <div class="badge-pill">
+            <span class="pill-sparkle">&#10022;</span>
+            Educational Web Engineering Suite
+          </div>
+          <h1 class="hero-title">
+            <span class="gradient-text">LAMP vs WAMP</span>
+            <span class="block-title">Web Development Environments</span>
+          </h1>
+          <p class="hero-subtitle">
+            Dive deep into the two foundational web server solution stacks. Understand how Operating Systems, Apache HTTP Web Servers, MySQL Relational Databases, and PHP Scripting combine to power the dynamic World Wide Web.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#comparison" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 20V10M12 20V4M6 20v-6"/>
+              </svg>
+              Explore Head-to-Head Comparison
+            </a>
+            <a href="#architecture" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+              View System Architecture
+            </a>
+          </div>
+        </div>
+
+        <!-- STACK HERO ILLUSTRATION CARDS -->
+        <div class="hero-stacks-grid">
+          
+          <!-- LAMP Hero Card -->
+          <div class="hero-card lamp-hero-card">
+            <div class="card-glow lamp-glow"></div>
+            <div class="hero-card-header">
+              <div class="stack-badge lamp-badge">
+                <span class="stack-letter">L</span>
+                <span class="stack-letter">A</span>
+                <span class="stack-letter">M</span>
+                <span class="stack-letter">P</span>
+              </div>
+              <span class="card-status-tag tag-production">Production Titan</span>
+            </div>
+            <div class="hero-card-body">
+              <h3>Linux, Apache, MySQL, PHP</h3>
+              <p>The industry benchmark for live production servers, enterprise cloud computing, and high-performance web applications.</p>
+              
+              <div class="stack-breakdown-pills">
+                <span class="breakdown-pill"><b>L</b> Linux OS</span>
+                <span class="breakdown-pill"><b>A</b> Apache HTTP</span>
+                <span class="breakdown-pill"><b>M</b> MySQL RDBMS</span>
+                <span class="breakdown-pill"><b>P</b> PHP Scripting</span>
+              </div>
+
+              <div class="card-metric-row">
+                <div class="metric-item">
+                  <span class="metric-val">100%</span>
+                  <span class="metric-lbl">Open Source</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-val">Enterprise</span>
+                  <span class="metric-lbl">Primary Role</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-val">CLI</span>
+                  <span class="metric-lbl">Core Interface</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero-card-footer">
+              <a href="#lamp-stack" class="card-link">Explore LAMP Architecture &rarr;</a>
+            </div>
+          </div>
+
+          <!-- WAMP Hero Card -->
+          <div class="hero-card wamp-hero-card">
+            <div class="card-glow wamp-glow"></div>
+            <div class="hero-card-header">
+              <div class="stack-badge wamp-badge">
+                <span class="stack-letter">W</span>
+                <span class="stack-letter">A</span>
+                <span class="stack-letter">M</span>
+                <span class="stack-letter">P</span>
+              </div>
+              <span class="card-status-tag tag-development">Dev Friendly</span>
+            </div>
+            <div class="hero-card-body">
+              <h3>Windows, Apache, MySQL, PHP</h3>
+              <p>The ultimate rapid local testing package for Windows developers. Features one-click installation, version switching, and tray GUI controls.</p>
+              
+              <div class="stack-breakdown-pills">
+                <span class="breakdown-pill"><b>W</b> Windows OS</span>
+                <span class="breakdown-pill"><b>A</b> Apache HTTP</span>
+                <span class="breakdown-pill"><b>M</b> MySQL RDBMS</span>
+                <span class="breakdown-pill"><b>P</b> PHP Scripting</span>
+              </div>
+
+              <div class="card-metric-row">
+                <div class="metric-item">
+                  <span class="metric-val">1-Click</span>
+                  <span class="metric-lbl">Setup Time</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-val">Localhost</span>
+                  <span class="metric-lbl">Primary Role</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-val">GUI / Tray</span>
+                  <span class="metric-lbl">Core Interface</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero-card-footer">
+              <a href="#wamp-stack" class="card-link">Explore WAMP Architecture &rarr;</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- QUICK STATS BAR -->
+        <div class="stats-overview-bar">
+          <div class="stat-box">
+            <div class="stat-number">75%+</div>
+            <div class="stat-label">Websites Powered by PHP/Apache</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">25+ Yrs</div>
+            <div class="stat-label">Battle-Tested Open Source Tech</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">Zero $</div>
+            <div class="stat-label">Licensing Cost for Software Core</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">Millions</div>
+            <div class="stat-label">CMS Deployments (WordPress, Drupal)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 2: LAMP STACK DEEP DIVE
+      =============================================== -->
+      <section id="lamp-stack" class="content-section">
+        <div class="section-header">
+          <span class="section-tag">Open Source Powerhouse</span>
+          <h2 class="section-title">The LAMP Stack Components</h2>
+          <p class="section-desc">
+            LAMP is an acronym for the four modular software layers that form a fully functional, highly secure, and battle-tested Linux server environment. Click any component card to discover its core role, default files, and configuration commands.
+          </p>
+        </div>
+
+        <div class="components-grid">
+          
+          <!-- Linux Card -->
+          <div class="component-card lamp-theme-card" data-component="linux">
+            <div class="component-badge">L</div>
+            <div class="component-icon">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 2a4 4 0 0 0-4 4v4H6a2 2 0 0 0-2 2v6a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4v-6a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/>
+                <circle cx="10" cy="7" r="1" fill="currentColor"/>
+                <circle cx="14" cy="7" r="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="component-title">Linux</h3>
+            <span class="component-subtitle">Operating System (OS)</span>
+            <p class="component-text">
+              The resilient foundation of the stack. Linux provides process scheduling, multi-user privilege isolation, robust networking stacks, and direct hardware management.
+            </p>
+            <div class="component-specs">
+              <div class="spec-row"><span>Type:</span><strong>Unix-like OS Kernel</strong></div>
+              <div class="spec-row"><span>Distros:</span><strong>Ubuntu, Debian, RHEL, CentOS</strong></div>
+              <div class="spec-row"><span>Management:</span><strong>SSH / Bash Terminal</strong></div>
+            </div>
+            <div class="card-action">
+              <button class="btn-detail" onclick="openComponentModal('linux')">View Component Specs &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Apache Card -->
+          <div class="component-card lamp-theme-card" data-component="apache">
+            <div class="component-badge">A</div>
+            <div class="component-icon">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                <line x1="6" y1="18" x2="6.01" y2="18"/>
+                <line x1="10" y1="6" x2="18" y2="6"/>
+                <line x1="10" y1="18" x2="18" y2="18"/>
+              </svg>
+            </div>
+            <h3 class="component-title">Apache HTTP</h3>
+            <span class="component-subtitle">Web Server Daemon</span>
+            <p class="component-text">
+              Listens for HTTP/HTTPS requests on port 80/443. Apache serves static assets directly and passes dynamic requests to PHP via modules or FastCGI handlers.
+            </p>
+            <div class="component-specs">
+              <div class="spec-row"><span>Process:</span><strong>apache2 / httpd</strong></div>
+              <div class="spec-row"><span>Config File:</span><strong>/etc/apache2/apache2.conf</strong></div>
+              <div class="spec-row"><span>Web Root:</span><strong>/var/www/html/</strong></div>
+            </div>
+            <div class="card-action">
+              <button class="btn-detail" onclick="openComponentModal('apache')">View Component Specs &rarr;</button>
+            </div>
+          </div>
+
+          <!-- MySQL Card -->
+          <div class="component-card lamp-theme-card" data-component="mysql">
+            <div class="component-badge">M</div>
+            <div class="component-icon">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            </div>
+            <h3 class="component-title">MySQL</h3>
+            <span class="component-subtitle">Database Management System</span>
+            <p class="component-text">
+              Stores structured data in relational tables with strict ACID guarantees. Handles high-speed SQL queries for authentication, catalogs, posts, and user transactions.
+            </p>
+            <div class="component-specs">
+              <div class="spec-row"><span>Default Port:</span><strong>3306</strong></div>
+              <div class="spec-row"><span>Engine:</span><strong>InnoDB (ACID Compliant)</strong></div>
+              <div class="spec-row"><span>Config File:</span><strong>/etc/mysql/mysql.conf.d/mysqld.cnf</strong></div>
+            </div>
+            <div class="card-action">
+              <button class="btn-detail" onclick="openComponentModal('mysql')">View Component Specs &rarr;</button>
+            </div>
+          </div>
+
+          <!-- PHP Card -->
+          <div class="component-card lamp-theme-card" data-component="php">
+            <div class="component-badge">P</div>
+            <div class="component-icon">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+                <line x1="14" y1="4" x2="10" y2="20"/>
+              </svg>
+            </div>
+            <h3 class="component-title">PHP</h3>
+            <span class="component-subtitle">Server-Side Scripting</span>
+            <p class="component-text">
+              Executes backend business logic, processes HTML forms, validates cookies/sessions, interacts with MySQL via PDO/mysqli, and returns synthesized HTML to Apache.
+            </p>
+            <div class="component-specs">
+              <div class="spec-row"><span>Execution:</span><strong>mod_php / php-fpm</strong></div>
+              <div class="spec-row"><span>Config File:</span><strong>/etc/php/8.x/apache2/php.ini</strong></div>
+              <div class="spec-row"><span>Output:</span><strong>HTML / JSON / Binary</strong></div>
+            </div>
+            <div class="card-action">
+              <button class="btn-detail" onclick="openComponentModal('php')">View Component Specs &rarr;</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 3: WAMP STACK DEEP DIVE
+      =============================================== -->
+      <section id="wamp-stack" class="content-section">
+        <div class="section-header">
+          <span class="section-tag">Desktop Development Suite</span>
+          <h2 class="section-title">The WAMP Stack Components</h2>
+          <p class="section-desc">
+            WAMP adapts the classic server stack specifically for Microsoft Windows workstations. It packages Apache, MySQL (or MariaDB), and PHP into an intuitive system tray utility (WampServer).
+          </p>
+        </div>
+
+        <div class="components-grid">
+          
+          <!-- Windows Card -->
+          <div class="component-card wamp-theme-card" data-component="windows">
+            <div class="component-badge">W</div>
+            <div class="component-icon">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="3" y="3" width="8" height="8" rx="1"/>
+                <rect x="13" y="3" width="8" height="8" rx="1"/>
+                <rect x="3" y="13" width="8" height="8" rx="1"/>
+                <rect x="13" y="13" width="8" height="8" rx="1"/>
+              </svg>
+            </div>
+            <h3 class="component-title">Windows</h3>
+            <span class="component-subtitle">Operating System (OS)</span>
+            <p class="component-text">
+              The client operating system (Windows 10/11 or Windows Server) providing a rich Graphical User Interface (GUI), NTFS filesystem, and seamless integration with desktop IDEs (VS Code, PHPStorm).
+            </p>
+            <div class="component-specs">
+              <div class="spec-row"><span>Kernel:</span><strong>Windows NT Kernel</strong></div>
+              <div class="spec-row"><span>Case Sensitivity:</span><strong>Case-Insensitive Paths</strong></div>
+              <div class="spec-row"><span>Services:</span><strong>Windows Services Manager</strong></div>
+            </div>
+            <div class="card-action">
+              <button class="btn-detail" onclick="openComponentModal('windows')">View Component Specs &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Apache on Windows Card -->
+          <div class="component-card wamp-theme-card" data-component="apache-win">
+            <div class="component-badge">A</div>
+            <div class="component-icon">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <line x1="6" y1="12" x2="18" y2="12"/>
+                <circle cx="12" cy="8" r="1" fill="currentColor"/>
+                <circle cx="12" cy="16" r="1" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 class="component-title">Apache on Win</h3>
+            <span class="component-subtitle">Win32/Win64 Port</span>
+            <p class="component-text">
+              Compiled specifically for Windows architectures using multi-threading MPM (mpm_winnt). Installed as a native background Windows Service (`wampapache64`).
+            </p>
+            <div class="component-specs">
+              <div class="spec-row"><span>Service Name:</span><strong>wampapache64</strong></div>
+              <div class="spec-row"><span>Config File:</span><strong>C:\wamp64\bin\apache\...\httpd.conf</strong></div>
+              <div class="spec-row"><span>Web Root:</span><strong>C:\wamp64\www\</strong></div>
+            </div>
+            <div class="card-action">
+              <button class="btn-detail" onclick="openComponentModal('apache-win')">View Component Specs &rarr;</button>
+            </div>
+          </div>
+
+          <!-- MySQL on Windows Card -->
+          <div class="component-card wamp-theme-card" data-component="mysql-win">
+            <div class="component-badge">M</div>
+            <div class="component-icon">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            </div>
+            <h3 class="component-title">MySQL &amp; MariaDB</h3>
+            <span class="component-subtitle">Dual Database Engines</span>
+            <p class="component-text">
+              Pre-configured database server bundled with web-based phpMyAdmin. WampServer allows toggling between MySQL and MariaDB on separate ports (3306 &amp; 3307).
+            </p>
+            <div class="component-specs">
+              <div class="spec-row"><span>Service Name:</span><strong>wampmysqld64</strong></div>
+              <div class="spec-row"><span>Admin UI:</span><strong>http://localhost/phpmyadmin</strong></div>
+              <div class="spec-row"><span>Default User:</span><strong>root (no password)</strong></div>
+            </div>
+            <div class="card-action">
+              <button class="btn-detail" onclick="openComponentModal('mysql-win')">View Component Specs &rarr;</button>
+            </div>
+          </div>
+
+          <!-- PHP on Windows Card -->
+          <div class="component-card wamp-theme-card" data-component="php-win">
+            <div class="component-badge">P</div>
+            <div class="component-icon">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M10 8h3a2 2 0 0 1 0 4h-3v4"/>
+                <path d="M14 12l2 4"/>
+              </svg>
+            </div>
+            <h3 class="component-title">PHP (Thread-Safe)</h3>
+            <span class="component-subtitle">Multi-Version Switcher</span>
+            <p class="component-text">
+              Uses Thread-Safe (TS) binaries compatible with Apache's Windows threading model. WampServer lets developers switch between PHP 7.4, 8.1, 8.2, and 8.3 in 2 clicks.
+            </p>
+            <div class="component-specs">
+              <div class="spec-row"><span>Build:</span><strong>Thread-Safe (TS) x64</strong></div>
+              <div class="spec-row"><span>Config File:</span><strong>phpForApache.ini</strong></div>
+              <div class="spec-row"><span>Switching:</span><strong>Instant via Tray Icon</strong></div>
+            </div>
+            <div class="card-action">
+              <button class="btn-detail" onclick="openComponentModal('php-win')">View Component Specs &rarr;</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- INTERACTIVE WAMP TRAY SIMULATOR -->
+        <div class="tray-simulator-wrapper">
+          <div class="tray-sim-header">
+            <h4>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>
+              </svg>
+              Interactive WampServer Tray Indicator Simulator
+            </h4>
+            <span class="sim-badge">Live Interactive Widget</span>
+          </div>
+          <p class="tray-sim-desc">
+            In WampServer, the taskbar notification tray icon tells you the real-time operational status of your local services. Test the buttons below to see how the services transition:
+          </p>
+          
+          <div class="tray-sim-body">
+            <div class="tray-visual-display">
+              <div id="wampTrayIcon" class="wamp-tray-icon tray-green" title="WampServer Tray Status">
+                <span class="wamp-w-letter">W</span>
+                <span id="trayPing" class="tray-ping"></span>
+              </div>
+              <div class="tray-status-info">
+                <div class="tray-status-title">Status: <span id="trayStatusText" class="status-online">All Services Running (Green)</span></div>
+                <div class="tray-status-details" id="trayStatusDetails">Apache is active on Port 80. MySQL is active on Port 3306. Ready for local browser requests at http://localhost.</div>
+              </div>
+            </div>
+
+            <div class="tray-controls">
+              <button class="btn-sim-action btn-green" onclick="setWampState('green')">
+                <span class="dot-btn green-dot"></span> Start All Services (Green)
+              </button>
+              <button class="btn-sim-action btn-orange" onclick="setWampState('orange')">
+                <span class="dot-btn orange-dot"></span> Partial / 1 Service Stopped (Orange)
+              </button>
+              <button class="btn-sim-action btn-red" onclick="setWampState('red')">
+                <span class="dot-btn red-dot"></span> Stop All Services (Red)
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 4: ARCHITECTURE DIAGRAMS & FLOW
+      =============================================== -->
+      <section id="architecture" class="content-section">
+        <div class="section-header">
+          <span class="section-tag">System Blueprints</span>
+          <h2 class="section-title">Stack Architecture &amp; Data Flow</h2>
+          <p class="section-desc">
+            Examine how the four distinct software layers interlink. Both LAMP and WAMP implement a classic 4-Tier Client-Server Architecture. Toggle between stacks or run the interactive flow animation!
+          </p>
+        </div>
+
+        <!-- Architecture Switcher Tabs -->
+        <div class="tab-control-bar">
+          <button class="tab-btn active" data-arch="lamp" onclick="switchArchTab('lamp')">
+            <span class="tab-pill">L</span> LAMP Architecture (Production Linux)
+          </button>
+          <button class="tab-btn" data-arch="wamp" onclick="switchArchTab('wamp')">
+            <span class="tab-pill">W</span> WAMP Architecture (Localhost Windows)
+          </button>
+        </div>
+
+        <!-- DIAGRAM CONTAINER -->
+        <div class="architecture-diagram-container">
+          
+          <div class="arch-canvas" id="archCanvas">
+            
+            <!-- Tier 1: Client Browser -->
+            <div class="arch-node node-client" id="nodeClient">
+              <div class="node-header">
+                <span class="node-badge">Tier 1</span>
+                <span class="node-type">Presentation</span>
+              </div>
+              <div class="node-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+              </div>
+              <h4 class="node-title">Web Browser / Client</h4>
+              <p class="node-desc">Google Chrome, Firefox, Edge, Safari or cURL sending HTTP GET/POST</p>
+              <div class="node-meta">Port 80 / 443 (HTTP/S)</div>
+            </div>
+
+            <!-- Connector 1 -->
+            <div class="arch-connector" id="connector1">
+              <div class="connector-line">
+                <span class="packet packet-forward" id="packet1"></span>
+              </div>
+              <div class="connector-label">
+                <span class="req-label">1. HTTP Request</span>
+                <span class="res-label">6. HTML Response</span>
+              </div>
+            </div>
+
+            <!-- Tier 2: Web Server Apache -->
+            <div class="arch-node node-server" id="nodeApache">
+              <div class="node-header">
+                <span class="node-badge">Tier 2</span>
+                <span class="node-type">Web Server</span>
+              </div>
+              <div class="node-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                  <line x1="6" y1="6" x2="6.01" y2="6"/>
+                  <line x1="6" y1="18" x2="6.01" y2="18"/>
+                </svg>
+              </div>
+              <h4 class="node-title" id="archServerTitle">Apache HTTP Server</h4>
+              <p class="node-desc" id="archServerDesc">Listens for connections, filters .htaccess rules, serves static files or forwards scripts</p>
+              <div class="node-meta" id="archServerMeta">Linux Process: /usr/sbin/apache2</div>
+            </div>
+
+            <!-- Connector 2 -->
+            <div class="arch-connector" id="connector2">
+              <div class="connector-line">
+                <span class="packet packet-forward" id="packet2"></span>
+              </div>
+              <div class="connector-label">
+                <span class="req-label">2. Forward Script</span>
+                <span class="res-label">5. Raw HTML Output</span>
+              </div>
+            </div>
+
+            <!-- Tier 3: Application Server PHP -->
+            <div class="arch-node node-app" id="nodePhp">
+              <div class="node-header">
+                <span class="node-badge">Tier 3</span>
+                <span class="node-type">Application Logic</span>
+              </div>
+              <div class="node-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <h4 class="node-title">PHP Preprocessor Engine</h4>
+              <p class="node-desc">Parses PHP bytecode, processes sessions, executes logic, queries DB</p>
+              <div class="node-meta" id="archPhpMeta">mod_php / php-fpm Worker</div>
+            </div>
+
+            <!-- Connector 3 -->
+            <div class="arch-connector" id="connector3">
+              <div class="connector-line">
+                <span class="packet packet-forward" id="packet3"></span>
+              </div>
+              <div class="connector-label">
+                <span class="req-label">3. SQL Query</span>
+                <span class="res-label">4. Result Set</span>
+              </div>
+            </div>
+
+            <!-- Tier 4: Database MySQL -->
+            <div class="arch-node node-db" id="nodeMysql">
+              <div class="node-header">
+                <span class="node-badge">Tier 4</span>
+                <span class="node-type">Data Persistence</span>
+              </div>
+              <div class="node-icon">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                </svg>
+              </div>
+              <h4 class="node-title" id="archDbTitle">MySQL / MariaDB Database</h4>
+              <p class="node-desc" id="archDbDesc">Stores users, relational tables, indexes, and transactional records</p>
+              <div class="node-meta" id="archDbMeta">TCP Port 3306 (InnoDB Engine)</div>
+            </div>
+
+          </div>
+
+          <!-- Architecture Controller Bar -->
+          <div class="arch-action-bar">
+            <button id="traceFlowBtn" class="btn btn-primary" onclick="startArchitectureTrace()">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              Trace Request-Response Flow
+            </button>
+            <div class="trace-status-pill" id="traceStatusPill">
+              Ready to trace. Click button to see packet animation!
+            </div>
+          </div>
+
+          <!-- Architecture OS-Specific Differences Callout -->
+          <div class="arch-differences-card">
+            <h4>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              Underlying OS Architectural Distinction
+            </h4>
+            <div class="arch-diff-grid">
+              <div class="diff-box">
+                <h5>LAMP (Linux Foundation)</h5>
+                <p>Processes are forked using Linux kernel POSIX threads or Event MPM. Case-sensitive filesystem (<code>header.php</code> &ne; <code>Header.php</code>). File security governed by strict Linux user/group permissions (<code>www-data:www-data</code>, chmod 755/644).</p>
+              </div>
+              <div class="diff-box">
+                <h5>WAMP (Windows Foundation)</h5>
+                <p>Apache runs under <code>mpm_winnt</code>, creating a multi-threaded parent/child process structure. Windows NTFS filesystem is case-insensitive (<code>index.php</code> = <code>INDEX.PHP</code>). Permissions inherit from Windows Access Control Lists (ACLs).</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 5: DETAILED COMPARISON TABLE
+      =============================================== -->
+      <section id="comparison" class="content-section">
+        <div class="section-header">
+          <span class="section-tag">Head-to-Head Analysis</span>
+          <h2 class="section-title">LAMP vs WAMP Comprehensive Comparison</h2>
+          <p class="section-desc">
+            A comprehensive point-by-point breakdown across all critical software, architectural, and operational dimensions. Use the category filters to pinpoint specific characteristics.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-btn-group">
+          <button class="filter-btn active" data-filter="all" onclick="filterComparison('all')">All Dimensions (8)</button>
+          <button class="filter-btn" data-filter="perf" onclick="filterComparison('perf')">Performance &amp; Core</button>
+          <button class="filter-btn" data-filter="dev" onclick="filterComparison('dev')">Developer Experience</button>
+          <button class="filter-btn" data-filter="prod" onclick="filterComparison('prod')">Production Readiness</button>
+        </div>
+
+        <!-- COMPARISON TABLE CONTAINER -->
+        <div class="table-responsive">
+          <table class="comparison-table" id="comparisonTable">
+            <thead>
+              <tr>
+                <th style="width: 20%;">Evaluation Parameter</th>
+                <th style="width: 38%;" class="th-lamp">
+                  <div class="table-th-content">
+                    <span class="th-badge lamp-badge-small">LAMP</span>
+                    <span>Linux Stack</span>
+                  </div>
+                </th>
+                <th style="width: 38%;" class="th-wamp">
+                  <div class="table-th-content">
+                    <span class="th-badge wamp-badge-small">WAMP</span>
+                    <span>Windows Stack</span>
+                  </div>
+                </th>
+                <th style="width: 4%;">Winner</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr data-category="perf">
+                <td class="param-cell">
+                  <strong>Operating System</strong>
+                  <span class="param-sub">Host Platform</span>
+                </td>
+                <td class="lamp-col">
+                  <strong>Linux (Ubuntu, Debian, CentOS, RHEL, Arch)</strong>
+                  <p>Lightweight, minimal resource footprint, headless/terminal-oriented, highly configurable POSIX kernel.</p>
+                </td>
+                <td class="wamp-col">
+                  <strong>Microsoft Windows (10, 11, Windows Server)</strong>
+                  <p>Full GUI operating system with background services, higher baseline RAM and CPU resource consumption.</p>
+                </td>
+                <td class="winner-cell"><span class="badge-winner badge-lamp" title="Linux is leaner and faster">LAMP</span></td>
+              </tr>
+
+              <tr data-category="dev">
+                <td class="param-cell">
+                  <strong>Installation &amp; Setup</strong>
+                  <span class="param-sub">Initial onboarding</span>
+                </td>
+                <td class="lamp-col">
+                  <strong>Manual Package Manager Installation</strong>
+                  <p>Requires terminal commands (<code>apt</code>, <code>dnf</code>, <code>pacman</code>), individual configuration file tuning, and firewall management.</p>
+                </td>
+                <td class="wamp-col">
+                  <strong>Single 1-Click Graphical Executable</strong>
+                  <p>Standard Windows wizard installer. Automatically binds Apache, MySQL, and PHP into one tray application.</p>
+                </td>
+                <td class="winner-cell"><span class="badge-winner badge-wamp" title="WAMP installer is much faster and easier for beginners">WAMP</span></td>
+              </tr>
+
+              <tr data-category="perf">
+                <td class="param-cell">
+                  <strong>Performance &amp; Concurrency</strong>
+                  <span class="param-sub">Throughput &amp; latency</span>
+                </td>
+                <td class="lamp-col">
+                  <strong>Superb High-Throughput Performance</strong>
+                  <p>Native Linux epoll, event MPM, zero desktop GUI overhead, lower kernel context-switching latency under heavy load.</p>
+                </td>
+                <td class="wamp-col">
+                  <strong>Moderate Local Performance</strong>
+                  <p>Windows thread dispatch overhead (mpm_winnt) handles moderate load well, but struggles at enterprise production scale.</p>
+                </td>
+                <td class="winner-cell"><span class="badge-winner badge-lamp" title="LAMP is vastly superior for high-concurrency production">LAMP</span></td>
+              </tr>
+
+              <tr data-category="prod">
+                <td class="param-cell">
+                  <strong>Production Deployment</strong>
+                  <span class="param-sub">Real-world hosting</span>
+                </td>
+                <td class="lamp-col">
+                  <strong>Industry Standard Production Stack</strong>
+                  <p>Powers AWS EC2, DigitalOcean, Linode, Google Cloud instances, and over 80% of live internet web hosting.</p>
+                </td>
+                <td class="wamp-col">
+                  <strong>Designed for Localhost Prototyping</strong>
+                  <p>Not hardened for public production deployment. Windows Server licensing is costly compared to free Linux.</p>
+                </td>
+                <td class="winner-cell"><span class="badge-winner badge-lamp" title="LAMP dominates live internet hosting">LAMP</span></td>
+              </tr>
+
+              <tr data-category="dev">
+                <td class="param-cell">
+                  <strong>Filesystem &amp; Case Sensitivity</strong>
+                  <span class="param-sub">File path behavior</span>
+                </td>
+                <td class="lamp-col">
+                  <strong>Strictly Case-Sensitive (ext4 / xfs)</strong>
+                  <p><code>App.php</code> and <code>app.php</code> are two entirely distinct files. Prevents silent typo bugs before deployment.</p>
+                </td>
+                <td class="wamp-col">
+                  <strong>Case-Insensitive (NTFS / FAT32)</strong>
+                  <p><code>index.php</code> and <code>INDEX.PHP</code> point to the same file. May cause breaking 404 errors when moving code to Linux.</p>
+                </td>
+                <td class="winner-cell"><span class="badge-winner badge-lamp" title="Strict case-sensitivity guarantees production parity">LAMP</span></td>
+              </tr>
+
+              <tr data-category="dev">
+                <td class="param-cell">
+                  <strong>Management Interface</strong>
+                  <span class="param-sub">Daily administration</span>
+                </td>
+                <td class="lamp-col">
+                  <strong>CLI &amp; Configuration Scripts</strong>
+                  <p>Managed via Bash, <code>systemctl</code>, <code>nano/vim</code>, and SSH. Can be automated via Ansible, Docker, or shell scripts.</p>
+                </td>
+                <td class="wamp-col">
+                  <strong>Windows System Tray Menu (GUI)</strong>
+                  <p>Left-click to toggle Apache/MySQL/PHP versions, view active logs, edit <code>php.ini</code>, or open phpMyAdmin in 1 click.</p>
+                </td>
+                <td class="winner-cell"><span class="badge-winner badge-wamp" title="WAMP GUI is beginner friendly">WAMP</span></td>
+              </tr>
+
+              <tr data-category="prod">
+                <td class="param-cell">
+                  <strong>Security &amp; Permissions</strong>
+                  <span class="param-sub">Access control</span>
+                </td>
+                <td class="lamp-col">
+                  <strong>Rigorous POSIX Permissions &amp; SELinux</strong>
+                  <p>Isolated daemon users (<code>www-data</code>), iptables/UFW firewalls, SSH key security, highly resilient to malware.</p>
+                </td>
+                <td class="wamp-col">
+                  <strong>Default Local User Permissions</strong>
+                  <p>Default installation often runs services under system user or current Windows desktop user. Not hardened for internet exposure.</p>
+                </td>
+                <td class="winner-cell"><span class="badge-winner badge-lamp" title="Linux security model is battle-tested">LAMP</span></td>
+              </tr>
+
+              <tr data-category="prod">
+                <td class="param-cell">
+                  <strong>Software Cost &amp; Licensing</strong>
+                  <span class="param-sub">Financial investment</span>
+                </td>
+                <td class="lamp-col">
+                  <strong>100% Free &amp; Open Source (GPL/Apache)</strong>
+                  <p>$0 licensing cost for OS, web server, database, and scripting. Scales infinitely without license fees.</p>
+                </td>
+                <td class="wamp-col">
+                  <strong>Free Stack Software, Paid OS</strong>
+                  <p>WampServer itself is free, but Windows OS requires consumer or enterprise licensing (especially Windows Server).</p>
+                </td>
+                <td class="winner-cell"><span class="badge-winner badge-lamp" title="Linux has zero OS licensing costs">LAMP</span></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Summary Verdict Callout -->
+        <div class="verdict-banner">
+          <div class="verdict-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <div class="verdict-text">
+            <strong>Key Engineering Takeaway:</strong> WAMP is unmatched for swift, frictionless local application prototyping on a Windows workstation. LAMP is the undisputed gold standard for deploying scalable, robust, and cost-efficient production servers on the public web.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 6: LINUX INSTALLATION (LAMP)
+      =============================================== -->
+      <section id="linux-install" class="content-section">
+        <div class="section-header">
+          <span class="section-tag">Hands-on Linux Guide</span>
+          <h2 class="section-title">Installing LAMP on Ubuntu / Debian</h2>
+          <p class="section-desc">
+            Follow this step-by-step terminal walkthrough to configure an authentic LAMP server on Ubuntu 22.04 / 24.04 LTS. Each command is verified and copy-ready.
+          </p>
+        </div>
+
+        <!-- Installation Stepper UI -->
+        <div class="stepper-container">
+          
+          <!-- Step Nav Pills -->
+          <div class="step-nav" id="linuxStepNav">
+            <button class="step-nav-btn active" data-step="1" onclick="jumpLinuxStep(1)">
+              <span class="step-num">1</span>
+              <span class="step-title">System Update</span>
+            </button>
+            <button class="step-nav-btn" data-step="2" onclick="jumpLinuxStep(2)">
+              <span class="step-num">2</span>
+              <span class="step-title">Apache Install</span>
+            </button>
+            <button class="step-nav-btn" data-step="3" onclick="jumpLinuxStep(3)">
+              <span class="step-num">3</span>
+              <span class="step-title">MySQL Server</span>
+            </button>
+            <button class="step-nav-btn" data-step="4" onclick="jumpLinuxStep(4)">
+              <span class="step-num">4</span>
+              <span class="step-title">PHP Modules</span>
+            </button>
+            <button class="step-nav-btn" data-step="5" onclick="jumpLinuxStep(5)">
+              <span class="step-num">5</span>
+              <span class="step-title">Verify &amp; Test</span>
+            </button>
+          </div>
+
+          <!-- Step Content Cards -->
+          <div class="step-content-box">
+            
+            <!-- Step 1 -->
+            <div class="step-panel active" id="linuxStep1">
+              <div class="step-panel-header">
+                <span class="step-indicator-pill">Step 1 of 5</span>
+                <h3>Update Ubuntu Package Lists &amp; Repositories</h3>
+              </div>
+              <p>Before installing server packages, synchronize your Advanced Package Tool (APT) index with the upstream Ubuntu repositories to ensure you receive the latest stable security releases.</p>
+              
+              <div class="code-terminal">
+                <div class="terminal-bar">
+                  <div class="terminal-dots">
+                    <span class="dot-red"></span>
+                    <span class="dot-yellow"></span>
+                    <span class="dot-green"></span>
+                  </div>
+                  <span class="terminal-title">bash &ndash; user@ubuntu-server:~</span>
+                  <button class="copy-btn" onclick="copyCode(this, 'linux-code-1')">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+                <pre class="terminal-code"><code id="linux-code-1"># Refresh repository indexes and upgrade existing packages
+sudo apt update &amp;&amp; sudo apt upgrade -y</code></pre>
+              </div>
+              
+              <div class="step-tip">
+                <strong>Pro-Tip:</strong> The <code>-y</code> flag automatically confirms prompts, saving manual keystrokes during cloud instance provisioning.
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-panel" id="linuxStep2">
+              <div class="step-panel-header">
+                <span class="step-indicator-pill">Step 2 of 5</span>
+                <h3>Install Apache Web Server &amp; Configure UFW Firewall</h3>
+              </div>
+              <p>Install the Apache2 daemon, enable it to launch automatically upon system boot, and permit inbound web traffic through the Uncomplicated Firewall (UFW).</p>
+              
+              <div class="code-terminal">
+                <div class="terminal-bar">
+                  <div class="terminal-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                  <span class="terminal-title">bash &ndash; user@ubuntu-server:~</span>
+                  <button class="copy-btn" onclick="copyCode(this, 'linux-code-2')">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+                <pre class="terminal-code"><code id="linux-code-2"># Install Apache HTTP Server
+sudo apt install apache2 -y
+
+# Enable and start the Apache service
+sudo systemctl enable apache2
+sudo systemctl start apache2
+
+# Allow HTTP (Port 80) and HTTPS (Port 443) through UFW Firewall
+sudo ufw allow in "Apache Full"
+
+# Verify service is running active (running)
+sudo systemctl status apache2 --no-pager</code></pre>
+              </div>
+
+              <div class="step-tip">
+                <strong>Verification:</strong> Open your browser to <code>http://localhost</code> or <code>http://YOUR_SERVER_IP</code>. You will see the iconic "Apache2 Ubuntu Default Page".
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-panel" id="linuxStep3">
+              <div class="step-panel-header">
+                <span class="step-indicator-pill">Step 3 of 5</span>
+                <h3>Install MySQL Database Server &amp; Secure Root</h3>
+              </div>
+              <p>Install MySQL relational database management system and run the security hardening script to remove anonymous users and restrict remote root logins.</p>
+              
+              <div class="code-terminal">
+                <div class="terminal-bar">
+                  <div class="terminal-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                  <span class="terminal-title">bash &ndash; user@ubuntu-server:~</span>
+                  <button class="copy-btn" onclick="copyCode(this, 'linux-code-3')">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+                <pre class="terminal-code"><code id="linux-code-3"># Install MySQL Server package
+sudo apt install mysql-server -y
+
+# Start and enable MySQL background service
+sudo systemctl enable mysql
+sudo systemctl start mysql
+
+# Run the interactive security lockdown script
+sudo mysql_secure_installation</code></pre>
+              </div>
+
+              <div class="step-tip">
+                <strong>MySQL Secure Installation Walkthrough:</strong>
+                Answer <code>Y</code> to validate password strength, set a strong root password, <code>Y</code> to remove anonymous users, <code>Y</code> to disallow remote root login, and <code>Y</code> to reload privilege tables.
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-panel" id="linuxStep4">
+              <div class="step-panel-header">
+                <span class="step-indicator-pill">Step 4 of 5</span>
+                <h3>Install PHP &amp; Essential Apache/MySQL Extensions</h3>
+              </div>
+              <p>Install the PHP runtime along with the Apache integration module (<code>libapache2-mod-php</code>) and the MySQL database driver (<code>php-mysql</code>).</p>
+              
+              <div class="code-terminal">
+                <div class="terminal-bar">
+                  <div class="terminal-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                  <span class="terminal-title">bash &ndash; user@ubuntu-server:~</span>
+                  <button class="copy-btn" onclick="copyCode(this, 'linux-code-4')">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+                <pre class="terminal-code"><code id="linux-code-4"># Install PHP engine and crucial extensions
+sudo apt install php libapache2-mod-php php-mysql php-cli php-curl php-json php-mbstring php-xml -y
+
+# Check installed PHP version
+php -v
+
+# Restart Apache so it initializes the newly installed PHP module
+sudo systemctl restart apache2</code></pre>
+              </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step-panel" id="linuxStep5">
+              <div class="step-panel-header">
+                <span class="step-indicator-pill">Step 5 of 5</span>
+                <h3>Create PHP Info Test File &amp; Verify Localhost</h3>
+              </div>
+              <p>Confirm that Apache is successfully parsing PHP scripts by generating an <code>info.php</code> test file in the document root directory (<code>/var/www/html/</code>).</p>
+              
+              <div class="code-terminal">
+                <div class="terminal-bar">
+                  <div class="terminal-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+                  <span class="terminal-title">bash &ndash; user@ubuntu-server:~</span>
+                  <button class="copy-btn" onclick="copyCode(this, 'linux-code-5')">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+                <pre class="terminal-code"><code id="linux-code-5"># Write phpinfo() diagnostic script into web document root
+echo "&lt;?php phpinfo(); ?&gt;" | sudo tee /var/www/html/info.php
+
+# Set appropriate file ownership to web server user
+sudo chown -R www-data:www-data /var/www/html
+sudo chmod -R 755 /var/www/html
+
+# Test via curl in terminal
+curl -I http://localhost/info.php</code></pre>
+              </div>
+
+              <div class="step-tip">
+                <strong>Final Verification:</strong> Open <code>http://localhost/info.php</code> in your browser. You will see the comprehensive PHP version and environment configuration table! Remember to remove this file on production: <code>sudo rm /var/www/html/info.php</code>.
+              </div>
+            </div>
+
+            <!-- Step Navigation Controls -->
+            <div class="stepper-controls">
+              <button id="prevLinuxStepBtn" class="btn btn-secondary" onclick="prevLinuxStep()" disabled>
+                &larr; Previous Step
+              </button>
+              <div class="stepper-dots-indicator" id="linuxDots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+              <button id="nextLinuxStepBtn" class="btn btn-primary" onclick="nextLinuxStep()">
+                Next Step &rarr;
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 7: WINDOWS INSTALLATION (WAMP)
+      =============================================== -->
+      <section id="windows-install" class="content-section">
+        <div class="section-header">
+          <span class="section-tag">Hands-on Windows Guide</span>
+          <h2 class="section-title">Installing WAMP via WampServer</h2>
+          <p class="section-desc">
+            WampServer is the most widely adopted WAMP environment for Windows. Follow these visual steps to download, install, start, and verify your local server.
+          </p>
+        </div>
+
+        <div class="wamp-walkthrough-grid">
+          
+          <!-- Step 1 Card -->
+          <div class="wamp-step-card">
+            <div class="wamp-step-num">01</div>
+            <div class="wamp-step-icon">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h4>Install VC++ Redistributables</h4>
+            <p>
+              <strong>Crucial Prerequisite:</strong> Apache and PHP binaries require Microsoft Visual C++ Redistributable packages (2008 through 2022, both x86 and x64).
+            </p>
+            <div class="wamp-note">
+              Install VC++ <em>before</em> running WampServer setup to avoid missing <code>MSVCR110.dll</code> or <code>VCRUNTIME140.dll</code> errors.
+            </div>
+          </div>
+
+          <!-- Step 2 Card -->
+          <div class="wamp-step-card">
+            <div class="wamp-step-num">02</div>
+            <div class="wamp-step-icon">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+              </svg>
+            </div>
+            <h4>Download WampServer</h4>
+            <p>
+              Visit the official portal at <strong>wampserver.com</strong> or SourceForge. Select the 64-bit installer (e.g., <code>WampServer 3.3.x x64</code>) matched to modern Windows 10/11.
+            </p>
+            <div class="wamp-note">
+              The setup package is ~500MB and bundles Apache 2.4, MySQL 8.0, MariaDB 10.x, and multiple PHP versions (7.4 to 8.3).
+            </div>
+          </div>
+
+          <!-- Step 3 Card -->
+          <div class="wamp-step-card">
+            <div class="wamp-step-num">03</div>
+            <div class="wamp-step-icon">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <h4>Run Installer &amp; Pick Path</h4>
+            <p>
+              Run the installer as Administrator. Keep the standard recommended installation directory:
+              <code>C:\wamp64\</code> (avoid spaces in path like <code>Program Files</code>).
+            </p>
+            <div class="wamp-note">
+              The installer will ask you to choose your preferred browser (e.g. Chrome / Edge) and code editor (Notepad / VS Code).
+            </div>
+          </div>
+
+          <!-- Step 4 Card -->
+          <div class="wamp-step-card">
+            <div class="wamp-step-num">04</div>
+            <div class="wamp-step-icon">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <h4>Launch &amp; Monitor Tray Icon</h4>
+            <p>
+              Launch <strong>WampServer 64</strong> from your Start Menu. Look at the Windows System Tray in the lower-right taskbar.
+            </p>
+            <div class="wamp-state-pills">
+              <span class="state-pill red">Red: All Stopped</span>
+              <span class="state-pill orange">Orange: Starting</span>
+              <span class="state-pill green">Green: All Online</span>
+            </div>
+          </div>
+
+          <!-- Step 5 Card -->
+          <div class="wamp-step-card">
+            <div class="wamp-step-num">05</div>
+            <div class="wamp-step-icon">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <h4>Access Localhost Dashboard</h4>
+            <p>
+              Once the tray icon turns <strong>Green</strong>, open any web browser and navigate to:
+              <code>http://localhost</code> or <code>http://127.0.0.1</code>.
+            </p>
+            <div class="wamp-note">
+              The WampServer homepage lists active PHP extensions, server ports, and your local project folders located in <code>C:\wamp64\www\</code>.
+            </div>
+          </div>
+
+          <!-- Step 6 Card -->
+          <div class="wamp-step-card">
+            <div class="wamp-step-num">06</div>
+            <div class="wamp-step-icon">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            </div>
+            <h4>Manage MySQL via phpMyAdmin</h4>
+            <p>
+              Navigate to <code>http://localhost/phpmyadmin</code> in your browser.
+              Log in with:
+              <strong>Username:</strong> <code>root</code> | <strong>Password:</strong> <em>(leave blank)</em>.
+            </p>
+            <div class="wamp-note">
+              Use phpMyAdmin to create databases, manage tables, run SQL queries, and import/export <code>.sql</code> dumps visually.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Troubleshooting Box -->
+        <div class="troubleshoot-box">
+          <div class="troubleshoot-header">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <span>Common Windows Troubleshooting: Orange Tray Icon (Port 80 Conflict)</span>
+          </div>
+          <p>
+            If the WampServer icon remains <strong>Orange</strong>, Apache cannot bind to Port 80 because another Windows service is using it (e.g. Skype, IIS, or Windows World Wide Web Publishing Service).
+          </p>
+          <div class="troubleshoot-fix">
+            <strong>Quick Solution:</strong> Open WampServer Menu &rarr; <em>Apache</em> &rarr; <em>Service administration 'wampapache64'</em> &rarr; <em>Use a port other than 80</em> &rarr; Enter <code>8080</code>. You can then access your server at <code>http://localhost:8080</code>!
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 8: ROLE OF APACHE
+      =============================================== -->
+      <section id="role-of-apache" class="content-section">
+        <div class="section-header">
+          <span class="section-tag">Core Orchestrator</span>
+          <h2 class="section-title">The Role of Apache in Web Architecture</h2>
+          <p class="section-desc">
+            Apache HTTP Server serves as the central traffic controller of both LAMP and WAMP. Understand how Apache ingests HTTP requests, distinguishes static vs dynamic assets, bridges PHP, and streams HTML back to the browser.
+          </p>
+        </div>
+
+        <!-- Role Overview Grid -->
+        <div class="role-grid">
+          
+          <div class="role-card">
+            <div class="role-num">01</div>
+            <h4>HTTP/HTTPS Request Handling</h4>
+            <p>Apache continuously monitors Port 80 (HTTP) and Port 443 (HTTPS). It reads incoming HTTP request headers (Method, URL, Host, User-Agent, Cookies) and matches them against VirtualHost directives.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-num">02</div>
+            <h4>Static File Direct Delivery</h4>
+            <p>When the browser requests static files (<code>.html</code>, <code>.css</code>, <code>.js</code>, <code>.png</code>, <code>.svg</code>), Apache bypasses PHP entirely. It streams the file directly off the disk with maximum speed, MIME headers, and HTTP caching.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-num">03</div>
+            <h4>PHP Delegation &amp; Handshake</h4>
+            <p>When a dynamic <code>.php</code> URL is requested, Apache hands the file off to the PHP engine via internal modules (<code>mod_php</code>) or FastCGI sockets (<code>php-fpm</code>), passing environment variables and POST parameters.</p>
+          </div>
+
+          <div class="role-card">
+            <div class="role-num">04</div>
+            <h4>Response Assembly &amp; Streaming</h4>
+            <p>Once PHP and MySQL generate the synthesized HTML string, PHP returns it to Apache. Apache attaches HTTP status codes (<code>200 OK</code>, <code>301 Redirect</code>, <code>404 Not Found</code>), applies Gzip/Brotli compression, and streams it back to the client.</p>
+          </div>
+
+        </div>
+
+        <!-- INTERACTIVE APACHE WORKFLOW SIMULATOR -->
+        <div class="apache-sim-container">
+          <div class="apache-sim-header">
+            <div>
+              <h3>Interactive Apache Request Lifecycle Simulator</h3>
+              <p>Choose an HTTP request type and watch each stage of the server pipeline execute in real time.</p>
+            </div>
+            <div class="sim-type-buttons">
+              <button id="simStaticBtn" class="btn btn-outline" onclick="runApacheSim('static')">
+                Request Static File (.html / .css)
+              </button>
+              <button id="simDynamicBtn" class="btn btn-primary" onclick="runApacheSim('dynamic')">
+                Request Dynamic File (.php + MySQL)
+              </button>
+            </div>
+          </div>
+
+          <!-- Step Pipeline Visualizer -->
+          <div class="pipeline-track">
+            
+            <div class="pipeline-step" id="pipeStep1">
+              <div class="pipe-circle">1</div>
+              <div class="pipe-info">
+                <strong>1. Client Request</strong>
+                <span>Browser sends GET /index.php</span>
+              </div>
+            </div>
+
+            <div class="pipe-arrow">&rarr;</div>
+
+            <div class="pipeline-step" id="pipeStep2">
+              <div class="pipe-circle">2</div>
+              <div class="pipe-info">
+                <strong>2. Apache Ingest</strong>
+                <span>Inspect URL &amp; .htaccess rules</span>
+              </div>
+            </div>
+
+            <div class="pipe-arrow">&rarr;</div>
+
+            <div class="pipeline-step" id="pipeStep3">
+              <div class="pipe-circle">3</div>
+              <div class="pipe-info">
+                <strong>3. PHP Execution</strong>
+                <span>Compile &amp; execute bytecode</span>
+              </div>
+            </div>
+
+            <div class="pipe-arrow">&rarr;</div>
+
+            <div class="pipeline-step" id="pipeStep4">
+              <div class="pipe-circle">4</div>
+              <div class="pipe-info">
+                <strong>4. MySQL Query</strong>
+                <span>Fetch records via SQL</span>
+              </div>
+            </div>
+
+            <div class="pipe-arrow">&rarr;</div>
+
+            <div class="pipeline-step" id="pipeStep5">
+              <div class="pipe-circle">5</div>
+              <div class="pipe-info">
+                <strong>5. Client Response</strong>
+                <span>HTTP 200 OK + Rendered HTML</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Live Log Console -->
+          <div class="sim-console">
+            <div class="console-header">
+              <span class="console-title">Server Access &amp; Processing Log (Real-time)</span>
+              <button class="btn-clear-log" onclick="clearSimLog()">Clear Log</button>
+            </div>
+            <div id="simLogBox" class="console-body">
+              <div class="log-line log-system">[SYSTEM] Simulator initialized. Select a request type above to begin interactive simulation.</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 9: PRACTICAL EXAMPLES & DIRECTORY STRUCTURE
+      =============================================== -->
+      <section id="practical-examples" class="content-section">
+        <div class="section-header">
+          <span class="section-tag">Code &amp; Configuration</span>
+          <h2 class="section-title">Practical Code Examples &amp; Project Workflows</h2>
+          <p class="section-desc">
+            Explore standard PHP code samples, modern PDO database connectivity, and the vital directory structure differences between LAMP and WAMP.
+          </p>
+        </div>
+
+        <!-- Code Tabs Navigation -->
+        <div class="code-tabs-nav">
+          <button class="code-tab-btn active" data-tab="info" onclick="switchCodeTab('info')">
+            1. info.php (Environment Check)
+          </button>
+          <button class="code-tab-btn" data-tab="db" onclick="switchCodeTab('db')">
+            2. db_connect.php (PDO Connection)
+          </button>
+          <button class="code-tab-btn" data-tab="crud" onclick="switchCodeTab('crud')">
+            3. users.php (Dynamic Query)
+          </button>
+          <button class="code-tab-btn" data-tab="dirs" onclick="switchCodeTab('dirs')">
+            4. Directory &amp; Path Differences
+          </button>
+        </div>
+
+        <!-- Tab Content 1: info.php -->
+        <div class="code-tab-content active" id="tabContent-info">
+          <div class="tab-content-intro">
+            <h4>PHP Configuration &amp; Diagnostics</h4>
+            <p>The standard baseline script to verify that PHP is running correctly and displaying active modules.</p>
+          </div>
+          <div class="code-terminal">
+            <div class="terminal-bar">
+              <span class="file-name">info.php</span>
+              <button class="copy-btn" onclick="copyCode(this, 'code-sample-info')">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre class="terminal-code"><code id="code-sample-info">&lt;?php
+// Displays comprehensive PHP version, loaded modules, directives, and environment variables
+phpinfo();
+?&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Tab Content 2: db_connect.php -->
+        <div class="code-tab-content" id="tabContent-db">
+          <div class="tab-content-intro">
+            <h4>Modern Secure Database Connection (PHP Data Objects - PDO)</h4>
+            <p>PDO provides a secure, parameterized data-access abstraction layer with built-in protection against SQL injection.</p>
+          </div>
+          <div class="code-terminal">
+            <div class="terminal-bar">
+              <span class="file-name">db_connect.php</span>
+              <button class="copy-btn" onclick="copyCode(this, 'code-sample-db')">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre class="terminal-code"><code id="code-sample-db">&lt;?php
+// Database configuration credentials
+$host     = 'localhost';
+$dbname   = 'demo_store';
+$username = 'root';
+// NOTE: On WAMP default password is empty (''). On Linux LAMP, use your set password!
+$password = ''; 
+
+try {
+    // DSN (Data Source Name)
+    $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+    
+    // Instantiate PDO instance
+    $pdo = new PDO($dsn, $username, $password, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // Throw exceptions on errors
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,        // Return associative arrays
+        PDO::ATTR_EMULATE_PREPARES   => false,                  // True native prepared statements
+    ]);
+
+    echo "Successfully connected to MySQL database via PDO!";
+} catch (PDOException $e) {
+    // Catch connection failure gracefully
+    die("Database Connection Error: " . $e-&gt;getMessage());
+}
+?&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Tab Content 3: users.php -->
+        <div class="code-tab-content" id="tabContent-crud">
+          <div class="tab-content-intro">
+            <h4>Dynamic Database Query &amp; HTML Output Rendering</h4>
+            <p>This script executes a parameterized SQL SELECT query and renders the records into a clean HTML table.</p>
+          </div>
+          <div class="code-terminal">
+            <div class="terminal-bar">
+              <span class="file-name">users.php</span>
+              <button class="copy-btn" onclick="copyCode(this, 'code-sample-crud')">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre class="terminal-code"><code id="code-sample-crud">&lt;?php
+require_once 'db_connect.php';
+
+// Prepare a safe SQL query using bound parameters
+$stmt = $pdo-&gt;prepare("SELECT id, name, email, role, created_at FROM users WHERE active = :status LIMIT 5");
+$stmt-&gt;execute(['status' =&gt; 1]);
+$users = $stmt-&gt;fetchAll();
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Active Users Directory&lt;/title&gt;
+    &lt;style&gt;
+        table { border-collapse: collapse; width: 100%; font-family: sans-serif; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #2563eb; color: white; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Registered Active Users&lt;/h2&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;?php foreach ($users as $user): ?&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;?= htmlspecialchars($user['id']) ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?= htmlspecialchars($user['name']) ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?= htmlspecialchars($user['email']) ?&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;?= htmlspecialchars($user['role']) ?&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;?php endforeach; ?&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </div>
+
+          <!-- Live Output Preview Simulator -->
+          <div class="live-preview-box">
+            <div class="preview-header">
+              <span class="preview-label">Simulated Browser Output Preview</span>
+              <button class="btn-sm btn-outline" onclick="triggerSimulatedDbRun()">Run Script</button>
+            </div>
+            <div class="preview-viewport" id="previewViewport">
+              <table class="simulated-table">
+                <thead>
+                  <tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th></tr>
+                </thead>
+                <tbody id="simTableBody">
+                  <tr><td>1</td><td>Sarah Connor</td><td>sarah@cyberdyne.org</td><td>Administrator</td></tr>
+                  <tr><td>2</td><td>Alex Murphy</td><td>alex.m@detroitpd.gov</td><td>Senior Engineer</td></tr>
+                  <tr><td>3</td><td>Ellen Ripley</td><td>ripley@weyland-yutani.com</td><td>Database Lead</td></tr>
+                </tbody>
+              </table>
+              <div class="sim-badge-ok">&#10003; 3 Records retrieved via PDO in 0.0024 seconds</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content 4: Directory Differences -->
+        <div class="code-tab-content" id="tabContent-dirs">
+          <div class="tab-content-intro">
+            <h4>Directory Hierarchy &amp; File System Conventions</h4>
+            <p>Side-by-side comparison of where website files, configs, and logs reside on each stack:</p>
+          </div>
+          
+          <div class="directory-comparison-grid">
+            
+            <div class="dir-card dir-lamp">
+              <div class="dir-card-header">
+                <span class="badge-tag">Linux LAMP Filesystem</span>
+                <h4>Ubuntu / Debian Server</h4>
+              </div>
+              <ul class="dir-list">
+                <li>
+                  <span class="dir-key">Web Document Root:</span>
+                  <code>/var/www/html/</code>
+                </li>
+                <li>
+                  <span class="dir-key">Apache Main Config:</span>
+                  <code>/etc/apache2/apache2.conf</code>
+                </li>
+                <li>
+                  <span class="dir-key">Virtual Hosts Directory:</span>
+                  <code>/etc/apache2/sites-available/</code>
+                </li>
+                <li>
+                  <span class="dir-key">PHP INI File:</span>
+                  <code>/etc/php/8.x/apache2/php.ini</code>
+                </li>
+                <li>
+                  <span class="dir-key">MySQL Configuration:</span>
+                  <code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>
+                </li>
+                <li>
+                  <span class="dir-key">Server Access &amp; Error Logs:</span>
+                  <code>/var/log/apache2/error.log</code>
+                </li>
+                <li>
+                  <span class="dir-key">File Path Separator:</span>
+                  <strong>Forward Slash (<code>/</code>)</strong>
+                </li>
+                <li>
+                  <span class="dir-key">File Name Sensitivity:</span>
+                  <strong>Strictly Case-Sensitive</strong>
+                </li>
+              </ul>
+            </div>
+
+            <div class="dir-card dir-wamp">
+              <div class="dir-card-header">
+                <span class="badge-tag">Windows WAMP Filesystem</span>
+                <h4>WampServer 64-bit</h4>
+              </div>
+              <ul class="dir-list">
+                <li>
+                  <span class="dir-key">Web Document Root:</span>
+                  <code>C:\wamp64\www\</code>
+                </li>
+                <li>
+                  <span class="dir-key">Apache Main Config:</span>
+                  <code>C:\wamp64\bin\apache\apacheX.Y\conf\httpd.conf</code>
+                </li>
+                <li>
+                  <span class="dir-key">Virtual Hosts Config:</span>
+                  <code>C:\wamp64\bin\apache\apacheX.Y\conf\extra\httpd-vhosts.conf</code>
+                </li>
+                <li>
+                  <span class="dir-key">PHP INI File:</span>
+                  <code>C:\wamp64\bin\php\phpX.Y\phpForApache.ini</code>
+                </li>
+                <li>
+                  <span class="dir-key">MySQL Configuration:</span>
+                  <code>C:\wamp64\bin\mysql\mysqlX.Y\my.ini</code>
+                </li>
+                <li>
+                  <span class="dir-key">Server Access &amp; Error Logs:</span>
+                  <code>C:\wamp64\logs\apache_error.log</code>
+                </li>
+                <li>
+                  <span class="dir-key">File Path Separator:</span>
+                  <strong>Backslash (<code>\</code>) or Forward Slash (<code>/</code>)</strong>
+                </li>
+                <li>
+                  <span class="dir-key">File Name Sensitivity:</span>
+                  <strong>Case-Insensitive</strong>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==============================================
+           SECTION 10: ADVANTAGES & LIMITATIONS
+      =============================================== -->
+      <section id="pros-cons" class="content-section">
+        <div class="section-header">
+          <span class="section-tag">Balanced Assessment</span>
+          <h2 class="section-title">Advantages and Limitations</h2>
+          <p class="section-desc">
+            No single architecture fits every engineering scenario. Analyze the distinctive strengths and trade-offs of LAMP and WAMP to make informed system architecture choices.
+          </p>
+        </div>
+
+        <div class="pros-cons-grid">
+          
+          <!-- LAMP Column -->
+          <div class="pros-cons-card lamp-column">
+            <div class="pc-card-header lamp-header">
+              <span class="stack-badge lamp-badge">LAMP</span>
+              <div>
+                <h3>LAMP Stack Assessment</h3>
+                <span class="pc-sub">Linux, Apache, MySQL, PHP</span>
+              </div>
+            </div>
+
+            <div class="pc-section pros">
+              <h4>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Key Advantages
+              </h4>
+              <ul class="pc-list">
+                <li>
+                  <strong>Production Powerhouse:</strong> Exceptional stability, high concurrency, and low latency under demanding traffic.
+                </li>
+                <li>
+                  <strong>Zero OS Licensing Cost:</strong> 100% free open-source stack. Deploy hundreds of cloud instances with no license fees.
+                </li>
+                <li>
+                  <strong>Native Host Parity:</strong> What you develop on Linux matches production cloud servers with 100% fidelity.
+                </li>
+                <li>
+                  <strong>Automation Friendly:</strong> Fully scriptable with Bash, SSH, Docker, CI/CD pipelines, and Ansible.
+                </li>
+                <li>
+                  <strong>Superior Security Architecture:</strong> Rigorous user privilege separation (<code>chown</code>/<code>chmod</code>), iptables/UFW firewalls, and SELinux.
+                </li>
+              </ul>
+            </div>
+
+            <div class="pc-section cons">
+              <h4>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+                Limitations &amp; Challenges
+              </h4>
+              <ul class="pc-list">
+                <li>
+                  <strong>Steeper Learning Curve:</strong> Requires familiarity with Linux command line, package managers, and text editors (Vim/Nano).
+                </li>
+                <li>
+                  <strong>Manual Configuration:</strong> Upgrades and extensions must be configured and tested manually via terminal commands.
+                </li>
+                <li>
+                  <strong>No Native Desktop GUI:</strong> Headless servers lack visual point-and-click status dashboards without 3rd-party panels.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- WAMP Column -->
+          <div class="pros-cons-card wamp-column">
+            <div class="pc-card-header wamp-header">
+              <span class="stack-badge wamp-badge">WAMP</span>
+              <div>
+                <h3>WAMP Stack Assessment</h3>
+                <span class="pc-sub">Windows, Apache, MySQL, PHP</span>
+              </div>
+            </div>
+
+            <div class="pc-section pros">
+              <h4>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Key Advantages
+              </h4>
+              <ul class="pc-list">
+                <li>
+                  <strong>Effortless 1-Click Setup:</strong> Complete web server suite installed in under 5 minutes through a standard Windows wizard.
+                </li>
+                <li>
+                  <strong>Intuitive System Tray GUI:</strong> Start, stop, or restart services instantly; view active ports and status color indicators.
+                </li>
+                <li>
+                  <strong>Multi-Version Switching:</strong> Toggle between different PHP, Apache, and MySQL versions in 2 clicks.
+                </li>
+                <li>
+                  <strong>Familiar Windows Workflow:</strong> Develop seamlessly alongside familiar Windows IDEs, file explorer, and desktop tools.
+                </li>
+                <li>
+                  <strong>Bundled Management Tools:</strong> Pre-configured with phpMyAdmin, MariaDB, and SQLite support out of the box.
+                </li>
+              </ul>
+            </div>
+
+            <div class="pc-section cons">
+              <h4>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+                Limitations &amp; Challenges
+              </h4>
+              <ul class="pc-list">
+                <li>
+                  <strong>Not Production Ready:</strong> Lacks production security hardening, optimization, and stability for public internet traffic.
+                </li>
+                <li>
+                  <strong>Case Insensitivity Pitfalls:</strong> Windows NTFS ignores uppercase/lowercase file naming, concealing bugs before deployment to Linux.
+                </li>
+                <li>
+                  <strong>Resource Overhead:</strong> Windows desktop services and background tasks consume significantly more RAM and CPU cycles.
+                </li>
+                <li>
+                  <strong>Commercial OS Licensing:</strong> Running Windows Server for live production demands substantial per-core licensing fees.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 11: CONCLUSION & DECISION GUIDE
+      =============================================== -->
+      <section id="conclusion" class="content-section">
+        <div class="section-header">
+          <span class="section-tag">Strategic Architecture</span>
+          <h2 class="section-title">Conclusion: When to Choose LAMP vs WAMP</h2>
+          <p class="section-desc">
+            Selecting the ideal environment depends on your project lifecycle stage, host operating system, and target deployment architecture.
+          </p>
+        </div>
+
+        <!-- Decision Tree Matrix Cards -->
+        <div class="decision-grid">
+          
+          <div class="decision-card card-lamp-decision">
+            <div class="decision-badge">Choose LAMP When:</div>
+            <h3>Production &amp; Cloud Deployments</h3>
+            <ul class="decision-points">
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Deploying a live public website, SaaS, or high-traffic enterprise portal.
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Hosting on AWS, Google Cloud, DigitalOcean, or private Linux VPS.
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Building containerized applications using Docker and Kubernetes.
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Requiring enterprise security, bash automation, and strict file permissions.
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Maximizing hardware efficiency with zero operating system license costs.
+              </li>
+            </ul>
+          </div>
+
+          <div class="decision-card card-wamp-decision">
+            <div class="decision-badge">Choose WAMP When:</div>
+            <h3>Local Prototyping on Windows</h3>
+            <ul class="decision-points">
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Developing on a Windows 10/11 desktop or laptop workstation.
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Needing a quick, 5-minute setup without configuring Linux virtual machines.
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Learning PHP, MySQL, or WordPress for the first time in an educational setting.
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Testing code compatibility across multiple PHP versions (7.4, 8.1, 8.3).
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Preferring visual system tray controls over command-line terminal administration.
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Best Practice Workflow Banner -->
+        <div class="workflow-banner">
+          <div class="wf-title">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            Industry Standard Best Practice: "Develop on WAMP, Deploy on LAMP"
+          </div>
+          <p>
+            Millions of web engineers adopt a hybrid paradigm: develop and prototype PHP/MySQL code comfortably on local Windows machines using WAMP (or WSL2 / Docker), push code via Git, and automatically deploy to high-performance LAMP Linux cloud servers for production delivery!
+          </p>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           SECTION 12: INTERACTIVE KNOWLEDGE QUIZ
+      =============================================== -->
+      <section id="quiz" class="content-section">
+        <div class="section-header">
+          <span class="section-tag">Knowledge Assessment</span>
+          <h2 class="section-title">LAMP vs WAMP Mastery Quiz</h2>
+          <p class="section-desc">
+            Test your understanding of server architectures, configuration files, default ports, and operating system nuances with this 10-question interactive challenge.
+          </p>
+        </div>
+
+        <div class="quiz-wrapper">
+          
+          <!-- Quiz Top Meta -->
+          <div class="quiz-meta-bar">
+            <div class="quiz-progress-text">
+              Question <span id="quizCurrentQ">1</span> of <span id="quizTotalQ">10</span>
+            </div>
+            <div class="quiz-score-live">
+              Current Score: <span id="quizLiveScore">0</span> / 10
+            </div>
+          </div>
+
+          <!-- Quiz Progress Indicator -->
+          <div class="quiz-bar-container">
+            <div id="quizProgressBar" class="quiz-bar-fill"></div>
+          </div>
+
+          <!-- Quiz Question Card -->
+          <div class="quiz-card" id="quizCard">
+            <div class="quiz-question-badge" id="quizCategoryBadge">Architecture</div>
+            <h3 class="quiz-question-title" id="quizQuestionText">
+              Loading question...
+            </h3>
+
+            <!-- Options Container -->
+            <div class="quiz-options-grid" id="quizOptionsGrid">
+              <!-- Options injected by JavaScript -->
+            </div>
+
+            <!-- Instant Feedback Box -->
+            <div class="quiz-feedback-box hidden" id="quizFeedbackBox">
+              <div class="feedback-header" id="feedbackHeader">
+                <span class="feedback-icon" id="feedbackIcon">&#10003;</span>
+                <span class="feedback-title" id="feedbackTitle">Correct Answer!</span>
+              </div>
+              <p class="feedback-explanation" id="feedbackExplanation">
+                Explanation text goes here.
+              </p>
+            </div>
+
+            <!-- Quiz Controls -->
+            <div class="quiz-card-footer">
+              <button id="quizNextBtn" class="btn btn-primary hidden" onclick="nextQuizQuestion()">
+                Next Question &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- Quiz Score Final Summary (Initially Hidden) -->
+          <div class="quiz-summary-card hidden" id="quizSummaryCard">
+            <div class="summary-trophy" id="summaryTrophy">&#127942;</div>
+            <h3 class="summary-title" id="summaryTitle">Quiz Completed!</h3>
+            <p class="summary-score-statement">
+              You scored <span id="finalScore" class="score-highlight">0</span> out of <span id="finalTotal">10</span> (<span id="finalPercent">0%</span>)
+            </p>
+            <div class="summary-message" id="summaryMessage">
+              Great job! You have demonstrated a solid command of web development environments.
+            </div>
+
+            <div class="summary-breakdown" id="summaryBreakdown">
+              <!-- Result Breakdown injected by JS -->
+            </div>
+
+            <div class="summary-action-row">
+              <button class="btn btn-primary" onclick="restartQuiz()">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M23 4v6h-6"/><path d="M1 20v-6h6"/>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                </svg>
+                Retake Quiz
+              </button>
+              <a href="#home" class="btn btn-secondary">Review Guide</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="content-footer">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="brand-text">
+              <span class="brand-title">StackMaster Guide</span>
+              <span class="brand-subtitle">Educational Web Engineering Suite</span>
+            </div>
+            <p class="footer-desc">
+              Comprehensive open educational resource comparing LAMP (Linux) and WAMP (Windows) server solution stacks for students, software engineers, and system administrators.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h5>Quick Jump</h5>
+            <ul class="footer-links">
+              <li><a href="#home">Home Overview</a></li>
+              <li><a href="#lamp-stack">LAMP Components</a></li>
+              <li><a href="#wamp-stack">WAMP Components</a></li>
+              <li><a href="#architecture">Architecture Diagram</a></li>
+              <li><a href="#comparison">Comparison Table</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Tutorials &amp; Practice</h5>
+            <ul class="footer-links">
+              <li><a href="#linux-install">Ubuntu LAMP Setup</a></li>
+              <li><a href="#windows-install">WampServer Windows Setup</a></li>
+              <li><a href="#role-of-apache">Role of Apache</a></li>
+              <li><a href="#practical-examples">PHP &amp; MySQL Code</a></li>
+              <li><a href="#quiz">10-Question Quiz</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 LAMP vs WAMP Web Development Environment Lab. Built with vanilla HTML5, CSS3, and JavaScript.</p>
+          <div class="footer-tags">
+            <span class="footer-tag">Stand-alone Single Page</span>
+            <span class="footer-tag">No Dependencies</span>
+            <span class="footer-tag">Fully Offline Functional</span>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- COMPONENT MODAL (FOR DEEP-DIVE CARDS) -->
+  <div id="componentModal" class="modal-backdrop">
+    <div class="modal-box">
+      <button class="modal-close-btn" onclick="closeComponentModal()" aria-label="Close dialog">&times;</button>
+      <div class="modal-header">
+        <div class="modal-badge" id="modalBadge">L</div>
+        <div>
+          <h3 id="modalTitle">Component Detail</h3>
+          <span id="modalCategory" class="modal-category">Operating System</span>
+        </div>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content injected by JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeComponentModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button id="backToTopBtn" class="back-to-top" title="Back to Top" aria-label="Scroll to top of page">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastNotification" class="toast-notification">
+    <span id="toastIcon">&#10003;</span>
+    <span id="toastMessage">Copied to clipboard!</span>
+  </div>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>
