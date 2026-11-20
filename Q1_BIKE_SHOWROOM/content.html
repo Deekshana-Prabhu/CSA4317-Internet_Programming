@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VELOCITY – Main Content Frame</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: #0d0f12;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 24px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Brand Showcase Header -->
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #2d3748;">
+    <div>
+      <div style="font-size: 11px; font-weight: 800; color: #ff6b35; text-transform: uppercase; letter-spacing: 1px;">
+        <i class="fa-solid fa-flag-checkered"></i> Velocity Showroom Right Frame
+      </div>
+      <h2 id="contentBrandTitle" style="font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 900; color: #fff; margin-top: 4px;">
+        All Showroom Bikes
+      </h2>
+      <p id="contentBrandDesc" style="font-size: 13px; color: #94a3b8; margin-top: 4px;">
+        Explore verified technical specifications, mileage, transmission, and indicative pricing.
+      </p>
+    </div>
+    
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <input type="text" id="frameSearchInput" class="form-control" placeholder="Search models in this frame..." style="width: 220px; font-size: 12px; padding: 8px 12px;">
+      <select id="frameSortSelect" class="custom-select" style="font-size: 12px; padding: 8px 12px;">
+        <option value="featured">Sort: Featured</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="mileage">Mileage: High to Low</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Bikes Grid Container -->
+  <div class="bikes-grid" id="contentBikesGrid">
+    <!-- Populated dynamically via database.js -->
+  </div>
+
+  <!-- Dynamic Views (Bookings, Showroom, Admin) if requested -->
+  <div id="contentSpecialView" style="display: none; margin-top: 20px;"></div>
+
+  <!-- BOOKING MODAL -->
+  <div class="modal-overlay" id="frameBookingModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-bolt" style="color: var(--accent-red);"></i> Pre-Book Motorcycle</h3>
+        <button class="modal-close-btn" id="btnCloseBookingModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div id="frameBookingBikeSummary"></div>
+        <div class="demo-payment-alert">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div>
+            <strong>Academic Demo Notice:</strong>
+            <p>Simulated booking transaction. Digital receipt generated instantly.</p>
+          </div>
+        </div>
+        <form id="frameBookingForm">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Customer Name <span class="req">*</span></label>
+              <input type="text" class="form-control" id="frameCustName" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number <span class="req">*</span></label>
+              <input type="tel" class="form-control" id="frameCustMobile" placeholder="10-digit mobile" maxlength="10" required>
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Email ID <span class="req">*</span></label>
+              <input type="email" class="form-control" id="frameCustEmail" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Preferred Shade</label>
+              <select class="form-control custom-select" id="frameCustColor"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Demo Payment Method (Token Deposit: ₹ 5,000)</label>
+            <select class="form-control custom-select" id="framePaymentMode">
+              <option value="Demo UPI (Google Pay / PhonePe)">Demo UPI (Instant Approval)</option>
+              <option value="Demo Credit/Debit Card">Demo Credit/Debit Card</option>
+              <option value="Demo Cash at Showroom Desk">Cash at Showroom Desk</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+            <i class="fa-solid fa-lock"></i> Authorize Demo Token & Generate Receipt
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECEIPT MODAL -->
+  <div class="modal-overlay" id="frameReceiptModal">
+    <div class="modal-dialog modal-dialog-large">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-file-invoice" style="color: var(--accent-green);"></i> Official Booking Receipt</h3>
+        <button class="modal-close-btn" id="btnCloseReceiptModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="frameReceiptBody"></div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="window.print()"><i class="fa-solid fa-print"></i> Print Receipt</button>
+        <button class="btn-secondary" id="btnCloseReceiptFooter">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="frameToastContainer"></div>
+
+  <!-- Database & Inline Frame Logic -->
+  <script src="database.js"></script>
+  <script>
+    (function() {
+      // Parse query params: ?brand=Yamaha or ?view=bookings
+      const params = new URLSearchParams(window.location.search);
+      const requestedBrand = params.get('brand') || 'All';
+      const requestedView = params.get('view');
+
+      let currentBikes = [];
+      let selectedBookingBike = null;
+
+      const titleEl = document.getElementById('contentBrandTitle');
+      const descEl = document.getElementById('contentBrandDesc');
+      const gridEl = document.getElementById('contentBikesGrid');
+      const searchInput = document.getElementById('frameSearchInput');
+      const sortSelect = document.getElementById('frameSortSelect');
+
+      function loadData() {
+        if (requestedView === 'bookings') {
+          renderBookingsView();
+          return;
+        }
+        if (requestedView === 'showroom') {
+          renderShowroomView();
+          return;
+        }
+        if (requestedView === 'admin') {
+          renderAdminView();
+          return;
+        }
+
+        if (requestedBrand === 'All') {
+          titleEl.textContent = 'All Showroom Bikes (9 Brands)';
+          descEl.textContent = 'Complete line-up of motorcycles available across Royal Enfield, Yamaha, KTM, TVS, Bajaj, Honda, Suzuki, Kawasaki, and BMW Motorrad.';
+          currentBikes = VelocityDB.getBikes();
+        } else {
+          titleEl.textContent = requestedBrand + ' Motorcycles';
+          descEl.textContent = 'Official model line-up of ' + requestedBrand + ' with detailed specifications, indicative INR pricing, and booking.';
+          currentBikes = VelocityDB.getBikesByBrand(requestedBrand);
+        }
+
+        renderBikes();
+      }
+
+      function renderBikes() {
+        const query = searchInput.value.toLowerCase().trim();
+        let filtered = currentBikes.filter(b => 
+          b.model.toLowerCase().includes(query) ||
+          b.brand.toLowerCase().includes(query) ||
+          b.engine.toLowerCase().includes(query)
+        );
+
+        const sortVal = sortSelect.value;
+        if (sortVal === 'price-low') filtered.sort((a,b) => a.price - b.price);
+        else if (sortVal === 'price-high') filtered.sort((a,b) => b.price - a.price);
+        else if (sortVal === 'mileage') filtered.sort((a,b) => b.mileageValue - a.mileageValue);
+
+        if (filtered.length === 0) {
+          gridEl.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: #1c2128; border-radius: 12px; border: 1px dashed #2d3748;">
+              <p style="color: #94a3b8;">No motorcycles found matching "${query}"</p>
+            </div>
+          `;
+          return;
+        }
+
+        gridEl.innerHTML = filtered.map(b => `
+          <div class="bike-card" data-bike-id="${b.id}">
+            <div class="bike-card-image-wrap">
+              <img src="${b.image}" alt="${b.model}" class="bike-card-image">
+              <div class="bike-card-badges">
+                <span class="badge-tag brand">${b.brand}</span>
+                ${b.featured ? '<span class="badge-tag featured">Featured</span>' : ''}
+              </div>
+            </div>
+            <div class="bike-card-body">
+              <h3 class="bike-model-name">${b.model}</h3>
+              <p class="bike-tagline-text">${b.tagline}</p>
+              
+              <div class="bike-specs-grid">
+                <div class="spec-cell">
+                  <div class="spec-label">Engine</div>
+                  <div class="spec-val">${b.engine}</div>
+                </div>
+                <div class="spec-cell">
+                  <div class="spec-label">Mileage</div>
+                  <div class="spec-val">${b.mileage}</div>
+                </div>
+                <div class="spec-cell">
+                  <div class="spec-label">Power</div>
+                  <div class="spec-val">${b.power.split('@')[0]}</div>
+                </div>
+              </div>
+
+              <div class="bike-color-swatches">
+                <span class="swatch-label">Colours:</span>
+                ${b.colors.map(c => `<span class="color-swatch-circle" style="background-color: ${c.hex};" title="${c.name}"></span>`).join('')}
+              </div>
+
+              <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.4;">
+                ${b.description}
+              </p>
+
+              <div class="bike-price-box">
+                <div>
+                  <span class="price-indicative-label">Indicative Ex-Showroom</span>
+                  <div class="price-figure">${VelocityDB.formatINR(b.price)}*</div>
+                </div>
+                <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">${b.transmission}</span>
+              </div>
+
+              <div class="card-button-row">
+                <button class="btn-card-action btn-book-now frame-btn-book" data-bike-id="${b.id}">
+                  <i class="fa-solid fa-bolt"></i> Book Now
+                </button>
+                <button class="btn-card-action btn-test-ride frame-btn-test" data-bike-id="${b.id}">
+                  <i class="fa-solid fa-calendar-check"></i> Test Ride
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        // Attach buttons
+        gridEl.querySelectorAll('.frame-btn-book').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-bike-id');
+            const bike = VelocityDB.getBikeById(id);
+            if (bike) openBooking(bike);
+          });
+        });
+
+        gridEl.querySelectorAll('.frame-btn-test').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-bike-id');
+            const bike = VelocityDB.getBikeById(id);
+            if (bike) {
+              const name = prompt(`Book Complimentary Test Ride for ${bike.model}.\nEnter Your Name:`);
+              if (name) {
+                const phone = prompt('Enter 10-digit mobile number:');
+                if (phone && phone.length === 10) {
+                  VelocityDB.saveTestRide({
+                    customerName: name,
+                    mobile: phone,
+                    bikeId: bike.id,
+                    bikeModel: bike.model,
+                    bikeBrand: bike.brand,
+                    preferredDate: new Date().toISOString().split('T')[0],
+                    timeSlot: 'Morning (10:00 AM - 12:00 PM)',
+                    hasLicense: true
+                  });
+                  alert(`Test Ride Confirmed for ${name} on ${bike.model}! Showroom team will contact you.`);
+                }
+              }
+            }
+          });
+        });
+      }
+
+      function openBooking(bike) {
+        selectedBookingBike = bike;
+        document.getElementById('frameBookingBikeSummary').innerHTML = `
+          <div style="background: #262c36; padding: 12px; border-radius: 8px; margin-bottom: 14px; display: flex; gap: 12px; align-items: center;">
+            <img src="${bike.image}" style="width: 70px; height: 50px; object-fit: cover; border-radius: 4px;">
+            <div>
+              <div style="font-size: 11px; color: #ff6b35; font-weight: 700;">${bike.brand}</div>
+              <div style="font-size: 15px; font-weight: 800; color: #fff;">${bike.model}</div>
+              <div style="font-size: 12px; color: #10b981; font-weight: 700;">Token: ₹ 5,000 (Ex-Showroom: ${VelocityDB.formatINR(bike.price)})</div>
+            </div>
+          </div>
+        `;
+        const colSel = document.getElementById('frameCustColor');
+        colSel.innerHTML = bike.colors.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+        document.getElementById('frameBookingModal').classList.add('active');
+      }
+
+      // Booking Submit
+      document.getElementById('frameBookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (!selectedBookingBike) return;
+        const name = document.getElementById('frameCustName').value.trim();
+        const mobile = document.getElementById('frameCustMobile').value.trim();
+        const email = document.getElementById('frameCustEmail').value.trim();
+        const color = document.getElementById('frameCustColor').value;
+        const payMode = document.getElementById('framePaymentMode').value;
+
+        if (!name || mobile.length !== 10) {
+          alert('Please enter valid name and 10-digit mobile number.');
+          return;
+        }
+
+        const booking = VelocityDB.saveBooking({
+          customerName: name,
+          mobile: mobile,
+          email: email,
+          bikeId: selectedBookingBike.id,
+          bikeModel: selectedBookingBike.model,
+          bikeBrand: selectedBookingBike.brand,
+          bikePrice: selectedBookingBike.price,
+          selectedColor: color,
+          bookingAmount: 5000,
+          paymentMethod: payMode,
+          paymentRef: 'TXN-DEMO-' + Math.floor(100000 + Math.random() * 900000)
+        });
+
+        document.getElementById('frameBookingModal').classList.remove('active');
+        showReceipt(booking);
+      });
+
+      function showReceipt(b) {
+        document.getElementById('frameReceiptBody').innerHTML = `
+          <div class="receipt-paper" style="color: #111;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #e5e7eb; padding-bottom: 12px; margin-bottom: 14px;">
+              <div>
+                <h3 style="font-size: 22px; font-weight: 900; color: #000;">VELOCITY SHOWROOM</h3>
+                <p style="font-size: 11px; color: #6b7280;">Traditional Three-Frame Assignment Receipt</p>
+              </div>
+              <div style="text-align: right; font-size: 12px;">
+                <div><strong>Receipt #:</strong> ${b.receiptNo}</div>
+                <div><strong>Booking ID:</strong> <span style="color: #e63946; font-weight: 800;">${b.bookingId}</span></div>
+                <div><strong>Date:</strong> ${b.bookingDate}</div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; font-size: 12px;">
+              <div style="background: #f9fafb; padding: 10px; border: 1px solid #e5e7eb; border-radius: 4px;">
+                <strong>Customer:</strong> ${b.customerName}<br>
+                <strong>Phone:</strong> +91 ${b.mobile}<br>
+                <strong>Email:</strong> ${b.email}
+              </div>
+              <div style="background: #f9fafb; padding: 10px; border: 1px solid #e5e7eb; border-radius: 4px;">
+                <strong>Bike:</strong> ${b.bikeBrand} ${b.bikeModel}<br>
+                <strong>Color:</strong> ${b.selectedColor}<br>
+                <strong>Ex-Showroom Price:</strong> ${VelocityDB.formatINR(b.bikePrice)}*
+              </div>
+            </div>
+            <table class="receipt-table">
+              <tr><th>Description</th><th style="text-align: right;">Amount</th></tr>
+              <tr><td>Advance Booking Token Deposit</td><td style="text-align: right;">${VelocityDB.formatINR(b.bookingAmount)}</td></tr>
+              <tr class="total-row"><td>Total Paid (Simulated)</td><td style="text-align: right; color: #e63946;">${VelocityDB.formatINR(b.bookingAmount)}</td></tr>
+            </table>
+            <div style="font-size: 10px; color: #6b7280; margin-top: 10px;">
+              Status: <strong>Simulated Demo Payment - Successful</strong> (Ref: ${b.paymentRef})
+            </div>
+          </div>
+        `;
+        document.getElementById('frameReceiptModal').classList.add('active');
+      }
+
+      // Close modals
+      document.getElementById('btnCloseBookingModal').onclick = () => document.getElementById('frameBookingModal').classList.remove('active');
+      document.getElementById('btnCloseReceiptModal').onclick = () => document.getElementById('frameReceiptModal').classList.remove('active');
+      document.getElementById('btnCloseReceiptFooter').onclick = () => document.getElementById('frameReceiptModal').classList.remove('active');
+
+      // Search & sort
+      searchInput.addEventListener('input', renderBikes);
+      sortSelect.addEventListener('change', renderBikes);
+
+      function renderBookingsView() {
+        titleEl.textContent = 'All Registered Bookings';
+        descEl.textContent = 'Complete list of customer bookings stored persistently in browser storage.';
+        const bookings = VelocityDB.getBookings();
+        gridEl.innerHTML = bookings.map(b => `
+          <div class="stat-card" style="border-left: 4px solid var(--accent-green); grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 15px; font-weight: 800; color: #fff;">${b.bookingId} - ${b.bikeModel} (${b.selectedColor})</div>
+              <div style="font-size: 12px; color: #94a3b8; margin-top: 4px;">
+                Customer: <strong>${b.customerName}</strong> (+91 ${b.mobile}) • Date: ${b.bookingDate} • Token: <strong>${VelocityDB.formatINR(b.bookingAmount)}</strong>
+              </div>
+            </div>
+            <span class="badge-tag" style="background: rgba(16,185,129,0.2); color: #10b981;">${b.status}</span>
+          </div>
+        `).join('');
+      }
+
+      function renderShowroomView() {
+        titleEl.textContent = 'Velocity Showroom Information';
+        descEl.textContent = 'Physical showroom location, contact telephone, and operating hours.';
+        gridEl.innerHTML = `
+          <div style="grid-column: 1 / -1; background: #1c2128; border: 1px solid #2d3748; border-radius: 12px; padding: 24px;">
+            <h3 style="font-size: 20px; color: #fff; margin-bottom: 12px;">VELOCITY Flagship Showroom</h3>
+            <p style="color: #94a3b8; font-size: 14px; margin-bottom: 16px;">Velocity Hub, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru - 560038</p>
+            <p style="color: #f8fafc; font-size: 13px; line-height: 1.6;">
+              📞 <strong>Hotline:</strong> +91 (080) 4920-8800 / +91 98765 43210<br>
+              ✉️ <strong>Email:</strong> showroom@velocitybikes.demo<br>
+              🕒 <strong>Hours:</strong> Mon - Sat: 9:00 AM - 8:30 PM | Sun: 10:00 AM - 6:00 PM
+            </p>
+          </div>
+        `;
+      }
+
+      function renderAdminView() {
+        titleEl.textContent = 'Admin Overview Console';
+        descEl.textContent = 'Quick metrics on current inventory and customer bookings.';
+        const bikes = VelocityDB.getBikes();
+        const bookings = VelocityDB.getBookings();
+        gridEl.innerHTML = `
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-motorcycle"></i></div>
+            <div class="stat-info">
+              <h4>Total Bikes</h4>
+              <div class="stat-value">${bikes.length}</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="color: var(--accent-orange);"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <div class="stat-info">
+              <h4>Total Bookings</h4>
+              <div class="stat-value">${bookings.length}</div>
+            </div>
+          </div>
+        `;
+      }
+
+      loadData();
+    })();
+  </script>
+</body>
+</html>

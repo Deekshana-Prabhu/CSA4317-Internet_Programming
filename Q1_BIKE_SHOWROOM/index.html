@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VELOCITY – SMART BIKE SHOWROOM | Ride Your Dream. Own Your Journey.</title>
+  
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- html2pdf.js for client-side PDF receipt generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <!-- Showroom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="showroom-app">
+    
+    <!-- ====================================================================
+         1. TOP FRAME: Showroom Logo, Brand Name, Tagline & Global Actions
+         ==================================================================== -->
+    <header class="top-frame">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" title="Toggle Brand Menu" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <a href="#home" class="brand-identity" id="navBrandHome">
+          <div class="brand-logo-icon">
+            <i class="fa-solid fa-bolt-lightning"></i>
+          </div>
+          <div class="brand-titles">
+            <h1>VELOCITY <span>BIKES</span></h1>
+            <div class="tagline">Ride Your Dream. Own Your Journey.</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Nav Shortcuts -->
+      <nav class="top-frame-actions">
+        <a href="#home" class="nav-pill-btn active" id="navHome">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+        <a href="#all-bikes" class="nav-pill-btn" id="navBikes">
+          <i class="fa-solid fa-motorcycle"></i>
+          <span>Explore Bikes</span>
+        </a>
+        <a href="#wishlist" class="nav-pill-btn" id="navWishlist">
+          <i class="fa-solid fa-heart"></i>
+          <span>Favourites</span>
+          <span class="nav-badge-count" id="wishlistBadge">0</span>
+        </a>
+        <a href="#bookings" class="nav-pill-btn" id="navBookings">
+          <i class="fa-solid fa-file-invoice"></i>
+          <span>My Bookings</span>
+          <span class="nav-badge-count" id="bookingsBadge">0</span>
+        </a>
+        <a href="#admin" class="nav-pill-btn" id="navAdmin">
+          <i class="fa-solid fa-lock"></i>
+          <span>Admin</span>
+        </a>
+        
+        <!-- Classic Frameset Switcher -->
+        <a href="frameset.html" class="frameset-toggle-pill" title="View Traditional HTML Frameset Layout">
+          <i class="fa-solid fa-table-cells-large"></i>
+          <span>Classic Frameset</span>
+        </a>
+      </nav>
+    </header>
+
+    <!-- ====================================================================
+         2. FRAMES BODY WRAPPER: Left Frame (Sidebar) + Right Frame (Main)
+         ==================================================================== -->
+    <div class="frames-body-wrapper">
+      
+      <!-- LEFT FRAME: Vertical Sidebar of Bike Brands -->
+      <aside class="left-frame" id="leftFrame">
+        <div class="sidebar-header-box">
+          <h2>
+            <span><i class="fa-solid fa-layer-group"></i> Bike Brands</span>
+            <span style="font-size: 10px; color: var(--text-muted);">9 MAKES</span>
+          </h2>
+        </div>
+
+        <ul class="brand-nav-list" id="brandNavList">
+          <!-- Dynamically populated from database.js -->
+        </ul>
+
+        <div class="sidebar-quick-tools">
+          <a href="#reviews" class="quick-tool-link">
+            <i class="fa-solid fa-star" style="color: var(--accent-gold);"></i>
+            <span>Customer Reviews</span>
+          </a>
+          <a href="#showroom" class="quick-tool-link">
+            <i class="fa-solid fa-location-dot" style="color: var(--accent-red);"></i>
+            <span>Showroom Location & Visit</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- RIGHT FRAME: Main Dynamic Content Area -->
+      <main class="right-frame" id="rightFrame">
+        
+        <!-- Academic Assignment Banner -->
+        <div class="assignment-banner">
+          <div>
+            <i class="fa-solid fa-circle-info" style="color: var(--accent-orange); margin-right: 6px;"></i>
+            <strong>HTML FRAMESET REQUIREMENT:</strong> Traditional 3-frame layout available.
+          </div>
+          <div>
+            <span>Viewing Modern Responsive View</span>
+            <a href="frameset.html">Switch to HTML &lt;frameset&gt; Version</a>
+          </div>
+        </div>
+
+        <!-- HERO SHOWCASE SECTION -->
+        <section class="hero-showcase" id="heroSection">
+          <div class="hero-content">
+            <div class="hero-tagline-badge">
+              <i class="fa-solid fa-flag-checkered"></i> Official Flagship Showroom
+            </div>
+            <h2 class="hero-title">
+              Ride Your Dream. <br>
+              <span>Own Your Journey.</span>
+            </h2>
+            <p class="hero-subtitle">
+              Welcome to VELOCITY – India's premier multi-brand motorcycle showroom. Explore authentic specifications, compare models side-by-side, reserve hassle-free test rides, and pre-book your machine online with instant digital receipts.
+            </p>
+            <div class="hero-actions">
+              <a href="#all-bikes" class="btn-primary" id="btnHeroExplore">
+                <i class="fa-solid fa-compass"></i> Explore 36+ Motorcycles
+              </a>
+              <a href="#showroom" class="btn-secondary" id="btnHeroVisit">
+                <i class="fa-solid fa-store"></i> Visit Showroom
+              </a>
+            </div>
+
+            <div class="hero-stats-row">
+              <div class="hero-stat-item">
+                <h3>9+</h3>
+                <p>Global Brands</p>
+              </div>
+              <div class="hero-stat-item">
+                <h3>36+</h3>
+                <p>Curated Models</p>
+              </div>
+              <div class="hero-stat-item">
+                <h3>100%</h3>
+                <p>Free Test Rides</p>
+              </div>
+              <div class="hero-stat-item">
+                <h3>₹ 5,000</h3>
+                <p>Demo Token Advance</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SMART SEARCH & FILTER CONTROLS -->
+        <section class="filter-search-container" id="filterSection">
+          <div class="search-primary-row">
+            <div class="search-input-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="searchInput" class="search-input-field" placeholder="Search by bike model (e.g. Classic 350, Duke, R15, Ninja)...">
+            </div>
+            <button class="filter-btn-clear" id="clearFiltersBtn" title="Reset All Filters">
+              <i class="fa-solid fa-rotate-left"></i> Reset
+            </button>
+          </div>
+
+          <div class="filter-controls-row">
+            <!-- Price Range Filter -->
+            <select class="custom-select" id="filterPrice" aria-label="Filter by Price">
+              <option value="all">Price: All Ranges</option>
+              <option value="under-150k">Under ₹ 1,50,000</option>
+              <option value="150k-300k">₹ 1,50,000 – ₹ 3,00,000</option>
+              <option value="300k-600k">₹ 3,00,000 – ₹ 6,00,000</option>
+              <option value="above-600k">Superbikes (Above ₹ 6,00,000)</option>
+            </select>
+
+            <!-- Engine Capacity Filter -->
+            <select class="custom-select" id="filterEngine" aria-label="Filter by Engine Capacity">
+              <option value="all">Engine: All Capacities</option>
+              <option value="upto-160">Commuter / 125cc – 160cc</option>
+              <option value="160-350">Quarter Litre / 160cc – 350cc</option>
+              <option value="350-500">Mid-Weight / 350cc – 500cc</option>
+              <option value="above-500">High Displacement / 500cc+</option>
+            </select>
+
+            <!-- Mileage Filter -->
+            <select class="custom-select" id="filterMileage" aria-label="Filter by Mileage">
+              <option value="all">Mileage: All</option>
+              <option value="50">50+ kmpl (Ultra Efficient)</option>
+              <option value="35">35+ kmpl (Balanced Tourers)</option>
+              <option value="25">25+ kmpl (Performance)</option>
+            </select>
+
+            <!-- Sorting -->
+            <select class="custom-select" id="sortSelect" aria-label="Sort Bikes">
+              <option value="featured">Sort: Featured First</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="mileage">Mileage: High to Low</option>
+              <option value="name">Model Name (A-Z)</option>
+            </select>
+
+            <div class="results-count-text" id="resultsCount">Loading bikes...</div>
+          </div>
+        </section>
+
+        <!-- DYNAMIC MAIN VIEW CONTAINER (Filled by script.js) -->
+        <div id="mainViewContainer">
+          <!-- Views loaded dynamically: Home, Brand Showcase, Wishlist, Bookings, Reviews, Showroom, Admin -->
+        </div>
+
+      </main>
+    </div>
+
+    <!-- ====================================================================
+         COMPARE DRAWER (Sticky Bottom Bar)
+         ==================================================================== -->
+    <div class="compare-drawer-bar" id="compareDrawer">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <span style="font-size: 13px; font-weight: 800; color: #fff; text-transform: uppercase;">
+          <i class="fa-solid fa-code-compare" style="color: var(--accent-orange);"></i> Bike Comparison:
+        </span>
+        <div class="compare-bar-items" id="compareItemsContainer">
+          <!-- Dynamic compare thumbnails -->
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <button class="btn-primary" id="compareTriggerBtn">
+          <span>Compare Side-by-Side</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button class="btn-secondary" id="clearCompareBtn" style="padding: 10px 14px;">Clear</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ====================================================================
+       MODAL 1: BIKE BOOKING & DEMO PAYMENT GATEWAY
+       ==================================================================== -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-bolt" style="color: var(--accent-red);"></i> Pre-Book Your Motorcycle</h3>
+        <button class="modal-close-btn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <div class="modal-body">
+        <!-- Selected Bike Preview Box -->
+        <div id="bookingBikeSummary"></div>
+
+        <!-- Academic Demo Payment Banner -->
+        <div class="demo-payment-alert">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div>
+            <strong>Academic Demonstration Notice:</strong>
+            <p>This is a simulated booking demo. No real monetary transaction will take place. An official Digital Booking Receipt will be generated instantly for demonstration.</p>
+          </div>
+        </div>
+
+        <form id="bookingForm">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Customer Full Name <span class="req">*</span></label>
+              <input type="text" class="form-control" id="bookingName" placeholder="e.g. Siddharth Rao" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number <span class="req">*</span></label>
+              <input type="tel" class="form-control" id="bookingMobile" placeholder="10-digit number" maxlength="10" required>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Email Address <span class="req">*</span></label>
+              <input type="email" class="form-control" id="bookingEmail" placeholder="siddharth@example.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Preferred Shade / Colour <span class="req">*</span></label>
+              <select class="form-control custom-select" id="bookingColor" required>
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred Target Delivery Date</label>
+            <input type="date" class="form-control" id="bookingDeliveryDate">
+          </div>
+
+          <div class="form-group" style="margin-top: 18px;">
+            <label class="form-label">Select Demo Payment Method (Token Deposit: ₹ 5,000)</label>
+            <div class="payment-options-grid">
+              <div class="payment-tab-btn active" data-method="UPI">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <span>UPI (QR / ID)</span>
+              </div>
+              <div class="payment-tab-btn" data-method="Card">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>Credit/Debit Card</span>
+              </div>
+              <div class="payment-tab-btn" data-method="Cash">
+                <i class="fa-solid fa-money-bill-1-wave"></i>
+                <span>Cash at Desk</span>
+              </div>
+            </div>
+
+            <!-- Dynamic Payment Mode Form -->
+            <div id="paymentMethodDetailsContainer"></div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+            <i class="fa-solid fa-lock"></i> Authorize Demo Token & Generate Receipt
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 2: DIGITAL BOOKING RECEIPT & PRINT / PDF
+       ==================================================================== -->
+  <div class="modal-overlay" id="receiptModal">
+    <div class="modal-dialog modal-dialog-large">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-file-invoice" style="color: var(--accent-green);"></i> Official Booking Receipt</h3>
+        <button class="modal-close-btn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <div class="modal-body" id="receiptModalBody">
+        <!-- Rendered dynamically by script.js -->
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" id="btnPrintReceipt">
+          <i class="fa-solid fa-print"></i> Print Receipt
+        </button>
+        <button class="btn-primary" id="btnDownloadReceipt">
+          <i class="fa-solid fa-download"></i> Download PDF
+        </button>
+        <button class="btn-secondary modal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 3: TEST RIDE RESERVATION
+       ==================================================================== -->
+  <div class="modal-overlay" id="testRideModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-calendar-check" style="color: var(--accent-orange);"></i> Book a Complimentary Test Ride</h3>
+        <button class="modal-close-btn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <div id="testRideBikeSummary"></div>
+        <form id="testRideForm">
+          <input type="hidden" id="testRideBikeId">
+          <div class="form-group">
+            <label class="form-label">Customer Name <span class="req">*</span></label>
+            <input type="text" class="form-control" id="testRideName" placeholder="Your Full Name" required>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Phone Number <span class="req">*</span></label>
+              <input type="tel" class="form-control" id="testRideMobile" placeholder="10-digit mobile" maxlength="10" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email ID</label>
+              <input type="email" class="form-control" id="testRideEmail" placeholder="your@email.com">
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Preferred Date <span class="req">*</span></label>
+              <input type="date" class="form-control" id="testRideDate" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Preferred Time Slot <span class="req">*</span></label>
+              <select class="form-control custom-select" id="testRideSlot" required>
+                <option value="Morning (10:00 AM - 12:00 PM)">Morning (10:00 AM - 12:00 PM)</option>
+                <option value="Afternoon (02:00 PM - 04:00 PM)">Afternoon (02:00 PM - 04:00 PM)</option>
+                <option value="Evening (05:00 PM - 07:00 PM)">Evening (05:00 PM - 07:00 PM)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-primary); cursor: pointer;">
+              <input type="checkbox" id="testRideLicense" required checked>
+              <span>I confirm I possess a valid two-wheeler motor driving license.</span>
+            </label>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+            <i class="fa-solid fa-circle-check"></i> Confirm Test Ride Appointment
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 4: BIKE COMPARISON SPECIFICATION MATRIX
+       ==================================================================== -->
+  <div class="modal-overlay" id="compareModal">
+    <div class="modal-dialog modal-dialog-large">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-code-compare" style="color: var(--accent-orange);"></i> Side-by-Side Specification Comparison</h3>
+        <button class="modal-close-btn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="compareModalBody" style="overflow-x: auto;">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 5: DEMO ADMIN AUTHENTICATION
+       ==================================================================== -->
+  <div class="modal-overlay" id="adminLoginModal">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-shield-halved" style="color: var(--accent-red);"></i> Admin Console Login</h3>
+        <button class="modal-close-btn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+          Demonstration authentication portal for showroom inventory and booking management.
+        </p>
+        <form id="adminLoginForm">
+          <div class="form-group">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" id="adminUsername" value="admin" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" id="adminPassword" value="velocity" required>
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 18px;">
+            <button type="submit" class="btn-primary" style="flex: 1; justify-content: center;">Login</button>
+            <button type="button" class="btn-secondary" id="demoLoginFillBtn" title="Auto-fill default credentials">One-Click Demo</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 6: ADMIN ADD / EDIT BIKE INVENTORY
+       ==================================================================== -->
+  <div class="modal-overlay" id="bikeFormModal">
+    <div class="modal-dialog modal-dialog-large">
+      <div class="modal-header">
+        <h3 id="bikeFormModalTitle"><i class="fa-solid fa-motorcycle" style="color: var(--accent-orange);"></i> Add / Edit Showroom Bike</h3>
+        <button class="modal-close-btn" title="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="bikeAdminForm">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Brand Make <span class="req">*</span></label>
+              <select class="form-control custom-select" id="bikeFormBrand">
+                <option value="Royal Enfield">Royal Enfield</option>
+                <option value="Yamaha">Yamaha</option>
+                <option value="KTM">KTM</option>
+                <option value="TVS">TVS</option>
+                <option value="Bajaj">Bajaj</option>
+                <option value="Honda">Honda</option>
+                <option value="Suzuki">Suzuki</option>
+                <option value="Kawasaki">Kawasaki</option>
+                <option value="BMW Motorrad">BMW Motorrad</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Model Name <span class="req">*</span></label>
+              <input type="text" class="form-control" id="bikeFormModel" placeholder="e.g. Classic 350 Bobber" required>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <input type="text" class="form-control" id="bikeFormCategory" placeholder="e.g. Cruiser, Supersport, Adventure">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ex-Showroom Price (INR) <span class="req">*</span></label>
+              <input type="number" class="form-control" id="bikeFormPrice" placeholder="e.g. 215000" required>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Engine Capacity (cc)</label>
+              <input type="text" class="form-control" id="bikeFormEngine" placeholder="e.g. 349 cc">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mileage (kmpl)</label>
+              <input type="text" class="form-control" id="bikeFormMileage" placeholder="e.g. 36.5 kmpl">
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Max Power</label>
+              <input type="text" class="form-control" id="bikeFormPower" placeholder="e.g. 20.2 bhp @ 6100 rpm">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Transmission</label>
+              <input type="text" class="form-control" id="bikeFormTransmission" placeholder="e.g. 5-Speed Manual">
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Fuel Type</label>
+              <input type="text" class="form-control" id="bikeFormFuel" placeholder="Petrol (E20 Ready)">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Image URL</label>
+              <input type="url" class="form-control" id="bikeFormImage" placeholder="https://images.unsplash.com/...">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Short Description</label>
+            <textarea class="form-control" id="bikeFormDesc" rows="3" placeholder="Overview of design, engine characteristics, and key rider features..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+            <i class="fa-solid fa-save"></i> Save Bike to Inventory
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Database and Controller Scripts -->
+  <script src="database.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
