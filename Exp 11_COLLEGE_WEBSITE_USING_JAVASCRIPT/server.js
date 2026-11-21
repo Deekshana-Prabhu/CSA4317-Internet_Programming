@@ -2,11 +2,11 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = process.env.PORT || 5500;
+const PORT = process.env.PORT || 8085;
 const MIME_TYPES = {
-  '.html': 'text/html',
-  '.css': 'text/css',
-  '.js': 'application/javascript',
+  '.html': 'text/html; charset=UTF-8',
+  '.css': 'text/css; charset=UTF-8',
+  '.js': 'application/javascript; charset=UTF-8',
   '.json': 'application/json',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
@@ -17,7 +17,6 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  // Normalize URL to prevent directory traversal
   let reqPath = decodeURI(req.url.split('?')[0]);
   if (reqPath === '/' || reqPath === '') {
     reqPath = '/index.html';
@@ -29,7 +28,7 @@ const server = http.createServer((req, res) => {
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
       res.writeHead(404, { 'Content-Type': 'text/html' });
-      res.end(`<h1>404 Not Found</h1><p>The requested file ${reqPath} does not exist.</p>`);
+      res.end(`<h1>404 Not Found</h1><p>The requested file ${reqPath} does not exist in Exp 11 workspace.</p>`);
       return;
     }
 
@@ -47,15 +46,9 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Campus Interactive Live Server running at http://localhost:${PORT}/`);
+  console.log(`Exp 11 College Website Server running at http://localhost:${PORT}/`);
 });
 
 server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    const fallbackPort = Number(PORT) + 1;
-    console.log(`Port ${PORT} in use, trying port ${fallbackPort}...`);
-    server.listen(fallbackPort, '0.0.0.0');
-  } else {
-    console.error('Server error:', err);
-  }
+  console.error('Server error:', err);
 });
