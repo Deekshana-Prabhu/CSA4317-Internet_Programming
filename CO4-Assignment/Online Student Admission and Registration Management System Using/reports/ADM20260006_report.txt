@@ -1,0 +1,30 @@
+﻿========================================================================
+       APEX INSTITUTE OF ENGINEERING & TECHNOLOGY (AIET)               
+        OFFICIAL STUDENT ADMISSION & REGISTRATION REPORT               
+========================================================================
+ Generated On  : 19-Nov-2026 12:10 PM
+ Academic Year : 2026 - 2027
+ Status        : CONFIRMED & REGISTERED
+------------------------------------------------------------------------
+ STUDENT IDENTIFICATION DETAILS:
+------------------------------------------------------------------------
+ Student ID            : ADM20260006
+ Student Full Name     : Sneha Kulkarni
+ Date of Birth         : 14-Jul-2006
+ Email ID              : sneha.kulkarni@example.com
+ Mobile Number         : 9890123456
+ Residential Address   : 23, Shivaji Housing Society, Senapati Bapat Road, Pune
+------------------------------------------------------------------------
+ ACADEMIC & ALLOTMENT DETAILS:
+------------------------------------------------------------------------
+ HSC Examination Marks : 530 / 600 (88.33%)
+ Preferred Department  : Information Technology
+ Registration Date     : 19-Nov-2026 12:10 PM
+------------------------------------------------------------------------
+ DECLARATION & VERIFICATION:
+ This is a computer-generated confirmation slip for admission to
+ Bachelor of Engineering (B.E. / B.Tech) programme. All candidate details
+ have been verified against submitted credentials.
+========================================================================
+                Office of Admissions & Student Affairs                  
+========================================================================

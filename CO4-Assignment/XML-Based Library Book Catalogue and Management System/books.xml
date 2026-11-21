@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE library SYSTEM "books.dtd">
+<!--
+  XML-Based Library Book Catalogue and Management System
+  XML Book Catalogue Database - books.xml
+  Compliant with both books.dtd and books.xsd
+-->
+<library xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="books.xsd">
+
+    <!-- Category 1: Programming -->
+    <book id="B001">
+        <title>Introduction to Python Programming</title>
+        <author>John Smith</author>
+        <publisher>Tech Publications</publisher>
+        <isbn>9781234567890</isbn>
+        <price>450</price>
+        <year>2024</year>
+    </book>
+
+    <!-- Category 2: Artificial Intelligence -->
+    <book id="B002">
+        <title>Artificial Intelligence: Modern Principles and Systems</title>
+        <author>Dr. Eleanor Vance</author>
+        <publisher>NextGen Press</publisher>
+        <isbn>9781234567891</isbn>
+        <price>750</price>
+        <year>2023</year>
+    </book>
+
+    <!-- Category 3: Machine Learning -->
+    <book id="B003">
+        <title>Hands-On Machine Learning with Scikit-Learn and PyTorch</title>
+        <author>Aurelia Chen</author>
+        <publisher>DataCraft Media</publisher>
+        <isbn>9781234567892</isbn>
+        <price>680</price>
+        <year>2024</year>
+    </book>
+
+    <!-- Category 4: Database Management -->
+    <book id="B004">
+        <title>Database System Concepts and Distributed Architecture</title>
+        <author>Abraham Silberschatz</author>
+        <publisher>Academic McGraw</publisher>
+        <isbn>9781234567893</isbn>
+        <price>590</price>
+        <year>2022</year>
+    </book>
+
+    <!-- Category 5: Web Development -->
+    <book id="B005">
+        <title>Full-Stack Web Development: Modern Architecture</title>
+        <author>Marcus Sterling</author>
+        <publisher>DevWave Publishing</publisher>
+        <isbn>9781234567894</isbn>
+        <price>520</price>
+        <year>2024</year>
+    </book>
+
+    <!-- Category 6: Computer Networks -->
+    <book id="B006">
+        <title>Computer Networking: A Top-Down Approach</title>
+        <author>James Kurose</author>
+        <publisher>Pearson Horizon</publisher>
+        <isbn>9781234567895</isbn>
+        <price>620</price>
+        <year>2023</year>
+    </book>
+
+    <!-- Category 7: Operating Systems -->
+    <book id="B007">
+        <title>Operating System Concepts and Kernel Architecture</title>
+        <author>Peter Galvin</author>
+        <publisher>Wiley Tech</publisher>
+        <isbn>9781234567896</isbn>
+        <price>580</price>
+        <year>2022</year>
+    </book>
+
+    <!-- Category 8: Data Structures -->
+    <book id="B008">
+        <title>Data Structures and Algorithm Analysis in C++</title>
+        <author>Mark Allen Weiss</author>
+        <publisher>Quantum Press</publisher>
+        <isbn>9781234567897</isbn>
+        <price>490</price>
+        <year>2023</year>
+    </book>
+
+    <!-- Category 9: Cybersecurity -->
+    <book id="B009">
+        <title>Practical Cybersecurity, Cryptography and Defense</title>
+        <author>Sarah Jenkins</author>
+        <publisher>CyberShield Media</publisher>
+        <isbn>9781234567898</isbn>
+        <price>710</price>
+        <year>2024</year>
+    </book>
+
+    <!-- Category 10: Software Engineering -->
+    <book id="B010">
+        <title>Clean Code and Software Engineering Principles</title>
+        <author>Robert C. Martin</author>
+        <publisher>TechCraft Books</publisher>
+        <isbn>9781234567899</isbn>
+        <price>540</price>
+        <year>2023</year>
+    </book>
+
+    <!-- Category 11: Cloud Computing (Bonus) -->
+    <book id="B011">
+        <title>Cloud Computing Architecture and Microservices</title>
+        <author>David Foster</author>
+        <publisher>CloudMatrix Press</publisher>
+        <isbn>9781234567800</isbn>
+        <price>650</price>
+        <year>2024</year>
+    </book>
+
+    <!-- Category 12: Quantum Computing (Bonus) -->
+    <book id="B012">
+        <title>Quantum Computing: Algorithmic Foundations</title>
+        <author>Neil Thorne</author>
+        <publisher>FutureScience</publisher>
+        <isbn>9781234567801</isbn>
+        <price>890</price>
+        <year>2024</year>
+    </book>
+
+</library>

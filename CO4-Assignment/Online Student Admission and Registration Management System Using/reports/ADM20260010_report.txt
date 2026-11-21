@@ -1,0 +1,30 @@
+﻿========================================================================
+       APEX INSTITUTE OF ENGINEERING & TECHNOLOGY (AIET)               
+        OFFICIAL STUDENT ADMISSION & REGISTRATION REPORT               
+========================================================================
+ Generated On  : 20-Nov-2026 11:30 AM
+ Academic Year : 2026 - 2027
+ Status        : CONFIRMED & REGISTERED
+------------------------------------------------------------------------
+ STUDENT IDENTIFICATION DETAILS:
+------------------------------------------------------------------------
+ Student ID            : ADM20260010
+ Student Full Name     : Tanvi Reddy
+ Date of Birth         : 03-Mar-2006
+ Email ID              : tanvi.reddy@example.com
+ Mobile Number         : 9949123456
+ Residential Address   : Villa 22, Jubilee Hills Road No 10, Hyderabad, Telangana
+------------------------------------------------------------------------
+ ACADEMIC & ALLOTMENT DETAILS:
+------------------------------------------------------------------------
+ HSC Examination Marks : 525 / 600 (87.5%)
+ Preferred Department  : Electrical and Electronics Engineering
+ Registration Date     : 20-Nov-2026 11:30 AM
+------------------------------------------------------------------------
+ DECLARATION & VERIFICATION:
+ This is a computer-generated confirmation slip for admission to
+ Bachelor of Engineering (B.E. / B.Tech) programme. All candidate details
+ have been verified against submitted credentials.
+========================================================================
+                Office of Admissions & Student Affairs                  
+========================================================================

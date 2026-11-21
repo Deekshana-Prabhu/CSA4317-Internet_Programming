@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <!-- Root Element: orders -->
+    <xs:element name="orders">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="order" maxOccurs="unbounded" minOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="order_id" type="xs:string"/>
+                            <xs:element name="customer_id" type="xs:integer"/>
+                            <xs:element name="customer_name" type="xs:string"/>
+                            <xs:element name="customer_email" type="xs:string"/>
+                            <xs:element name="customer_mobile" type="xs:string"/>
+                            <xs:element name="delivery_address" type="xs:string"/>
+                            <xs:element name="order_date" type="xs:string"/>
+                            <xs:element name="order_items">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="item" maxOccurs="unbounded" minOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="product_id" type="xs:string"/>
+                                                    <xs:element name="product_name" type="xs:string"/>
+                                                    <xs:element name="category" type="xs:string"/>
+                                                    <xs:element name="quantity" type="xs:positiveInteger"/>
+                                                    <xs:element name="unit_price" type="xs:decimal"/>
+                                                    <xs:element name="subtotal" type="xs:decimal"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="subtotal_amount" type="xs:decimal"/>
+                            <xs:element name="delivery_fee" type="xs:decimal"/>
+                            <xs:element name="total_amount" type="xs:decimal"/>
+                            <xs:element name="payment_method" type="xs:string"/>
+                            <xs:element name="order_status">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="Confirmed"/>
+                                        <xs:enumeration value="Processing"/>
+                                        <xs:enumeration value="Delivered"/>
+                                        <xs:enumeration value="Cancelled"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

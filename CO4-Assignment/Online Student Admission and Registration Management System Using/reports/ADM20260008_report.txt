@@ -1,0 +1,30 @@
+﻿========================================================================
+       APEX INSTITUTE OF ENGINEERING & TECHNOLOGY (AIET)               
+        OFFICIAL STUDENT ADMISSION & REGISTRATION REPORT               
+========================================================================
+ Generated On  : 20-Nov-2026 08:45 AM
+ Academic Year : 2026 - 2027
+ Status        : CONFIRMED & REGISTERED
+------------------------------------------------------------------------
+ STUDENT IDENTIFICATION DETAILS:
+------------------------------------------------------------------------
+ Student ID            : ADM20260008
+ Student Full Name     : Meera Deshmukh
+ Date of Birth         : 09-May-2006
+ Email ID              : meera.d@example.com
+ Mobile Number         : 9833445566
+ Residential Address   : 89, Tilak Road, Near SP College, Pune, Maharashtra
+------------------------------------------------------------------------
+ ACADEMIC & ALLOTMENT DETAILS:
+------------------------------------------------------------------------
+ HSC Examination Marks : 550 / 600 (91.67%)
+ Preferred Department  : Artificial Intelligence and Machine Learning
+ Registration Date     : 20-Nov-2026 08:45 AM
+------------------------------------------------------------------------
+ DECLARATION & VERIFICATION:
+ This is a computer-generated confirmation slip for admission to
+ Bachelor of Engineering (B.E. / B.Tech) programme. All candidate details
+ have been verified against submitted credentials.
+========================================================================
+                Office of Admissions & Student Affairs                  
+========================================================================

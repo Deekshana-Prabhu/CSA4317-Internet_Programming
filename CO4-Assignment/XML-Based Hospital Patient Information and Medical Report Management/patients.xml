@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML-Based Hospital Patient Information and Medical Report Management System
+  File: patients.xml
+  Description: Clinical patient records database with diagnostic test results
+-->
+<hospital xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="patients.xsd">
+    <patient id="P001">
+        <name>Arun Kumar</name>
+        <age>35</age>
+        <gender>Male</gender>
+        <bloodGroup>O+</bloodGroup>
+        <doctor>Dr. Rajesh Varma</doctor>
+        <department>Cardiology</department>
+        <diagnosis>Stage 1 Essential Hypertension and Dyslipidemia</diagnosis>
+        <medicalTests>
+            <test name="Blood Pressure">
+                <result>142/92 mmHg</result>
+                <status>High</status>
+            </test>
+            <test name="Serum Total Cholesterol">
+                <result>238 mg/dL</result>
+                <status>High</status>
+            </test>
+            <test name="Resting 12-Lead ECG">
+                <result>Normal sinus rhythm, HR 76 bpm</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P002">
+        <name>Priya Sharma</name>
+        <age>28</age>
+        <gender>Female</gender>
+        <bloodGroup>B+</bloodGroup>
+        <doctor>Dr. Ananya Iyer</doctor>
+        <department>Dermatology</department>
+        <diagnosis>Moderate Atopic Dermatitis with Secondary Lichenification</diagnosis>
+        <medicalTests>
+            <test name="Total Serum IgE">
+                <result>385 IU/mL</result>
+                <status>High</status>
+            </test>
+            <test name="Absolute Eosinophil Count">
+                <result>520 cells/mcL</result>
+                <status>High</status>
+            </test>
+            <test name="Skin Prick Allergy Panel">
+                <result>Sensitization to Dermatophagoides pteronyssinus</result>
+                <status>High</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P003">
+        <name>Mohammed Farooq</name>
+        <age>52</age>
+        <gender>Male</gender>
+        <bloodGroup>A+</bloodGroup>
+        <doctor>Dr. Vikram Sengupta</doctor>
+        <department>Neurology</department>
+        <diagnosis>Chronic Migraine with Visual Aura and Cervical Radiculopathy</diagnosis>
+        <medicalTests>
+            <test name="Brain MRI with Contrast">
+                <result>No acute ischemic stroke or intracranial lesion</result>
+                <status>Normal</status>
+            </test>
+            <test name="Cervical Spine MRI">
+                <result>C5-C6 disc osteophyte complex with neuroforaminal narrowing</result>
+                <status>High</status>
+            </test>
+            <test name="Serum 25-OH Vitamin D">
+                <result>16.4 ng/mL</result>
+                <status>Low</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P004">
+        <name>Sneha Patel</name>
+        <age>44</age>
+        <gender>Female</gender>
+        <bloodGroup>AB-</bloodGroup>
+        <doctor>Dr. Sunita Mehra</doctor>
+        <department>Orthopedics</department>
+        <diagnosis>Bilateral Knee Primary Osteoarthritis (Kellgren-Lawrence Grade II)</diagnosis>
+        <medicalTests>
+            <test name="Bilateral Knee Weight-Bearing X-Ray">
+                <result>Medial compartment joint space narrowing with marginal osteophytes</result>
+                <status>High</status>
+            </test>
+            <test name="Erythrocyte Sedimentation Rate (ESR)">
+                <result>26 mm/hr</result>
+                <status>High</status>
+            </test>
+            <test name="Serum Uric Acid">
+                <result>5.2 mg/dL</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P005">
+        <name>David Wilson</name>
+        <age>61</age>
+        <gender>Male</gender>
+        <bloodGroup>O-</bloodGroup>
+        <doctor>Dr. Rajesh Varma</doctor>
+        <department>Cardiology</department>
+        <diagnosis>Coronary Artery Disease Status Post Drug-Eluting Stent (LAD)</diagnosis>
+        <medicalTests>
+            <test name="High-Sensitivity Cardiac Troponin I">
+                <result>0.015 ng/mL</result>
+                <status>Normal</status>
+            </test>
+            <test name="2D Transthoracic Echocardiogram">
+                <result>LVEF 52%, Grade I left ventricular diastolic dysfunction</result>
+                <status>Normal</status>
+            </test>
+            <test name="Fasting Plasma Glucose">
+                <result>154 mg/dL</result>
+                <status>High</status>
+            </test>
+            <test name="Glycated Hemoglobin (HbA1c)">
+                <result>7.4 %</result>
+                <status>High</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P006">
+        <name>Ananya Deshmukh</name>
+        <age>8</age>
+        <gender>Female</gender>
+        <bloodGroup>A-</bloodGroup>
+        <doctor>Dr. Meenakshi Sundaram</doctor>
+        <department>Pediatrics</department>
+        <diagnosis>Acute Bronchial Asthma Flare Triggered by Viral URTI</diagnosis>
+        <medicalTests>
+            <test name="Peak Expiratory Flow Rate (PEFR)">
+                <result>165 L/min (64% predicted)</result>
+                <status>Low</status>
+            </test>
+            <test name="Pulse Oximetry (Room Air SpO2)">
+                <result>94 %</result>
+                <status>Low</status>
+            </test>
+            <test name="Chest X-Ray PA View">
+                <result>Bilateral pulmonary hyperinflation without focal consolidation</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P007">
+        <name>Ramesh Chandra</name>
+        <age>67</age>
+        <gender>Male</gender>
+        <bloodGroup>B-</bloodGroup>
+        <doctor>Dr. Harish Nambiar</doctor>
+        <department>Ophthalmology</department>
+        <diagnosis>Senile Nuclear Sclerotic Cataract (OD) and Primary Open-Angle Glaucoma</diagnosis>
+        <medicalTests>
+            <test name="Goldmann Applanation Tonometry">
+                <result>Right: 24 mmHg, Left: 18 mmHg</result>
+                <status>High</status>
+            </test>
+            <test name="Snellen Visual Acuity">
+                <result>OD: 6/24, OS: 6/9</result>
+                <status>Low</status>
+            </test>
+            <test name="Optical Coherence Tomography (OCT RNFL)">
+                <result>Inferior neuroretinal rim thinning in right optic nerve</result>
+                <status>High</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P008">
+        <name>Kavita Nair</name>
+        <age>39</age>
+        <gender>Female</gender>
+        <bloodGroup>O+</bloodGroup>
+        <doctor>Dr. Sanjeev Kapoor</doctor>
+        <department>ENT</department>
+        <diagnosis>Chronic Suppurative Otitis Media (Tubotympanic) and Left Septal Deviation</diagnosis>
+        <medicalTests>
+            <test name="Pure Tone Audiometry (PTA)">
+                <result>Moderate conductive hearing loss (35 dB) left ear</result>
+                <status>High</status>
+            </test>
+            <test name="Ear Exudate Microbiological Culture">
+                <result>Pseudomonas aeruginosa sensitive to Ciprofloxacin and Amikacin</result>
+                <status>High</status>
+            </test>
+            <test name="High-Resolution CT Temporal Bone">
+                <result>Soft tissue density in middle ear cavity, ossicular chain intact</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P009">
+        <name>Vikram Malhotra</name>
+        <age>49</age>
+        <gender>Male</gender>
+        <bloodGroup>AB+</bloodGroup>
+        <doctor>Dr. Shalini Reddy</doctor>
+        <department>General Medicine</department>
+        <diagnosis>Type 2 Diabetes Mellitus with Distal Symmetrical Polyneuropathy</diagnosis>
+        <medicalTests>
+            <test name="Fasting Blood Sugar">
+                <result>172 mg/dL</result>
+                <status>High</status>
+            </test>
+            <test name="Post-Prandial Blood Sugar (2 hr)">
+                <result>258 mg/dL</result>
+                <status>High</status>
+            </test>
+            <test name="Serum Creatinine">
+                <result>1.05 mg/dL</result>
+                <status>Normal</status>
+            </test>
+            <test name="Urine Albumin-to-Creatinine Ratio (UACR)">
+                <result>48 mg/g (Microalbuminuria)</result>
+                <status>High</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P010">
+        <name>Ritu Singhania</name>
+        <age>31</age>
+        <gender>Female</gender>
+        <bloodGroup>B+</bloodGroup>
+        <doctor>Dr. Vikram Sengupta</doctor>
+        <department>Neurology</department>
+        <diagnosis>Right Posterior Canal Benign Paroxysmal Positional Vertigo (BPPV)</diagnosis>
+        <medicalTests>
+            <test name="Dix-Hallpike Diagnostic Maneuver">
+                <result>Upbeat torsional nystagmus provoked in right-ear-down position</result>
+                <status>High</status>
+            </test>
+            <test name="Video Head Impulse Test (vHIT)">
+                <result>Normal vestibulo-ocular reflex gain across all 6 semicircular canals</result>
+                <status>Normal</status>
+            </test>
+            <test name="Electrolyte Panel (Serum Na/K/Cl)">
+                <result>Na: 139 mEq/L, K: 4.1 mEq/L, Cl: 101 mEq/L</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P011">
+        <name>Aditya Joshi</name>
+        <age>19</age>
+        <gender>Male</gender>
+        <bloodGroup>O+</bloodGroup>
+        <doctor>Dr. Sunita Mehra</doctor>
+        <department>Orthopedics</department>
+        <diagnosis>Complete Mid-Substance Anterior Cruciate Ligament (ACL) Tear</diagnosis>
+        <medicalTests>
+            <test name="Left Knee High-Field MRI">
+                <result>Complete disruption of ACL fibers with lateral femoral condyle bone contusion</result>
+                <status>High</status>
+            </test>
+            <test name="Lachman Clinical Stability Examination">
+                <result>Grade II laxity with soft indistinct end-point</result>
+                <status>High</status>
+            </test>
+            <test name="Plain Radiograph Left Knee">
+                <result>No acute fracture or avulsion lesion noted</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P012">
+        <name>Farzana Begum</name>
+        <age>58</age>
+        <gender>Female</gender>
+        <bloodGroup>A+</bloodGroup>
+        <doctor>Dr. Shalini Reddy</doctor>
+        <department>General Medicine</department>
+        <diagnosis>Primary Hypothyroidism and Metabolic Syndrome</diagnosis>
+        <medicalTests>
+            <test name="Serum Thyroid Stimulating Hormone (TSH)">
+                <result>9.4 uIU/mL</result>
+                <status>High</status>
+            </test>
+            <test name="Free Thyroxine (Free T4)">
+                <result>0.68 ng/dL</result>
+                <status>Low</status>
+            </test>
+            <test name="Fasting Serum Triglycerides">
+                <result>224 mg/dL</result>
+                <status>High</status>
+            </test>
+            <test name="High-Density Lipoprotein (HDL) Cholesterol">
+                <result>38 mg/dL</result>
+                <status>Low</status>
+            </test>
+        </medicalTests>
+    </patient>
+</hospital>

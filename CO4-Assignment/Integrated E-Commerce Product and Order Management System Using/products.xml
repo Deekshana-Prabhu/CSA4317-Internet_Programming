@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="products.xsd">
+    <product>
+        <product_id>PROD101</product_id>
+        <product_name>Wireless Noise Canceling Headphones</product_name>
+        <category>Electronics</category>
+        <description>High-fidelity acoustic stereo sound with active 32dB noise cancellation and 40-hour playtime.</description>
+        <price>3499.00</price>
+        <stock>15</stock>
+    </product>
+    <product>
+        <product_id>PROD102</product_id>
+        <product_name>Smart Fitness Tracker AMOLED</product_name>
+        <category>Electronics</category>
+        <description>1.43-inch vibrant touch AMOLED display with continuous heart rate, SpO2 sensor, and 120 sports modes.</description>
+        <price>2299.00</price>
+        <stock>22</stock>
+    </product>
+    <product>
+        <product_id>PROD103</product_id>
+        <product_name>Ultra-Slim 20000mAh Power Bank</product_name>
+        <category>Electronics</category>
+        <description>Triple output 22.5W Power Delivery high-speed charging in an aircraft-grade aluminum alloy body.</description>
+        <price>1499.00</price>
+        <stock>30</stock>
+    </product>
+    <product>
+        <product_id>PROD104</product_id>
+        <product_name>4K Ultra HD Waterproof Action Camera</product_name>
+        <category>Electronics</category>
+        <description>Ultra-wide 170-degree lens with 6-axis gyro stabilization and 30m underwater waterproof housing.</description>
+        <price>5999.00</price>
+        <stock>8</stock>
+    </product>
+    <product>
+        <product_id>PROD105</product_id>
+        <product_name>Men's Tailored Oxford Cotton Shirt</product_name>
+        <category>Fashion</category>
+        <description>Breathable 100% combed cotton long-sleeve button-down shirt designed for all-day comfort and elegance.</description>
+        <price>1299.00</price>
+        <stock>18</stock>
+    </product>
+    <product>
+        <product_id>PROD106</product_id>
+        <product_name>Women's Floral Georgette Anarkali</product_name>
+        <category>Fashion</category>
+        <description>Graceful flared floral embroidered georgette ethnic festive gown with matching chiffon dupatta.</description>
+        <price>1899.00</price>
+        <stock>14</stock>
+    </product>
+    <product>
+        <product_id>PROD107</product_id>
+        <product_name>Unisex Polarized Aviator Sunglasses</product_name>
+        <category>Fashion</category>
+        <description>UV400 protective polarized lenses in an ultra-lightweight metallic alloy frame with silicone nose pads.</description>
+        <price>999.00</price>
+        <stock>25</stock>
+    </product>
+    <product>
+        <product_id>PROD108</product_id>
+        <product_name>Classic Handcrafted Leather Dress Shoes</product_name>
+        <category>Fashion</category>
+        <description>Finest full-grain leather oxfords with cushioned orthopedic insoles and non-slip rubber outsoles.</description>
+        <price>2799.00</price>
+        <stock>12</stock>
+    </product>
+    <product>
+        <product_id>PROD109</product_id>
+        <product_name>1.8L Stainless Steel Electric Kettle</product_name>
+        <category>Home Appliances</category>
+        <description>Fast-heating 1500W cordless electric jug with auto shut-off and boil-dry protection technology.</description>
+        <price>899.00</price>
+        <stock>35</stock>
+    </product>
+    <product>
+        <product_id>PROD110</product_id>
+        <product_name>Smart Digital Air Fryer 4.5L Touch</product_name>
+        <category>Home Appliances</category>
+        <description>Rapid 360-degree hot air circulation for 90% less oil crispy cooking with 8 one-touch presets.</description>
+        <price>4499.00</price>
+        <stock>10</stock>
+    </product>
+    <product>
+        <product_id>PROD111</product_id>
+        <product_name>Robotic Vacuum and Floor Mop 2-in-1</product_name>
+        <category>Home Appliances</category>
+        <description>Intelligent LiDAR gyroscope room mapping with 2800Pa suction power and automatic dock charging.</description>
+        <price>8999.00</price>
+        <stock>6</stock>
+    </product>
+    <product>
+        <product_id>PROD112</product_id>
+        <product_name>Handmade Bi-Fold RFID Leather Wallet</product_name>
+        <category>Accessories</category>
+        <description>Authentic hunter leather with RFID blocking foil, 8 card compartments, and coin zipper pocket.</description>
+        <price>799.00</price>
+        <stock>40</stock>
+    </product>
+    <product>
+        <product_id>PROD113</product_id>
+        <product_name>Anti-Theft Water-Resistant Laptop Bag</product_name>
+        <category>Accessories</category>
+        <description>High-density Oxford fabric backpack featuring built-in USB charging port and padded 15.6-inch compartment.</description>
+        <price>1699.00</price>
+        <stock>20</stock>
+    </product>
+    <product>
+        <product_id>PROD114</product_id>
+        <product_name>Rose-Gold Analog Quartz Wristwatch</product_name>
+        <category>Accessories</category>
+        <description>Luxury minimalist dial protected by scratch-proof sapphire crystal glass with stainless steel mesh strap.</description>
+        <price>1999.00</price>
+        <stock>16</stock>
+    </product>
+    <product>
+        <product_id>PROD115</product_id>
+        <product_name>Organic Vitamin C Glow Face Serum</product_name>
+        <category>Beauty and Personal Care</category>
+        <description>Pure 20% ethyl ascorbic acid enriched with hyaluronic acid and ferulic acid for bright, spotless radiance.</description>
+        <price>599.00</price>
+        <stock>50</stock>
+    </product>
+    <product>
+        <product_id>PROD116</product_id>
+        <product_name>Ceramic Tourmaline 2-in-1 Hair Styler</product_name>
+        <category>Beauty and Personal Care</category>
+        <description>Fast 30-second PTC heating plates with negative ion technology for frizz-free straight and curly hair.</description>
+        <price>1799.00</price>
+        <stock>15</stock>
+    </product>
+</products>

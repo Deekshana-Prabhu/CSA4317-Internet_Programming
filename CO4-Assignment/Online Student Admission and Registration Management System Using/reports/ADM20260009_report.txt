@@ -1,0 +1,30 @@
+﻿========================================================================
+       APEX INSTITUTE OF ENGINEERING & TECHNOLOGY (AIET)               
+        OFFICIAL STUDENT ADMISSION & REGISTRATION REPORT               
+========================================================================
+ Generated On  : 20-Nov-2026 10:00 AM
+ Academic Year : 2026 - 2027
+ Status        : CONFIRMED & REGISTERED
+------------------------------------------------------------------------
+ STUDENT IDENTIFICATION DETAILS:
+------------------------------------------------------------------------
+ Student ID            : ADM20260009
+ Student Full Name     : Aditya Joshi
+ Date of Birth         : 19-Nov-2005
+ Email ID              : aditya.joshi@example.com
+ Mobile Number         : 9765432109
+ Residential Address   : 14, Ganga Heights, Kothrud, Pune, Maharashtra
+------------------------------------------------------------------------
+ ACADEMIC & ALLOTMENT DETAILS:
+------------------------------------------------------------------------
+ HSC Examination Marks : 480 / 600 (80%)
+ Preferred Department  : Civil Engineering
+ Registration Date     : 20-Nov-2026 10:00 AM
+------------------------------------------------------------------------
+ DECLARATION & VERIFICATION:
+ This is a computer-generated confirmation slip for admission to
+ Bachelor of Engineering (B.E. / B.Tech) programme. All candidate details
+ have been verified against submitted credentials.
+========================================================================
+                Office of Admissions & Student Affairs                  
+========================================================================

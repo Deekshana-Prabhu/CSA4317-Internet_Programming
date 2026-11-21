@@ -1,0 +1,30 @@
+========================================================================
+       APEX INSTITUTE OF ENGINEERING & TECHNOLOGY (AIET)               
+        OFFICIAL STUDENT ADMISSION & REGISTRATION REPORT               
+========================================================================
+ Generated On  : 15-Nov-2026 09:30:00 AM
+ Academic Year : 2026 - 2027
+ Status        : CONFIRMED & REGISTERED
+------------------------------------------------------------------------
+ STUDENT IDENTIFICATION DETAILS:
+------------------------------------------------------------------------
+ Student ID            : ADM20260001
+ Student Full Name     : Aarav Sharma
+ Date of Birth         : 12-Apr-2006
+ Email ID              : aarav.sharma@example.com
+ Mobile Number         : 9876543210
+ Residential Address   : Flat 402, Skyline Residency, Park Street, Pune, Maharashtra
+------------------------------------------------------------------------
+ ACADEMIC & ALLOTMENT DETAILS:
+------------------------------------------------------------------------
+ HSC Examination Marks : 578 / 600 (96.33%)
+ Preferred Department  : Computer Science and Engineering
+ Registration Date     : 15-Nov-2026 09:30 AM
+------------------------------------------------------------------------
+ DECLARATION & VERIFICATION:
+ This is a computer-generated confirmation slip for admission to
+ Bachelor of Engineering (B.E. / B.Tech) programme. All candidate details
+ have been verified against submitted credentials.
+========================================================================
+                Office of Admissions & Student Affairs                  
+========================================================================

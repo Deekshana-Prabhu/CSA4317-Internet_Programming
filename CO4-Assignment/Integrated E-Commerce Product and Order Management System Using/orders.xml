@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orders xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="orders.xsd">
+    <order>
+        <order_id>ORD-2026-1001</order_id>
+        <customer_id>1</customer_id>
+        <customer_name>Rahul Sharma</customer_name>
+        <customer_email>rahul.sharma@example.com</customer_email>
+        <customer_mobile>9876543210</customer_mobile>
+        <delivery_address>402, Greenfield Heights, MG Road, Bengaluru, Karnataka - 560001</delivery_address>
+        <order_date>2026-11-20</order_date>
+        <order_items>
+            <item>
+                <product_id>PROD101</product_id>
+                <product_name>Wireless Noise Canceling Headphones</product_name>
+                <category>Electronics</category>
+                <quantity>1</quantity>
+                <unit_price>3499.00</unit_price>
+                <subtotal>3499.00</subtotal>
+            </item>
+            <item>
+                <product_id>PROD102</product_id>
+                <product_name>Smart Fitness Tracker AMOLED</product_name>
+                <category>Electronics</category>
+                <quantity>1</quantity>
+                <unit_price>2299.00</unit_price>
+                <subtotal>2299.00</subtotal>
+            </item>
+        </order_items>
+        <subtotal_amount>5798.00</subtotal_amount>
+        <delivery_fee>0.00</delivery_fee>
+        <total_amount>5798.00</total_amount>
+        <payment_method>UPI Demo Payment</payment_method>
+        <order_status>Delivered</order_status>
+    </order>
+    <order>
+        <order_id>ORD-2026-1002</order_id>
+        <customer_id>1</customer_id>
+        <customer_name>Rahul Sharma</customer_name>
+        <customer_email>rahul.sharma@example.com</customer_email>
+        <customer_mobile>9876543210</customer_mobile>
+        <delivery_address>402, Greenfield Heights, MG Road, Bengaluru, Karnataka - 560001</delivery_address>
+        <order_date>2026-11-21</order_date>
+        <order_items>
+            <item>
+                <product_id>PROD109</product_id>
+                <product_name>1.8L Stainless Steel Electric Kettle</product_name>
+                <category>Home Appliances</category>
+                <quantity>2</quantity>
+                <unit_price>899.00</unit_price>
+                <subtotal>1798.00</subtotal>
+            </item>
+        </order_items>
+        <subtotal_amount>1798.00</subtotal_amount>
+        <delivery_fee>0.00</delivery_fee>
+        <total_amount>1798.00</total_amount>
+        <payment_method>Cash on Delivery</payment_method>
+        <order_status>Confirmed</order_status>
+    </order>
+    <order>
+        <order_id>ORD-2026-1003</order_id>
+        <customer_id>1</customer_id>
+        <customer_name>Rahul Sharma</customer_name>
+        <customer_email>rahul.sharma@example.com</customer_email>
+        <customer_mobile>9876543210</customer_mobile>
+        <delivery_address>402, Greenfield Heights, MG Road, Bengaluru, Karnataka - 560001</delivery_address>
+        <order_date>2026-11-21</order_date>
+        <order_items>
+            <item>
+                <product_id>PROD115</product_id>
+                <product_name>Organic Vitamin C Glow Face Serum</product_name>
+                <category>Beauty and Personal Care</category>
+                <quantity>1</quantity>
+                <unit_price>599.00</unit_price>
+                <subtotal>599.00</subtotal>
+            </item>
+            <item>
+                <product_id>PROD112</product_id>
+                <product_name>Handmade Bi-Fold RFID Leather Wallet</product_name>
+                <category>Accessories</category>
+                <quantity>1</quantity>
+                <unit_price>799.00</unit_price>
+                <subtotal>799.00</subtotal>
+            </item>
+        </order_items>
+        <subtotal_amount>1398.00</subtotal_amount>
+        <delivery_fee>0.00</delivery_fee>
+        <total_amount>1398.00</total_amount>
+        <payment_method>Card Demo Payment</payment_method>
+        <order_status>Processing</order_status>
+    </order>
+</orders>

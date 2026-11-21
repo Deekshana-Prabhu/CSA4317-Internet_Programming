@@ -1,0 +1,30 @@
+﻿========================================================================
+       APEX INSTITUTE OF ENGINEERING & TECHNOLOGY (AIET)               
+        OFFICIAL STUDENT ADMISSION & REGISTRATION REPORT               
+========================================================================
+ Generated On  : 18-Nov-2026 04:40 PM
+ Academic Year : 2026 - 2027
+ Status        : CONFIRMED & REGISTERED
+------------------------------------------------------------------------
+ STUDENT IDENTIFICATION DETAILS:
+------------------------------------------------------------------------
+ Student ID            : ADM20260005
+ Student Full Name     : Siddharth Nair
+ Date of Birth         : 30-Oct-2005
+ Email ID              : siddharth.nair@example.com
+ Mobile Number         : 9967812345
+ Residential Address   : B-301, Palm Meadows, Kowdiar, Thiruvananthapuram, Kerala
+------------------------------------------------------------------------
+ ACADEMIC & ALLOTMENT DETAILS:
+------------------------------------------------------------------------
+ HSC Examination Marks : 510 / 600 (85%)
+ Preferred Department  : Electronics and Communication Engineering
+ Registration Date     : 18-Nov-2026 04:40 PM
+------------------------------------------------------------------------
+ DECLARATION & VERIFICATION:
+ This is a computer-generated confirmation slip for admission to
+ Bachelor of Engineering (B.E. / B.Tech) programme. All candidate details
+ have been verified against submitted credentials.
+========================================================================
+                Office of Admissions & Student Affairs                  
+========================================================================

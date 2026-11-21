@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Patient Information &amp; Medical Report Management System</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Detect server execution environment -->
+    <script>
+        window.SERVER_ENVIRONMENT = {
+            isPHP: false,
+            mode: 'browser_preview'
+        };
+    </script>
+</head>
+<body>
+
+<div class="app-layout">
+
+    <!-- =======================================================================
+         2. Left Sidebar Navigation
+         ======================================================================= -->
+    <aside class="sidebar" id="main-sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="hospital-brand">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 2v20M2 12h20"></path>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">AURA HEALTH</span>
+                    <span class="brand-subtitle">Clinical Records</span>
+                </div>
+            </a>
+            <button class="sidebar-toggle-btn" id="sidebar-toggle" title="Toggle Sidebar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section-label">Clinical Core</div>
+            
+            <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+                    <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+                    <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+                    <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#records" class="nav-item" data-section="records">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Patient Records</span>
+            </a>
+
+            <a href="#add-patient" class="nav-item" data-section="add-patient">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <line x1="19" y1="8" x2="19" y2="14"></line>
+                    <line x1="22" y1="11" x2="16" y2="11"></line>
+                </svg>
+                <span>Add New Patient</span>
+            </a>
+
+            <a href="#search" class="nav-item" data-section="search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <span>Search Patient</span>
+            </a>
+
+            <a href="#reports" class="nav-item" data-section="reports">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span>Medical Reports</span>
+            </a>
+
+            <div class="nav-section-label">XML Architecture</div>
+
+            <a href="#validation" class="nav-item" data-section="validation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                <span>XML Validation</span>
+            </a>
+
+            <a href="#dom" class="nav-item" data-section="dom">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+                <span>DOM Operations</span>
+            </a>
+
+            <a href="#xslt" class="nav-item" data-section="xslt">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                <span>XSLT Reports</span>
+            </a>
+
+            <a href="#source" class="nav-item" data-section="source">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+                <span>XML Source Viewer</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">System Architecture</div>
+            <div class="badge-tech-stack">
+                <span>XML</span>
+                <span>XSD</span>
+                <span>DOM</span>
+                <span>XSLT</span>
+                <span>PHP</span>
+                <span>JS</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- =======================================================================
+         Main Layout Wrapper (Sticky Header + Tabbed Sections)
+         ======================================================================= -->
+    <div class="main-wrapper">
+        
+        <!-- Sticky Header Bar -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="page-breadcrumb">
+                    <span>Clinical Management</span> &bull; 
+                    <span class="current-title" id="breadcrumb-current-title">Dashboard</span>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <!-- Mode Status Indicator -->
+                <div class="mode-badge browser-mode" id="mode-indicator-badge" title="Dual Mode: Client XML DOM & XAMPP PHP Backend">
+                    <span class="mode-dot"></span>
+                    <span id="mode-indicator-text">Detecting Mode...</span>
+                </div>
+
+                <button class="btn btn-primary btn-sm" onclick="navigateToSection('add-patient')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    New Patient
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+
+            <!-- ===============================================================
+                 Section 1: Hospital Dashboard
+                 =============================================================== -->
+            <section class="page-section active" id="section-dashboard">
+                
+                <!-- Quick Action Banner -->
+                <div class="quick-action-banner">
+                    <div class="quick-action-content">
+                        <h2>Hospital Clinical Informatics &amp; Patient Registry</h2>
+                        <p>Powered by native XML storage, W3C XSD schema enforcement, XML DOM manipulation and XSLT transformations.</p>
+                    </div>
+                    <div class="quick-action-buttons">
+                        <button class="btn btn-white" id="quick-add-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+                            Quick Add Patient
+                        </button>
+                        <button class="btn btn-white-outline" id="quick-search-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            Search Records
+                        </button>
+                        <button class="btn btn-white-outline" id="quick-validate-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            Validate XSD
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4 Live Statistic Metric Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card stat-primary">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <div class="stat-info-group">
+                            <div class="stat-value" id="stat-total-patients">--</div>
+                            <div class="stat-label">Total Registered Patients</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-teal">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                        <div class="stat-info-group">
+                            <div class="stat-value" id="stat-total-doctors">--</div>
+                            <div class="stat-label">Attending Doctors</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-info">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path><path d="M15 9h6"></path><path d="M15 15h6"></path></svg>
+                        </div>
+                        <div class="stat-info-group">
+                            <div class="stat-value" id="stat-total-departments">--</div>
+                            <div class="stat-label">Clinical Departments</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-success">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                        </div>
+                        <div class="stat-info-group">
+                            <div class="stat-value" id="stat-total-reports">--</div>
+                            <div class="stat-label">Active Medical Reports</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two Column Dashboard Layout -->
+                <div class="dashboard-grid">
+                    <!-- Left: Recent Patients -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    Recent Patient Registrations
+                                </h3>
+                                <p class="card-subtitle">Parsed live from active XML Document</p>
+                            </div>
+                            <button class="btn btn-outline btn-sm" onclick="navigateToSection('records')">View All Records &rarr;</button>
+                        </div>
+                        <div class="records-table-container">
+                            <table class="table-custom">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Patient Name</th>
+                                        <th>Age / Gender</th>
+                                        <th>Blood</th>
+                                        <th>Department</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-patients-tbody">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Right: Clinical Department Breakdown -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path></svg>
+                                    Department Distribution
+                                </h3>
+                                <p class="card-subtitle">Patient load across medical divisions</p>
+                            </div>
+                        </div>
+                        <div id="dept-distribution-container">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 Section 2: Patient Records Interface
+                 =============================================================== -->
+            <section class="page-section" id="section-records">
+                <!-- Filter Bar -->
+                <div class="filter-bar">
+                    <div class="search-input-group">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" class="input-field" id="records-search-input" placeholder="Search by Patient ID, Name, Doctor, or Diagnosis...">
+                    </div>
+                    
+                    <div class="filter-select-group">
+                        <select class="select-field" id="records-dept-filter">
+                            <option value="all">All Departments</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Orthopedics">Orthopedics</option>
+                            <option value="Dermatology">Dermatology</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                            <option value="General Medicine">General Medicine</option>
+                            <option value="ENT">ENT</option>
+                            <option value="Ophthalmology">Ophthalmology</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-select-group">
+                        <select class="select-field" id="records-blood-filter">
+                            <option value="all">All Blood Groups</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-outline" id="records-reset-btn" title="Reset Filters">
+                        Reset
+                    </button>
+
+                    <div class="view-switch-group">
+                        <button class="view-btn active" id="view-grid-btn" title="Card Grid View">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        </button>
+                        <button class="view-btn" id="view-table-btn" title="Table View">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Count Meta Bar -->
+                <div class="records-meta-bar">
+                    <span id="records-count-badge">Loading patient records...</span>
+                    <span style="font-size:0.8rem; color:var(--text-light);">Origin: patients.xml</span>
+                </div>
+
+                <!-- Grid View Container -->
+                <div class="patient-grid" id="patient-records-grid">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <!-- Table View Container -->
+                <div class="records-table-container" id="patient-records-table-container" style="display:none;">
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Patient ID</th>
+                                <th>Patient Name</th>
+                                <th>Age / Gender</th>
+                                <th>Blood</th>
+                                <th>Doctor</th>
+                                <th>Department</th>
+                                <th>Primary Diagnosis</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="records-table-tbody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="records-empty-state" style="display:none;">
+                    <div class="empty-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <h3>No Patient Records Found</h3>
+                    <p>No patient matched your active search query or filter selection. Try adjusting your search criteria.</p>
+                    <button class="btn btn-primary btn-sm" onclick="document.getElementById('records-reset-btn').click()">Reset All Filters</button>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 Section 3: Add New Patient Registration Form
+                 =============================================================== -->
+            <section class="page-section" id="section-add-patient">
+                <div class="card" style="max-width: 900px; margin: 0 auto;">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+                                Patient Clinical Intake &amp; Registration
+                            </h3>
+                            <p class="card-subtitle">Creates XML elements (&lt;patient&gt;, &lt;medicalTests&gt;) via XML DOM</p>
+                        </div>
+                    </div>
+
+                    <form id="add-patient-form">
+                        <div class="form-grid">
+                            <!-- Patient ID -->
+                            <div class="form-group">
+                                <label class="form-label">Patient ID <span class="required">*</span></label>
+                                <input type="text" class="input-field" id="new-patient-id" placeholder="e.g. P013" required pattern="P[0-9]{3,5}">
+                                <span class="form-help">Must follow pattern P[0-9]{3,5} and be unique.</span>
+                            </div>
+
+                            <!-- Patient Name -->
+                            <div class="form-group">
+                                <label class="form-label">Full Patient Name <span class="required">*</span></label>
+                                <input type="text" class="input-field" id="new-patient-name" placeholder="e.g. Anand Murthy" required>
+                            </div>
+
+                            <!-- Age -->
+                            <div class="form-group">
+                                <label class="form-label">Age (Years) <span class="required">*</span></label>
+                                <input type="number" class="input-field" id="new-patient-age" placeholder="0 - 125" min="0" max="125" required>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="form-group">
+                                <label class="form-label">Gender <span class="required">*</span></label>
+                                <select class="select-field" id="new-patient-gender" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <!-- Blood Group -->
+                            <div class="form-group">
+                                <label class="form-label">Blood Group <span class="required">*</span></label>
+                                <select class="select-field" id="new-patient-blood" required>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+
+                            <!-- Attending Doctor -->
+                            <div class="form-group">
+                                <label class="form-label">Attending Doctor <span class="required">*</span></label>
+                                <input type="text" class="input-field" id="new-patient-doctor" placeholder="e.g. Dr. Rajesh Varma" required>
+                            </div>
+
+                            <!-- Department -->
+                            <div class="form-group">
+                                <label class="form-label">Clinical Department <span class="required">*</span></label>
+                                <select class="select-field" id="new-patient-dept" required>
+                                    <option value="Cardiology">Cardiology</option>
+                                    <option value="Neurology">Neurology</option>
+                                    <option value="Orthopedics">Orthopedics</option>
+                                    <option value="Dermatology">Dermatology</option>
+                                    <option value="Pediatrics">Pediatrics</option>
+                                    <option value="General Medicine">General Medicine</option>
+                                    <option value="ENT">ENT</option>
+                                    <option value="Ophthalmology">Ophthalmology</option>
+                                </select>
+                            </div>
+
+                            <!-- Diagnosis -->
+                            <div class="form-group full-width">
+                                <label class="form-label">Primary Clinical Diagnosis <span class="required">*</span></label>
+                                <textarea class="input-field" id="new-patient-diagnosis" rows="2" placeholder="Clinical evaluation and diagnosis summary..." required></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Medical Tests Sub-form -->
+                        <div class="tests-section-box">
+                            <div class="tests-header">
+                                <div>
+                                    <h4 style="font-size: 0.95rem; font-weight:700; color:var(--text-primary);">Medical Diagnostic Tests</h4>
+                                    <p style="font-size: 0.78rem; color:var(--text-muted);">Multiple &lt;test&gt; elements can be attached to this patient record</p>
+                                </div>
+                                <button type="button" class="btn btn-outline-primary btn-sm" id="add-test-row-btn">
+                                    + Add Another Test
+                                </button>
+                            </div>
+
+                            <div id="dynamic-tests-container">
+                                <!-- Default 1 test row -->
+                                <div class="test-row">
+                                    <div>
+                                        <input type="text" class="input-field test-name-input" placeholder="Test Name (e.g. Blood Pressure)" value="Blood Pressure" required>
+                                    </div>
+                                    <div>
+                                        <input type="text" class="input-field test-result-input" placeholder="Result (e.g. 130/85 mmHg)" value="130/85 mmHg" required>
+                                    </div>
+                                    <div>
+                                        <select class="select-field test-status-select">
+                                            <option value="Normal">Normal</option>
+                                            <option value="High">High</option>
+                                            <option value="Low">Low</option>
+                                            <option value="Elevated">Elevated</option>
+                                            <option value="Critical">Critical</option>
+                                            <option value="Abnormal">Abnormal</option>
+                                            <option value="Positive">Positive</option>
+                                            <option value="Negative">Negative</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn-remove-test" onclick="this.closest('.test-row').remove()" title="Remove Test">&times;</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" id="reset-patient-form-btn">Reset Form</button>
+                            <button type="submit" class="btn btn-primary" id="submit-patient-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                                Add Patient via XML DOM
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 Section 4: Search Patient Section
+                 =============================================================== -->
+            <section class="page-section" id="section-search">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                Clinical Record Search Engine
+                            </h3>
+                            <p class="card-subtitle">Search by Patient ID, Name, Doctor, or Clinical Diagnosis</p>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+                        <div style="flex:2; min-width:260px;">
+                            <input type="text" class="input-field" id="search-query-input" placeholder="Enter Patient ID (e.g. P001) or Patient Name...">
+                        </div>
+                        <div style="flex:1; min-width:180px;">
+                            <select class="select-field" id="search-dept-select">
+                                <option value="all">All Departments</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Orthopedics">Orthopedics</option>
+                                <option value="Dermatology">Dermatology</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="General Medicine">General Medicine</option>
+                                <option value="ENT">ENT</option>
+                                <option value="Ophthalmology">Ophthalmology</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" id="search-execute-btn">Search Records</button>
+                    </div>
+
+                    <div id="search-results-container">
+                        <!-- Populated by search results -->
+                    </div>
+
+                    <div class="empty-state" id="search-empty-state" style="display:none;">
+                        <h3>No Records Found</h3>
+                        <p>No patient record matched your search query. Please verify the ID or name.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 Section 5: Medical Reports Section
+                 =============================================================== -->
+            <section class="page-section" id="section-reports">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+                    <div style="display:flex; align-items:center; gap:0.75rem;">
+                        <label style="font-weight:600; font-size:0.9rem;">Select Patient Report:</label>
+                        <select class="select-field" id="report-patient-select" style="min-width:240px;">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+
+                    <div style="display:flex; gap:0.75rem;">
+                        <button class="btn btn-outline" id="download-report-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download HTML Report
+                        </button>
+                        <button class="btn btn-primary" id="print-report-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                            Print Medical Report
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Printable Medical Report Document -->
+                <div class="medical-report-view" id="printable-medical-report">
+                    <!-- Letterhead Banner -->
+                    <div class="report-header-banner">
+                        <div class="report-brand">
+                            <div class="report-brand-logo">&#10010;</div>
+                            <div class="report-brand-text">
+                                <h2>AURA METROPOLITAN HOSPITAL</h2>
+                                <p>Directorate of Clinical Diagnostics &amp; Medical Informatics</p>
+                            </div>
+                        </div>
+                        <div class="report-meta-box">
+                            <div>Report Ref: <strong id="rep-meta-id">REP-P001-2026</strong></div>
+                            <div>Date: <strong id="rep-meta-date">Nov 20, 2026</strong></div>
+                            <div style="color:var(--teal); font-weight:600; margin-top:2px;">ISO 9001:2015 Accredited Facility</div>
+                        </div>
+                    </div>
+
+                    <!-- Two-column Demographics & Physician -->
+                    <div class="report-two-col">
+                        <div class="report-info-card">
+                            <h4>&#128100; Patient Demographics</h4>
+                            <table class="report-info-table">
+                                <tr><td>Patient ID:</td><td><span class="patient-id-badge" id="rep-patient-id">P001</span></td></tr>
+                                <tr><td>Full Name:</td><td id="rep-patient-name">Arun Kumar</td></tr>
+                                <tr><td>Age / Gender:</td><td id="rep-patient-age-gender">35 Yrs / Male</td></tr>
+                                <tr><td>Blood Phenotype:</td><td><span class="blood-badge" id="rep-patient-blood">O+</span></td></tr>
+                            </table>
+                        </div>
+
+                        <div class="report-info-card">
+                            <h4>&#9877; Attending Physician</h4>
+                            <table class="report-info-table">
+                                <tr><td>Physician Name:</td><td><strong id="rep-doctor-name">Dr. Rajesh Varma</strong></td></tr>
+                                <tr><td>Department:</td><td id="rep-doctor-dept">Cardiology</td></tr>
+                                <tr><td>Registration ID:</td><td>MCI-DL-98442</td></tr>
+                                <tr><td>Clinical Status:</td><td>Consultant In-Charge</td></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Clinical Diagnosis Summary -->
+                    <div class="report-diagnosis-section">
+                        <h4>Clinical Evaluation &amp; Primary Diagnosis</h4>
+                        <p id="rep-diagnosis" style="font-weight:600; color:#0f766e;">Stage 1 Essential Hypertension and Dyslipidemia</p>
+                    </div>
+
+                    <!-- Medical Tests Table -->
+                    <h4 style="font-size:0.95rem; text-transform:uppercase; color:var(--primary); margin-bottom:0.75rem;">
+                        &#128399; Diagnostic Investigation Findings
+                    </h4>
+                    <table class="report-tests-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 35%;">Diagnostic Test Name</th>
+                                <th style="width: 25%;">Result Reading</th>
+                                <th style="width: 15%;">Evaluation</th>
+                                <th style="width: 25%;">Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rep-tests-tbody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+
+                    <!-- Sign-off Seal -->
+                    <div class="report-signoff-row">
+                        <div>
+                            <p style="font-size:0.8rem; color:var(--text-muted);">This electronic diagnostic report is generated from verified XML clinical records.</p>
+                            <p style="font-size:0.75rem; color:var(--text-light); margin-top:2px;">Medical Records Verification Hash: SHA256-XML-VERIFIED</p>
+                        </div>
+                        <div class="signoff-box">
+                            <div class="signature-space"></div>
+                            <strong id="rep-doctor-signoff">Dr. Rajesh Varma</strong><br>
+                            <span style="font-size:0.78rem; color:var(--text-muted);">Attending Medical Officer</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 Section 6: XML Validation Section
+                 =============================================================== -->
+            <section class="page-section" id="section-validation">
+                <!-- Educational Information Panel -->
+                <div class="info-panel">
+                    <h4>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        XML Validation Architecture: Well-Formed vs. Schema Valid
+                    </h4>
+                    <div class="info-panel-grid">
+                        <div>
+                            <strong>1. Well-Formed XML Document</strong>
+                            <p>Follows standard W3C XML syntax: single root element (&lt;hospital&gt;), properly closed and nested tags, case-sensitive names, and quoted attributes.</p>
+                        </div>
+                        <div>
+                            <strong>2. Valid XML Document (XSD)</strong>
+                            <p>Conforms strictly to <code>patients.xsd</code>: data types (integer age 0-125), enumeration facets (valid departments, blood groups, gender), and identity constraints (<code>xs:unique</code> on patient ID).</p>
+                        </div>
+                        <div>
+                            <strong>3. XML Parsers &amp; Error Detection</strong>
+                            <p>Detects structural errors (fatal syntax break) and validation violations. Implemented in PHP via <code>DOMDocument::schemaValidate()</code> and in browser memory via JS Schema Engine.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scenario Selection Grid -->
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Interactive Validation Scenario Runner</h3>
+                            <p class="card-subtitle">Select a pre-built test case to simulate XML schema validation checks</p>
+                        </div>
+                    </div>
+
+                    <div class="scenario-buttons-grid">
+                        <button class="scenario-btn active" data-scenario="valid">
+                            <span>1. Valid patients.xml</span>
+                            <small>Passes all XSD schema constraints</small>
+                        </button>
+                        <button class="scenario-btn" data-scenario="missingElement">
+                            <span>2. Missing &lt;diagnosis&gt;</span>
+                            <small>Violates required element sequence</small>
+                        </button>
+                        <button class="scenario-btn" data-scenario="invalidAge">
+                            <span>3. Invalid Age (250)</span>
+                            <small>Violates xs:maxInclusive="125"</small>
+                        </button>
+                        <button class="scenario-btn" data-scenario="invalidGender">
+                            <span>4. Invalid Gender ("Alien")</span>
+                            <small>Violates xs:enumeration restriction</small>
+                        </button>
+                        <button class="scenario-btn" data-scenario="invalidBlood">
+                            <span>5. Invalid Blood ("X+")</span>
+                            <small>Violates valid blood group facet</small>
+                        </button>
+                        <button class="scenario-btn" data-scenario="missingId">
+                            <span>6. Missing Patient ID</span>
+                            <small>Violates xs:attribute use="required"</small>
+                        </button>
+                        <button class="scenario-btn" data-scenario="duplicateId">
+                            <span>7. Duplicate ID ("P001")</span>
+                            <small>Violates xs:unique identity constraint</small>
+                        </button>
+                    </div>
+
+                    <!-- Custom XML Editor & Run Button -->
+                    <div style="margin-bottom:1rem;">
+                        <label class="form-label">XML Input Under Test:</label>
+                        <textarea class="input-field" id="validation-xml-input" rows="8" style="font-family:monospace; font-size:0.82rem; background:#0f172a; color:#f8fafc;"></textarea>
+                    </div>
+                    <div style="display:flex; justify-content:flex-end;">
+                        <button class="btn btn-primary" id="execute-validation-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            Run Schema Validation Check
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Validation Result Card -->
+                <div class="validation-result-box" id="validation-result-box" style="display:none;">
+                    <div class="validation-result-header" id="validation-status-header">
+                        <div>
+                            <span class="validation-badge" id="validation-status-badge">VALIDATION RESULT</span>
+                            <span id="validation-status-summary" style="margin-left:12px; font-weight:600;"></span>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <span class="validation-badge" id="wellformed-status-badge">Well-Formed</span>
+                            <span class="validation-badge" id="schemavalid-status-badge">Schema Valid</span>
+                        </div>
+                    </div>
+
+                    <div class="validation-details">
+                        <h4 style="font-size:0.9rem; text-transform:uppercase; color:var(--text-secondary); margin-bottom:0.5rem;">Validation Error Log</h4>
+                        <ul class="validation-error-list" id="validation-errors-list">
+                            <!-- Populated with validation errors or success message -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 Section 7: XML DOM Operations Section
+                 =============================================================== -->
+            <section class="page-section" id="section-dom">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                XML Document Object Model (DOM) Operations
+                            </h3>
+                            <p class="card-subtitle">Real-time node manipulation using DOMDocument (PHP) and DOMParser (JavaScript)</p>
+                        </div>
+                    </div>
+
+                    <!-- DOM Tabs -->
+                    <div class="dom-tabs">
+                        <button class="dom-tab-btn active" data-tab="retrieve">1. Retrieve Patient</button>
+                        <button class="dom-tab-btn" data-tab="modify">2. Modify Patient</button>
+                        <button class="dom-tab-btn" data-tab="add">3. Add Patient</button>
+                        <button class="dom-tab-btn" data-tab="tests">4. Medical Test Ops</button>
+                    </div>
+
+                    <!-- Tab 1: Retrieve Patient -->
+                    <div class="dom-tab-panel active" id="dom-tab-retrieve">
+                        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:1rem;">
+                            Searches XML DOM using <code>getElementsByTagName('patient')</code> and <code>getAttribute('id')</code> to retrieve matching subtree.
+                        </p>
+                        <div style="display:flex; gap:1rem; margin-bottom:1rem; max-width:500px;">
+                            <input type="text" class="input-field" id="dom-retrieve-id-input" placeholder="Enter Patient ID (e.g. P001)" value="P001">
+                            <button class="btn btn-primary" id="dom-retrieve-btn">Retrieve Node</button>
+                        </div>
+                        <div id="dom-retrieve-result"></div>
+                        <pre class="dom-display-code" id="dom-retrieve-xml-pre"></pre>
+                    </div>
+
+                    <!-- Tab 2: Modify Patient -->
+                    <div class="dom-tab-panel" id="dom-tab-modify">
+                        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:1rem;">
+                            Locates target &lt;patient&gt; node and modifies child elements via <code>nodeValue / textContent</code>.
+                        </p>
+                        <div style="margin-bottom:1rem;">
+                            <label class="form-label">Select Patient to Modify:</label>
+                            <select class="select-field" id="dom-modify-patient-select" style="max-width:400px;"></select>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Updated Name:</label>
+                                <input type="text" class="input-field" id="dom-modify-name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Updated Age:</label>
+                                <input type="number" class="input-field" id="dom-modify-age">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Updated Doctor:</label>
+                                <input type="text" class="input-field" id="dom-modify-doctor">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Updated Department:</label>
+                                <select class="select-field" id="dom-modify-dept">
+                                    <option value="Cardiology">Cardiology</option>
+                                    <option value="Neurology">Neurology</option>
+                                    <option value="Orthopedics">Orthopedics</option>
+                                    <option value="Dermatology">Dermatology</option>
+                                    <option value="Pediatrics">Pediatrics</option>
+                                    <option value="General Medicine">General Medicine</option>
+                                    <option value="ENT">ENT</option>
+                                    <option value="Ophthalmology">Ophthalmology</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Updated Diagnosis:</label>
+                                <input type="text" class="input-field" id="dom-modify-diagnosis">
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:flex-end;">
+                            <button class="btn btn-teal" id="dom-modify-btn">Apply DOM Modification</button>
+                        </div>
+                        <pre class="dom-display-code" id="dom-modify-result-pre"></pre>
+                    </div>
+
+                    <!-- Tab 3: Add Patient -->
+                    <div class="dom-tab-panel" id="dom-tab-add">
+                        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:1rem;">
+                            Programmatically constructs &lt;patient&gt; element tree using <code>createElement()</code>, <code>setAttribute()</code>, and <code>appendChild()</code>.
+                        </p>
+                        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1.25rem;">
+                            <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1rem;">
+                                Click below to launch the dedicated registration form which creates DOM nodes, validates unique IDs, and saves to XML DOM memory.
+                            </p>
+                            <button class="btn btn-primary" id="dom-add-submit-btn">Open Add Patient Registration Form &rarr;</button>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Medical Test Operations -->
+                    <div class="dom-tab-panel" id="dom-tab-tests">
+                        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:1rem;">
+                            Perform sub-element operations: retrieve tests, add new &lt;test&gt; node, or remove &lt;test&gt; element.
+                        </p>
+                        <div style="margin-bottom:1rem;">
+                            <label class="form-label">Target Patient:</label>
+                            <select class="select-field" id="dom-test-patient-select" style="max-width:400px;"></select>
+                        </div>
+
+                        <div style="margin-bottom:1.5rem;">
+                            <h5 style="font-size:0.85rem; text-transform:uppercase; color:var(--text-secondary); margin-bottom:0.5rem;">Existing Attached Tests</h5>
+                            <div id="dom-existing-tests-list"></div>
+                        </div>
+
+                        <div style="background:#f0fdfa; border:1px solid #ccfbf1; border-radius:8px; padding:1.25rem;">
+                            <h5 style="color:var(--teal-hover); font-size:0.9rem; margin-bottom:0.75rem;">+ Append New Test Node via appendChild()</h5>
+                            <div style="display:grid; grid-template-columns: 2fr 2fr 1.5fr auto; gap:0.75rem; align-items:center;">
+                                <input type="text" class="input-field" id="dom-new-test-name" placeholder="Test Name (e.g. Lipid Profile)">
+                                <input type="text" class="input-field" id="dom-new-test-result" placeholder="Result (e.g. 195 mg/dL)">
+                                <select class="select-field" id="dom-new-test-status">
+                                    <option value="Normal">Normal</option>
+                                    <option value="High">High</option>
+                                    <option value="Low">Low</option>
+                                    <option value="Elevated">Elevated</option>
+                                    <option value="Critical">Critical</option>
+                                </select>
+                                <button class="btn btn-teal" id="dom-test-add-btn">Add Test</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DOM Tree Visualizer -->
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Live XML DOM Document Tree Serialization</h3>
+                            <p class="card-subtitle">Current in-memory DOM serialized via XMLSerializer()</p>
+                        </div>
+                        <button class="btn btn-outline btn-sm" onclick="refreshDomTreePreview()">Refresh Tree</button>
+                    </div>
+                    <pre class="dom-display-code" id="dom-tree-preview-pre" style="max-height:300px;"></pre>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 Section 8: XSLT Reports Section
+                 =============================================================== -->
+            <section class="page-section" id="section-xslt">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                                XSLT Transformation Engine (patients.xml &rarr; patients.xsl &rarr; HTML Report)
+                            </h3>
+                            <p class="card-subtitle">Transforms raw clinical XML data into professional HTML medical report via XPath templates</p>
+                        </div>
+                    </div>
+
+                    <!-- XSLT Controls -->
+                    <div class="xslt-controls">
+                        <button class="btn btn-primary" id="xslt-transform-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline></svg>
+                            Transform XML using XSLT
+                        </button>
+                        <button class="btn btn-outline" id="xslt-view-xml-btn">View XML Source</button>
+                        <button class="btn btn-outline" id="xslt-view-xsl-btn">View XSLT Stylesheet</button>
+                    </div>
+
+                    <div id="xslt-mode-note" style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
+                        Transforming XML Document...
+                    </div>
+
+                    <!-- Transformed Output Iframe -->
+                    <iframe class="xslt-preview-frame" id="xslt-result-frame" title="XSLT Transformed Medical Report"></iframe>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 Section 9: XML Source Viewer Section
+                 =============================================================== -->
+            <section class="page-section" id="section-source">
+                <div class="source-tabs">
+                    <button class="source-tab-btn active" data-file="patients.xml">patients.xml (Data Document)</button>
+                    <button class="source-tab-btn" data-file="patients.xsd">patients.xsd (Schema Rules)</button>
+                    <button class="source-tab-btn" data-file="patients.xsl">patients.xsl (XSLT Stylesheet)</button>
+                </div>
+
+                <div class="source-viewer-card">
+                    <div class="source-viewer-header">
+                        <div class="source-filename" id="source-filename-label">patients.xml</div>
+                        <div style="display:flex; gap:0.5rem;">
+                            <button class="btn btn-outline btn-sm" id="copy-source-btn" style="color:#ffffff; border-color:#475569;">
+                                Copy Source
+                            </button>
+                            <button class="btn btn-primary btn-sm" id="download-source-btn">
+                                Download File
+                            </button>
+                        </div>
+                    </div>
+                    <pre class="source-code-pre" id="source-code-pre"></pre>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</div>
+
+<!-- ===========================================================================
+     Patient Detail Modal Dialog
+     =========================================================================== -->
+<div class="modal-backdrop" id="patient-modal-backdrop">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3 class="card-title" id="modal-patient-name">Patient Details</h3>
+            <button class="modal-close-btn" onclick="closePatientModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="modal-patient-body">
+            <!-- Populated dynamically via JS -->
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closePatientModal()">Close</button>
+            <button class="btn btn-teal" id="modal-open-report-btn">Generate Official Medical Report &rarr;</button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ===========================================================================
+     Embedded XML / XSD / XSL Data for Zero-Setup Browser Preview (No XAMPP required)
+     =========================================================================== -->
+<script type="text/xml" id="embedded-patients-xml">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML-Based Hospital Patient Information and Medical Report Management System
+  File: patients.xml
+  Description: Clinical patient records database with diagnostic test results
+-->
+<hospital xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="patients.xsd">
+    <patient id="P001">
+        <name>Arun Kumar</name>
+        <age>35</age>
+        <gender>Male</gender>
+        <bloodGroup>O+</bloodGroup>
+        <doctor>Dr. Rajesh Varma</doctor>
+        <department>Cardiology</department>
+        <diagnosis>Stage 1 Essential Hypertension and Dyslipidemia</diagnosis>
+        <medicalTests>
+            <test name="Blood Pressure">
+                <result>142/92 mmHg</result>
+                <status>High</status>
+            </test>
+            <test name="Serum Total Cholesterol">
+                <result>238 mg/dL</result>
+                <status>High</status>
+            </test>
+            <test name="Resting 12-Lead ECG">
+                <result>Normal sinus rhythm, HR 76 bpm</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P002">
+        <name>Priya Sharma</name>
+        <age>28</age>
+        <gender>Female</gender>
+        <bloodGroup>B+</bloodGroup>
+        <doctor>Dr. Ananya Iyer</doctor>
+        <department>Dermatology</department>
+        <diagnosis>Moderate Atopic Dermatitis with Secondary Lichenification</diagnosis>
+        <medicalTests>
+            <test name="Total Serum IgE">
+                <result>385 IU/mL</result>
+                <status>High</status>
+            </test>
+            <test name="Absolute Eosinophil Count">
+                <result>520 cells/mcL</result>
+                <status>High</status>
+            </test>
+            <test name="Skin Prick Allergy Panel">
+                <result>Sensitization to Dermatophagoides pteronyssinus</result>
+                <status>High</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P003">
+        <name>Mohammed Farooq</name>
+        <age>52</age>
+        <gender>Male</gender>
+        <bloodGroup>A+</bloodGroup>
+        <doctor>Dr. Vikram Sengupta</doctor>
+        <department>Neurology</department>
+        <diagnosis>Chronic Migraine with Visual Aura and Cervical Radiculopathy</diagnosis>
+        <medicalTests>
+            <test name="Brain MRI with Contrast">
+                <result>No acute ischemic stroke or intracranial lesion</result>
+                <status>Normal</status>
+            </test>
+            <test name="Cervical Spine MRI">
+                <result>C5-C6 disc osteophyte complex with neuroforaminal narrowing</result>
+                <status>High</status>
+            </test>
+            <test name="Serum 25-OH Vitamin D">
+                <result>16.4 ng/mL</result>
+                <status>Low</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P004">
+        <name>Sneha Patel</name>
+        <age>44</age>
+        <gender>Female</gender>
+        <bloodGroup>AB-</bloodGroup>
+        <doctor>Dr. Sunita Mehra</doctor>
+        <department>Orthopedics</department>
+        <diagnosis>Bilateral Knee Primary Osteoarthritis (Kellgren-Lawrence Grade II)</diagnosis>
+        <medicalTests>
+            <test name="Bilateral Knee Weight-Bearing X-Ray">
+                <result>Medial compartment joint space narrowing with marginal osteophytes</result>
+                <status>High</status>
+            </test>
+            <test name="Erythrocyte Sedimentation Rate (ESR)">
+                <result>26 mm/hr</result>
+                <status>High</status>
+            </test>
+            <test name="Serum Uric Acid">
+                <result>5.2 mg/dL</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P005">
+        <name>David Wilson</name>
+        <age>61</age>
+        <gender>Male</gender>
+        <bloodGroup>O-</bloodGroup>
+        <doctor>Dr. Rajesh Varma</doctor>
+        <department>Cardiology</department>
+        <diagnosis>Coronary Artery Disease Status Post Drug-Eluting Stent (LAD)</diagnosis>
+        <medicalTests>
+            <test name="High-Sensitivity Cardiac Troponin I">
+                <result>0.015 ng/mL</result>
+                <status>Normal</status>
+            </test>
+            <test name="2D Transthoracic Echocardiogram">
+                <result>LVEF 52%, Grade I left ventricular diastolic dysfunction</result>
+                <status>Normal</status>
+            </test>
+            <test name="Fasting Plasma Glucose">
+                <result>154 mg/dL</result>
+                <status>High</status>
+            </test>
+            <test name="Glycated Hemoglobin (HbA1c)">
+                <result>7.4 %</result>
+                <status>High</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P006">
+        <name>Ananya Deshmukh</name>
+        <age>8</age>
+        <gender>Female</gender>
+        <bloodGroup>A-</bloodGroup>
+        <doctor>Dr. Meenakshi Sundaram</doctor>
+        <department>Pediatrics</department>
+        <diagnosis>Acute Bronchial Asthma Flare Triggered by Viral URTI</diagnosis>
+        <medicalTests>
+            <test name="Peak Expiratory Flow Rate (PEFR)">
+                <result>165 L/min (64% predicted)</result>
+                <status>Low</status>
+            </test>
+            <test name="Pulse Oximetry (Room Air SpO2)">
+                <result>94 %</result>
+                <status>Low</status>
+            </test>
+            <test name="Chest X-Ray PA View">
+                <result>Bilateral pulmonary hyperinflation without focal consolidation</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P007">
+        <name>Ramesh Chandra</name>
+        <age>67</age>
+        <gender>Male</gender>
+        <bloodGroup>B-</bloodGroup>
+        <doctor>Dr. Harish Nambiar</doctor>
+        <department>Ophthalmology</department>
+        <diagnosis>Senile Nuclear Sclerotic Cataract (OD) and Primary Open-Angle Glaucoma</diagnosis>
+        <medicalTests>
+            <test name="Goldmann Applanation Tonometry">
+                <result>Right: 24 mmHg, Left: 18 mmHg</result>
+                <status>High</status>
+            </test>
+            <test name="Snellen Visual Acuity">
+                <result>OD: 6/24, OS: 6/9</result>
+                <status>Low</status>
+            </test>
+            <test name="Optical Coherence Tomography (OCT RNFL)">
+                <result>Inferior neuroretinal rim thinning in right optic nerve</result>
+                <status>High</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P008">
+        <name>Kavita Nair</name>
+        <age>39</age>
+        <gender>Female</gender>
+        <bloodGroup>O+</bloodGroup>
+        <doctor>Dr. Sanjeev Kapoor</doctor>
+        <department>ENT</department>
+        <diagnosis>Chronic Suppurative Otitis Media (Tubotympanic) and Left Septal Deviation</diagnosis>
+        <medicalTests>
+            <test name="Pure Tone Audiometry (PTA)">
+                <result>Moderate conductive hearing loss (35 dB) left ear</result>
+                <status>High</status>
+            </test>
+            <test name="Ear Exudate Microbiological Culture">
+                <result>Pseudomonas aeruginosa sensitive to Ciprofloxacin and Amikacin</result>
+                <status>High</status>
+            </test>
+            <test name="High-Resolution CT Temporal Bone">
+                <result>Soft tissue density in middle ear cavity, ossicular chain intact</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P009">
+        <name>Vikram Malhotra</name>
+        <age>49</age>
+        <gender>Male</gender>
+        <bloodGroup>AB+</bloodGroup>
+        <doctor>Dr. Shalini Reddy</doctor>
+        <department>General Medicine</department>
+        <diagnosis>Type 2 Diabetes Mellitus with Distal Symmetrical Polyneuropathy</diagnosis>
+        <medicalTests>
+            <test name="Fasting Blood Sugar">
+                <result>172 mg/dL</result>
+                <status>High</status>
+            </test>
+            <test name="Post-Prandial Blood Sugar (2 hr)">
+                <result>258 mg/dL</result>
+                <status>High</status>
+            </test>
+            <test name="Serum Creatinine">
+                <result>1.05 mg/dL</result>
+                <status>Normal</status>
+            </test>
+            <test name="Urine Albumin-to-Creatinine Ratio (UACR)">
+                <result>48 mg/g (Microalbuminuria)</result>
+                <status>High</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P010">
+        <name>Ritu Singhania</name>
+        <age>31</age>
+        <gender>Female</gender>
+        <bloodGroup>B+</bloodGroup>
+        <doctor>Dr. Vikram Sengupta</doctor>
+        <department>Neurology</department>
+        <diagnosis>Right Posterior Canal Benign Paroxysmal Positional Vertigo (BPPV)</diagnosis>
+        <medicalTests>
+            <test name="Dix-Hallpike Diagnostic Maneuver">
+                <result>Upbeat torsional nystagmus provoked in right-ear-down position</result>
+                <status>High</status>
+            </test>
+            <test name="Video Head Impulse Test (vHIT)">
+                <result>Normal vestibulo-ocular reflex gain across all 6 semicircular canals</result>
+                <status>Normal</status>
+            </test>
+            <test name="Electrolyte Panel (Serum Na/K/Cl)">
+                <result>Na: 139 mEq/L, K: 4.1 mEq/L, Cl: 101 mEq/L</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P011">
+        <name>Aditya Joshi</name>
+        <age>19</age>
+        <gender>Male</gender>
+        <bloodGroup>O+</bloodGroup>
+        <doctor>Dr. Sunita Mehra</doctor>
+        <department>Orthopedics</department>
+        <diagnosis>Complete Mid-Substance Anterior Cruciate Ligament (ACL) Tear</diagnosis>
+        <medicalTests>
+            <test name="Left Knee High-Field MRI">
+                <result>Complete disruption of ACL fibers with lateral femoral condyle bone contusion</result>
+                <status>High</status>
+            </test>
+            <test name="Lachman Clinical Stability Examination">
+                <result>Grade II laxity with soft indistinct end-point</result>
+                <status>High</status>
+            </test>
+            <test name="Plain Radiograph Left Knee">
+                <result>No acute fracture or avulsion lesion noted</result>
+                <status>Normal</status>
+            </test>
+        </medicalTests>
+    </patient>
+
+    <patient id="P012">
+        <name>Farzana Begum</name>
+        <age>58</age>
+        <gender>Female</gender>
+        <bloodGroup>A+</bloodGroup>
+        <doctor>Dr. Shalini Reddy</doctor>
+        <department>General Medicine</department>
+        <diagnosis>Primary Hypothyroidism and Metabolic Syndrome</diagnosis>
+        <medicalTests>
+            <test name="Serum Thyroid Stimulating Hormone (TSH)">
+                <result>9.4 uIU/mL</result>
+                <status>High</status>
+            </test>
+            <test name="Free Thyroxine (Free T4)">
+                <result>0.68 ng/dL</result>
+                <status>Low</status>
+            </test>
+            <test name="Fasting Serum Triglycerides">
+                <result>224 mg/dL</result>
+                <status>High</status>
+            </test>
+            <test name="High-Density Lipoprotein (HDL) Cholesterol">
+                <result>38 mg/dL</result>
+                <status>Low</status>
+            </test>
+        </medicalTests>
+    </patient>
+</hospital>
+</script>
+
+<script type="text/xml" id="embedded-patients-xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML-Based Hospital Patient Information and Medical Report Management System
+  File: patients.xsd
+  Description: W3C XML Schema Definition defining structure and validation constraints for patients.xml
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <!-- Root Element -->
+    <xs:element name="hospital">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="patient" type="PatientType" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+
+        <!-- Identity Constraint: Patient ID Must Be Unique -->
+        <xs:unique name="UniquePatientId">
+            <xs:selector xpath="patient"/>
+            <xs:field xpath="@id"/>
+        </xs:unique>
+    </xs:element>
+
+    <!-- Patient Complex Type Definition -->
+    <xs:complexType name="PatientType">
+        <xs:sequence>
+            <!-- Patient Name: Non-empty string, 1 to 100 characters -->
+            <xs:element name="name">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                        <xs:whiteSpace value="collapse"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Age: Integer restricted between 0 and 125 -->
+            <xs:element name="age">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="125"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Gender: Enumerated to Male, Female, Other -->
+            <xs:element name="gender">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Male"/>
+                        <xs:enumeration value="Female"/>
+                        <xs:enumeration value="Other"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Blood Group: Restricted to 8 standard human blood phenotypes -->
+            <xs:element name="bloodGroup">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="A+"/>
+                        <xs:enumeration value="A-"/>
+                        <xs:enumeration value="B+"/>
+                        <xs:enumeration value="B-"/>
+                        <xs:enumeration value="AB+"/>
+                        <xs:enumeration value="AB-"/>
+                        <xs:enumeration value="O+"/>
+                        <xs:enumeration value="O-"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Doctor Name: Non-empty string -->
+            <xs:element name="doctor">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                        <xs:whiteSpace value="collapse"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Department: Restricted to authorized hospital clinical departments -->
+            <xs:element name="department">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Cardiology"/>
+                        <xs:enumeration value="Neurology"/>
+                        <xs:enumeration value="Orthopedics"/>
+                        <xs:enumeration value="Dermatology"/>
+                        <xs:enumeration value="Pediatrics"/>
+                        <xs:enumeration value="General Medicine"/>
+                        <xs:enumeration value="ENT"/>
+                        <xs:enumeration value="Ophthalmology"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Diagnosis: Clinical summary, non-empty -->
+            <xs:element name="diagnosis">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="300"/>
+                        <xs:whiteSpace value="collapse"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Medical Tests: Container for diagnostic test elements -->
+            <xs:element name="medicalTests" type="MedicalTestsType"/>
+        </xs:sequence>
+
+        <!-- Patient ID Attribute: Required, must follow pattern (e.g., P001) -->
+        <xs:attribute name="id" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="P[0-9]{3,5}"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <!-- Medical Tests Container Type -->
+    <xs:complexType name="MedicalTestsType">
+        <xs:sequence>
+            <xs:element name="test" type="TestType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Individual Medical Test Type -->
+    <xs:complexType name="TestType">
+        <xs:sequence>
+            <!-- Test Result: Non-empty test reading -->
+            <xs:element name="result">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="150"/>
+                        <xs:whiteSpace value="collapse"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Test Status: Clinical evaluation classification -->
+            <xs:element name="status">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Normal"/>
+                        <xs:enumeration value="High"/>
+                        <xs:enumeration value="Low"/>
+                        <xs:enumeration value="Elevated"/>
+                        <xs:enumeration value="Critical"/>
+                        <xs:enumeration value="Abnormal"/>
+                        <xs:enumeration value="Positive"/>
+                        <xs:enumeration value="Negative"/>
+                        <xs:enumeration value="Pending"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+
+        <!-- Test Name Attribute: Required non-empty string -->
+        <xs:attribute name="name" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="1"/>
+                    <xs:maxLength value="100"/>
+                    <xs:whiteSpace value="collapse"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+</xs:schema>
+</script>
+
+<script type="text/xml" id="embedded-patients-xsl">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML-Based Hospital Patient Information and Medical Report Management System
+  File: patients.xsl
+  Description: XSLT Stylesheet transforming patients.xml into an official, print-ready HTML Medical Diagnostic Report
+-->
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output method="html" encoding="UTF-8" indent="yes" doctype-public="about:legacy-compat"/>
+
+    <xsl:template match="/">
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>Hospital Clinical Diagnostic &amp; Medical Report</title>
+            <style>
+                :root {
+                    --primary: #0284c7;
+                    --primary-dark: #0369a1;
+                    --teal: #0d9488;
+                    --teal-light: #f0fdfa;
+                    --bg-slate: #f8fafc;
+                    --text-main: #0f172a;
+                    --text-muted: #64748b;
+                    --border: #e2e8f0;
+                }
+                * {
+                    box-sizing: border-box;
+                    margin: 0;
+                    padding: 0;
+                }
+                body {
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                    background-color: var(--bg-slate);
+                    color: var(--text-main);
+                    line-height: 1.5;
+                    padding: 24px;
+                }
+                .report-wrapper {
+                    max-width: 1000px;
+                    margin: 0 auto;
+                }
+                /* Hospital Letterhead Header */
+                .hospital-header {
+                    background: #ffffff;
+                    border: 1px solid var(--border);
+                    border-radius: 12px;
+                    padding: 24px 32px;
+                    margin-bottom: 24px;
+                    box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05);
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    gap: 16px;
+                }
+                .brand-group {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                }
+                .hospital-logo {
+                    width: 52px;
+                    height: 52px;
+                    background: linear-gradient(135deg, #0284c7, #0d9488);
+                    border-radius: 12px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #ffffff;
+                    font-size: 26px;
+                    font-weight: 700;
+                    box-shadow: 0 4px 8px rgba(2, 132, 199, 0.3);
+                }
+                .hospital-title h1 {
+                    font-size: 22px;
+                    font-weight: 700;
+                    color: #0369a1;
+                    letter-spacing: -0.02em;
+                }
+                .hospital-title p {
+                    font-size: 13px;
+                    color: var(--text-muted);
+                    font-weight: 500;
+                }
+                .report-meta {
+                    text-align: right;
+                    font-size: 13px;
+                }
+                .report-badge {
+                    display: inline-block;
+                    background: var(--teal-light);
+                    color: var(--teal);
+                    border: 1px solid #99f6e4;
+                    padding: 4px 10px;
+                    border-radius: 20px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    margin-bottom: 4px;
+                }
+                .summary-bar {
+                    background: #e0f2fe;
+                    border: 1px solid #bae6fd;
+                    color: #0369a1;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    margin-bottom: 24px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+
+                /* Patient Medical Report Card */
+                .patient-report-card {
+                    background: #ffffff;
+                    border: 1px solid var(--border);
+                    border-radius: 12px;
+                    margin-bottom: 28px;
+                    overflow: hidden;
+                    box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.05);
+                    page-break-inside: avoid;
+                }
+                .patient-card-header {
+                    background: linear-gradient(to right, #f8fafc, #f1f5f9);
+                    border-bottom: 1px solid var(--border);
+                    padding: 16px 24px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 12px;
+                }
+                .patient-id-tag {
+                    font-family: monospace;
+                    background: #0284c7;
+                    color: #ffffff;
+                    padding: 4px 10px;
+                    border-radius: 6px;
+                    font-size: 13px;
+                    font-weight: 700;
+                }
+                .patient-card-body {
+                    padding: 24px;
+                }
+
+                /* Tables Styling */
+                .section-heading {
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                    color: #0369a1;
+                    font-weight: 700;
+                    margin: 16px 0 8px 0;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+                .section-heading:first-child {
+                    margin-top: 0;
+                }
+                .report-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 20px;
+                    font-size: 13.5px;
+                }
+                .report-table th {
+                    background-color: #f1f5f9;
+                    color: #334155;
+                    font-weight: 600;
+                    text-align: left;
+                    padding: 10px 14px;
+                    border: 1px solid var(--border);
+                }
+                .report-table td {
+                    padding: 10px 14px;
+                    border: 1px solid var(--border);
+                    color: #1e293b;
+                }
+                .report-table tbody tr:nth-child(even) {
+                    background-color: #f8fafc;
+                }
+                .report-table tbody tr:hover {
+                    background-color: #f0f9ff;
+                }
+
+                /* Status Badges */
+                .status-badge {
+                    display: inline-block;
+                    padding: 3px 9px;
+                    border-radius: 12px;
+                    font-size: 12px;
+                    font-weight: 600;
+                    text-align: center;
+                }
+                .status-normal {
+                    background-color: #dcfce7;
+                    color: #166534;
+                    border: 1px solid #bbf7d0;
+                }
+                .status-high, .status-critical, .status-elevated {
+                    background-color: #fee2e2;
+                    color: #991b1b;
+                    border: 1px solid #fecaca;
+                }
+                .status-low {
+                    background-color: #e0f2fe;
+                    color: #075985;
+                    border: 1px solid #bae6fd;
+                }
+
+                /* Clinical Sign-off Footer */
+                .report-footer-seal {
+                    margin-top: 16px;
+                    padding-top: 16px;
+                    border-top: 1px dashed var(--border);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                    font-size: 12px;
+                    color: var(--text-muted);
+                }
+                .signature-line {
+                    border-top: 1px solid #94a3b8;
+                    width: 200px;
+                    text-align: center;
+                    padding-top: 4px;
+                    font-weight: 600;
+                    color: #334155;
+                }
+
+                /* Print-Friendly Media Query */
+                @media print {
+                    body {
+                        background: #ffffff;
+                        padding: 0;
+                    }
+                    .report-wrapper {
+                        max-width: 100%;
+                    }
+                    .hospital-header, .patient-report-card {
+                        box-shadow: none;
+                        border: 1px solid #cbd5e1;
+                    }
+                    .patient-report-card {
+                        page-break-after: always;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="report-wrapper">
+                <!-- Header -->
+                <header class="hospital-header">
+                    <div class="brand-group">
+                        <div class="hospital-logo">&#10010;</div>
+                        <div class="hospital-title">
+                            <h1>AURA METROPOLITAN HOSPITAL</h1>
+                            <p>Clinical Diagnostic &amp; Medical Informatics Directorate</p>
+                        </div>
+                    </div>
+                    <div class="report-meta">
+                        <div class="report-badge">XSLT Transformed Report</div>
+                        <div>Official Clinical Documentation</div>
+                        <div style="color:#64748b; font-size:12px;">Standard: ISO 9001:2015 Accredited</div>
+                    </div>
+                </header>
+
+                <!-- Summary Bar -->
+                <div class="summary-bar">
+                    <span>Clinical Registry Status: <strong>Active Records</strong></span>
+                    <span>Total Patients Transformed: <strong><xsl:value-of select="count(//patient)"/></strong></span>
+                    <span>Total Diagnostic Tests Documented: <strong><xsl:value-of select="count(//test)"/></strong></span>
+                </div>
+
+                <!-- Iterate Each Patient -->
+                <xsl:for-each select="hospital/patient">
+                    <article class="patient-report-card">
+                        <div class="patient-card-header">
+                            <div>
+                                <span class="patient-id-tag"><xsl:value-of select="@id"/></span>
+                                <strong style="font-size: 16px; margin-left: 10px; color: #0f172a;">
+                                    <xsl:value-of select="name"/>
+                                </strong>
+                            </div>
+                            <div style="font-size: 13px; color: #475569;">
+                                Department: <strong style="color: #0284c7;"><xsl:value-of select="department"/></strong>
+                            </div>
+                        </div>
+
+                        <div class="patient-card-body">
+                            <!-- 1. Patient Details Table -->
+                            <h3 class="section-heading">&#128100; Patient Details Table</h3>
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th>Patient ID</th>
+                                        <th>Patient Name</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+                                        <th>Blood Group</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong><xsl:value-of select="@id"/></strong></td>
+                                        <td><xsl:value-of select="name"/></td>
+                                        <td><xsl:value-of select="age"/> Years</td>
+                                        <td><xsl:value-of select="gender"/></td>
+                                        <td><strong style="color:#0284c7;"><xsl:value-of select="bloodGroup"/></strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- 2. Doctor Details Table -->
+                            <h3 class="section-heading">&#9877; Doctor Details Table</h3>
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th>Attending Physician</th>
+                                        <th>Assigned Department</th>
+                                        <th>Clinical Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong><xsl:value-of select="doctor"/></strong></td>
+                                        <td><xsl:value-of select="department"/></td>
+                                        <td>Consultant In-Charge (Assigned)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- 3. Medical Information Table -->
+                            <h3 class="section-heading">&#128399; Medical Information &amp; Diagnostic Tests</h3>
+                            <table class="report-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 28%;">Primary Diagnosis</th>
+                                        <th style="width: 32%;">Medical Test Name</th>
+                                        <th style="width: 25%;">Test Result Reading</th>
+                                        <th style="width: 15%;">Test Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <xsl:for-each select="medicalTests/test">
+                                        <tr>
+                                            <xsl:if test="position() = 1">
+                                                <td rowspan="{count(../test)}" style="vertical-align: top; background: #fafafa; font-weight: 500;">
+                                                    <xsl:value-of select="../../diagnosis"/>
+                                                </td>
+                                            </xsl:if>
+                                            <td><strong><xsl:value-of select="@name"/></strong></td>
+                                            <td><xsl:value-of select="result"/></td>
+                                            <td>
+                                                <xsl:choose>
+                                                    <xsl:when test="status = 'Normal'">
+                                                        <span class="status-badge status-normal">&#10003; Normal</span>
+                                                    </xsl:when>
+                                                    <xsl:when test="status = 'High' or status = 'Elevated' or status = 'Critical' or status = 'Positive' or status = 'Abnormal'">
+                                                        <span class="status-badge status-high">&#9650; <xsl:value-of select="status"/></span>
+                                                    </xsl:when>
+                                                    <xsl:when test="status = 'Low'">
+                                                        <span class="status-badge status-low">&#9660; Low</span>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <span class="status-badge status-low"><xsl:value-of select="status"/></span>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                            </td>
+                                        </tr>
+                                    </xsl:for-each>
+                                </tbody>
+                            </table>
+
+                            <!-- Sign-off -->
+                            <div class="report-footer-seal">
+                                <div>
+                                    <p>Electronic Health Record Verification: <strong>VALIDATED</strong></p>
+                                    <p>Document Generated via XML/XSLT Engine</p>
+                                </div>
+                                <div class="signature-line">
+                                    <xsl:value-of select="doctor"/><br/>
+                                    <span style="font-size: 11px; font-weight: normal; color: #64748b;">Attending Medical Officer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </xsl:for-each>
+            </div>
+        </body>
+        </html>
+    </xsl:template>
+</xsl:stylesheet>
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

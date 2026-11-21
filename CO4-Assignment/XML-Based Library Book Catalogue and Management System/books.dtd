@@ -1,0 +1,17 @@
+<!--
+  XML-Based Library Book Catalogue and Management System
+  Document Type Definition (DTD) - books.dtd
+  Defines structural rules, allowed child elements, and attributes for books.xml
+-->
+
+<!ELEMENT library (book+)>
+
+<!ELEMENT book (title, author, publisher, isbn, price, year)>
+<!ATTLIST book id ID #REQUIRED>
+
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT publisher (#PCDATA)>
+<!ELEMENT isbn (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT year (#PCDATA)>

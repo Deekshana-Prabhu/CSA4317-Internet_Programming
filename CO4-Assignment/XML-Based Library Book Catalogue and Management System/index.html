@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioXML - XML-Based Library Book Catalogue & Management System</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- ======================================================================
+         1. Left Sidebar Navigation
+         ====================================================================== -->
+    <aside class="sidebar" id="mainSidebar">
+      <!-- Brand Logo & Title -->
+      <div class="sidebar-brand">
+        <a href="#" class="brand-wrapper" onclick="switchSection('dashboard'); return false;">
+          <div class="brand-icon">
+            <!-- Professional Open Book SVG -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              <path d="M9 7h6"/>
+              <path d="M9 11h6"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <div class="brand-title">
+              BiblioXML <span class="brand-badge">XML 1.0</span>
+            </div>
+            <div class="brand-subtitle">Library Management</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Core Management</div>
+
+        <a class="nav-link active" data-section="dashboard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="3" width="7" height="9" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="5" rx="1.5"></rect>
+            <rect x="14" y="12" width="7" height="9" rx="1.5"></rect>
+            <rect x="3" y="16" width="7" height="5" rx="1.5"></rect>
+          </svg>
+          <span class="nav-text">Dashboard</span>
+        </a>
+
+        <a class="nav-link" data-section="catalogue">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+          <span class="nav-text">Book Catalogue</span>
+          <span class="nav-badge" id="navBadgeBooks">12</span>
+        </a>
+
+        <a class="nav-link" data-section="search">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span class="nav-text">Search Books</span>
+        </a>
+
+        <a class="nav-link" data-section="add-book">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+          <span class="nav-text">Add New Book</span>
+        </a>
+
+        <div class="nav-section-title" style="margin-top: 0.75rem;">XML Technologies</div>
+
+        <a class="nav-link" data-section="validation">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
+          <span class="nav-text">XML Validation</span>
+        </a>
+
+        <a class="nav-link" data-section="dom-operations">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+            <circle cx="12" cy="12" r="2"></circle>
+          </svg>
+          <span class="nav-text">DOM Operations</span>
+        </a>
+
+        <a class="nav-link" data-section="xslt-transform">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          <span class="nav-text">XSLT Transformation</span>
+        </a>
+
+        <a class="nav-link" data-section="source-viewer">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span class="nav-text">XML Source Viewer</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer with Collapse Control -->
+      <div class="sidebar-footer">
+        <button class="collapse-btn" id="sidebarCollapseBtn" title="Toggle Sidebar Width">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="11 19 4 12 11 5"></polyline>
+            <polyline points="18 19 11 12 18 5"></polyline>
+          </svg>
+          <span class="collapse-text">Collapse Menu</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Mobile Drawer Backdrop -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- ======================================================================
+         Main Application Wrapper
+         ====================================================================== -->
+    <div class="main-wrapper">
+      
+      <!-- Top Sticky Navigation Bar -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="mobile-toggle-btn" id="mobileToggleBtn" title="Open Navigation Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="breadcrumb-container">
+            <span class="breadcrumb-root">Library</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current" id="breadcrumbCurrent">Dashboard</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="status-badge" title="XML DOM Document is successfully loaded into memory">
+            <span class="status-dot"></span>
+            <span>XML DOM Ready</span>
+          </div>
+          <button class="header-btn" onclick="resetXmlDatabase()" title="Reset catalogue to original 12 sample books">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+            <span>Reset DB</span>
+          </button>
+          <button class="header-btn" onclick="viewXmlSource()" title="Open XML Source View">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <span>View XML</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Body Container -->
+      <main class="content-body">
+
+        <!-- ==================================================================
+             Section 1: Dashboard
+             ================================================================== -->
+        <section class="section-view active" id="view-dashboard">
+          <!-- Welcome Hero Banner -->
+          <div class="welcome-banner">
+            <div class="banner-content">
+              <div class="banner-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                XML + DOM + XSLT Architecture
+              </div>
+              <h1 class="banner-title">Welcome to BiblioXML Library Suite</h1>
+              <p class="banner-text">
+                An interactive and visually modern XML Catalogue Management Platform powered by client-side XML DOM parsing, DTD/XSD validation engines, and XSLT stylesheet transformation.
+              </p>
+              <div class="banner-actions">
+                <button class="btn-banner-primary" data-nav-target="catalogue">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                  Browse Catalogue
+                </button>
+                <button class="btn-banner-secondary" data-nav-target="dom-operations">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                  DOM Workbench
+                </button>
+                <button class="btn-banner-secondary" data-nav-target="xslt-transform">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  XSLT Table
+                </button>
+              </div>
+            </div>
+            <div class="banner-art">
+              <div class="banner-icon-bubble">
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Statistics Grid -->
+          <div class="stats-grid">
+            <!-- Stat 1: Total Books -->
+            <div class="stat-card">
+              <div class="stat-icon-wrapper purple">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <div class="stat-value" id="statTotalBooks">12</div>
+                <div class="stat-label">Total XML Books</div>
+                <div class="stat-badge">Parsed from books.xml</div>
+              </div>
+            </div>
+
+            <!-- Stat 2: Total Authors -->
+            <div class="stat-card">
+              <div class="stat-icon-wrapper blue">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <div class="stat-value" id="statTotalAuthors">12</div>
+                <div class="stat-label">Unique Authors</div>
+                <div class="stat-badge">Dynamic XPath aggregation</div>
+              </div>
+            </div>
+
+            <!-- Stat 3: Total Publishers -->
+            <div class="stat-card">
+              <div class="stat-icon-wrapper green">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <div class="stat-value" id="statTotalPublishers">11</div>
+                <div class="stat-label">Publishing Houses</div>
+                <div class="stat-badge">Verified across records</div>
+              </div>
+            </div>
+
+            <!-- Stat 4: Average Book Price -->
+            <div class="stat-card">
+              <div class="stat-icon-wrapper amber">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <div class="stat-value" id="statAvgPrice">₹624.17</div>
+                <div class="stat-label">Average Price</div>
+                <div class="stat-badge">Computed via DOM numeric nodes</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Search Bar -->
+          <div class="dashboard-quick-search">
+            <svg class="quick-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="dashQuickSearch" class="quick-search-input" placeholder="Quick Search XML Books by Title, Author or Book ID (Press Enter)...">
+          </div>
+
+          <!-- Dashboard Content Grid -->
+          <div class="dashboard-grid">
+            <!-- Left Column: Featured & Recently Added -->
+            <div style="display: flex; flex-direction: column; gap: 1.75rem;">
+              <div class="panel-card">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    Featured Books
+                  </div>
+                  <span class="panel-action" data-nav-target="catalogue">View All &rarr;</span>
+                </div>
+                <div class="featured-books-row" id="dashboardFeaturedGrid">
+                  <!-- Dynamically Rendered -->
+                </div>
+              </div>
+
+              <div class="panel-card">
+                <div class="panel-header">
+                  <div class="panel-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    Recently Added Records
+                  </div>
+                  <span class="panel-action" data-nav-target="add-book">+ Add New Record</span>
+                </div>
+                <div class="featured-books-row" id="dashboardRecentTable">
+                  <!-- Dynamically Rendered -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Quick Action Shortcuts & Info -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div class="panel-card">
+                <div class="panel-header">
+                  <div class="panel-title">Quick Actions</div>
+                </div>
+                <div class="quick-actions-list">
+                  <a class="quick-action-item" data-nav-target="catalogue">
+                    <div class="action-icon-pill">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    </div>
+                    <span>Explore Book Catalogue</span>
+                  </a>
+
+                  <a class="quick-action-item" data-nav-target="add-book">
+                    <div class="action-icon-pill">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                    </div>
+                    <span>Add New Book (DOM Insertion)</span>
+                  </a>
+
+                  <a class="quick-action-item" data-nav-target="validation">
+                    <div class="action-icon-pill">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                    </div>
+                    <span>Validate DTD & XSD Rules</span>
+                  </a>
+
+                  <a class="quick-action-item" data-nav-target="xslt-transform">
+                    <div class="action-icon-pill">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <span>Execute XSLT Transformation</span>
+                  </a>
+
+                  <a class="quick-action-item" data-nav-target="source-viewer">
+                    <div class="action-icon-pill">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                    </div>
+                    <span>View XML, DTD & XSD Sources</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Technical Summary Card -->
+              <div class="notice-box info">
+                <div class="notice-title">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                  Browser Preview Active
+                </div>
+                <div>Operating directly in standard web browsers with in-memory XML DOM parsing and JavaScript validation. Compatible with XAMPP Apache execution via index.php.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             Section 2: Book Catalogue
+             ================================================================== -->
+        <section class="section-view" id="view-catalogue">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                XML Book Catalogue
+              </h2>
+              <p class="section-desc">Interactive catalogue populated directly from the parsed XML document nodes in books.xml.</p>
+            </div>
+            <button class="btn-primary" data-nav-target="add-book">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              Add New Book
+            </button>
+          </div>
+
+          <!-- Filter & Search Toolbar -->
+          <div class="catalogue-toolbar">
+            <div class="toolbar-search">
+              <svg class="quick-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="catalogueSearchInput" class="toolbar-input" placeholder="Search by title, author, or Book ID...">
+            </div>
+
+            <div class="toolbar-filters">
+              <!-- Filter by Publication Year -->
+              <select id="catalogueYearFilter" class="select-control">
+                <option value="all">All Years</option>
+              </select>
+
+              <!-- Sort Dropdown -->
+              <select id="catalogueSortSelect" class="select-control">
+                <option value="title-asc">Sort: Title (A &rarr; Z)</option>
+                <option value="title-desc">Sort: Title (Z &rarr; A)</option>
+                <option value="price-low">Sort: Price (Low &rarr; High)</option>
+                <option value="price-high">Sort: Price (High &rarr; Low)</option>
+                <option value="year-desc">Sort: Newest First</option>
+              </select>
+
+              <button class="btn-reset-filters" onclick="resetCatalogueFilters()">Reset</button>
+            </div>
+          </div>
+
+          <!-- Total Count Display Bar -->
+          <div class="catalogue-count-bar">
+            <div id="catalogueCountDisplay">Loading catalogue records...</div>
+          </div>
+
+          <!-- Dynamic Cards Grid -->
+          <div class="books-grid" id="booksGridContainer">
+            <!-- Dynamically Rendered by script.js -->
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             Section 3: Dedicated Search Books
+             ================================================================== -->
+        <section class="section-view" id="view-search">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                Search Book Catalogue
+              </h2>
+              <p class="section-desc">Instantly query the XML database by Title, Author name, or unique Book ID (XPath equivalent: <code>//book[contains(title, ...)]</code>).</p>
+            </div>
+          </div>
+
+          <div class="panel-card" style="margin-bottom: 2rem;">
+            <div style="max-width: 650px; margin: 1rem auto; text-align: center;">
+              <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem;">Find Any Book in the XML Repository</h3>
+              <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1.5rem;">Enter search criteria below to filter records across programming, AI, networks, algorithms, and systems.</p>
+              
+              <div style="position: relative;">
+                <input type="text" id="dedicatedSearchInput" class="toolbar-input" style="padding: 1rem 1rem 1rem 3rem; font-size: 1rem;" placeholder="Search by Book ID (e.g. B001), Title, or Author..." oninput="AppState.currentSearch = this.value; renderCatalogueGrid();">
+                <svg style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--primary);" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+
+              <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap;">
+                <button class="btn-card-action" onclick="document.getElementById('dedicatedSearchInput').value='Python'; AppState.currentSearch='Python'; renderCatalogueGrid();">Quick: "Python"</button>
+                <button class="btn-card-action" onclick="document.getElementById('dedicatedSearchInput').value='Artificial Intelligence'; AppState.currentSearch='Artificial Intelligence'; renderCatalogueGrid();">Quick: "AI"</button>
+                <button class="btn-card-action" onclick="document.getElementById('dedicatedSearchInput').value='B004'; AppState.currentSearch='B004'; renderCatalogueGrid();">Quick: "B004"</button>
+                <button class="btn-card-action" onclick="document.getElementById('dedicatedSearchInput').value='Security'; AppState.currentSearch='Security'; renderCatalogueGrid();">Quick: "Security"</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="catalogue-count-bar">
+            <strong>Matched XML Results:</strong>
+          </div>
+          <div class="books-grid" id="searchBooksGridContainer">
+            <!-- Will show filtered results -->
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             Section 4: Add New Book
+             ================================================================== -->
+        <section class="section-view" id="view-add-book">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                Add New Book Record
+              </h2>
+              <p class="section-desc">Create a new book element conforming to <code>books.dtd</code> and <code>books.xsd</code> specifications, inserted into the active XML DOM tree.</p>
+            </div>
+          </div>
+
+          <div class="form-layout-wrapper">
+            <!-- Left: Add Form Card -->
+            <div class="form-card">
+              <form id="addBookForm" novalidate>
+                <div class="form-grid">
+                  <!-- Book ID -->
+                  <div class="form-group">
+                    <label class="form-label" for="inputBookId">
+                      Book ID (ID Attribute) <span class="required-star">*</span>
+                    </label>
+                    <input type="text" id="inputBookId" class="form-input" placeholder="e.g. B013" required>
+                    <div class="form-helper">Must start with 'B' followed by digits (e.g. B013) & be unique.</div>
+                    <div class="field-error-msg" id="inputBookIdError"></div>
+                  </div>
+
+                  <!-- Publication Year -->
+                  <div class="form-group">
+                    <label class="form-label" for="inputYear">
+                      Publication Year <span class="required-star">*</span>
+                    </label>
+                    <input type="number" id="inputYear" class="form-input" placeholder="e.g. 2024" min="1900" max="2099" required>
+                    <div class="form-helper">Valid 4-digit publication year (1900-2099).</div>
+                    <div class="field-error-msg" id="inputYearError"></div>
+                  </div>
+
+                  <!-- Book Title -->
+                  <div class="form-group form-group-full">
+                    <label class="form-label" for="inputTitle">
+                      Book Title <span class="required-star">*</span>
+                    </label>
+                    <input type="text" id="inputTitle" class="form-input" placeholder="e.g. Distributed Cloud Computing Architecture" required>
+                    <div class="field-error-msg" id="inputTitleError"></div>
+                  </div>
+
+                  <!-- Author -->
+                  <div class="form-group">
+                    <label class="form-label" for="inputAuthor">
+                      Author Name <span class="required-star">*</span>
+                    </label>
+                    <input type="text" id="inputAuthor" class="form-input" placeholder="e.g. Dr. Robert Vance" required>
+                    <div class="field-error-msg" id="inputAuthorError"></div>
+                  </div>
+
+                  <!-- Publisher -->
+                  <div class="form-group">
+                    <label class="form-label" for="inputPublisher">
+                      Publisher <span class="required-star">*</span>
+                    </label>
+                    <input type="text" id="inputPublisher" class="form-input" placeholder="e.g. Silicon Media Press" required>
+                    <div class="field-error-msg" id="inputPublisherError"></div>
+                  </div>
+
+                  <!-- ISBN -->
+                  <div class="form-group">
+                    <label class="form-label" for="inputIsbn">
+                      ISBN Code <span class="required-star">*</span>
+                    </label>
+                    <input type="text" id="inputIsbn" class="form-input" placeholder="e.g. 9781234567812" required>
+                    <div class="form-helper">10 or 13 numeric digits without hyphens.</div>
+                    <div class="field-error-msg" id="inputIsbnError"></div>
+                  </div>
+
+                  <!-- Price -->
+                  <div class="form-group">
+                    <label class="form-label" for="inputPrice">
+                      Price (₹ / INR) <span class="required-star">*</span>
+                    </label>
+                    <input type="number" id="inputPrice" class="form-input" placeholder="e.g. 599.00" step="0.01" min="1" required>
+                    <div class="form-helper">Positive numeric value greater than 0.</div>
+                    <div class="field-error-msg" id="inputPriceError"></div>
+                  </div>
+
+                  <!-- Form Actions -->
+                  <div class="form-actions">
+                    <button type="reset" class="btn-secondary">Reset Form</button>
+                    <button type="submit" class="btn-primary">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                      </svg>
+                      Insert into XML DOM
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Right: Browser vs Server Distinction & Architecture -->
+            <div class="form-notice-card">
+              <div class="notice-box info">
+                <div class="notice-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                  Client-Side DOM Execution
+                </div>
+                <div>
+                  This browser demonstration uses JavaScript XML DOM methods (<code>createElement</code>, <code>setAttribute</code>, <code>appendChild</code>, <code>XMLSerializer</code>). Inserted books immediately update the catalogue, calculations, and local session memory.
+                </div>
+              </div>
+
+              <div class="notice-box warning">
+                <div class="notice-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                  Browser Sandbox Security Notice
+                </div>
+                <div>
+                  Browser JavaScript security sandboxing prevents web pages from directly overwriting files on the host disk (<code>books.xml</code>). 
+                  <br><br>
+                  For permanent disk file updates, the companion <strong>PHP implementation</strong> in <code>index.php</code> uses <code>$dom->save('books.xml')</code> when executed under XAMPP Apache.
+                </div>
+              </div>
+
+              <div style="font-size: 0.85rem; color: var(--text-muted); background: var(--bg-subtle); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                <strong>Equivalent PHP DOM Code:</strong>
+                <pre style="margin-top: 0.5rem; font-family: var(--font-mono); font-size: 0.78rem; color: #4338ca;">$book = $dom->createElement('book');
+$book->setAttribute('id', $id);
+$title = $dom->createElement('title', $titleVal);
+$book->appendChild($title);
+$dom->documentElement->appendChild($book);
+$dom->save('books.xml');</pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             Section 5: XML Validation (DTD & XSD)
+             ================================================================== -->
+        <section class="section-view" id="view-validation">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                XML Validation Engine (DTD & XSD)
+              </h2>
+              <p class="section-desc">Validate XML structure and constraints using both Document Type Definition (DTD) and W3C XML Schema Definition (XSD).</p>
+            </div>
+          </div>
+
+          <!-- Overview Cards -->
+          <div class="validation-overview-grid">
+            <div class="validation-card">
+              <div class="val-card-header">
+                <h3 style="font-size: 1.1rem; font-weight: 700;">Document Type Definition (DTD)</h3>
+                <span class="val-badge dtd">books.dtd</span>
+              </div>
+              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+                Defines the legal building blocks of <code>books.xml</code>: declares the root element <code>&lt;!ELEMENT library (book+)&gt;</code>, required sequence of child tags, and mandatory <code>id ID #REQUIRED</code> attribute.
+              </p>
+              <button class="btn-secondary" onclick="switchSourceTab('books.dtd'); switchSection('source-viewer');">
+                Inspect books.dtd Source &rarr;
+              </button>
+            </div>
+
+            <div class="validation-card">
+              <div class="val-card-header">
+                <h3 style="font-size: 1.1rem; font-weight: 700;">W3C XML Schema (XSD)</h3>
+                <span class="val-badge xsd">books.xsd</span>
+              </div>
+              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+                Provides strict datatype enforcement: <code>xs:decimal</code> with <code>minExclusive="0.00"</code> for price, <code>\\d{4}</code> positive integer for year, and regex pattern matching for 10/13-digit ISBNs.
+              </p>
+              <button class="btn-secondary" onclick="switchSourceTab('books.xsd'); switchSection('source-viewer');">
+                Inspect books.xsd Source &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- Preset Test Cases -->
+          <div class="test-cases-section">
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem;">Interactive Validation Testbed</h3>
+            <div class="test-cases-grid">
+              <!-- Test 1: Valid XML -->
+              <div class="test-case-card">
+                <div class="test-case-top">
+                  <div class="test-case-title">1. Standard Catalogue (books.xml)</div>
+                  <span class="test-case-tag tag-pass">Expected: PASS</span>
+                </div>
+                <div class="test-case-desc">Tests current loaded catalogue against both DTD and XSD rules. Fully compliant with all element and attribute constraints.</div>
+                <button class="btn-run-test" onclick="runPresetValidationTest('valid')">Run Validation &rarr;</button>
+              </div>
+
+              <!-- Test 2: Missing Author -->
+              <div class="test-case-card">
+                <div class="test-case-top">
+                  <div class="test-case-title">2. Missing &lt;author&gt; Tag</div>
+                  <span class="test-case-tag tag-fail">Expected: FAIL</span>
+                </div>
+                <div class="test-case-desc">Simulates a record lacking the mandatory &lt;author&gt; child element violating the DTD sequence (title, author, publisher...).</div>
+                <button class="btn-run-test" onclick="runPresetValidationTest('missing-author')">Test DTD Violation &rarr;</button>
+              </div>
+
+              <!-- Test 3: Missing ID Attribute -->
+              <div class="test-case-card">
+                <div class="test-case-top">
+                  <div class="test-case-title">3. Missing ID Attribute</div>
+                  <span class="test-case-tag tag-fail">Expected: FAIL</span>
+                </div>
+                <div class="test-case-desc">Omits the 'id' attribute on &lt;book&gt;. Tests DTD #REQUIRED attribute constraint failure.</div>
+                <button class="btn-run-test" onclick="runPresetValidationTest('missing-id')">Test Missing Attribute &rarr;</button>
+              </div>
+
+              <!-- Test 4: Duplicate Book ID -->
+              <div class="test-case-card">
+                <div class="test-case-top">
+                  <div class="test-case-title">4. Duplicate Book ID</div>
+                  <span class="test-case-tag tag-fail">Expected: FAIL</span>
+                </div>
+                <div class="test-case-desc">Contains two &lt;book&gt; tags with identical id="B001", triggering an XML ID collision error.</div>
+                <button class="btn-run-test" onclick="runPresetValidationTest('duplicate-id')">Test Duplicate ID &rarr;</button>
+              </div>
+
+              <!-- Test 5: Negative Price (XSD) -->
+              <div class="test-case-card">
+                <div class="test-case-top">
+                  <div class="test-case-title">5. Negative Price Facet (XSD)</div>
+                  <span class="test-case-tag tag-fail">Expected: FAIL</span>
+                </div>
+                <div class="test-case-desc">Sets price to -15.00, demonstrating XSD xs:decimal restriction minExclusive="0.00" catch.</div>
+                <button class="btn-run-test" onclick="runPresetValidationTest('invalid-price-xsd')">Test XSD Datatype &rarr;</button>
+              </div>
+
+              <!-- Test 6: Invalid Year (XSD) -->
+              <div class="test-case-card">
+                <div class="test-case-top">
+                  <div class="test-case-title">6. Invalid Year Range (XSD)</div>
+                  <span class="test-case-tag tag-fail">Expected: FAIL</span>
+                </div>
+                <div class="test-case-desc">Sets year to 1850, testing the XSD facet constraint minInclusive="1900".</div>
+                <button class="btn-run-test" onclick="runPresetValidationTest('invalid-year-xsd')">Test XSD Year Facet &rarr;</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Interactive Validator Box -->
+          <div class="validator-interactive-panel">
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Custom XML Validator Sandbox</h3>
+            <p style="font-size: 0.88rem; color: var(--text-light); margin-bottom: 1rem;">Edit or paste any XML snippet below and test against the DTD or XSD validation engines:</p>
+            
+            <textarea id="customXmlValidatorInput" style="width: 100%; height: 180px; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); font-family: var(--font-mono); font-size: 0.85rem; background: var(--bg-subtle); outline: none;" placeholder="Paste or type XML here..."></textarea>
+
+            <div class="validator-actions-bar">
+              <button class="btn-primary" onclick="runCustomDtdValidation()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Validate against books.dtd
+              </button>
+              <button class="btn-secondary" onclick="runCustomXsdValidation()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                Validate against books.xsd
+              </button>
+              <button class="btn-card-action" onclick="document.getElementById('customXmlValidatorInput').value = AppState.rawXml || DEFAULT_BOOKS_XML;">Load Current Catalogue</button>
+            </div>
+
+            <!-- Validation Result Box -->
+            <div id="validationResultBox" class="validation-output-box"></div>
+          </div>
+
+          <!-- DTD vs XSD Comparison Matrix -->
+          <div class="comparison-section">
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.35rem;">Comparative Analysis: DTD vs. XML Schema (XSD)</h3>
+            <p style="font-size: 0.88rem; color: var(--text-light); margin-bottom: 1rem;">
+              Understanding the architectural and functional distinctions between Document Type Definitions and XML Schemas.
+            </p>
+
+            <div class="comparison-table-wrapper">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Feature / Dimension</th>
+                    <th>DTD (Document Type Definition)</th>
+                    <th>XSD (XML Schema Definition)</th>
+                    <th>Architectural Advantage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Syntax</strong></td>
+                    <td>Proprietary EBNF-like declarative syntax (Non-XML)</td>
+                    <td>Written in standard, well-formed XML syntax (<code>&lt;xs:schema&gt;</code>)</td>
+                    <td><span class="status-badge" style="background: var(--secondary-subtle); color: var(--secondary);">XSD: Native XML tools apply</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Data Types</strong></td>
+                    <td>Only character data (<code>#PCDATA</code>, <code>CDATA</code>)</td>
+                    <td>Over 44 built-in primitive types + custom facets (patterns, ranges)</td>
+                    <td><span class="status-badge" style="background: var(--secondary-subtle); color: var(--secondary);">XSD: Strict type safety</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Occurrence Rules</strong></td>
+                    <td>Basic quantifiers (<code>?</code>, <code>*</code>, <code>+</code>)</td>
+                    <td>Exact numeric constraints via <code>minOccurs</code> and <code>maxOccurs</code></td>
+                    <td><span class="status-badge" style="background: var(--secondary-subtle); color: var(--secondary);">XSD: Precise cardinalities</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Namespaces</strong></td>
+                    <td>No native support for XML namespaces</td>
+                    <td>Full native support for multi-namespace qualification</td>
+                    <td><span class="status-badge" style="background: var(--secondary-subtle); color: var(--secondary);">XSD: Enterprise namespace isolation</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Extensibility</strong></td>
+                    <td>Rigid; cannot inherit or extend types</td>
+                    <td>Inheritance and derivation via <code>extension</code> & <code>restriction</code></td>
+                    <td><span class="status-badge" style="background: var(--secondary-subtle); color: var(--secondary);">XSD: Object-oriented modeling</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ease of Use</strong></td>
+                    <td>Simple, compact, and quick to write</td>
+                    <td>More verbose; requires formal namespace declarations</td>
+                    <td><span class="status-badge" style="background: var(--primary-subtle); color: var(--primary);">DTD: Lightweight & simple</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="notice-box info" style="margin-top: 1.25rem;">
+              <strong>Summary Takeaway:</strong> DTD establishes basic structural boundaries (document hierarchy, allowed elements, and required attributes), whereas XSD provides deep structural, data-type, cardinality, and facet validation essential for modern data interchange.
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             Section 6: XML DOM Operations
+             ================================================================== -->
+        <section class="section-view" id="view-dom-operations">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                XML DOM Operations Studio
+              </h2>
+              <p class="section-desc">Interactive workbench demonstrating XML Document Object Model (DOM) methods: Retrieve, Traverse, Search, and Mutate elements.</p>
+            </div>
+          </div>
+
+          <!-- DOM Workbench Navigation Tabs -->
+          <div class="dom-workbench-tabs">
+            <button class="dom-tab-btn active" data-dom-tab="retrieve" onclick="switchDomTab('retrieve')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              1. Retrieve & Inspect Nodes
+            </button>
+            <button class="dom-tab-btn" data-dom-tab="modify" onclick="switchDomTab('modify')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+              2. Modify DOM Elements
+            </button>
+            <button class="dom-tab-btn" data-dom-tab="search" onclick="switchDomTab('search')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              3. Search by Book ID
+            </button>
+          </div>
+
+          <!-- Tab Panel 1: Retrieve -->
+          <div class="dom-tab-panel active" id="domPanel-retrieve">
+            <div class="dom-operation-card">
+              <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Retrieve XML DOM Node</h3>
+              <p style="font-size: 0.88rem; color: var(--text-light); margin-bottom: 1.25rem;">Select any book element to inspect its DOM node hierarchy, attributes, and serialized XML:</p>
+
+              <div style="margin-bottom: 1.5rem;">
+                <select id="domRetrieveSelect" class="select-control" style="width: 100%; max-width: 450px;" onchange="handleDomRetrieveChange(this.value)">
+                  <option value="">-- Choose a Book to Retrieve --</option>
+                </select>
+              </div>
+
+              <div id="domRetrieveOutput">
+                <div style="color: var(--text-light); text-align: center; padding: 2rem;">Select a book from the dropdown above to inspect its DOM node hierarchy.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Panel 2: Modify -->
+          <div class="dom-tab-panel" id="domPanel-modify">
+            <div class="dom-operation-card">
+              <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Mutate XML Node Values</h3>
+              <p style="font-size: 0.88rem; color: var(--text-light); margin-bottom: 1.25rem;">Demonstrates modifying XML child node values via <code>node.getElementsByTagName('...')[0].textContent = newValue</code>:</p>
+
+              <div style="margin-bottom: 1.5rem;">
+                <label style="font-weight: 600; font-size: 0.88rem; display: block; margin-bottom: 0.4rem;">Select Book to Edit:</label>
+                <select id="domModifySelect" class="select-control" style="width: 100%; max-width: 450px;" onchange="handleDomModifySelectChange(this.value)">
+                  <option value="">-- Choose a Book to Modify --</option>
+                </select>
+              </div>
+
+              <div id="domModifyFormContainer" style="display: none; background: var(--bg-subtle); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.5rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                  <div class="form-group form-group-full">
+                    <label class="form-label">Title (textContent)</label>
+                    <input type="text" id="domModTitle" class="form-input">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Author (textContent)</label>
+                    <input type="text" id="domModAuthor" class="form-input">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Publisher (textContent)</label>
+                    <input type="text" id="domModPublisher" class="form-input">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Price (textContent)</label>
+                    <input type="number" id="domModPrice" class="form-input" step="0.01">
+                  </div>
+                </div>
+                <button class="btn-primary" onclick="executeDomUpdate()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path></svg>
+                  Commit XML DOM Updates
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Panel 3: Search by Book ID -->
+          <div class="dom-tab-panel" id="domPanel-search">
+            <div class="dom-operation-card">
+              <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Query Book by ID Attribute</h3>
+              <p style="font-size: 0.88rem; color: var(--text-light); margin-bottom: 1.25rem;">Execute an attribute selector or XPath expression (<code>//book[@id='...']</code>) to locate specific elements:</p>
+
+              <div style="display: flex; gap: 0.85rem; max-width: 450px; margin-bottom: 1.5rem;">
+                <input type="text" id="domSearchIdInput" class="form-input" placeholder="Enter Book ID (e.g. B001, B007)...">
+                <button class="btn-primary" onclick="executeDomSearch()">Search DOM</button>
+              </div>
+
+              <div id="domSearchResultBox"></div>
+            </div>
+          </div>
+
+          <!-- Live Visual DOM Tree Inspector -->
+          <div class="panel-card" style="margin-top: 2rem;">
+            <div class="panel-header">
+              <div class="panel-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                Live XML DOM Hierarchy Tree
+              </div>
+              <span class="status-badge">Real-time DOM Nodes</span>
+            </div>
+            <div class="dom-tree-viewer" id="domVisualTreeViewer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Side-by-side JS DOM vs PHP DOMDocument Reference -->
+          <div class="dom-comparison-code-grid">
+            <div class="code-box">
+              <div class="code-box-header">
+                <span>JavaScript XML DOM (Client-Side)</span>
+                <span>DOMParser & XMLSerializer</span>
+              </div>
+              <pre>// 1. Parse XML String
+const parser = new DOMParser();
+const doc = parser.parseFromString(xmlStr, "text/xml");
+
+// 2. Query Elements
+const books = doc.getElementsByTagName("book");
+const book = doc.querySelector("book[id='B001']");
+
+// 3. Mutate Element
+book.getElementsByTagName("price")[0].textContent = "500";
+
+// 4. Create & Append Element
+const newElem = doc.createElement("book");
+newElem.setAttribute("id", "B013");
+doc.documentElement.appendChild(newElem);</pre>
+            </div>
+
+            <div class="code-box">
+              <div class="code-box-header">
+                <span>PHP DOMDocument (Server-Side in index.php)</span>
+                <span>DOMDocument & DOMXPath</span>
+              </div>
+              <pre>&lt;?php
+// 1. Load XML File
+$dom = new DOMDocument();
+$dom->load('books.xml');
+
+// 2. Query Elements via XPath
+$xpath = new DOMXPath($dom);
+$books = $xpath->query("//book[@id='B001']");
+
+// 3. Mutate Element
+$books->item(0)->getElementsByTagName('price')
+      ->item(0)->nodeValue = "500";
+
+// 4. Create & Append Element
+$newBook = $dom->createElement('book');
+$newBook->setAttribute('id', 'B013');
+$dom->documentElement->appendChild($newBook);
+$dom->save('books.xml');
+?&gt;</pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             Section 7: XSLT Transformation
+             ================================================================== -->
+        <section class="section-view" id="view-xslt-transform">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                XSLT Transformation (XML &rarr; HTML Table)
+              </h2>
+              <p class="section-desc">Transforms the raw XML book records into a responsive, styled HTML presentation table using <code>books.xsl</code> rules and XPath templates.</p>
+            </div>
+          </div>
+
+          <!-- Controls Card -->
+          <div class="xslt-control-card">
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.35rem;">XSL Transformation Controller</h3>
+            <p style="font-size: 0.88rem; color: var(--text-light);">
+              Execute the stylesheet transformation pipeline. In browser demonstration mode, this utilizes the browser's native <code>XSLTProcessor</code> or XML DOM template engine. In PHP, this corresponds to <code>XSLTProcessor->transformToXML()</code>.
+            </p>
+
+            <div class="xslt-btn-group">
+              <button class="btn-primary" onclick="runXsltTransformation()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Transform XML with XSLT
+              </button>
+              <button class="btn-secondary" onclick="viewXsltSource()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+                View XSLT Stylesheet (books.xsl)
+              </button>
+              <button class="btn-secondary" onclick="viewXmlSource()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                View XML Data (books.xml)
+              </button>
+            </div>
+          </div>
+
+          <!-- Output Container -->
+          <div class="xslt-output-container">
+            <div id="xsltOutputContainer">
+              <!-- Rendered via XSLT -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             Section 8: XML Source Viewer
+             ================================================================== -->
+        <section class="section-view" id="view-source-viewer">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                XML Source Viewer
+              </h2>
+              <p class="section-desc">Interactive syntax-highlighted source code inspector for XML, DTD, XSD, XSLT, and PHP backend files.</p>
+            </div>
+          </div>
+
+          <div class="source-viewer-card">
+            <div class="source-tabs-header">
+              <div class="source-nav">
+                <button class="source-tab-btn active" data-file="books.xml" onclick="switchSourceTab('books.xml')">books.xml</button>
+                <button class="source-tab-btn" data-file="books.dtd" onclick="switchSourceTab('books.dtd')">books.dtd</button>
+                <button class="source-tab-btn" data-file="books.xsd" onclick="switchSourceTab('books.xsd')">books.xsd</button>
+                <button class="source-tab-btn" data-file="books.xsl" onclick="switchSourceTab('books.xsl')">books.xsl</button>
+                <button class="source-tab-btn" data-file="index.php" onclick="switchSourceTab('index.php')">index.php (Server)</button>
+              </div>
+
+              <div class="source-tools">
+                <button class="btn-source-tool" onclick="copyCurrentSourceCode()" title="Copy code to clipboard">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  Copy
+                </button>
+                <button class="btn-source-tool" onclick="downloadCurrentSourceFile()" title="Download file to computer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Download
+                </button>
+              </div>
+            </div>
+
+            <pre class="source-code-display" id="sourceCodeDisplay"><code>Loading source...</code></pre>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       Book Details Modal Dialog
+       ====================================================================== -->
+  <div class="modal-overlay" id="bookDetailModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">XML Book Record Details</div>
+        <button class="modal-close-btn" onclick="closeBookModal()" title="Close dialog">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBodyContent">
+        <!-- Rendered by openBookModal() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Core JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

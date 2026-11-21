@@ -1,0 +1,30 @@
+﻿========================================================================
+       APEX INSTITUTE OF ENGINEERING & TECHNOLOGY (AIET)               
+        OFFICIAL STUDENT ADMISSION & REGISTRATION REPORT               
+========================================================================
+ Generated On  : 17-Nov-2026 02:05 PM
+ Academic Year : 2026 - 2027
+ Status        : CONFIRMED & REGISTERED
+------------------------------------------------------------------------
+ STUDENT IDENTIFICATION DETAILS:
+------------------------------------------------------------------------
+ Student ID            : ADM20260003
+ Student Full Name     : Rohan Verma
+ Date of Birth         : 05-Dec-2005
+ Email ID              : rohan.verma@example.com
+ Mobile Number         : 9712345678
+ Residential Address   : Plot 55, Sector 14, Hiranandani Estate, Thane, Maharashtra
+------------------------------------------------------------------------
+ ACADEMIC & ALLOTMENT DETAILS:
+------------------------------------------------------------------------
+ HSC Examination Marks : 545 / 600 (90.83%)
+ Preferred Department  : Artificial Intelligence and Data Science
+ Registration Date     : 17-Nov-2026 02:05 PM
+------------------------------------------------------------------------
+ DECLARATION & VERIFICATION:
+ This is a computer-generated confirmation slip for admission to
+ Bachelor of Engineering (B.E. / B.Tech) programme. All candidate details
+ have been verified against submitted credentials.
+========================================================================
+                Office of Admissions & Student Affairs                  
+========================================================================

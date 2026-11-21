@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XML-Based Hospital Patient Information and Medical Report Management System
+  File: patients.xsd
+  Description: W3C XML Schema Definition defining structure and validation constraints for patients.xml
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <!-- Root Element -->
+    <xs:element name="hospital">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="patient" type="PatientType" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+
+        <!-- Identity Constraint: Patient ID Must Be Unique -->
+        <xs:unique name="UniquePatientId">
+            <xs:selector xpath="patient"/>
+            <xs:field xpath="@id"/>
+        </xs:unique>
+    </xs:element>
+
+    <!-- Patient Complex Type Definition -->
+    <xs:complexType name="PatientType">
+        <xs:sequence>
+            <!-- Patient Name: Non-empty string, 1 to 100 characters -->
+            <xs:element name="name">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                        <xs:whiteSpace value="collapse"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Age: Integer restricted between 0 and 125 -->
+            <xs:element name="age">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                        <xs:maxInclusive value="125"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Gender: Enumerated to Male, Female, Other -->
+            <xs:element name="gender">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Male"/>
+                        <xs:enumeration value="Female"/>
+                        <xs:enumeration value="Other"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Blood Group: Restricted to 8 standard human blood phenotypes -->
+            <xs:element name="bloodGroup">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="A+"/>
+                        <xs:enumeration value="A-"/>
+                        <xs:enumeration value="B+"/>
+                        <xs:enumeration value="B-"/>
+                        <xs:enumeration value="AB+"/>
+                        <xs:enumeration value="AB-"/>
+                        <xs:enumeration value="O+"/>
+                        <xs:enumeration value="O-"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Doctor Name: Non-empty string -->
+            <xs:element name="doctor">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                        <xs:whiteSpace value="collapse"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Department: Restricted to authorized hospital clinical departments -->
+            <xs:element name="department">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Cardiology"/>
+                        <xs:enumeration value="Neurology"/>
+                        <xs:enumeration value="Orthopedics"/>
+                        <xs:enumeration value="Dermatology"/>
+                        <xs:enumeration value="Pediatrics"/>
+                        <xs:enumeration value="General Medicine"/>
+                        <xs:enumeration value="ENT"/>
+                        <xs:enumeration value="Ophthalmology"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Diagnosis: Clinical summary, non-empty -->
+            <xs:element name="diagnosis">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="300"/>
+                        <xs:whiteSpace value="collapse"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Medical Tests: Container for diagnostic test elements -->
+            <xs:element name="medicalTests" type="MedicalTestsType"/>
+        </xs:sequence>
+
+        <!-- Patient ID Attribute: Required, must follow pattern (e.g., P001) -->
+        <xs:attribute name="id" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="P[0-9]{3,5}"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <!-- Medical Tests Container Type -->
+    <xs:complexType name="MedicalTestsType">
+        <xs:sequence>
+            <xs:element name="test" type="TestType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Individual Medical Test Type -->
+    <xs:complexType name="TestType">
+        <xs:sequence>
+            <!-- Test Result: Non-empty test reading -->
+            <xs:element name="result">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="150"/>
+                        <xs:whiteSpace value="collapse"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <!-- Test Status: Clinical evaluation classification -->
+            <xs:element name="status">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Normal"/>
+                        <xs:enumeration value="High"/>
+                        <xs:enumeration value="Low"/>
+                        <xs:enumeration value="Elevated"/>
+                        <xs:enumeration value="Critical"/>
+                        <xs:enumeration value="Abnormal"/>
+                        <xs:enumeration value="Positive"/>
+                        <xs:enumeration value="Negative"/>
+                        <xs:enumeration value="Pending"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+
+        <!-- Test Name Attribute: Required non-empty string -->
+        <xs:attribute name="name" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="1"/>
+                    <xs:maxLength value="100"/>
+                    <xs:whiteSpace value="collapse"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,30 @@
+﻿========================================================================
+       APEX INSTITUTE OF ENGINEERING & TECHNOLOGY (AIET)               
+        OFFICIAL STUDENT ADMISSION & REGISTRATION REPORT               
+========================================================================
+ Generated On  : 16-Nov-2026 11:15 AM
+ Academic Year : 2026 - 2027
+ Status        : CONFIRMED & REGISTERED
+------------------------------------------------------------------------
+ STUDENT IDENTIFICATION DETAILS:
+------------------------------------------------------------------------
+ Student ID            : ADM20260002
+ Student Full Name     : Priya Patel
+ Date of Birth         : 23-Aug-2006
+ Email ID              : priya.patel@example.com
+ Mobile Number         : 9823456789
+ Residential Address   : 12B, Green Avenue, Satellite Road, Ahmedabad, Gujarat
+------------------------------------------------------------------------
+ ACADEMIC & ALLOTMENT DETAILS:
+------------------------------------------------------------------------
+ HSC Examination Marks : 562 / 600 (93.67%)
+ Preferred Department  : Artificial Intelligence and Machine Learning
+ Registration Date     : 16-Nov-2026 11:15 AM
+------------------------------------------------------------------------
+ DECLARATION & VERIFICATION:
+ This is a computer-generated confirmation slip for admission to
+ Bachelor of Engineering (B.E. / B.Tech) programme. All candidate details
+ have been verified against submitted credentials.
+========================================================================
+                Office of Admissions & Student Affairs                  
+========================================================================

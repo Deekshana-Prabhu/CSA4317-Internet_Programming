@@ -1,0 +1,30 @@
+﻿========================================================================
+       APEX INSTITUTE OF ENGINEERING & TECHNOLOGY (AIET)               
+        OFFICIAL STUDENT ADMISSION & REGISTRATION REPORT               
+========================================================================
+ Generated On  : 19-Nov-2026 03:55 PM
+ Academic Year : 2026 - 2027
+ Status        : CONFIRMED & REGISTERED
+------------------------------------------------------------------------
+ STUDENT IDENTIFICATION DETAILS:
+------------------------------------------------------------------------
+ Student ID            : ADM20260007
+ Student Full Name     : Karthik Sundaram
+ Date of Birth         : 25-Jan-2006
+ Email ID              : karthik.s@example.com
+ Mobile Number         : 9789012345
+ Residential Address   : 45, Anna Nagar West Extension, Chennai, Tamil Nadu
+------------------------------------------------------------------------
+ ACADEMIC & ALLOTMENT DETAILS:
+------------------------------------------------------------------------
+ HSC Examination Marks : 495 / 600 (82.5%)
+ Preferred Department  : Mechanical Engineering
+ Registration Date     : 19-Nov-2026 03:55 PM
+------------------------------------------------------------------------
+ DECLARATION & VERIFICATION:
+ This is a computer-generated confirmation slip for admission to
+ Bachelor of Engineering (B.E. / B.Tech) programme. All candidate details
+ have been verified against submitted credentials.
+========================================================================
+                Office of Admissions & Student Affairs                  
+========================================================================

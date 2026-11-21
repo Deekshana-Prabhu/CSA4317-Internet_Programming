@@ -1,0 +1,30 @@
+﻿========================================================================
+       APEX INSTITUTE OF ENGINEERING & TECHNOLOGY (AIET)               
+        OFFICIAL STUDENT ADMISSION & REGISTRATION REPORT               
+========================================================================
+ Generated On  : 18-Nov-2026 10:20 AM
+ Academic Year : 2026 - 2027
+ Status        : CONFIRMED & REGISTERED
+------------------------------------------------------------------------
+ STUDENT IDENTIFICATION DETAILS:
+------------------------------------------------------------------------
+ Student ID            : ADM20260004
+ Student Full Name     : Ananya Iyer
+ Date of Birth         : 18-Feb-2006
+ Email ID              : ananya.iyer@example.com
+ Mobile Number         : 9845123456
+ Residential Address   : 78/4, Rajaji Nagar, 2nd Stage, Bengaluru, Karnataka
+------------------------------------------------------------------------
+ ACADEMIC & ALLOTMENT DETAILS:
+------------------------------------------------------------------------
+ HSC Examination Marks : 585 / 600 (97.5%)
+ Preferred Department  : Computer Science and Engineering
+ Registration Date     : 18-Nov-2026 10:20 AM
+------------------------------------------------------------------------
+ DECLARATION & VERIFICATION:
+ This is a computer-generated confirmation slip for admission to
+ Bachelor of Engineering (B.E. / B.Tech) programme. All candidate details
+ have been verified against submitted credentials.
+========================================================================
+                Office of Admissions & Student Affairs                  
+========================================================================

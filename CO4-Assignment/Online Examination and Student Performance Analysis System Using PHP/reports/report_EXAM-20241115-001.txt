@@ -1,0 +1,43 @@
+========================================================================
+ONLINE EXAMINATION & PERFORMANCE ANALYSIS SYSTEM - OFFICIAL REPORT
+Apex Institute of Technology | Academic Year 2024-2025
+========================================================================
+
+EXAMINATION DETAILS
+------------------------------------------------------------------------
+Examination ID     : EXAM-20241115-001
+Examination Date   : 2024-11-15 10:30:00
+Subject            : Full Stack Development
+Status             : OFFICIAL RECORD (Archived)
+
+STUDENT CREDENTIALS
+------------------------------------------------------------------------
+Student ID         : STU2024001
+Student Name       : John Doe
+Email              : john.doe@example.com
+
+PERFORMANCE METRICS & MARKS
+------------------------------------------------------------------------
+Total Questions    : 15
+Correct Answers    : 14
+Incorrect Answers  : 1
+Unanswered         : 0
+Total Marks        : 14 / 15
+Percentage Score   : 93.33%
+Assigned Grade     : A+
+Result Verdict     : PASS
+
+GRADING REFERENCE BENCHMARK
+------------------------------------------------------------------------
+90% - 100% : A+ (Distinction)
+80% - 89%  : A  (Excellent)
+70% - 79%  : B  (Very Good)
+60% - 69%  : C  (Good)
+40% - 59%  : D  (Pass)
+Below 40%  : F  (Fail)
+Pass Threshold     : 40.00%
+
+------------------------------------------------------------------------
+System Generated via PHP File Handling on 2024-11-15 10:45:00 UTC
+Digital Verification Hash: e8f92b7c4d11a938
+========================================================================

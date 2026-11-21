@@ -1,0 +1,41 @@
+========================================================================
+                      SHOPEASE E-COMMERCE ORDER REPORT
+========================================================================
+Order Reference ID   : ORD-2026-1001
+Generation Timestamp : 2026-11-20 14:30:00 IST
+Order Status         : Confirmed & Dispatched
+
+------------------------------------------------------------------------
+CUSTOMER BILLING & DELIVERY INFORMATION
+------------------------------------------------------------------------
+Customer ID          : 1
+Customer Name        : Rahul Sharma
+Email Address        : rahul.sharma@example.com
+Mobile Phone         : +91 9876543210
+Delivery Address     : 402, Greenfield Heights, MG Road, Bengaluru, Karnataka - 560001
+
+------------------------------------------------------------------------
+ORDERED PRODUCTS & ITEMIZATION
+------------------------------------------------------------------------
+[1] SKU: PROD101
+    Item: Wireless Noise Canceling Headphones (Electronics)
+    Quantity: 1 unit(s)  x  INR 3499.00  =  INR 3499.00
+
+[2] SKU: PROD102
+    Item: Smart Fitness Tracker AMOLED (Electronics)
+    Quantity: 1 unit(s)  x  INR 2299.00  =  INR 2299.00
+
+------------------------------------------------------------------------
+FINANCIAL SUMMARY
+------------------------------------------------------------------------
+Items Subtotal       : INR 5798.00
+Standard Delivery    : INR 0.00 (Complimentary Free Shipping)
+Taxes (GST Included) : INR 0.00
+Grand Total Amount   : INR 5798.00
+Payment Method       : UPI Demo Payment (Simulated Transaction)
+
+========================================================================
+Thank you for shopping with ShopEase!
+Tagline: "Discover. Shop. Enjoy."
+Generated automatically by ShopEase Order Processing Subsystem.
+========================================================================
