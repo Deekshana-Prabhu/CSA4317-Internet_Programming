@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniMed Connect – Integrated Web Services and Video Conferencing Platform</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Chart.js for Interactive Metrics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<div id="app-container">
+
+  <!-- ========================================================
+       LEFT SIDEBAR NAVIGATION
+       ======================================================== -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-icon-wrapper">
+        <i data-lucide="activity"></i>
+      </div>
+      <div class="brand-info">
+        <h1>UniMed <span>Connect</span></h1>
+        <div class="brand-tagline">Connected Learning. Connected Care.</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-title">Core Modules</div>
+      <a class="nav-item active" data-page="overview">
+        <i data-lucide="layout-dashboard"></i> <span>Overview</span>
+      </a>
+      <a class="nav-item" data-page="student-services">
+        <i data-lucide="graduation-cap"></i> <span>Student Services</span>
+      </a>
+      <a class="nav-item" data-page="healthcare-services">
+        <i data-lucide="heart-pulse"></i> <span>Healthcare Services</span>
+      </a>
+      <a class="nav-item" data-page="online-classroom">
+        <i data-lucide="presentation"></i> <span>Online Classroom</span>
+        <span class="badge badge-blue">Live</span>
+      </a>
+      <a class="nav-item" data-page="doctor-consultation">
+        <i data-lucide="stethoscope"></i> <span>Doctor Consultation</span>
+        <span class="badge badge-teal">Video</span>
+      </a>
+      <a class="nav-item" data-page="appointments">
+        <i data-lucide="calendar"></i> <span>Appointments</span>
+      </a>
+      <a class="nav-item" data-page="video-conferencing">
+        <i data-lucide="video"></i> <span>Video Conferencing</span>
+      </a>
+
+      <div class="nav-section-title">Web Services & SOAP</div>
+      <a class="nav-item" data-page="system-architecture">
+        <i data-lucide="git-branch"></i> <span>System Architecture</span>
+      </a>
+      <a class="nav-item" data-page="web-service-center">
+        <i data-lucide="server"></i> <span>Web Service Center</span>
+      </a>
+      <a class="nav-item" data-page="wsdl-explorer">
+        <i data-lucide="file-code"></i> <span>WSDL Explorer</span>
+      </a>
+      <a class="nav-item" data-page="soap-tester">
+        <i data-lucide="terminal"></i> <span>API / SOAP Tester</span>
+      </a>
+      <a class="nav-item" data-page="communication-protocol">
+        <i data-lucide="shield-check"></i> <span>Communication Protocol</span>
+        <span class="badge badge-violet">UCP</span>
+      </a>
+
+      <div class="nav-section-title">Multimedia & Network</div>
+      <a class="nav-item" data-page="streaming-optimizer">
+        <i data-lucide="gauge"></i> <span>Streaming Optimizer</span>
+      </a>
+      <a class="nav-item" data-page="traffic-allocator">
+        <i data-lucide="sliders"></i> <span>Bandwidth Prioritizer</span>
+      </a>
+      <a class="nav-item" data-page="network-monitor">
+        <i data-lucide="wifi"></i> <span>Network Monitor</span>
+      </a>
+
+      <div class="nav-section-title">Management</div>
+      <a class="nav-item" data-page="reports">
+        <i data-lucide="bar-chart-3"></i> <span>Reports & Analytics</span>
+      </a>
+      <a class="nav-item" data-page="settings">
+        <i data-lucide="settings"></i> <span>Settings & Roles</span>
+      </a>
+    </nav>
+
+    <!-- User Profile & Sign Out Footer -->
+    <div class="sidebar-footer">
+      <div class="user-profile-card" onclick="openModal('modal-login-switcher')">
+        <div class="user-avatar" id="sidebar-user-avatar">SA</div>
+        <div class="user-meta">
+          <div class="user-name" id="sidebar-user-name">System Administrator</div>
+          <div class="user-role" id="sidebar-user-role">Administrator</div>
+        </div>
+        <button class="btn-signout" title="Switch Role / Login" onclick="openModal('modal-login-switcher'); event.stopPropagation();">
+          <i data-lucide="log-out"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================
+       MAIN WRAPPER & TOP NAVBAR
+       ======================================================== -->
+  <div class="main-wrapper">
+    <header class="top-header">
+      <div class="header-left">
+        <button class="mobile-menu-toggle" onclick="toggleMobileSidebar()" title="Toggle Menu">
+          <i data-lucide="menu"></i>
+        </button>
+        <div class="page-title-group">
+          <h2 id="header-page-title">Platform Overview</h2>
+          <p id="header-page-subtitle">Integrated Academic & Healthcare Activity Dashboard</p>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Live Status Badge -->
+        <div class="status-indicator-pill">
+          <div class="pulse-dot"></div>
+          <span>SOAP Services & WebRTC Ready</span>
+        </div>
+
+        <!-- Role Badge & Switcher -->
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="badge badge-green" id="header-role-badge">Administrator</span>
+          <select class="form-select role-switcher-dropdown" id="role-selector-header" onchange="setCurrentRole(this.value)">
+            <option value="admin">Admin Demo</option>
+            <option value="student">Student Demo (Sarah Chen)</option>
+            <option value="teacher">Teacher Demo (Prof. Vance)</option>
+            <option value="doctor">Doctor Demo (Dr. Rostova)</option>
+            <option value="patient">Patient Demo (James Wilson)</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-container">
+
+      <!-- ========================================================
+           PAGE 1: OVERVIEW (DASHBOARD)
+           ======================================================== -->
+      <section class="page-view active" id="page-overview">
+        <!-- Quick Action Bar -->
+        <div class="quick-actions-bar">
+          <div class="bar-label">
+            <i data-lucide="zap" style="color: var(--warning-amber);"></i>
+            <span>Quick Launch Actions:</span>
+          </div>
+          <div class="quick-actions-buttons">
+            <button class="btn btn-primary btn-sm" onclick="joinClassroom('CS405')">
+              <i data-lucide="presentation"></i> Join CS405 Class
+            </button>
+            <button class="btn btn-teal btn-sm" onclick="openBookModalForDoctor('DOC3001')">
+              <i data-lucide="calendar"></i> Book Appointment
+            </button>
+            <button class="btn btn-violet btn-sm" onclick="startConsultation('APT-8801')">
+              <i data-lucide="stethoscope"></i> Start Telehealth Call
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="navigateTo('soap-tester')">
+              <i data-lucide="terminal"></i> Test SOAP Service
+            </button>
+          </div>
+        </div>
+
+        <!-- 6 Summary KPI Cards -->
+        <div class="dashboard-grid">
+          <div class="metric-card">
+            <div class="metric-data">
+              <h3>Registered Students</h3>
+              <div class="metric-value" id="kpi-students-count">1,420</div>
+              <div class="metric-trend positive"><i data-lucide="trending-up"></i> +12% this term</div>
+            </div>
+            <div class="metric-icon-box blue"><i data-lucide="graduation-cap"></i></div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-data">
+              <h3>Registered Patients</h3>
+              <div class="metric-value" id="kpi-patients-count">865</div>
+              <div class="metric-trend positive"><i data-lucide="trending-up"></i> +8% active care</div>
+            </div>
+            <div class="metric-icon-box teal"><i data-lucide="heart-pulse"></i></div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-data">
+              <h3>Active Web Services</h3>
+              <div class="metric-value" id="kpi-services-count">4/4 Online</div>
+              <div class="metric-trend positive"><i data-lucide="check"></i> 100% Uptime</div>
+            </div>
+            <div class="metric-icon-box violet"><i data-lucide="server"></i></div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-data">
+              <h3>Live Video Sessions</h3>
+              <div class="metric-value">3 Active</div>
+              <div class="metric-trend accent"><i data-lucide="video"></i> WebRTC P2P</div>
+            </div>
+            <div class="metric-icon-box amber"><i data-lucide="video"></i></div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-data">
+              <h3>Appointments Today</h3>
+              <div class="metric-value" id="kpi-appointments-count">18</div>
+              <div class="metric-trend positive"><i data-lucide="calendar"></i> 4 Telehealth Calls</div>
+            </div>
+            <div class="metric-icon-box green"><i data-lucide="clock"></i></div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-data">
+              <h3>Online Classes Today</h3>
+              <div class="metric-value">12</div>
+              <div class="metric-trend accent"><i data-lucide="users"></i> 340 Attendees</div>
+            </div>
+            <div class="metric-icon-box blue"><i data-lucide="presentation"></i></div>
+          </div>
+        </div>
+
+        <!-- Grid 2-Column: Upcoming Classes & Upcoming Doctor Appointments -->
+        <div class="grid-2col">
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3><i data-lucide="book-open"></i> Upcoming Online Classes</h3>
+              <button class="btn btn-sm btn-secondary" onclick="navigateTo('online-classroom')">View All</button>
+            </div>
+            <div class="content-card-body" style="padding: 0;">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr><th>Course & Instructor</th><th>Schedule</th><th>Action</th></tr>
+                  </thead>
+                  <tbody id="dashboard-upcoming-classes"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3><i data-lucide="stethoscope"></i> Upcoming Consultations</h3>
+              <button class="btn btn-sm btn-secondary" onclick="navigateTo('appointments')">View All</button>
+            </div>
+            <div class="content-card-body" style="padding: 0;">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr><th>Patient</th><th>Doctor</th><th>Time</th><th>Action</th></tr>
+                  </thead>
+                  <tbody id="dashboard-upcoming-apts"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row: Activity Trends & Video Session Distribution -->
+        <div class="grid-2col">
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3><i data-lucide="activity"></i> Daily Service Requests & Traffic</h3>
+            </div>
+            <div class="content-card-body" style="height: 280px;">
+              <canvas id="chart-activity-trends"></canvas>
+            </div>
+          </div>
+
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3><i data-lucide="pie-chart"></i> Video Conferencing Traffic Allocation</h3>
+            </div>
+            <div class="content-card-body" style="height: 280px;">
+              <canvas id="chart-stream-usage"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Services Status & Recent SOAP Transactions -->
+        <div class="grid-2col">
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3><i data-lucide="shield-check"></i> Java SOAP Services Status</h3>
+              <button class="btn btn-sm btn-secondary" onclick="navigateTo('web-service-center')">Manage</button>
+            </div>
+            <div class="content-card-body" id="dashboard-service-status-list"></div>
+          </div>
+
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3><i data-lucide="terminal"></i> Recent SOAP Transactions</h3>
+              <button class="btn btn-sm btn-secondary" onclick="navigateTo('soap-tester')">SOAP Tester</button>
+            </div>
+            <div class="content-card-body" style="padding: 0;">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr><th>ID</th><th>Service</th><th>Operation</th><th>Status</th><th>Latency</th><th>Time</th></tr>
+                  </thead>
+                  <tbody id="dashboard-recent-transactions"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 2: STUDENT INFORMATION SERVICES
+           ======================================================== -->
+      <section class="page-view" id="page-student-services">
+        <div class="filter-bar">
+          <div class="search-input-wrapper">
+            <i data-lucide="search"></i>
+            <input type="text" class="form-input" id="student-search-input" placeholder="Search by Student ID, Name or Email..." oninput="renderStudentList()">
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <select class="form-select" id="student-dept-filter" onchange="renderStudentList()" style="width: auto;">
+              <option value="ALL">All Departments</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Health Informatics">Health Informatics</option>
+              <option value="Biomedical Engineering">Biomedical Engineering</option>
+              <option value="Nursing & Health Sciences">Nursing & Health Sciences</option>
+            </select>
+            <button class="btn btn-primary" onclick="openModal('modal-add-student')">
+              <i data-lucide="user-plus"></i> Add Student
+            </button>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3><i data-lucide="users"></i> Student Records Directory</h3>
+            <span class="badge badge-blue">Simulated JAX-WS StudentService</span>
+          </div>
+          <div class="content-card-body" style="padding: 0;">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Student ID</th>
+                    <th>Name & Email</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    <th>Attendance %</th>
+                    <th>CGPA</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="students-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 3: HEALTHCARE SERVICES
+           ======================================================== -->
+      <section class="page-view" id="page-healthcare-services">
+        <div class="filter-bar">
+          <div class="search-input-wrapper">
+            <i data-lucide="search"></i>
+            <input type="text" class="form-input" id="patient-search-input" placeholder="Search Patients by ID or Name..." oninput="renderPatientsList()">
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <select class="form-select" id="patient-dept-filter" onchange="renderPatientsList()" style="width: auto;">
+              <option value="ALL">All Medical Departments</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="General Medicine">General Medicine</option>
+            </select>
+            <button class="btn btn-teal" onclick="openModal('modal-add-patient')">
+              <i data-lucide="user-plus"></i> Add Patient Record
+            </button>
+          </div>
+        </div>
+
+        <!-- Patient Records Table -->
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3><i data-lucide="heart-pulse"></i> Patient Clinical Records</h3>
+            <span class="badge badge-teal">EHR Database Integration</span>
+          </div>
+          <div class="content-card-body" style="padding: 0;">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Patient ID</th>
+                    <th>Name & Demographic</th>
+                    <th>Department</th>
+                    <th>Assigned Doctor</th>
+                    <th>Condition / Diagnosis</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="patients-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor Directory Cards -->
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin: 30px 0 16px 0; display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="stethoscope" style="color: var(--teal-accent);"></i> Hospital Medical Specialists & Telehealth Directory
+        </h3>
+        <div class="grid-2col" id="doctors-cards-grid"></div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 4: ONLINE CLASSROOM STUDIO
+           ======================================================== -->
+      <section class="page-view" id="page-online-classroom">
+        <div class="grid-2col" style="grid-template-columns: 2fr 1fr; gap: 24px;">
+          <!-- Left: Video Stream Stage -->
+          <div>
+            <div class="video-stage-wrapper">
+              <canvas id="classroom-canvas-stream" width="800" height="450" class="video-element-display"></canvas>
+              <div class="video-overlay-info">
+                <div class="pulse-dot"></div>
+                <span id="classroom-instructor-display">Instructor: Prof. Marcus Vance</span>
+              </div>
+              <div class="video-overlay-quality">720p HD (ABR)</div>
+              <div class="video-controls-bar">
+                <button class="btn-video-ctrl" onclick="toggleAudio()" title="Mute/Unmute Mic"><i data-lucide="mic"></i></button>
+                <button class="btn-video-ctrl" onclick="toggleVideo()" title="Camera On/Off"><i data-lucide="video"></i></button>
+                <button class="btn-video-ctrl active-red" onclick="toggleClassroomSession()" title="Leave Class" id="btn-classroom-leave">
+                  <i data-lucide="log-out"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="content-card" style="margin-top: 16px;">
+              <div class="content-card-body" style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <h3 id="classroom-title-display" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">
+                    CS405: Distributed Systems & Web Services
+                  </h3>
+                  <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">
+                    Module 4: Java SOAP Architecture & JAX-WS Handlers
+                  </div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Elapsed Time</div>
+                  <div id="classroom-timer" style="font-size: 1.25rem; font-weight: 700; color: var(--teal-accent); font-family: monospace;">14:32</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Chat & Participants -->
+          <div>
+            <div class="content-card" style="margin-bottom: 0;">
+              <div class="content-card-header">
+                <h3><i data-lucide="message-square"></i> Classroom Live Chat</h3>
+                <span class="badge badge-green">24 Active</span>
+              </div>
+              <div class="chat-box" style="border: none;">
+                <div class="chat-messages" id="classroom-chat-messages">
+                  <div class="chat-bubble incoming">
+                    <span class="sender-name">Prof. Marcus Vance</span>
+                    <span>Welcome everyone. Today we are examining JAX-WS contract-first and code-first service publication.</span>
+                    <span class="timestamp">10:02 AM</span>
+                  </div>
+                  <div class="chat-bubble incoming">
+                    <span class="sender-name">Liam O'Connor</span>
+                    <span>Professor, will the WSDL explorer generate both Document and RPC bindings?</span>
+                    <span class="timestamp">10:05 AM</span>
+                  </div>
+                </div>
+                <div class="chat-input-bar">
+                  <input type="text" class="form-input" id="classroom-chat-input" placeholder="Type a message to class..." onkeydown="if(event.key==='Enter') sendClassroomChat()">
+                  <button class="btn btn-primary btn-sm" onclick="sendClassroomChat()"><i data-lucide="send"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 5: DOCTOR TELEHEALTH CONSULTATION
+           ======================================================== -->
+      <section class="page-view" id="page-doctor-consultation">
+        <div class="grid-2col" style="grid-template-columns: 2fr 1fr; gap: 24px;">
+          <!-- Left: Telehealth Video Tiles & Controls -->
+          <div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
+              <!-- Doctor Video Stream -->
+              <div class="video-stage-wrapper" style="aspect-ratio: 4 / 3;">
+                <canvas id="consult-doctor-canvas" width="400" height="300" class="video-element-display"></canvas>
+                <div class="video-overlay-info">
+                  <div class="pulse-dot"></div>
+                  <span id="consult-doctor-name">Dr. Elena Rostova</span>
+                </div>
+                <div class="video-overlay-quality">1080p Telehealth</div>
+              </div>
+
+              <!-- Patient Video (Local Webcam or High-Res Fallback) -->
+              <div class="video-stage-wrapper" style="aspect-ratio: 4 / 3; background-color: #1e293b;">
+                <video id="consult-patient-video" autoplay playsinline muted class="video-element-display"></video>
+                <div id="patient-fallback-avatar" style="display: none; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; color: #fff;">
+                  <div class="user-avatar" style="width: 72px; height: 72px; font-size: 1.8rem; margin-bottom: 8px;">JW</div>
+                  <div style="font-weight: 600; font-size: 0.9rem;" id="consult-patient-name">James Wilson (Patient)</div>
+                  <div style="font-size: 0.75rem; color: #94a3b8;">Local Camera Standby</div>
+                </div>
+                <div class="video-overlay-info" style="top: auto; bottom: 12px; left: 12px;">
+                  <span>Local Preview</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Call Controls Bar -->
+            <div class="content-card">
+              <div class="content-card-body" style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 10px;">
+                  <button class="btn btn-secondary" id="btn-ctrl-mic" onclick="toggleAudio()"><i data-lucide="mic"></i> Mic</button>
+                  <button class="btn btn-secondary" id="btn-ctrl-camera" onclick="toggleVideo()"><i data-lucide="video"></i> Camera</button>
+                </div>
+                <div style="font-size: 0.82rem; color: var(--text-secondary);" id="consult-reason">
+                  Reason: Bi-weekly Telehealth Blood Pressure Evaluation
+                </div>
+                <button class="btn btn-danger" onclick="endConsultation()"><i data-lucide="phone-off"></i> End Call</button>
+              </div>
+            </div>
+
+            <!-- Clinical Notes & Prescription Box -->
+            <div class="content-card">
+              <div class="content-card-header">
+                <h3><i data-lucide="clipboard"></i> Clinical Consultation Notes & EHR Update</h3>
+                <button class="btn btn-sm btn-teal" onclick="saveClinicalNotes()"><i data-lucide="save"></i> Save Notes to EHR</button>
+              </div>
+              <div class="content-card-body">
+                <textarea class="form-textarea" id="consult-clinical-notes" rows="3" placeholder="Enter clinical assessment, diagnostic notes and prescription updates..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Patient Vitals & Consultation Chat -->
+          <div>
+            <div class="content-card" style="margin-bottom: 20px;">
+              <div class="content-card-header">
+                <h3><i data-lucide="activity"></i> Real-Time Telemetry</h3>
+              </div>
+              <div class="content-card-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                  <div style="background: var(--bg-subtle); padding: 10px; border-radius: var(--radius-md);">
+                    <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 700;">BLOOD PRESSURE</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--teal-accent);">132/84</div>
+                  </div>
+                  <div style="background: var(--bg-subtle); padding: 10px; border-radius: var(--radius-md);">
+                    <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 700;">HEART RATE</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--primary-blue);">74 bpm</div>
+                  </div>
+                  <div style="background: var(--bg-subtle); padding: 10px; border-radius: var(--radius-md);">
+                    <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 700;">SPO2</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--success-green);">98%</div>
+                  </div>
+                  <div style="background: var(--bg-subtle); padding: 10px; border-radius: var(--radius-md);">
+                    <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 700;">TEMPERATURE</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--violet-accent);">98.4 F</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="content-card" style="margin-bottom: 0;">
+              <div class="content-card-header">
+                <h3><i data-lucide="message-square"></i> Consultation Chat</h3>
+              </div>
+              <div class="chat-box" style="height: 300px; border: none;">
+                <div class="chat-messages" id="consult-chat-messages">
+                  <div class="chat-bubble incoming">
+                    <span class="sender-name">Dr. Elena Rostova</span>
+                    <span>Hello James, how have your blood pressure readings been since adjusting the medication?</span>
+                    <span class="timestamp">10:01 AM</span>
+                  </div>
+                </div>
+                <div class="chat-input-bar">
+                  <input type="text" class="form-input" id="consult-chat-input" placeholder="Type to doctor..." onkeydown="if(event.key==='Enter') sendConsultChat()">
+                  <button class="btn btn-teal btn-sm" onclick="sendConsultChat()"><i data-lucide="send"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 6: APPOINTMENTS
+           ======================================================== -->
+      <section class="page-view" id="page-appointments">
+        <div class="filter-bar">
+          <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">
+            Scheduled Doctor Consultations
+          </div>
+          <button class="btn btn-teal" onclick="openBookModalForDoctor('DOC3001')">
+            <i data-lucide="calendar-plus"></i> Book New Appointment
+          </button>
+        </div>
+
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3><i data-lucide="calendar"></i> Appointments Master Register</h3>
+            <span class="badge badge-teal">Integrated Healthcare Service</span>
+          </div>
+          <div class="content-card-body" style="padding: 0;">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Appointment ID</th>
+                    <th>Patient & Reason</th>
+                    <th>Doctor & Department</th>
+                    <th>Date & Time Slot</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="appointments-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 7: VIDEO CONFERENCING
+           ======================================================== -->
+      <section class="page-view" id="page-video-conferencing">
+        <div class="grid-2col" style="margin-bottom: 24px;">
+          <div class="content-card" style="margin-bottom: 0;">
+            <div class="content-card-header">
+              <h3><i data-lucide="radio"></i> Active WebRTC Signaling Rooms</h3>
+              <span class="badge badge-green">Port 5000 Signaling</span>
+            </div>
+            <div class="content-card-body">
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
+                UniMed Connect coordinates peer-to-peer WebRTC video rooms using our lightweight Node.js and Socket.IO signaling server.
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="font-weight: 600;">Room: CONF-CLS-405</div>
+                    <div style="font-size: 0.74rem; color: var(--text-muted);">CS405 Online Lecture &bull; 24 Participants</div>
+                  </div>
+                  <button class="btn btn-sm btn-primary" onclick="joinClassroom('CS405')">Join Room</button>
+                </div>
+                <div style="padding: 12px; border: 1px solid var(--border-color); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="font-weight: 600;">Room: CONF-MED-3001</div>
+                    <div style="font-size: 0.74rem; color: var(--text-muted);">Cardiology Telehealth Consultation &bull; 2 Participants</div>
+                  </div>
+                  <button class="btn btn-sm btn-teal" onclick="startConsultation('APT-8801')">Join Room</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-card" style="margin-bottom: 0;">
+            <div class="content-card-header">
+              <h3><i data-lucide="layers"></i> P2P WebRTC Signaling Architecture</h3>
+            </div>
+            <div class="content-card-body">
+              <div class="code-container" style="font-size: 0.78rem;">
+                <pre>1. Peer A sends "join-room(roomId)" via WebSocket
+2. Signaling Server notifies Peer B ("user-connected")
+3. Peer A creates SDP Offer & relays to Peer B
+4. Peer B creates SDP Answer & returns to Peer A
+5. Interactive ICE Candidates exchanged peer-to-peer
+6. Direct SRTP Media Stream established (Audio & Video)</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 8: INTEGRATED SYSTEM ARCHITECTURE
+           ======================================================== -->
+      <section class="page-view" id="page-system-architecture">
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3><i data-lucide="git-branch"></i> Interactive Enterprise Architecture Diagram</h3>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-sm btn-secondary" onclick="traceFlow('academic')">Trace Academic Flow</button>
+              <button class="btn btn-sm btn-secondary" onclick="traceFlow('healthcare')">Trace Healthcare Flow</button>
+              <button class="btn btn-sm btn-secondary" onclick="traceFlow('multimedia')">Trace Video Media Flow</button>
+            </div>
+          </div>
+          <div class="content-card-body">
+            <!-- Architecture Flow Chart -->
+            <div class="arch-diagram-wrapper">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px;">
+                <!-- Column 1: University -->
+                <div>
+                  <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary-blue); text-transform: uppercase; margin-bottom: 8px;">1. University Tier</div>
+                  <div class="arch-node university active-selected" id="arch-node-student-app" onclick="selectArchNode('student-app')">
+                    <div class="arch-node-title"><i data-lucide="smartphone"></i> Student Application</div>
+                    <div class="arch-node-desc">Academic Portal & E-Learning UI</div>
+                  </div>
+                  <div style="text-align: center; color: var(--primary-blue); margin: 8px 0;"><i data-lucide="arrow-down"></i> SOAP 1.1</div>
+                  <div class="arch-node university" id="arch-node-university-ws" onclick="selectArchNode('university-ws')">
+                    <div class="arch-node-title"><i data-lucide="server"></i> University Web Service</div>
+                    <div class="arch-node-desc">JAX-WS StudentService Provider</div>
+                  </div>
+                </div>
+
+                <!-- Column 2: Healthcare -->
+                <div>
+                  <div style="font-size: 0.75rem; font-weight: 700; color: var(--teal-accent); text-transform: uppercase; margin-bottom: 8px;">2. Healthcare Tier</div>
+                  <div class="arch-node healthcare" id="arch-node-healthcare-app" onclick="selectArchNode('healthcare-app')">
+                    <div class="arch-node-title"><i data-lucide="laptop"></i> Healthcare Application</div>
+                    <div class="arch-node-desc">Hospital EHR & Telehealth Portal</div>
+                  </div>
+                  <div style="text-align: center; color: var(--teal-accent); margin: 8px 0;"><i data-lucide="arrow-down"></i> SOAP 1.1</div>
+                  <div class="arch-node healthcare" id="arch-node-healthcare-ws" onclick="selectArchNode('healthcare-ws')">
+                    <div class="arch-node-title"><i data-lucide="shield"></i> Healthcare Web Service</div>
+                    <div class="arch-node-desc">JAX-WS HealthcareService Provider</div>
+                  </div>
+                </div>
+
+                <!-- Column 3: Multimedia & Video -->
+                <div>
+                  <div style="font-size: 0.75rem; font-weight: 700; color: var(--violet-accent); text-transform: uppercase; margin-bottom: 8px;">3. Multimedia Tier</div>
+                  <div class="arch-node multimedia" id="arch-node-video-signaling" onclick="selectArchNode('video-signaling')">
+                    <div class="arch-node-title"><i data-lucide="radio"></i> Video Conferencing Server</div>
+                    <div class="arch-node-desc">Node.js WebRTC Signaling (Port 5000)</div>
+                  </div>
+                  <div style="text-align: center; color: var(--violet-accent); margin: 8px 0;"><i data-lucide="arrow-down"></i> ABR Protocol</div>
+                  <div class="arch-node multimedia" id="arch-node-buffer-optimizer" onclick="selectArchNode('buffer-optimizer')">
+                    <div class="arch-node-title"><i data-lucide="gauge"></i> Streaming & Buffer Optimizer</div>
+                    <div class="arch-node-desc">Adaptive Bitrate & Priority Queuing</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Shared Middleware & Database Layers -->
+              <div style="margin-top: 20px; padding-top: 20px; border-top: 2px dashed var(--border-color); display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="arch-node middleware" id="arch-node-wsdl-registry" onclick="selectArchNode('wsdl-registry')">
+                  <div class="arch-node-title"><i data-lucide="file-code"></i> WSDL Service Registry & Directory</div>
+                  <div class="arch-node-desc">Target Namespaces, PortTypes, Bindings & XML Schemas</div>
+                </div>
+
+                <div class="arch-node database" id="arch-node-database-layer" onclick="selectArchNode('database-layer')">
+                  <div class="arch-node-title"><i data-lucide="database"></i> Database Access Layer (JDBC)</div>
+                  <div class="arch-node-desc">University DB (Students, Courses) + Healthcare DB (Patients, Appointments)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Selected Component Inspector Card -->
+            <div class="content-card" style="margin-top: 24px; border: 1px solid var(--primary-blue);">
+              <div class="content-card-header" style="background-color: var(--primary-blue-light);">
+                <h3 style="color: var(--primary-blue);">
+                  <i data-lucide="info"></i> Component Inspector: <span id="arch-inspector-title">Student Application Client</span>
+                </h3>
+                <span class="badge badge-blue" id="arch-inspector-category">University Tier</span>
+              </div>
+              <div class="content-card-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px;">
+                  <div>
+                    <div class="form-label">PRIMARY RESPONSIBILITY</div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);" id="arch-inspector-resp">
+                      Provides student interface for viewing grades, attendance, course schedules, and joining online classroom lectures.
+                    </p>
+                  </div>
+                  <div>
+                    <div class="form-label">ASSOCIATED PROTOCOLS</div>
+                    <p style="font-size: 0.85rem; font-family: monospace; color: var(--text-primary);" id="arch-inspector-protocols">
+                      HTTP 1.1 / HTTPS, SOAP 1.1 / 1.2, JSON / UCP
+                    </p>
+                  </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                  <div>
+                    <div class="form-label">DATA RECEIVED</div>
+                    <p style="font-size: 0.82rem; color: var(--text-secondary);" id="arch-inspector-receives">
+                      User UI inputs, session tokens, formatted SOAP XML responses.
+                    </p>
+                  </div>
+                  <div>
+                    <div class="form-label">DATA SENT</div>
+                    <p style="font-size: 0.82rem; color: var(--text-secondary);" id="arch-inspector-sends">
+                      SOAP Request XML to StudentService (e.g. getStudentById, getResults).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 9: WEB SERVICE CENTER
+           ======================================================== -->
+      <section class="page-view" id="page-web-service-center">
+        <div class="filter-bar">
+          <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">
+            Java SOAP Web Services Registry
+          </div>
+          <button class="btn btn-primary" onclick="openModal('modal-publish-service')">
+            <i data-lucide="plus-circle"></i> Publish New Service
+          </button>
+        </div>
+
+        <div class="grid-2col" id="web-services-cards-grid"></div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 10: WSDL EXPLORER
+           ======================================================== -->
+      <section class="page-view" id="page-wsdl-explorer">
+        <div class="filter-bar">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <label class="form-label" style="margin: 0;">Select Service WSDL:</label>
+            <select class="form-select" id="wsdl-service-selector" onchange="onWsdlServiceChange()" style="width: 280px;">
+              <option value="SVC-STU">StudentService (Student Information)</option>
+              <option value="SVC-HLT">HealthcareService (Healthcare & Appointments)</option>
+            </select>
+          </div>
+          <button class="btn btn-secondary" onclick="copyWsdlXml()">
+            <i data-lucide="copy"></i> Copy WSDL XML
+          </button>
+        </div>
+
+        <!-- WSDL Structure Cards -->
+        <div class="dashboard-grid" style="margin-bottom: 20px;">
+          <div class="metric-card" style="padding: 14px;">
+            <div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 700;">SERVICE NAME</div>
+              <strong id="wsdl-service-name-title" style="color: var(--primary-blue);">StudentService</strong>
+            </div>
+          </div>
+          <div class="metric-card" style="padding: 14px;">
+            <div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 700;">TARGET NAMESPACE</div>
+              <code id="wsdl-target-namespace" style="font-size: 0.75rem;">http://unimedconnect.com/student</code>
+            </div>
+          </div>
+          <div class="metric-card" style="padding: 14px;">
+            <div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 700;">BINDING STYLE</div>
+              <span class="badge badge-violet">Document / Literal Wrapped</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Operation Explorer & XML Inspector -->
+        <div class="grid-2col" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div>
+            <div class="content-card">
+              <div class="content-card-header">
+                <h3><i data-lucide="list"></i> Available Operations</h3>
+              </div>
+              <div class="content-card-body" id="wsdl-operations-list"></div>
+            </div>
+
+            <!-- Operation Sample Details -->
+            <div class="content-card">
+              <div class="content-card-header">
+                <h3><i data-lucide="code"></i> Operation Contract Sample (<span id="wsdl-op-name-display">getStudentById</span>)</h3>
+              </div>
+              <div class="content-card-body">
+                <div class="form-label">SAMPLE SOAP REQUEST BODY:</div>
+                <div class="code-container" style="margin-bottom: 14px;">
+                  <pre id="wsdl-op-sample-req"></pre>
+                </div>
+                <div class="form-label">SAMPLE SOAP RESPONSE BODY:</div>
+                <div class="code-container">
+                  <pre id="wsdl-op-sample-res"></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Full Raw WSDL XML -->
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3><i data-lucide="file-text"></i> Complete WSDL 1.1 Document</h3>
+            </div>
+            <div class="content-card-body" style="padding: 0;">
+              <div class="code-container" style="border-radius: 0; max-height: 580px; overflow-y: auto;">
+                <pre id="wsdl-raw-code"></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 11: API / SOAP TESTER
+           ======================================================== -->
+      <section class="page-view" id="page-soap-tester">
+        <div class="grid-2col" style="gap: 24px;">
+          <!-- Left: Request Configuration -->
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3><i data-lucide="terminal"></i> SOAP Request Builder</h3>
+              <span class="badge badge-blue">SOAP 1.1 HTTP POST</span>
+            </div>
+            <div class="content-card-body">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Select Service:</label>
+                  <select class="form-select" id="tester-service-select" onchange="onTesterServiceChange()">
+                    <option value="StudentService">StudentService</option>
+                    <option value="HealthcareService">HealthcareService</option>
+                    <option value="ClassroomService">ClassroomService</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Select Operation:</label>
+                  <select class="form-select" id="tester-operation-select" onchange="onTesterOpChange()"></select>
+                </div>
+              </div>
+
+              <!-- Dynamic Parameters Container -->
+              <div id="tester-params-container" style="background: var(--bg-subtle); padding: 12px; border-radius: var(--radius-md); margin-bottom: 14px;"></div>
+
+              <div class="form-group">
+                <label class="form-label">Raw SOAP Request XML Envelope:</label>
+                <textarea class="form-textarea" id="tester-request-xml" rows="8" style="font-family: monospace; font-size: 0.8rem;"></textarea>
+              </div>
+
+              <button class="btn btn-primary btn-lg" id="btn-send-soap" style="width: 100%;" onclick="executeSoapRequest()">
+                <i data-lucide="send"></i> Send SOAP Request
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: SOAP Response -->
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3><i data-lucide="check-circle-2"></i> SOAP Response Payload</h3>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span class="badge badge-green" id="tester-res-status">200 OK</span>
+                <span class="badge badge-gray" id="tester-res-time">78 ms</span>
+              </div>
+            </div>
+            <div class="content-card-body" style="padding: 0;">
+              <div class="code-container" style="border-radius: 0; min-height: 380px;">
+                <pre id="tester-response-xml">&lt;!-- Execute a SOAP operation to view formatted response --&gt;</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transaction History Table -->
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3><i data-lucide="clock"></i> Transaction History Log</h3>
+          </div>
+          <div class="content-card-body" style="padding: 0;">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Tx ID</th><th>Service</th><th>Operation</th><th>Status</th><th>Response Time</th><th>Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody id="soap-history-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 12: COMMUNICATION PROTOCOL (UCP)
+           ======================================================== -->
+      <section class="page-view" id="page-communication-protocol">
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3><i data-lucide="shield-check"></i> UniMed Communication Protocol (UCP v1.0)</h3>
+            <span class="badge badge-violet">12-Field Specification</span>
+          </div>
+          <div class="content-card-body">
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 20px;">
+              <strong>UCP</strong> is an application-level message exchange protocol designed to standardize interoperability across university portals, hospital EHR systems, medical devices, and multimedia streaming servers.
+            </p>
+
+            <div class="grid-2col" style="gap: 24px;">
+              <!-- Message Builder Form -->
+              <div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Sender Application:</label>
+                    <select class="form-select" id="ucp-sender">
+                      <option value="UniversityApp">UniversityApp (Student Portal)</option>
+                      <option value="HospitalEHR">HospitalEHR (Clinical System)</option>
+                      <option value="TelehealthGateway">TelehealthGateway</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Receiver Service:</label>
+                    <select class="form-select" id="ucp-receiver">
+                      <option value="StudentService">StudentService</option>
+                      <option value="HealthcareService">HealthcareService</option>
+                      <option value="ClassroomService">ClassroomService</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">Service Type:</label>
+                    <select class="form-select" id="ucp-service-type">
+                      <option value="ACADEMIC">ACADEMIC</option>
+                      <option value="HEALTHCARE">HEALTHCARE</option>
+                      <option value="TELEMEDICINE">TELEMEDICINE</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Operation:</label>
+                    <input type="text" class="form-input" id="ucp-operation" value="getStudentById">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Priority:</label>
+                    <select class="form-select" id="ucp-priority">
+                      <option value="NORMAL">NORMAL</option>
+                      <option value="HIGH">HIGH (Clinical)</option>
+                      <option value="CRITICAL">CRITICAL (Emergency)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Payload (JSON):</label>
+                  <textarea class="form-textarea" id="ucp-payload" rows="3">{"studentId": "STU1001"}</textarea>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                  <button class="btn btn-secondary" onclick="generateUcpMessage()"><i data-lucide="refresh-cw"></i> Generate Message</button>
+                  <button class="btn btn-violet" onclick="validateUcpMessage()"><i data-lucide="check"></i> Validate 12 Fields</button>
+                  <button class="btn btn-teal" onclick="transmitUcpMessage()"><i data-lucide="send"></i> Transmit UCP</button>
+                </div>
+              </div>
+
+              <!-- Message Output & ACK -->
+              <div>
+                <div class="form-label">GENERATED UCP MESSAGE (JSON):</div>
+                <textarea class="form-textarea" id="ucp-generated-json" rows="9" style="font-family: monospace; font-size: 0.78rem;"></textarea>
+                <div id="ucp-validation-status" style="margin: 8px 0;"></div>
+
+                <div class="form-label" style="margin-top: 12px;">ACKNOWLEDGEMENT RECEIPT (ACK):</div>
+                <div class="code-container" style="max-height: 120px;">
+                  <pre id="ucp-ack-output">{ "status": "Ready for transmission" }</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- UCP Transaction Log -->
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3><i data-lucide="list"></i> UCP Protocol Message Transmission Log</h3>
+          </div>
+          <div class="content-card-body" style="padding: 0;">
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Msg ID</th><th>Sender</th><th>Receiver</th><th>Type</th><th>Operation</th><th>Priority</th><th>Status</th><th>Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody id="ucp-logs-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 13: STREAMING & BUFFER OPTIMIZER
+           ======================================================== -->
+      <section class="page-view" id="page-streaming-optimizer">
+        <!-- Live Buffer Gauge Card -->
+        <div class="buffer-gauge-card">
+          <div class="buffer-gauge-header">
+            <div>
+              <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 4px;">Dynamic Playback Buffer Gauge</h3>
+              <span style="font-size: 0.8rem; color: #94a3b8;">Real-time buffer capacity & health monitoring</span>
+            </div>
+            <div style="text-align: right;">
+              <span id="buffer-level-percent" style="font-size: 1.6rem; font-weight: 700; color: #38bdf8;">85%</span>
+            </div>
+          </div>
+          <div class="buffer-meter-wrapper">
+            <div class="buffer-meter-fill" id="buffer-meter-fill" style="width: 85%;"></div>
+            <div class="buffer-threshold-marker" style="left: 25%;" title="Critical Rebuffering Threshold (25%)"></div>
+          </div>
+          <div id="buffer-warning-alert" style="display: none; background: rgba(239,68,68,0.2); border: 1px solid #ef4444; border-radius: 6px; padding: 10px; margin-top: 12px; font-size: 0.82rem; color: #fca5a5;"></div>
+        </div>
+
+        <div class="grid-2col" style="gap: 24px;">
+          <!-- Network Presets & Controls -->
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3><i data-lucide="sliders"></i> Network Simulator Controls</h3>
+              <button class="btn btn-sm btn-teal" id="btn-toggle-optimizer" onclick="toggleOptimizationMode()">
+                Mode: WITH OPTIMIZATION (Active)
+              </button>
+            </div>
+            <div class="content-card-body">
+              <div class="form-group">
+                <label class="form-label">Network Condition Presets:</label>
+                <div class="preset-button-group">
+                  <button class="btn-preset" data-preset="excellent" onclick="setNetworkPreset('excellent')">Excellent (100 Mbps)</button>
+                  <button class="btn-preset active" data-preset="good" onclick="setNetworkPreset('good')">Good (35 Mbps)</button>
+                  <button class="btn-preset" data-preset="moderate" onclick="setNetworkPreset('moderate')">Moderate (12 Mbps)</button>
+                  <button class="btn-preset" data-preset="poor" onclick="setNetworkPreset('poor')">Poor (3 Mbps)</button>
+                  <button class="btn-preset" data-preset="unstable" onclick="setNetworkPreset('unstable')">Unstable (1.5 Mbps)</button>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 18px;">
+                <div style="display: flex; justify-content: space-between;">
+                  <label class="form-label">Available Bandwidth:</label>
+                  <span id="sim-bw-display" style="font-weight: 700; color: var(--primary-blue);">35 Mbps</span>
+                </div>
+                <input type="range" class="form-input" id="sim-bw-slider" min="1" max="100" value="35" oninput="onSliderChange('bw')">
+              </div>
+
+              <div class="form-group">
+                <div style="display: flex; justify-content: space-between;">
+                  <label class="form-label">Network Latency:</label>
+                  <span id="sim-latency-display" style="font-weight: 700; color: var(--teal-accent);">38 ms</span>
+                </div>
+                <input type="range" class="form-input" id="sim-latency-slider" min="5" max="500" value="38" oninput="onSliderChange('lat')">
+              </div>
+
+              <div class="form-group">
+                <div style="display: flex; justify-content: space-between;">
+                  <label class="form-label">Packet Loss:</label>
+                  <span id="sim-loss-display" style="font-weight: 700; color: var(--danger-red);">0.5%</span>
+                </div>
+                <input type="range" class="form-input" id="sim-loss-slider" min="0" max="25" step="0.5" value="0.5" oninput="onSliderChange('loss')">
+              </div>
+            </div>
+          </div>
+
+          <!-- Adaptive Quality & ABR Results -->
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3><i data-lucide="gauge"></i> Adaptive Bitrate (ABR) Telemetry</h3>
+            </div>
+            <div class="content-card-body">
+              <div style="margin-bottom: 20px;">
+                <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">CURRENT VIDEO STREAM RESOLUTION</div>
+                <div style="font-size: 1.8rem; font-weight: 700; color: var(--primary-blue); margin-top: 4px;" id="stream-quality-badge">
+                  1080p Full HD
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px;">
+                <div style="background: var(--bg-subtle); padding: 12px; border-radius: var(--radius-md);">
+                  <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700;">ENCODED BITRATE</div>
+                  <div style="font-size: 1.25rem; font-weight: 700; color: var(--teal-accent);" id="stream-bitrate-display">4500 kbps</div>
+                </div>
+                <div style="background: var(--bg-subtle); padding: 12px; border-radius: var(--radius-md);">
+                  <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700;">BUFFER STATE</div>
+                  <div style="font-size: 1.25rem; font-weight: 700; color: var(--success-green);">Continuous</div>
+                </div>
+              </div>
+
+              <div style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+                <strong>ABR Algorithm in Action:</strong> When packet loss or latency exceeds thresholds, the engine switches to a lower bitrate to preserve uninterrupted playback continuity.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 14: SIMULTANEOUS TRAFFIC ALLOCATOR
+           ======================================================== -->
+      <section class="page-view" id="page-traffic-allocator">
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3><i data-lucide="sliders"></i> Simultaneous Classroom & Healthcare Bandwidth Allocation</h3>
+          </div>
+          <div class="content-card-body">
+            <div class="grid-2col" style="gap: 24px; margin-bottom: 24px;">
+              <div>
+                <div class="form-group">
+                  <div style="display: flex; justify-content: space-between;">
+                    <label class="form-label">Total Uplink/Downlink Pipe:</label>
+                    <span id="alloc-total-display" style="font-weight: 700; color: var(--primary-blue);">50 Mbps</span>
+                  </div>
+                  <input type="range" class="form-input" id="alloc-total-bw" min="10" max="100" value="50" oninput="updateBandwidthAllocation()">
+                </div>
+
+                <div class="form-group">
+                  <div style="display: flex; justify-content: space-between;">
+                    <label class="form-label">Online Classroom Participants:</label>
+                    <span id="alloc-class-display" style="font-weight: 700; color: var(--teal-accent);">25 Participants</span>
+                  </div>
+                  <input type="range" class="form-input" id="alloc-class-students" min="5" max="100" value="25" oninput="updateBandwidthAllocation()">
+                </div>
+
+                <div class="form-group">
+                  <div style="display: flex; justify-content: space-between;">
+                    <label class="form-label">Doctor Telehealth Consultations:</label>
+                    <span id="alloc-doc-display" style="font-weight: 700; color: var(--violet-accent);">2 Consultations</span>
+                  </div>
+                  <input type="range" class="form-input" id="alloc-telehealth-count" min="1" max="10" value="2" oninput="updateBandwidthAllocation()">
+                </div>
+              </div>
+
+              <div>
+                <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 10px;">Dynamic Traffic Allocation:</div>
+                <div style="background: var(--bg-subtle); height: 26px; border-radius: var(--radius-md); overflow: hidden; display: flex; margin-bottom: 16px;">
+                  <div id="bar-alloc-healthcare" style="width: 25%; background-color: var(--teal-accent);" title="Healthcare QoS Guaranteed"></div>
+                  <div id="bar-alloc-classroom" style="width: 65%; background-color: var(--primary-blue);" title="Classroom Adaptive"></div>
+                  <div id="bar-alloc-background" style="width: 10%; background-color: #94a3b8;" title="Background SOAP"></div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.84rem;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: var(--teal-accent); border-radius: 2px;"></span> Healthcare Consultations (High Priority QoS):</span>
+                    <strong id="alloc-val-healthcare">11.0 Mbps</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: var(--primary-blue); border-radius: 2px;"></span> Online Classroom Stream (Adaptive ABR):</span>
+                    <strong id="alloc-val-classroom">33.2 Mbps</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #94a3b8; border-radius: 2px;"></span> Background SOAP / Sync (Best Effort):</span>
+                    <strong id="alloc-val-background">5.8 Mbps</strong>
+                  </div>
+                </div>
+
+                <div id="alloc-congestion-alert" style="display: none; margin-top: 14px; background: rgba(245,158,11,0.15); border: 1px solid var(--warning-amber); border-radius: 6px; padding: 10px; font-size: 0.82rem; color: #b45309;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 15: NETWORK MONITOR
+           ======================================================== -->
+      <section class="page-view" id="page-network-monitor">
+        <div class="filter-bar">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-weight: 700;">Live Connection Status:</span>
+            <span class="badge badge-green" id="net-connection-status">HEALTHY & STABLE</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-danger" id="btn-fail-network" onclick="simulateNetworkFailure()">
+              <i data-lucide="alert-octagon"></i> Simulate Network Degradation
+            </button>
+            <button class="btn btn-teal" id="btn-restore-network" style="display: none;" onclick="restoreNetwork()">
+              <i data-lucide="check-circle"></i> Restore Connection
+            </button>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3><i data-lucide="activity"></i> Real-Time Ping & Telemetry Stream</h3>
+            <div style="display: flex; gap: 14px; font-size: 0.8rem;">
+              <span>Latency: <strong id="net-status-lat" style="color: var(--primary-blue);">22 ms</strong></span>
+              <span>Packet Loss: <strong id="net-status-loss" style="color: var(--danger-red);">0.0%</strong></span>
+            </div>
+          </div>
+          <div class="content-card-body" style="height: 300px;">
+            <canvas id="chart-network-telemetry"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 16: REPORTS & ANALYTICS
+           ======================================================== -->
+      <section class="page-view" id="page-reports">
+        <div class="filter-bar">
+          <div style="font-size: 1rem; font-weight: 700; color: var(--text-primary);">
+            System Analytics & Compliance Report
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-primary" onclick="exportCsvReport()"><i data-lucide="download"></i> Export CSV</button>
+            <button class="btn btn-secondary" onclick="printReport()"><i data-lucide="printer"></i> Print Report</button>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="metric-card">
+            <div class="metric-data">
+              <h3>Total SOAP Calls</h3>
+              <div class="metric-value" id="rep-total-soap">14,284</div>
+            </div>
+            <div class="metric-icon-box blue"><i data-lucide="server"></i></div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-data">
+              <h3>Success Rate</h3>
+              <div class="metric-value" id="rep-success-rate">99.4%</div>
+            </div>
+            <div class="metric-icon-box green"><i data-lucide="check-circle"></i></div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-data">
+              <h3>Avg Response Time</h3>
+              <div class="metric-value" id="rep-avg-response">108 ms</div>
+            </div>
+            <div class="metric-icon-box teal"><i data-lucide="clock"></i></div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-data">
+              <h3>Total Video Hours</h3>
+              <div class="metric-value" id="rep-video-hours">384.5 hrs</div>
+            </div>
+            <div class="metric-icon-box amber"><i data-lucide="video"></i></div>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3><i data-lucide="bar-chart-2"></i> Monthly SOAP Invocations by Service</h3>
+          </div>
+          <div class="content-card-body" style="height: 320px;">
+            <canvas id="chart-reports-volume"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           PAGE 17: SETTINGS & ROLE SWITCHER
+           ======================================================== -->
+      <section class="page-view" id="page-settings">
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3><i data-lucide="settings"></i> Application Settings & Role Configuration</h3>
+          </div>
+          <div class="content-card-body">
+            <div class="form-group" style="max-width: 400px; margin-bottom: 24px;">
+              <label class="form-label">Active Role:</label>
+              <select class="form-select" onchange="setCurrentRole(this.value)">
+                <option value="admin">Administrator Demo</option>
+                <option value="student">Student Demo (Sarah Chen)</option>
+                <option value="teacher">Teacher Demo (Prof. Marcus Vance)</option>
+                <option value="doctor">Doctor Demo (Dr. Elena Rostova)</option>
+                <option value="patient">Patient Demo (James Wilson)</option>
+              </select>
+            </div>
+
+            <div style="border-top: 1px solid var(--border-color); padding-top: 20px;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 8px;">Database & Local Storage</h4>
+              <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 14px;">
+                Reset all modified demo data back to default fictional records (students, doctors, patients, appointments, transactions).
+              </p>
+              <button class="btn btn-danger" onclick="Store.resetAll()">
+                <i data-lucide="trash-2"></i> Reset All Demo Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================
+     MODALS SECTION
+     ======================================================== -->
+
+<!-- Modal: Role Switcher / Login -->
+<div class="modal-overlay" id="modal-login-switcher">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3><i data-lucide="users"></i> Select Demo Account</h3>
+      <button class="modal-close" onclick="closeModal('modal-login-switcher')"><i data-lucide="x"></i></button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
+        Click any role below for one-click instant testing:
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <button class="btn btn-secondary" style="justify-content: flex-start; padding: 12px;" onclick="setCurrentRole('student'); closeModal('modal-login-switcher')">
+          <div class="user-avatar" style="width: 32px; height: 32px; margin-right: 10px;">SC</div>
+          <div style="text-align: left;">
+            <div style="font-weight: 700;">Student Demo (Sarah Chen - STU1001)</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Computer Science &bull; Year 3</div>
+          </div>
+        </button>
+        <button class="btn btn-secondary" style="justify-content: flex-start; padding: 12px;" onclick="setCurrentRole('teacher'); closeModal('modal-login-switcher')">
+          <div class="user-avatar" style="width: 32px; height: 32px; margin-right: 10px; background: var(--violet-accent);">MV</div>
+          <div style="text-align: left;">
+            <div style="font-weight: 700;">Teacher Demo (Prof. Marcus Vance)</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Online Classroom Management & Grades</div>
+          </div>
+        </button>
+        <button class="btn btn-secondary" style="justify-content: flex-start; padding: 12px;" onclick="setCurrentRole('doctor'); closeModal('modal-login-switcher')">
+          <div class="user-avatar" style="width: 32px; height: 32px; margin-right: 10px; background: var(--teal-accent);">ER</div>
+          <div style="text-align: left;">
+            <div style="font-weight: 700;">Doctor Demo (Dr. Elena Rostova)</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Cardiovascular Medicine & Telehealth Consultations</div>
+          </div>
+        </button>
+        <button class="btn btn-secondary" style="justify-content: flex-start; padding: 12px;" onclick="setCurrentRole('patient'); closeModal('modal-login-switcher')">
+          <div class="user-avatar" style="width: 32px; height: 32px; margin-right: 10px; background: var(--warning-amber);">JW</div>
+          <div style="text-align: left;">
+            <div style="font-weight: 700;">Patient Demo (James Wilson)</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Book appointments and join video consultations</div>
+          </div>
+        </button>
+        <button class="btn btn-secondary" style="justify-content: flex-start; padding: 12px;" onclick="setCurrentRole('admin'); closeModal('modal-login-switcher')">
+          <div class="user-avatar" style="width: 32px; height: 32px; margin-right: 10px; background: var(--primary-blue);">SA</div>
+          <div style="text-align: left;">
+            <div style="font-weight: 700;">System Administrator</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Access to all diagnostic, SOAP, and network tools</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Add Student -->
+<div class="modal-overlay" id="modal-add-student">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3><i data-lucide="user-plus"></i> Register New Student</h3>
+      <button class="modal-close" onclick="closeModal('modal-add-student')"><i data-lucide="x"></i></button>
+    </div>
+    <form onsubmit="saveNewStudent(event)">
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Student ID:</label>
+            <input type="text" class="form-input" id="new-stu-id" placeholder="e.g. STU1006" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Full Name:</label>
+            <input type="text" class="form-input" id="new-stu-name" placeholder="Student name..." required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Department:</label>
+            <select class="form-select" id="new-stu-dept">
+              <option value="Computer Science">Computer Science</option>
+              <option value="Health Informatics">Health Informatics</option>
+              <option value="Biomedical Engineering">Biomedical Engineering</option>
+              <option value="Nursing & Health Sciences">Nursing & Health Sciences</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Year of Study:</label>
+            <select class="form-select" id="new-stu-year">
+              <option value="1">Year 1</option>
+              <option value="2">Year 2</option>
+              <option value="3">Year 3</option>
+              <option value="4">Year 4</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Institutional Email:</label>
+          <input type="email" class="form-input" id="new-stu-email" placeholder="name@university.edu" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Initial Attendance %:</label>
+            <input type="number" class="form-input" id="new-stu-attendance" min="0" max="100" value="90">
+          </div>
+          <div class="form-group">
+            <label class="form-label">CGPA (0 - 4.0):</label>
+            <input type="number" class="form-input" id="new-stu-cgpa" min="0" max="4.0" step="0.01" value="3.75">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modal-add-student')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Student</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal: Student Profile -->
+<div class="modal-overlay" id="modal-student-profile">
+  <div class="modal-container modal-lg">
+    <div class="modal-header">
+      <h3><i data-lucide="user"></i> Student Academic Dossier: <span id="modal-student-name"></span></h3>
+      <button class="modal-close" onclick="closeModal('modal-student-profile')"><i data-lucide="x"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="dashboard-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 20px;">
+        <div class="metric-card" style="padding: 12px;">
+          <div><div class="form-label">STUDENT ID</div><strong id="modal-student-id"></strong></div>
+        </div>
+        <div class="metric-card" style="padding: 12px;">
+          <div><div class="form-label">DEPARTMENT</div><strong id="modal-student-dept"></strong></div>
+        </div>
+        <div class="metric-card" style="padding: 12px;">
+          <div><div class="form-label">CGPA</div><span class="badge badge-green" id="modal-student-cgpa"></span></div>
+        </div>
+        <div class="metric-card" style="padding: 12px;">
+          <div><div class="form-label">ATTENDANCE</div><strong id="modal-student-attendance"></strong></div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <div class="content-card-header">
+          <h3><i data-lucide="award"></i> Semester Academic Results</h3>
+        </div>
+        <div class="content-card-body" style="padding: 0;">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead><tr><th>Course Code</th><th>Course Title</th><th>Grade</th><th>Marks</th></tr></thead>
+              <tbody id="modal-student-grades-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Add Patient -->
+<div class="modal-overlay" id="modal-add-patient">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3><i data-lucide="user-plus"></i> Register Patient Record</h3>
+      <button class="modal-close" onclick="closeModal('modal-add-patient')"><i data-lucide="x"></i></button>
+    </div>
+    <form onsubmit="saveNewPatient(event)">
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Patient ID:</label>
+            <input type="text" class="form-input" id="new-pat-id" placeholder="e.g. PAT4005" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Full Name:</label>
+            <input type="text" class="form-input" id="new-pat-name" placeholder="Patient name..." required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Age:</label>
+            <input type="number" class="form-input" id="new-pat-age" min="1" max="120" value="45" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Gender:</label>
+            <select class="form-select" id="new-pat-gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Department:</label>
+            <select class="form-select" id="new-pat-dept">
+              <option value="Cardiology">Cardiology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="General Medicine">General Medicine</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Condition / Reason for Care:</label>
+          <input type="text" class="form-input" id="new-pat-condition" placeholder="e.g. Hypertension & Arrhythmia...">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modal-add-patient')">Cancel</button>
+        <button type="submit" class="btn btn-teal">Register Patient</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal: Patient Profile -->
+<div class="modal-overlay" id="modal-patient-profile">
+  <div class="modal-container modal-lg">
+    <div class="modal-header">
+      <h3><i data-lucide="heart-pulse"></i> Patient Health Record: <span id="modal-patient-name"></span></h3>
+      <button class="modal-close" onclick="closeModal('modal-patient-profile')"><i data-lucide="x"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="dashboard-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 20px;">
+        <div class="metric-card" style="padding: 12px;">
+          <div><div class="form-label">PATIENT ID</div><strong id="modal-patient-id"></strong></div>
+        </div>
+        <div class="metric-card" style="padding: 12px;">
+          <div><div class="form-label">AGE / GENDER</div><strong id="modal-patient-age-gender"></strong></div>
+        </div>
+        <div class="metric-card" style="padding: 12px;">
+          <div><div class="form-label">DEPARTMENT</div><strong id="modal-patient-dept"></strong></div>
+        </div>
+        <div class="metric-card" style="padding: 12px;">
+          <div><div class="form-label">PRIMARY DOCTOR</div><strong id="modal-patient-doctor"></strong></div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <div class="content-card-header">
+          <h3><i data-lucide="activity"></i> Recorded Vitals & History</h3>
+        </div>
+        <div class="content-card-body">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px;">
+            <div style="background: var(--bg-subtle); padding: 10px; border-radius: 6px;">
+              <div class="form-label">BP</div><strong id="vital-bp">132/84</strong>
+            </div>
+            <div style="background: var(--bg-subtle); padding: 10px; border-radius: 6px;">
+              <div class="form-label">HEART RATE</div><strong id="vital-hr">74 bpm</strong>
+            </div>
+            <div style="background: var(--bg-subtle); padding: 10px; border-radius: 6px;">
+              <div class="form-label">SPO2</div><strong id="vital-spo2">98%</strong>
+            </div>
+            <div style="background: var(--bg-subtle); padding: 10px; border-radius: 6px;">
+              <div class="form-label">TEMP</div><strong id="vital-temp">98.4 F</strong>
+            </div>
+          </div>
+          <div class="form-label">CLINICAL CONDITION:</div>
+          <p id="modal-patient-condition" style="font-size: 0.88rem; margin-bottom: 10px;"></p>
+          <div class="form-label">CONSULTATION SUMMARY NOTES:</div>
+          <p id="modal-patient-notes" style="font-size: 0.85rem; color: var(--text-secondary);"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Book Appointment -->
+<div class="modal-overlay" id="modal-book-appointment">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3><i data-lucide="calendar"></i> Schedule Telehealth Consultation</h3>
+      <button class="modal-close" onclick="closeModal('modal-book-appointment')"><i data-lucide="x"></i></button>
+    </div>
+    <form onsubmit="saveBookAppointment(event)">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Select Patient:</label>
+          <select class="form-select" id="book-apt-patient" required></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Select Doctor & Department:</label>
+          <select class="form-select" id="book-apt-doctor" required></select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Appointment Date:</label>
+            <input type="date" class="form-input" id="book-apt-date" value="2026-11-25" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Available Time Slot:</label>
+            <select class="form-select" id="book-apt-time">
+              <option value="09:00 AM">09:00 AM - 09:30 AM</option>
+              <option value="10:00 AM">10:00 AM - 10:30 AM</option>
+              <option value="11:30 AM">11:30 AM - 12:00 PM</option>
+              <option value="02:00 PM">02:00 PM - 02:30 PM</option>
+              <option value="03:30 PM">03:30 PM - 04:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Consultation Reason / Symptoms:</label>
+          <textarea class="form-textarea" id="book-apt-reason" rows="2" placeholder="e.g. Arrhythmia review..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modal-book-appointment')">Cancel</button>
+        <button type="submit" class="btn btn-teal">Confirm Appointment</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal: Publish Service -->
+<div class="modal-overlay" id="modal-publish-service">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3><i data-lucide="upload-cloud"></i> Publish Java SOAP Service</h3>
+      <button class="modal-close" onclick="closeModal('modal-publish-service')"><i data-lucide="x"></i></button>
+    </div>
+    <form onsubmit="publishCustomService(event)">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Service Name:</label>
+          <input type="text" class="form-input" id="pub-service-name" placeholder="e.g. DiagnosticLabService" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Provider Class:</label>
+          <input type="text" class="form-input" id="pub-provider-class" placeholder="com.unimedconnect.lab.DiagnosticLabServiceImpl">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Endpoint URL:</label>
+          <input type="text" class="form-input" id="pub-endpoint-url" value="http://localhost:8081/ws/lab" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Exposed Operations (comma-separated):</label>
+          <input type="text" class="form-input" id="pub-operations-list" value="getLabResults, requestBloodPanel" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modal-publish-service')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Publish to Registry</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Toast Notifications Container -->
+<div id="toast-container"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

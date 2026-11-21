@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ========================================================================= -->
+<!-- Web Services Description Language (WSDL) Contract                         -->
+<!-- Service: HealthcareInformationService                                     -->
+<!-- Target Namespace: http://service.mediconnect.com/                         -->
+<!-- Protocol: SOAP 1.1 / HTTP / Document-Literal Wrapped                       -->
+<!-- ========================================================================= -->
+<wsdl:definitions 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://service.mediconnect.com/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    name="HealthcareInformationService"
+    targetNamespace="http://service.mediconnect.com/">
+
+    <!-- ===================================================================== -->
+    <!-- 1. DATA TYPES (XML Schema Definition - XSD)                           -->
+    <!-- ===================================================================== -->
+    <wsdl:types>
+        <xs:schema targetNamespace="http://service.mediconnect.com/" elementFormDefault="qualified">
+
+            <!-- Patient Complex Type -->
+            <xs:complexType name="patient">
+                <xs:sequence>
+                    <xs:element name="patientId" type="xs:string"/>
+                    <xs:element name="patientName" type="xs:string"/>
+                    <xs:element name="age" type="xs:int"/>
+                    <xs:element name="gender" type="xs:string"/>
+                    <xs:element name="bloodGroup" type="xs:string"/>
+                    <xs:element name="mobile" type="xs:string"/>
+                    <xs:element name="email" type="xs:string" minOccurs="0"/>
+                    <xs:element name="address" type="xs:string" minOccurs="0"/>
+                    <xs:element name="doctorName" type="xs:string" minOccurs="0"/>
+                    <xs:element name="department" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <!-- Laboratory Report Complex Type -->
+            <xs:complexType name="laboratoryReport">
+                <xs:sequence>
+                    <xs:element name="reportId" type="xs:string"/>
+                    <xs:element name="patientId" type="xs:string"/>
+                    <xs:element name="testName" type="xs:string"/>
+                    <xs:element name="testDate" type="xs:string"/>
+                    <xs:element name="laboratoryName" type="xs:string"/>
+                    <xs:element name="testResult" type="xs:string"/>
+                    <xs:element name="referenceRange" type="xs:string" minOccurs="0"/>
+                    <xs:element name="reportStatus" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <!-- Appointment Complex Type -->
+            <xs:complexType name="appointment">
+                <xs:sequence>
+                    <xs:element name="appointmentId" type="xs:string"/>
+                    <xs:element name="patientId" type="xs:string"/>
+                    <xs:element name="doctorName" type="xs:string"/>
+                    <xs:element name="appointmentDate" type="xs:string"/>
+                    <xs:element name="appointmentTime" type="xs:string"/>
+                    <xs:element name="appointmentStatus" type="xs:string"/>
+                    <xs:element name="notes" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <!-- SOAP Fault Detail Complex Type -->
+            <xs:complexType name="healthcareFault">
+                <xs:sequence>
+                    <xs:element name="errorCode" type="xs:string"/>
+                    <xs:element name="errorMessage" type="xs:string"/>
+                    <xs:element name="details" type="xs:string" minOccurs="0"/>
+                    <xs:element name="timestamp" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <!-- Element Declarations for Document-Wrapped Operations -->
+
+            <!-- 1. getPatientById Elements -->
+            <xs:element name="getPatientById">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="patientId" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPatientByIdResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="patient" type="tns:patient" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <!-- 2. getLaboratoryReports Elements -->
+            <xs:element name="getLaboratoryReports">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="patientId" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getLaboratoryReportsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="laboratoryReport" type="tns:laboratoryReport" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <!-- 3. getAppointments Elements -->
+            <xs:element name="getAppointments">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="patientId" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAppointmentsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="appointment" type="tns:appointment" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <!-- 4. getAllPatients Elements -->
+            <xs:element name="getAllPatients">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllPatientsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="patient" type="tns:patient" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <!-- Fault Element -->
+            <xs:element name="HealthcareFault" type="tns:healthcareFault"/>
+
+        </xs:schema>
+    </wsdl:types>
+
+    <!-- ===================================================================== -->
+    <!-- 2. WSDL MESSAGES                                                      -->
+    <!-- ===================================================================== -->
+    <wsdl:message name="getPatientByIdRequest">
+        <wsdl:part name="parameters" element="tns:getPatientById"/>
+    </wsdl:message>
+    <wsdl:message name="getPatientByIdResponse">
+        <wsdl:part name="parameters" element="tns:getPatientByIdResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="getLaboratoryReportsRequest">
+        <wsdl:part name="parameters" element="tns:getLaboratoryReports"/>
+    </wsdl:message>
+    <wsdl:message name="getLaboratoryReportsResponse">
+        <wsdl:part name="parameters" element="tns:getLaboratoryReportsResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="getAppointmentsRequest">
+        <wsdl:part name="parameters" element="tns:getAppointments"/>
+    </wsdl:message>
+    <wsdl:message name="getAppointmentsResponse">
+        <wsdl:part name="parameters" element="tns:getAppointmentsResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="getAllPatientsRequest">
+        <wsdl:part name="parameters" element="tns:getAllPatients"/>
+    </wsdl:message>
+    <wsdl:message name="getAllPatientsResponse">
+        <wsdl:part name="parameters" element="tns:getAllPatientsResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="HealthcareServiceException">
+        <wsdl:part name="fault" element="tns:HealthcareFault"/>
+    </wsdl:message>
+
+    <!-- ===================================================================== -->
+    <!-- 3. PORT TYPE (INTERFACE)                                              -->
+    <!-- ===================================================================== -->
+    <wsdl:portType name="HealthcareInformationService">
+        <wsdl:operation name="getPatientById">
+            <wsdl:input message="tns:getPatientByIdRequest"/>
+            <wsdl:output message="tns:getPatientByIdResponse"/>
+            <wsdl:fault name="HealthcareServiceException" message="tns:HealthcareServiceException"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="getLaboratoryReports">
+            <wsdl:input message="tns:getLaboratoryReportsRequest"/>
+            <wsdl:output message="tns:getLaboratoryReportsResponse"/>
+            <wsdl:fault name="HealthcareServiceException" message="tns:HealthcareServiceException"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="getAppointments">
+            <wsdl:input message="tns:getAppointmentsRequest"/>
+            <wsdl:output message="tns:getAppointmentsResponse"/>
+            <wsdl:fault name="HealthcareServiceException" message="tns:HealthcareServiceException"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="getAllPatients">
+            <wsdl:input message="tns:getAllPatientsRequest"/>
+            <wsdl:output message="tns:getAllPatientsResponse"/>
+            <wsdl:fault name="HealthcareServiceException" message="tns:HealthcareServiceException"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- ===================================================================== -->
+    <!-- 4. SOAP BINDING                                                       -->
+    <!-- ===================================================================== -->
+    <wsdl:binding name="HealthcareInformationServicePortBinding" type="tns:HealthcareInformationService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+
+        <wsdl:operation name="getPatientById">
+            <soap:operation soapAction="getPatientById"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="HealthcareServiceException">
+                <soap:fault name="HealthcareServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="getLaboratoryReports">
+            <soap:operation soapAction="getLaboratoryReports"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="HealthcareServiceException">
+                <soap:fault name="HealthcareServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="getAppointments">
+            <soap:operation soapAction="getAppointments"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="HealthcareServiceException">
+                <soap:fault name="HealthcareServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="getAllPatients">
+            <soap:operation soapAction="getAllPatients"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="HealthcareServiceException">
+                <soap:fault name="HealthcareServiceException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!-- ===================================================================== -->
+    <!-- 5. SERVICE ENDPOINT DEFINITION                                        -->
+    <!-- ===================================================================== -->
+    <wsdl:service name="HealthcareInformationService">
+        <wsdl:port name="HealthcareInformationServicePort" binding="tns:HealthcareInformationServicePortBinding">
+            <soap:address location="http://localhost:8080/ws/healthcare"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

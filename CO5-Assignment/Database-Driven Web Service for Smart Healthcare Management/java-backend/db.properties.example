@@ -1,0 +1,27 @@
+# =====================================================================
+# MediConnect – Database Connection Configuration
+# File: db.properties.example (Rename or copy to db.properties)
+# =====================================================================
+
+# MySQL Database Connection URL
+db.url=jdbc:mysql://localhost:3306/medic_connect_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+
+# Database Driver Class Name
+db.driver=com.mysql.cj.jdbc.Driver
+
+# Database Credentials
+# (Can also be overridden by environment variables: DB_USER, DB_PASSWORD)
+db.user=root
+db.password=your_secure_password_here
+
+# Connection Pool Settings
+db.pool.initialSize=5
+db.pool.maxTotal=20
+db.pool.maxIdle=10
+db.pool.minIdle=2
+db.pool.maxWaitMillis=10000
+
+# SOAP Service Endpoint Configuration
+soap.service.host=http://localhost
+soap.service.port=8080
+soap.service.path=/ws/healthcare
