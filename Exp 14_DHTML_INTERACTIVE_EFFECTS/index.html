@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DYNAMIC FX – Interactive DHTML Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="page-body">
+  <!-- Mobile Menu Toggle Button -->
+  <button id="mobile-toggle" class="mobile-toggle-btn" aria-label="Toggle Navigation">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+
+  <div class="app-layout">
+    <!-- LEFT SIDEBAR NAVIGATION -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">
+          <span class="logo-icon">⚡</span>
+          <div class="logo-text">
+            <span class="brand-name">DYNAMIC FX</span>
+            <span class="brand-badge">DHTML Playground</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul class="nav-links">
+          <li>
+            <a href="#home" class="nav-link active" data-target="home">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#color-changer" class="nav-link" data-target="color-changer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 10 10 0 0 0 0-20"></path>
+              </svg>
+              <span>Color Changer</span>
+            </a>
+          </li>
+          <li>
+            <a href="#window-shake" class="nav-link" data-target="window-shake">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+              </svg>
+              <span>Window Shake</span>
+            </a>
+          </li>
+          <li>
+            <a href="#how-it-works" class="nav-link" data-target="how-it-works">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>About / How It Works</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Mini Live Widget in Sidebar -->
+      <div class="sidebar-footer">
+        <div class="status-pill">
+          <span class="pulse-indicator"></span>
+          <span>DHTML Engine Ready</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN DEMONSTRATION CONTENT CONTAINER (Shake target) -->
+    <main id="main-content" class="main-content">
+      <div id="shake-container" class="shake-container">
+        
+        <!-- 1. HOME SECTION -->
+        <section id="home" class="section hero-section">
+          <div class="hero-badge">
+            <span class="sparkle">✨</span> Interactive DHTML Experience
+          </div>
+          <h1 class="hero-title">Explore the Power of <span class="gradient-text">DHTML!</span></h1>
+          <p class="hero-subtitle">
+            Experience dynamic webpage effects through simple mouse and button interactions.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#color-changer" class="btn btn-primary" id="explore-btn">
+              <span>Explore Features</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Two Feature Cards on Home -->
+          <div class="feature-cards-grid">
+            <div class="feature-card card-interactive">
+              <div class="feature-icon bg-gradient-rose">🎨</div>
+              <div class="feature-content">
+                <h3>Interactive Background Color Changer</h3>
+                <p>Hover over colored squares to instantly transform the page background color via JavaScript mouse events.</p>
+                <a href="#color-changer" class="feature-link">Try Color Changer &rarr;</a>
+              </div>
+            </div>
+
+            <div class="feature-card card-interactive">
+              <div class="feature-icon bg-gradient-amber">📳</div>
+              <div class="feature-content">
+                <h3>Window Shake Animation</h3>
+                <p>Simulate a realistic window shake effect using CSS keyframe animations controlled dynamically with JavaScript buttons.</p>
+                <a href="#window-shake" class="feature-link">Try Window Shake &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. INTERACTION STATUS DASHBOARD (Prominent dynamic live stats) -->
+        <section class="section status-section">
+          <div class="dashboard-banner">
+            <h2 class="sub-heading">Real-Time Interaction Status</h2>
+            <div class="status-cards-row">
+              <div class="status-card">
+                <div class="status-card-header">
+                  <span class="status-card-icon">🎨</span>
+                  <span class="status-card-title">Current Background Color</span>
+                </div>
+                <div class="status-card-value" id="current-bg-status">Default Gradient</div>
+                <div class="status-card-sub" id="current-bg-hex">Original state (#f8faff)</div>
+              </div>
+
+              <div class="status-card">
+                <div class="status-card-header">
+                  <span class="status-card-icon">⚡</span>
+                  <span class="status-card-title">Shake Animation Status</span>
+                </div>
+                <div class="status-card-value" id="shake-card-status">
+                  <span class="badge badge-stopped">Animation Stopped</span>
+                </div>
+                <div class="status-card-sub" id="shake-card-detail">Container at rest</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. BACKGROUND COLOR CHANGER SECTION -->
+        <section id="color-changer" class="section color-changer-section">
+          <div class="section-header">
+            <span class="section-tag">Interactive Feature 1</span>
+            <h2 class="section-title">Interactive Background Color Changer</h2>
+            <p class="section-description">
+              Hover over each colored square below to dynamically change the page background. When the mouse leaves, the background seamlessly returns to its original tone.
+            </p>
+          </div>
+
+          <div class="demo-card">
+            <!-- Instructions and Live feedback -->
+            <div class="demo-toolbar">
+              <div class="status-message-box">
+                <span class="status-label">Live Status:</span>
+                <span id="color-status-text" class="status-highlight">Hover over any square below</span>
+              </div>
+              <button id="reset-bg-btn" class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="1 4 1 10 7 10"></polyline>
+                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                </svg>
+                <span>Reset Background</span>
+              </button>
+            </div>
+
+            <!-- EXACTLY THREE LARGE COLORFUL SQUARES -->
+            <div class="color-squares-container">
+              <!-- RED SQUARE -->
+              <div id="red-square" class="color-square square-red" role="button" tabindex="0" aria-label="Red Square Hover Trigger">
+                <div class="square-glow"></div>
+                <div class="square-inner">
+                  <div class="square-icon">🔴</div>
+                  <h3 class="square-name">Red Square</h3>
+                  <span class="square-hint">Hover Me</span>
+                </div>
+              </div>
+
+              <!-- BLUE SQUARE -->
+              <div id="blue-square" class="color-square square-blue" role="button" tabindex="0" aria-label="Blue Square Hover Trigger">
+                <div class="square-glow"></div>
+                <div class="square-inner">
+                  <div class="square-icon">🔵</div>
+                  <h3 class="square-name">Blue Square</h3>
+                  <span class="square-hint">Hover Me</span>
+                </div>
+              </div>
+
+              <!-- GREEN SQUARE -->
+              <div id="green-square" class="color-square square-green" role="button" tabindex="0" aria-label="Green Square Hover Trigger">
+                <div class="square-glow"></div>
+                <div class="square-inner">
+                  <div class="square-icon">🟢</div>
+                  <h3 class="square-name">Green Square</h3>
+                  <span class="square-hint">Hover Me</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="demo-footer-note">
+              <span class="info-icon">💡</span>
+              <span><strong>Note:</strong> Color changes trigger on <em>mouseover</em> and revert on <em>mouseout</em> without any page refresh.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. WINDOW SHAKE EFFECT SECTION -->
+        <section id="window-shake" class="section window-shake-section">
+          <div class="section-header">
+            <span class="section-tag">Interactive Feature 2</span>
+            <h2 class="section-title">Window Shake Animation</h2>
+            <p class="section-description">
+              Simulates dynamic window tremor effects using CSS keyframe animations toggled through JavaScript event listeners.
+            </p>
+          </div>
+
+          <div class="demo-card shake-demo-card">
+            <div class="shake-explanation-box">
+              <div class="info-callout">
+                <h4>Simulated Window Tremor</h4>
+                <p>Modern web security protocols prevent scripts from moving the physical operating system browser window. This demonstration uses a dynamic CSS viewport vibration to create a realistic shaking sensation.</p>
+              </div>
+            </div>
+
+            <div class="shake-stage" id="shake-stage">
+              <div class="shake-stage-decorations">
+                <div class="stage-window-bar">
+                  <div class="window-dot red"></div>
+                  <div class="window-dot yellow"></div>
+                  <div class="window-dot green"></div>
+                  <span class="window-title">DynamicFX_Preview_Window.exe</span>
+                </div>
+                <div class="stage-content">
+                  <div class="stage-avatar" id="stage-avatar">⚡</div>
+                  <h3 id="stage-text">Window Shake Demo Container</h3>
+                  <p>Click "Start Shaking" below to trigger continuous oscillation.</p>
+                  
+                  <!-- Visual Status Indicator -->
+                  <div class="shake-status-wrapper">
+                    <span class="status-indicator-label">Live Indicator:</span>
+                    <span id="shake-indicator-badge" class="badge badge-stopped">
+                      <span class="status-dot"></span>
+                      <span id="shake-status-text">Animation Stopped</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls: Start Shaking and Stop Shaking -->
+            <div class="shake-controls">
+              <button id="start-shake-btn" class="btn btn-shake-start">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Start Shaking</span>
+              </button>
+
+              <button id="stop-shake-btn" class="btn btn-shake-stop">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="6" width="12" height="12"></rect>
+                </svg>
+                <span>Stop Shaking</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. HOW IT WORKS SECTION -->
+        <section id="how-it-works" class="section how-it-works-section">
+          <div class="section-header">
+            <span class="section-tag">Learning Center</span>
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-description">
+              Understanding the core dynamic technologies behind this interactive playground.
+            </p>
+          </div>
+
+          <div class="concepts-grid">
+            <div class="concept-card">
+              <div class="concept-badge">01</div>
+              <div class="concept-icon">🌐</div>
+              <h3>DHTML</h3>
+              <p>Dynamic HTML combines HTML, CSS, and JavaScript to create interactive, responsive web experiences without needing full page reloads.</p>
+            </div>
+
+            <div class="concept-card">
+              <div class="concept-badge">02</div>
+              <div class="concept-icon">🖱️</div>
+              <h3>Mouseover</h3>
+              <p>JavaScript event listeners detect when the mouse pointer enters a colored square and when it leaves, instantly updating document styling.</p>
+            </div>
+
+            <div class="concept-card">
+              <div class="concept-badge">03</div>
+              <div class="concept-icon">🎬</div>
+              <h3>CSS Animation</h3>
+              <p>CSS <code>@keyframes</code> define rapid coordinate and rotation offsets to create a smooth, GPU-accelerated shaking visual effect.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. FOOTER -->
+        <footer class="site-footer">
+          <div class="footer-content">
+            <div class="footer-brand">
+              <span class="logo-icon">⚡</span>
+              <span class="footer-title">DYNAMIC FX</span>
+            </div>
+            <p class="footer-tagline">Interact. Explore. Experience.</p>
+            <div class="footer-divider"></div>
+            <p class="footer-copyright">
+              &copy; 2026 DYNAMIC FX Playground. All rights reserved. Built with HTML5, CSS3, &amp; Vanilla JavaScript.
+            </p>
+          </div>
+        </footer>
+
+      </div> <!-- /#shake-container -->
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
