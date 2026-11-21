@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMART LOGIC – Number & Word Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Mobile Top Navigation Header -->
+    <header class="mobile-header">
+      <div class="mobile-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="3" ry="3"></rect>
+            <path d="M9 9h6"></path>
+            <path d="M9 13h6"></path>
+            <path d="M9 17h4"></path>
+          </svg>
+        </div>
+        <span class="brand-text">SMART LOGIC</span>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Left Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="3" ry="3"></rect>
+            <path d="M8 9h8"></path>
+            <path d="M8 13h8"></path>
+            <path d="M8 17h5"></path>
+          </svg>
+        </div>
+        <div class="brand-details">
+          <span class="brand-title">SMART LOGIC</span>
+          <span class="brand-tagline">Logic & Array Analyzer</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#home" class="nav-link active" data-target="home">
+          <span class="nav-icon">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </span>
+          <span class="nav-label">Home</span>
+        </a>
+        <a href="#number-checker" class="nav-link" data-target="number-checker">
+          <span class="nav-icon">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="9" x2="19" y2="9"></line>
+              <line x1="5" y1="15" x2="19" y2="15"></line>
+            </svg>
+          </span>
+          <span class="nav-label">Number Checker</span>
+        </a>
+        <a href="#word-search" class="nav-link" data-target="word-search">
+          <span class="nav-icon">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <span class="nav-label">Word Search</span>
+        </a>
+        <a href="#how-it-works" class="nav-link" data-target="how-it-works">
+          <span class="nav-icon">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+          </span>
+          <span class="nav-label">About & Logic</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer-card">
+        <div class="tip-badge">Quick Tip</div>
+        <p class="tip-text">JavaScript arrays start counting at <strong>index 0</strong>, so the first word is at index 0.</p>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- 1. HOME SECTION -->
+      <section id="home" class="page-section hero-section">
+        <div class="hero-header">
+          <div class="hero-badge">Educational Calculator & Analyzer</div>
+          <h1 class="hero-title">Explore Numbers & Words</h1>
+          <p class="hero-subtitle">A simple interactive tool for equality checking and word searching.</p>
+        </div>
+
+        <div class="feature-cards-grid">
+          <!-- Card A: Number Equality Checker -->
+          <div class="feature-card feature-card-purple">
+            <div class="feature-card-header">
+              <div class="feature-card-icon purple-gradient">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="9" x2="19" y2="9"></line>
+                  <line x1="5" y1="15" x2="19" y2="15"></line>
+                </svg>
+              </div>
+              <span class="feature-tag">Logic Comparison</span>
+            </div>
+            <h2 class="feature-card-title">Number Equality Checker</h2>
+            <p class="feature-card-desc">
+              Compare any two numbers (integers, negative values, and decimals) to evaluate equality using JavaScript strict comparison logic.
+            </p>
+            <ul class="feature-bullet-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Decimal & negative number support
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Live instant validation & feedback
+              </li>
+            </ul>
+            <a href="#number-checker" class="btn btn-primary purple-btn get-started-btn">
+              Get Started
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card B: Array Word Search -->
+          <div class="feature-card feature-card-blue">
+            <div class="feature-card-header">
+              <div class="feature-card-icon blue-gradient">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+              <span class="feature-tag">Array Methods</span>
+            </div>
+            <h2 class="feature-card-title">Array Word Search</h2>
+            <p class="feature-card-desc">
+              Search words in a real JavaScript array using <code>indexOf()</code>. Features case-insensitive lookup and visual index highlighting.
+            </p>
+            <ul class="feature-bullet-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Zero-based index identification
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Case-insensitive search & highlighting
+              </li>
+            </ul>
+            <a href="#word-search" class="btn btn-primary blue-btn get-started-btn">
+              Get Started
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. NUMBER EQUALITY CHECKER SECTION -->
+      <section id="number-checker" class="page-section">
+        <div class="section-title-wrap">
+          <span class="section-subtitle-badge">Interactive Tool 01</span>
+          <h2 class="section-heading">Number Equality Checker</h2>
+          <p class="section-desc">Enter any two numbers to compare whether their numerical values are strictly equal.</p>
+        </div>
+
+        <div class="tool-card calculator-card">
+          <!-- Interactive Quick Examples -->
+          <div class="examples-toolbar">
+            <span class="examples-label">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              Quick Examples:
+            </span>
+            <div class="example-chips">
+              <button type="button" class="chip-btn" id="ex-num-equal" title="Load equal numbers 25 and 25">
+                Equal: 25 & 25
+              </button>
+              <button type="button" class="chip-btn" id="ex-num-diff" title="Load different numbers 15 and 20">
+                Different: 15 & 20
+              </button>
+              <button type="button" class="chip-btn" id="ex-num-decimal" title="Load decimals 3.14 and 3.14">
+                Decimals: 3.14 & 3.14
+              </button>
+              <button type="button" class="chip-btn" id="ex-num-neg" title="Load negatives -8 and -8">
+                Negatives: -8 & -8
+              </button>
+            </div>
+          </div>
+
+          <!-- Input Fields Form -->
+          <form id="number-form" class="inputs-grid" onsubmit="return false;">
+            <div class="input-group">
+              <label for="first-number" class="input-label">
+                <span class="label-number">1</span> First Number
+              </label>
+              <div class="input-control-wrap">
+                <input 
+                  type="number" 
+                  step="any" 
+                  id="first-number" 
+                  class="custom-input" 
+                  placeholder="e.g. 25 or -10.5" 
+                  autocomplete="off"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="comparison-symbol-box">
+              <span class="operator-badge">VS</span>
+            </div>
+
+            <div class="input-group">
+              <label for="second-number" class="input-label">
+                <span class="label-number">2</span> Second Number
+              </label>
+              <div class="input-control-wrap">
+                <input 
+                  type="number" 
+                  step="any" 
+                  id="second-number" 
+                  class="custom-input" 
+                  placeholder="e.g. 25 or 42" 
+                  autocomplete="off"
+                  required
+                >
+              </div>
+            </div>
+          </form>
+
+          <!-- Action Buttons -->
+          <div class="action-buttons-row">
+            <button type="button" id="compare-btn" class="btn btn-primary purple-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="9" x2="19" y2="9"></line>
+                <line x1="5" y1="15" x2="19" y2="15"></line>
+              </svg>
+              Compare Numbers
+            </button>
+            <button type="button" id="reset-number-btn" class="btn btn-secondary">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
+              Reset
+            </button>
+          </div>
+
+          <!-- Dynamic Result Box -->
+          <div id="number-result-container" class="result-display-wrapper">
+            <div class="result-placeholder">
+              <div class="placeholder-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 16v-4"></path>
+                  <path d="M12 8h.01"></path>
+                </svg>
+              </div>
+              <p class="placeholder-text">Enter two numbers above and click <strong>Compare Numbers</strong> to analyze equality.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. ARRAY WORD SEARCH SECTION -->
+      <section id="word-search" class="page-section">
+        <div class="section-title-wrap">
+          <span class="section-subtitle-badge">Interactive Tool 02</span>
+          <h2 class="section-heading">Search a Word in an Array</h2>
+          <p class="section-desc">Search through a stored JavaScript array with case-insensitive <code>indexOf()</code> and visual zero-based position mapping.</p>
+        </div>
+
+        <div class="tool-card word-search-card">
+          <!-- Complete Sentence Display Card -->
+          <div class="sentence-showcase-card">
+            <div class="sentence-header">
+              <div class="sentence-tag">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                Stored Target Sentence
+              </div>
+              <span class="array-length-badge" id="array-length-badge">8 Elements</span>
+            </div>
+            <p class="sentence-preview-text">
+              "Learning JavaScript is fun and useful for students"
+            </p>
+          </div>
+
+          <!-- Interactive Array Visualizer with Zero-Based Indices -->
+          <div class="array-visualizer-container">
+            <div class="visualizer-header">
+              <span class="visualizer-title">JavaScript Array Memory Layout (Zero-based Indices):</span>
+              <span class="code-pill">const words = [...]</span>
+            </div>
+            <div class="array-tiles-row" id="array-tiles-container">
+              <!-- Dynamically populated and styled array element cards -->
+            </div>
+          </div>
+
+          <!-- Interactive Quick Word Examples -->
+          <div class="examples-toolbar">
+            <span class="examples-label">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              Quick Word Examples:
+            </span>
+            <div class="example-chips">
+              <button type="button" class="chip-btn" data-word="JavaScript">JavaScript</button>
+              <button type="button" class="chip-btn" data-word="Learning">Learning</button>
+              <button type="button" class="chip-btn" data-word="students">Students</button>
+              <button type="button" class="chip-btn chip-missing" data-word="Python">Python (Not in array)</button>
+            </div>
+          </div>
+
+          <!-- Word Input Control -->
+          <form id="word-form" class="word-search-form" onsubmit="return false;">
+            <div class="search-input-wrapper">
+              <div class="search-icon-adornment">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+              <input 
+                type="text" 
+                id="word-search-input" 
+                class="custom-input word-input" 
+                placeholder="Enter a word to search" 
+                autocomplete="off"
+              >
+            </div>
+          </form>
+
+          <!-- Word Action Buttons -->
+          <div class="action-buttons-row">
+            <button type="button" id="search-word-btn" class="btn btn-primary blue-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              Search Word
+            </button>
+            <button type="button" id="reset-word-btn" class="btn btn-secondary">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                <path d="M3 3v5h5"></path>
+              </svg>
+              Reset
+            </button>
+          </div>
+
+          <!-- Dynamic Word Search Result Box -->
+          <div id="word-result-container" class="result-display-wrapper">
+            <div class="result-placeholder">
+              <div class="placeholder-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 16v-4"></path>
+                  <path d="M12 8h.01"></path>
+                </svg>
+              </div>
+              <p class="placeholder-text">Enter a word above or pick an example to search with <strong>indexOf()</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. HOW IT WORKS (ABOUT & CONCEPTS) SECTION -->
+      <section id="how-it-works" class="page-section">
+        <div class="section-title-wrap">
+          <span class="section-subtitle-badge">Core Principles</span>
+          <h2 class="section-heading">How It Works</h2>
+          <p class="section-desc">Key JavaScript concepts utilized in this educational analyzer.</p>
+        </div>
+
+        <div class="concept-cards-grid">
+          <!-- Card 1: Strict Equality Comparison -->
+          <div class="concept-card">
+            <div class="concept-header">
+              <div class="concept-icon purple-gradient">
+                <span class="mono-symbol">===</span>
+              </div>
+              <span class="concept-step">Concept 01</span>
+            </div>
+            <h3 class="concept-title">Number Comparison Using ===</h3>
+            <p class="concept-text">
+              The strict equality operator (<code>===</code>) verifies both numerical value and data type without performing implicit type coercion. When both numbers evaluate to identical values (including positive, negative, and floating-point decimal numbers), the condition returns <code>true</code>.
+            </p>
+            <div class="code-snippet-box">
+              <code>if (num1 === num2) {<br>&nbsp;&nbsp;// Both numbers are equal!<br>}</code>
+            </div>
+          </div>
+
+          <!-- Card 2: JavaScript Array Storage -->
+          <div class="concept-card">
+            <div class="concept-header">
+              <div class="concept-icon blue-gradient">
+                <span class="mono-symbol">[ &nbsp; ]</span>
+              </div>
+              <span class="concept-step">Concept 02</span>
+            </div>
+            <h3 class="concept-title">Array Storage & Zero-Based Indexing</h3>
+            <p class="concept-text">
+              JavaScript arrays hold an ordered list of items accessible through contiguous integer indices. Numbering starts at zero, so the first element <code>"Learning"</code> sits at index 0, followed by index 1, 2, and so forth.
+            </p>
+            <div class="code-snippet-box">
+              <code>const words = ["Learning", "JavaScript", ...];<br>words[0] === "Learning"; // true</code>
+            </div>
+          </div>
+
+          <!-- Card 3: Word Search via indexOf() -->
+          <div class="concept-card">
+            <div class="concept-header">
+              <div class="concept-icon green-gradient">
+                <span class="mono-symbol">.find()</span>
+              </div>
+              <span class="concept-step">Concept 03</span>
+            </div>
+            <h3 class="concept-title">Word Position Identification using indexOf()</h3>
+            <p class="concept-text">
+              The <code>indexOf()</code> method inspects the array for a target item. If found, it returns the exact zero-based position (0 or higher). If the item is absent, it returns <code>-1</code>. Case-insensitivity is achieved by comparing uniform lowercased representations.
+            </p>
+            <div class="code-snippet-box">
+              <code>const index = wordsArray.indexOf("JavaScript");<br>// Returns index: 1 (or -1 if missing)</code>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. FOOTER -->
+      <footer class="app-footer">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="footer-brand-title">SMART LOGIC</div>
+            <div class="footer-tagline">Think. Compare. Search.</div>
+          </div>
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#number-checker">Number Checker</a>
+            <a href="#word-search">Word Search</a>
+            <a href="#how-it-works">How It Works</a>
+          </div>
+          <div class="footer-divider"></div>
+          <div class="footer-copy">
+            &copy; 2026 SMART LOGIC – Educational Number & Word Analyzer. All rights reserved.
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
