@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TECH EXPLORER - Interactive educational technology guide exploring modern web design architectures, front-end core pillars, and end-to-end HTTP request-response communication.">
+  <title>TECH EXPLORER – Web Design & HTTP Communication</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- MOBILE TOP BAR -->
+  <header class="mobile-header">
+    <div class="mobile-brand">
+      <div class="logo-icon-wrapper">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+      </div>
+      <div class="mobile-title">
+        <span class="brand-title">TECH EXPLORER</span>
+        <span class="brand-badge">Web & HTTP</span>
+      </div>
+    </div>
+    <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle Navigation Menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </header>
+
+  <!-- OVERLAY FOR MOBILE SIDEBAR -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- MAIN APP CONTAINER -->
+  <div class="app-container">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-wrapper">
+          <div class="logo-icon-wrapper glow">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h2>TECH EXPLORER</h2>
+            <p>Web Design & HTTP</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-label">EXPLORE SECTIONS</span>
+        <ul>
+          <li>
+            <a href="#hero" class="nav-link active">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              <span>Home / Hero</span>
+            </a>
+          </li>
+          <li>
+            <a href="#overview" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              <span>Web Overview</span>
+            </a>
+          </li>
+          <li>
+            <a href="#showcase" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <span>Design Showcase</span>
+            </a>
+          </li>
+          <li>
+            <a href="#process" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>HTTP Process</span>
+            </a>
+          </li>
+          <li>
+            <a href="#example" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="4 17 10 11 4 5"></polyline>
+                <line x1="12" y1="19" x2="20" y2="19"></line>
+              </svg>
+              <span>HTTP Example</span>
+            </a>
+          </li>
+          <li>
+            <a href="#simulator" class="nav-link">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              <span>HTTP Simulator</span>
+              <span class="pulse-badge">Live</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-widget">
+        <div class="status-card">
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span>Protocol Status</span>
+          </div>
+          <p class="status-text">HTTP/1.1 & HTTP/2 Ready</p>
+          <div class="mini-tag">TLS 1.3 Active</div>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <p>© 2026 Tech Explorer Lab</p>
+        <span class="badge-pill">v2.4 Production</span>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT VIEWPORT -->
+    <main class="main-content">
+
+      <!-- SECTION 1: HOME / HERO -->
+      <section id="hero" class="hero-section">
+        <div class="hero-glow-blob blob-1"></div>
+        <div class="hero-glow-blob blob-2"></div>
+        
+        <div class="hero-container">
+          <div class="hero-content">
+            <div class="badge-hero">
+              <span class="badge-icon">⚡</span>
+              <span>Modern Web Architecture & Protocols</span>
+            </div>
+            <h1 class="hero-title">
+              TECH <span class="gradient-text">EXPLORER</span>
+            </h1>
+            <p class="hero-tagline">Discover How the Web Works</p>
+            <p class="hero-description">
+              Welcome to <strong>Tech Explorer</strong> — an interactive, visually rich platform engineered to uncover 
+              the inner mechanics of modern web pages. Explore structural design fundamentals, front-end technologies, 
+              and follow the step-by-step journey of HTTP client-server communications in real time.
+            </p>
+            <div class="hero-actions">
+              <a href="#overview" class="btn btn-primary" id="btnGetStarted">
+                <span>Get Started</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <a href="#simulator" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                <span>Launch HTTP Simulator</span>
+              </a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat-item">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Core Pillars (HTML/CSS/JS)</span>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <span class="stat-number">9</span>
+                <span class="stat-label">HTTP Lifecycle Steps</span>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Interactive Sandbox</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-card-stack">
+              <div class="hero-preview-window">
+                <div class="window-topbar">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                  <span class="window-title">https://techexplorer.edu/web-design</span>
+                </div>
+                <div class="window-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80" 
+                       alt="Modern web development workstation with responsive code editors"
+                       loading="lazy"
+                       class="window-img">
+                  <div class="floating-chip chip-1">
+                    <span class="chip-status">200 OK</span>
+                    <span class="chip-label">HTTP Response</span>
+                  </div>
+                  <div class="floating-chip chip-2">
+                    <span class="chip-icon">🌐</span>
+                    <span class="chip-label">DNS: 198.51.100.42</span>
+                  </div>
+                  <div class="floating-chip chip-3">
+                    <span class="chip-icon">⚡</span>
+                    <span class="chip-label">DOM Tree Rendered</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: WEB DEVELOPMENT OVERVIEW -->
+      <section id="overview" class="section-block">
+        <div class="section-header">
+          <div class="section-badge">PILLARS OF THE CLIENT</div>
+          <h2 class="section-title">Web Development Overview</h2>
+          <p class="section-subtitle">
+            Every webpage delivered to your screen is the result of three coordinated technologies working in harmony 
+            inside the browser engine.
+          </p>
+        </div>
+
+        <div class="overview-intro-card">
+          <div class="intro-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <div class="intro-text">
+            <h3>How Does a Webpage Work?</h3>
+            <p>
+              When a browser receives raw code from a web server, it constructs the <strong>Document Object Model (DOM)</strong> 
+              from the structural markup, attaches design rules via the <strong>CSS Object Model (CSSOM)</strong>, and uses the 
+              <strong>JavaScript Engine</strong> (such as V8 or SpiderMonkey) to execute scripts, handle user gestures, 
+              and dynamically update content without refreshing the page.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3 Visual Cards -->
+        <div class="pillars-grid">
+          
+          <!-- Card 1: HTML -->
+          <div class="pillar-card html-card">
+            <div class="card-gradient-top html-gradient"></div>
+            <div class="card-icon-header">
+              <div class="tech-badge html-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4l2 16 6 2 6-2 2-16H4z"></path>
+                  <path d="M8 8h8l-1 5h-6l.5 3 2.5.5 2.5-.5.2-1.5"></path>
+                </svg>
+              </div>
+              <span class="tech-pill">Structure</span>
+            </div>
+            <h3 class="pillar-title">HTML5</h3>
+            <p class="pillar-role">The Structural Foundation</p>
+            <p class="pillar-desc">
+              HyperText Markup Language defines the semantic architecture, content hierarchy, text headings, paragraphs, 
+              images, tables, and multimedia on the webpage.
+            </p>
+            <div class="pillar-code-snippet">
+              <code>&lt;article&gt;<br>&nbsp;&nbsp;&lt;h1&gt;Hello World&lt;/h1&gt;<br>&nbsp;&nbsp;&lt;p&gt;Semantics matter.&lt;/p&gt;<br>&lt;/article&gt;</code>
+            </div>
+            <ul class="pillar-feature-list">
+              <li><span>✓</span> Semantic tags (&lt;header&gt;, &lt;main&gt;, &lt;section&gt;)</li>
+              <li><span>✓</span> Accessibility & Screen Reader support</li>
+              <li><span>✓</span> Native audio, video & canvas support</li>
+            </ul>
+          </div>
+
+          <!-- Card 2: CSS -->
+          <div class="pillar-card css-card">
+            <div class="card-gradient-top css-gradient"></div>
+            <div class="card-icon-header">
+              <div class="tech-badge css-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4l2 16 6 2 6-2 2-16H4z"></path>
+                  <path d="M16 8H8l.5 3.5h7l-1 5.5-2.5.7-2.5-.7-.2-1.5"></path>
+                </svg>
+              </div>
+              <span class="tech-pill">Aesthetics</span>
+            </div>
+            <h3 class="pillar-title">CSS3</h3>
+            <p class="pillar-role">The Presentation & Layout</p>
+            <p class="pillar-desc">
+              Cascading Style Sheets controls the visual design, typography, color palettes, responsive flexbox/grid 
+              layouts, and transitions across mobile, tablet, and desktop screens.
+            </p>
+            <div class="pillar-code-snippet">
+              <code>.container {<br>&nbsp;&nbsp;display: flex;<br>&nbsp;&nbsp;justify-content: center;<br>&nbsp;&nbsp;transition: 0.3s ease;<br>}</code>
+            </div>
+            <ul class="pillar-feature-list">
+              <li><span>✓</span> Modern CSS Grid & Flexbox layouts</li>
+              <li><span>✓</span> Media queries for responsive fluid UI</li>
+              <li><span>✓</span> GPU-accelerated keyframe animations</li>
+            </ul>
+          </div>
+
+          <!-- Card 3: JavaScript -->
+          <div class="pillar-card js-card">
+            <div class="card-gradient-top js-gradient"></div>
+            <div class="card-icon-header">
+              <div class="tech-badge js-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="20" rx="4"></rect>
+                  <path d="M8 15c.5 1.5 2 2 3.5 1.5s1.5-2 0-3c-2-1.5-2-3-.5-4.5s3.5-.5 4 1"></path>
+                  <path d="M16 11v6"></path>
+                </svg>
+              </div>
+              <span class="tech-pill">Interactivity</span>
+            </div>
+            <h3 class="pillar-title">JavaScript</h3>
+            <p class="pillar-role">The Dynamic Logic</p>
+            <p class="pillar-desc">
+              Vanilla JavaScript empowers pages with interactivity, DOM manipulation, asynchronous HTTP Fetch requests, 
+              form validations, and state-driven interface updates.
+            </p>
+            <div class="pillar-code-snippet">
+              <code>async function loadData() {<br>&nbsp;&nbsp;const res = await fetch('/api');<br>&nbsp;&nbsp;const data = await res.json();<br>}</code>
+            </div>
+            <ul class="pillar-feature-list">
+              <li><span>✓</span> Dynamic DOM node manipulation</li>
+              <li><span>✓</span> Asynchronous Fetch API & Promises</li>
+              <li><span>✓</span> Event-driven user interactivity</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 3: WEBPAGE DESIGN SHOWCASE -->
+      <section id="showcase" class="section-block">
+        <div class="section-header">
+          <div class="section-badge">FEATURED ARTICLE</div>
+          <h2 class="section-title">Webpage Design Showcase</h2>
+          <p class="section-subtitle">
+            An illustrative technical article exploring modern web evolution, structured development lifecycles, and technology comparisons.
+          </p>
+        </div>
+
+        <article class="article-card">
+          <!-- Article Header -->
+          <header class="article-header">
+            <div class="article-meta">
+              <span class="category-tag">Web Architecture</span>
+              <span class="meta-dot">•</span>
+              <span class="read-time">6 min read</span>
+              <span class="meta-dot">•</span>
+              <span class="author-name">By Tech Explorer Editorial Team</span>
+            </div>
+            <h1 class="article-title">The Evolution of Web Technology: From Static Hypertext to Dynamic Distributed Platforms</h1>
+            <p class="article-lead">
+              The World Wide Web has transformed from simple linked documents in Tim Berners-Lee’s original proposal 
+              into a global, real-time computational fabric powering modern commerce, education, and human collaboration.
+            </p>
+          </header>
+
+          <!-- Featured Image with Caption -->
+          <figure class="article-featured-figure">
+            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80" 
+                 alt="Modern responsive website design on laptop and tablet display" 
+                 loading="lazy"
+                 class="article-image">
+            <figcaption>
+              Figure 1.1: Responsive multi-device interface design embodying contemporary CSS layouts and fluid typography principles.
+            </figcaption>
+          </figure>
+
+          <!-- Article Content Paragraphs -->
+          <div class="article-body">
+            <h2>The Paradigm Shift in Web Experiences</h2>
+            <p>
+              In the early 1990s, the web functioned predominantly as an electronic library. Web 1.0 was characterized 
+              by read-only static HTML files served directly by Apache or Nginx servers with minimal styling. Hyperlinks connected 
+              disparate universities and research hubs, but user participation was restricted to viewing information.
+            </p>
+            <p>
+              The emergence of Web 2.0 introduced client-side scripting and asynchronous HTTP communication (AJAX), 
+              enabling web applications to retrieve background data without a full page reload. Web browsers evolved 
+              from document readers into full-fledged execution engines capable of rendering complex 3D graphics, streaming 
+              high-definition audio/video, and executing offline-first Progressive Web Apps.
+            </p>
+
+            <div class="quote-callout">
+              <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+              </svg>
+              <p>
+                "The web does not just connect machines; it connects people, ideas, and software systems 
+                through open, standardized communication protocols."
+              </p>
+            </div>
+
+            <!-- Ordered List: 5 Stages of Website Development -->
+            <div class="list-container">
+              <h3 class="subsection-title">
+                <span class="icon-bubble">1-5</span>
+                Five Stages of Professional Website Development
+              </h3>
+              <p class="subsection-desc">
+                Building a dependable, high-performance web experience follows an organized, iterative engineering lifecycle:
+              </p>
+              <ol class="styled-ordered-list">
+                <li>
+                  <div class="list-item-content">
+                    <strong>Stage 1: Planning, Research & Information Architecture</strong>
+                    <p>Defining target user personas, technical requirements, project sitemaps, wireframes, and SEO keyword strategies before writing any code.</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="list-item-content">
+                    <strong>Stage 2: UI/UX Design & Interactive Prototyping</strong>
+                    <p>Creating responsive component design systems in Figma, establishing color contrast accessibility (WCAG), typography scales, and micro-interactions.</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="list-item-content">
+                    <strong>Stage 3: Front-end & Back-end Implementation</strong>
+                    <p>Crafting clean semantic HTML5 markup, responsive CSS3 stylings, modular JavaScript logic, and integrating HTTP communication endpoints.</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="list-item-content">
+                    <strong>Stage 4: Cross-Browser Testing & Performance Optimization</strong>
+                    <p>Validating rendering across Chrome, Safari, Firefox, and Edge; running Lighthouse audits; compressing media assets; and ensuring sub-second load times.</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="list-item-content">
+                    <strong>Stage 5: Deployment, Continuous Monitoring & Maintenance</strong>
+                    <p>Publishing production code to hosting servers or CDN edge nodes with HTTPS SSL certificates, tracking uptime, and patching security vulnerabilities.</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+
+            <!-- Second Image with Caption -->
+            <figure class="article-inline-figure">
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80" 
+                   alt="Modern data center server rack and network connectivity" 
+                   loading="lazy"
+                   class="article-image">
+              <figcaption>
+                Figure 1.2: Distributed cloud servers and edge networks routing HTTP packets across high-bandwidth backbones.
+              </figcaption>
+            </figure>
+
+            <!-- Unordered List: Important Web Technologies -->
+            <div class="list-container">
+              <h3 class="subsection-title">
+                <span class="icon-bubble">✦</span>
+                Key Technologies Driving the Modern Web Ecosystem
+              </h3>
+              <p class="subsection-desc">
+                Front-end engineers leverage an interconnected suite of open specifications and developer utilities:
+              </p>
+              <ul class="styled-unordered-list">
+                <li>
+                  <strong>HTML5 Semantic Elements:</strong> Native tags such as <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;figure&gt;</code> that improve search indexing and screen reader navigation.
+                </li>
+                <li>
+                  <strong>CSS Grid & Flexbox Systems:</strong> Two-dimensional and one-dimensional CSS layout modules that provide predictable fluid alignment across every viewport dimension.
+                </li>
+                <li>
+                  <strong>Modern JavaScript (ES6+):</strong> Arrow functions, asynchronous async/await pipelines, destructuring, and ES Modules that streamline application architecture.
+                </li>
+                <li>
+                  <strong>Web APIs & Fetch Protocol:</strong> Browser interfaces including the Fetch API, Geolocation, Canvas, Web Storage (localStorage/sessionStorage), and Service Workers.
+                </li>
+                <li>
+                  <strong>Version Control (Git & GitHub):</strong> Distributed version management enabling collaborative source code tracking, branches, and automated CI/CD deployments.
+                </li>
+                <li>
+                  <strong>Developer Inspection Tools:</strong> Browser DevTools (Console, Network waterfall tab, Elements inspector) essential for diagnosing HTTP bottlenecks.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="table-container">
+              <h3 class="subsection-title">
+                <span class="icon-bubble">📊</span>
+                Web Technology Comparison Matrix
+              </h3>
+              <p class="subsection-desc">
+                Quick reference guide summarizing primary core technologies, their foundational roles, and typical implementation examples:
+              </p>
+              <div class="table-responsive-wrapper">
+                <table class="tech-comparison-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Technology</th>
+                      <th scope="col">Purpose</th>
+                      <th scope="col">Example</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="tech-cell-badge html-tag">HTML5</div>
+                      </td>
+                      <td>Defines structure, semantic hierarchy, and embedded content of the page.</td>
+                      <td><code>&lt;header&gt;&lt;nav&gt;Menu&lt;/nav&gt;&lt;/header&gt;</code></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="tech-cell-badge css-tag">CSS3</div>
+                      </td>
+                      <td>Manages presentation, colors, typography, fluid layouts, and visual transitions.</td>
+                      <td><code>@media (min-width: 768px) { ... }</code></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="tech-cell-badge js-tag">JavaScript</div>
+                      </td>
+                      <td>Powers dynamic client-side logic, event handling, and real-time DOM manipulation.</td>
+                      <td><code>btn.addEventListener('click', handler)</code></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="tech-cell-badge http-tag">HTTP / HTTPS</div>
+                      </td>
+                      <td>Application layer protocol facilitating client-server request and response transfers.</td>
+                      <td><code>GET /api/v1/posts HTTP/1.1</code></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="tech-cell-badge dns-tag">DNS</div>
+                      </td>
+                      <td>Translates human-readable domain URLs into numeric machine IP addresses.</td>
+                      <td><code>example.com ➔ 93.184.216.34</code></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="tech-cell-badge api-tag">Web APIs</div>
+                      </td>
+                      <td>Provides browser-native features like background networking, audio, and location.</td>
+                      <td><code>navigator.clipboard.writeText(...)</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </article>
+      </section>
+
+      <!-- SECTION 4: HTTP REQUEST AND RESPONSE PROCESS -->
+      <section id="process" class="section-block">
+        <div class="section-header">
+          <div class="section-badge">NETWORK PROTOCOL WALKTHROUGH</div>
+          <h2 class="section-title">HTTP Request and Response Process</h2>
+          <p class="section-subtitle">
+            Follow the complete end-to-end journey that takes place in milliseconds when a user types a web address.
+          </p>
+        </div>
+
+        <!-- Visual Flow Diagram -->
+        <div class="flow-diagram-container">
+          <div class="diagram-header">
+            <h3>Visual Protocol Flow Diagram</h3>
+            <span class="flow-status-pill">Sequential Client-Server Pipeline</span>
+          </div>
+          
+          <div class="flow-nodes-wrapper">
+            <!-- Node 1 -->
+            <div class="flow-node">
+              <div class="node-icon-circle user-node">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="node-text">
+                <strong>User</strong>
+                <span>Enters URL</span>
+              </div>
+            </div>
+
+            <div class="flow-arrow">
+              <span class="arrow-line"></span>
+              <span class="arrow-head">▶</span>
+            </div>
+
+            <!-- Node 2 -->
+            <div class="flow-node">
+              <div class="node-icon-circle browser-node">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <line x1="21.17" y1="8" x2="12" y2="8"></line>
+                  <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+                  <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+                </svg>
+              </div>
+              <div class="node-text">
+                <strong>Browser</strong>
+                <span>DNS & Socket</span>
+              </div>
+            </div>
+
+            <div class="flow-arrow">
+              <span class="arrow-line"></span>
+              <span class="arrow-head">▶</span>
+            </div>
+
+            <!-- Node 3 -->
+            <div class="flow-node highlight-node">
+              <div class="node-icon-circle request-node">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </div>
+              <div class="node-text">
+                <strong>HTTP Request</strong>
+                <span>GET /index.html</span>
+              </div>
+            </div>
+
+            <div class="flow-arrow">
+              <span class="arrow-line"></span>
+              <span class="arrow-head">▶</span>
+            </div>
+
+            <!-- Node 4 -->
+            <div class="flow-node">
+              <div class="node-icon-circle server-node">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+              </div>
+              <div class="node-text">
+                <strong>Web Server</strong>
+                <span>Processes Request</span>
+              </div>
+            </div>
+
+            <div class="flow-arrow">
+              <span class="arrow-line"></span>
+              <span class="arrow-head">▶</span>
+            </div>
+
+            <!-- Node 5 -->
+            <div class="flow-node highlight-node">
+              <div class="node-icon-circle response-node">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="node-text">
+                <strong>HTTP Response</strong>
+                <span>200 OK + Payload</span>
+              </div>
+            </div>
+
+            <div class="flow-arrow">
+              <span class="arrow-line"></span>
+              <span class="arrow-head">▶</span>
+            </div>
+
+            <!-- Node 6 -->
+            <div class="flow-node">
+              <div class="node-icon-circle render-node">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <div class="node-text">
+                <strong>Browser Rendering</strong>
+                <span>DOM & CSSOM Paint</span>
+              </div>
+            </div>
+
+            <div class="flow-arrow">
+              <span class="arrow-line"></span>
+              <span class="arrow-head">▶</span>
+            </div>
+
+            <!-- Node 7 -->
+            <div class="flow-node success-node">
+              <div class="node-icon-circle done-node">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <div class="node-text">
+                <strong>Complete Webpage</strong>
+                <span>Interactive View</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9 Step-by-Step Timeline -->
+        <div class="timeline-container">
+          <div class="timeline-spine"></div>
+          
+          <!-- Step 1 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span>1</span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="step-badge">Step 1</span>
+                <span class="step-timing">&lt; 1 ms</span>
+              </div>
+              <h3 class="step-title">User enters a website URL</h3>
+              <p class="step-text">
+                The user inputs a Uniform Resource Locator (e.g. <code>https://www.example.com</code>) into the browser’s address bar or clicks a hyperlink on an active page.
+              </p>
+              <div class="step-detail-box">
+                <span class="detail-label">Browser Action:</span> Parses protocol scheme (<code>https://</code>), host domain (<code>www.example.com</code>), and target resource path (<code>/</code>).
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span>2</span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="step-badge">Step 2</span>
+                <span class="step-timing">10 - 50 ms</span>
+              </div>
+              <h3 class="step-title">Browser performs DNS lookup to find the server IP address</h3>
+              <p class="step-text">
+                Because computers communicate over numeric IP addresses, the browser queries local cache, OS cache, router cache, and recursive Domain Name System (DNS) servers to resolve the domain into an IP address (e.g., <code>93.184.216.34</code>).
+              </p>
+              <div class="step-detail-box">
+                <span class="detail-label">Network Action:</span> Resolves Fully Qualified Domain Name (FQDN) ➔ IPv4 / IPv6 destination address.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span>3</span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="step-badge">Step 3</span>
+                <span class="step-timing">20 - 80 ms</span>
+              </div>
+              <h3 class="step-title">Browser establishes a TCP connection and HTTPS/TLS connection when applicable</h3>
+              <p class="step-text">
+                The browser performs a standard 3-Way TCP Handshake (<strong>SYN ➔ SYN-ACK ➔ ACK</strong>). If connecting over secure HTTPS (Port 443), a TLS/SSL cryptographic handshake negotiates ciphers, verifies digital certificates, and creates shared session keys.
+              </p>
+              <div class="step-detail-box">
+                <span class="detail-label">Security:</span> Symmetric encryption keys generated; secure encrypted transport tunnel established.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span>4</span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="step-badge">Step 4</span>
+                <span class="step-timing">15 - 40 ms</span>
+              </div>
+              <h3 class="step-title">Browser sends an HTTP request for the HTML document</h3>
+              <p class="step-text">
+                With the socket open, the browser transmits a formatted HTTP request text packet specifying the HTTP method (<code>GET</code>), path (<code>/index.html</code>), protocol version (<code>HTTP/1.1</code>), and key headers like <code>User-Agent</code>, <code>Accept</code>, and <code>Host</code>.
+              </p>
+              <div class="step-detail-box">
+                <span class="detail-label">Payload:</span> Initial client request dispatched across the transport layer to the web server.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span>5</span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="step-badge">Step 5</span>
+                <span class="step-timing">30 - 120 ms</span>
+              </div>
+              <h3 class="step-title">Server processes the request and sends an HTTP response containing HTML</h3>
+              <p class="step-text">
+                The web server software (e.g. Nginx, Apache, or Node.js) receives the stream, matches the requested route, reads the HTML document from disk or dynamic template, and returns an HTTP response starting with status <code>200 OK</code> and the raw HTML string.
+              </p>
+              <div class="step-detail-box">
+                <span class="detail-label">Server Output:</span> Status line, headers (<code>Content-Type: text/html</code>), and HTML body bytes.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span>6</span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="step-badge">Step 6</span>
+                <span class="step-timing">10 - 25 ms</span>
+              </div>
+              <h3 class="step-title">Browser reads HTML and discovers CSS, JavaScript and image resources</h3>
+              <p class="step-text">
+                The browser's HTML parser tokenizes the incoming HTML stream from top to bottom. As it parses, it encounters external tags such as <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>, <code>&lt;script src="script.js"&gt;</code>, and <code>&lt;img src="photo.jpg"&gt;</code>.
+              </p>
+              <div class="step-detail-box">
+                <span class="detail-label">Discovery:</span> Preload scanner identifies linked dependencies needed to style and animate the page.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 7 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span>7</span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="step-badge">Step 7</span>
+                <span class="step-timing">30 - 100 ms</span>
+              </div>
+              <h3 class="step-title">Browser sends separate HTTP requests for CSS, JavaScript and images</h3>
+              <p class="step-text">
+                The browser dispatches concurrent or multiplexed HTTP GET requests to fetch each linked external asset, utilizing browser cache (via <code>ETag</code> or <code>Cache-Control</code>) whenever matching cached files exist.
+              </p>
+              <div class="step-detail-box">
+                <span class="detail-label">Parallel Transfers:</span> Multiple asset streams requested simultaneously across HTTP connections.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 8 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span>8</span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="step-badge">Step 8</span>
+                <span class="step-timing">25 - 90 ms</span>
+              </div>
+              <h3 class="step-title">Server returns the requested resources with appropriate status codes and content types</h3>
+              <p class="step-text">
+                The server streams back each dependency with appropriate MIME types—such as <code>text/css</code> for stylesheets, <code>application/javascript</code> for scripts, and <code>image/jpeg</code> or <code>image/webp</code> for visual graphics—accompanied by <code>200 OK</code> or <code>304 Not Modified</code> status codes.
+              </p>
+              <div class="step-detail-box">
+                <span class="detail-label">Delivery:</span> Binary and text assets completed and validated against HTTP checksums.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 9 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span>9</span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-card-header">
+                <span class="step-badge">Step 9</span>
+                <span class="step-timing">40 - 150 ms</span>
+              </div>
+              <h3 class="step-title">Browser processes CSS, executes JavaScript, loads images and renders the complete webpage</h3>
+              <p class="step-text">
+                The browser engine constructs the <strong>DOM</strong> and <strong>CSSOM</strong> trees, merges them into the <strong>Render Tree</strong>, calculates geometry (<strong>Layout/Reflow</strong>), paints pixels onto GPU layers (<strong>Paint</strong>), runs interactive JavaScript, and displays the fully interactive webpage!
+              </p>
+              <div class="step-detail-box">
+                <span class="detail-label">Final Event:</span> <code>DOMContentLoaded</code> & <code>window.onload</code> fired; user experiences fluid interactive page.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 5: HTTP REQUEST AND RESPONSE EXAMPLE -->
+      <section id="example" class="section-block">
+        <div class="section-header">
+          <div class="section-badge">ANATOMY OF A PACKET</div>
+          <h2 class="section-title">HTTP Request and Response Example</h2>
+          <p class="section-subtitle">
+            Inspect real-world raw HTTP message exchanges between a web client and a server.
+          </p>
+        </div>
+
+        <div class="packet-inspector-grid">
+          
+          <!-- Request Box -->
+          <div class="code-card request-code-card">
+            <div class="code-card-header">
+              <div class="code-title-group">
+                <span class="method-tag get-tag">GET</span>
+                <span class="packet-title">Client HTTP Request</span>
+              </div>
+              <button class="copy-btn" data-target="requestCode" title="Copy Request">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre class="code-content"><code id="requestCode"><span class="http-method">GET</span> <span class="http-path">/index.html</span> <span class="http-version">HTTP/1.1</span>
+<span class="http-header">Host:</span> <span class="http-val">www.example.com</span>
+<span class="http-header">Accept:</span> <span class="http-val">text/html</span>
+<span class="http-header">User-Agent:</span> <span class="http-val">Mozilla/5.0</span></code></pre>
+            <div class="code-card-footer">
+              <span>Client ➔ Server</span>
+              <span>Port 80 / 443</span>
+            </div>
+          </div>
+
+          <!-- Response Box -->
+          <div class="code-card response-code-card">
+            <div class="code-card-header">
+              <div class="code-title-group">
+                <span class="status-code-tag success-tag">200 OK</span>
+                <span class="packet-title">Server HTTP Response</span>
+              </div>
+              <button class="copy-btn" data-target="responseCode" title="Copy Response">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre class="code-content"><code id="responseCode"><span class="http-version">HTTP/1.1</span> <span class="http-status">200 OK</span>
+<span class="http-header">Content-Type:</span> <span class="http-val">text/html</span>
+<span class="http-header">Content-Length:</span> <span class="http-val">1256</span>
+
+<span class="http-body">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Tech Explorer&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to Tech Explorer&lt;/h1&gt;
+&lt;p&gt;Webpage loaded successfully!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</span></code></pre>
+            <div class="code-card-footer">
+              <span>Server ➔ Client</span>
+              <span>MIME: text/html</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Explanation Grid -->
+        <div class="protocol-glossary">
+          <h3 class="glossary-heading">Key HTTP Elements Explained:</h3>
+          <div class="glossary-grid">
+            <div class="glossary-item">
+              <div class="glossary-badge">GET</div>
+              <div class="glossary-info">
+                <h4>Method: GET</h4>
+                <p>Requests a specific resource from the target server without modifying server state.</p>
+              </div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-badge">Host</div>
+              <div class="glossary-info">
+                <h4>Header: Host</h4>
+                <p>Specifies the requested domain name of the server, critical for multi-tenant virtual hosting.</p>
+              </div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-badge">200 OK</div>
+              <div class="glossary-info">
+                <h4>Status: 200 OK</h4>
+                <p>Indicates successful processing of the client's request by the server.</p>
+              </div>
+            </div>
+            <div class="glossary-item">
+              <div class="glossary-badge">Content-Type</div>
+              <div class="glossary-info">
+                <h4>Header: Content-Type</h4>
+                <p>Identifies the returned content format (MIME type, e.g. <code>text/html</code>) so the browser knows how to parse it.</p>
+              </div>
+            </div>
+            <div class="glossary-item full-width-glossary">
+              <div class="glossary-badge">Response Body</div>
+              <div class="glossary-info">
+                <h4>Payload: Response Body</h4>
+                <p>Contains the actual requested webpage content (HTML document, image binary, or JSON dataset) sent after headers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HTTP Status Codes Showcase -->
+        <div class="status-codes-section">
+          <h3 class="status-section-title">Common HTTP Status Codes</h3>
+          <p class="status-section-desc">HTTP status codes are 3-digit standardized integers returned by servers to summarize the outcome of an operation:</p>
+          
+          <div class="status-cards-grid">
+            <!-- 200 OK -->
+            <div class="status-card-box code-200">
+              <div class="status-card-pill pill-200">200 OK</div>
+              <h4>Successful Request</h4>
+              <p>The standard response for successful HTTP requests. The requested resource has been fetched and transmitted in the response message.</p>
+              <div class="status-example">Use Case: Normal webpage or API call loading cleanly.</div>
+            </div>
+
+            <!-- 301 Moved Permanently -->
+            <div class="status-card-box code-301">
+              <div class="status-card-pill pill-301">301 Moved Permanently</div>
+              <h4>Redirection</h4>
+              <p>The target resource has been assigned a new permanent URI. Any future references should use one of the returned URIs.</p>
+              <div class="status-example">Use Case: Migrating from HTTP to HTTPS or updating URL routes.</div>
+            </div>
+
+            <!-- 404 Not Found -->
+            <div class="status-card-box code-404">
+              <div class="status-card-pill pill-404">404 Not Found</div>
+              <h4>Client Error</h4>
+              <p>The origin server did not find a current representation for the requested resource or is unwilling to disclose that one exists.</p>
+              <div class="status-example">Use Case: Mistyped URL path or deleted webpage resource.</div>
+            </div>
+
+            <!-- 500 Internal Server Error -->
+            <div class="status-card-box code-500">
+              <div class="status-card-pill pill-500">500 Internal Error</div>
+              <h4>Server Error</h4>
+              <p>The server encountered an unexpected condition that prevented it from fulfilling the incoming client request.</p>
+              <div class="status-example">Use Case: Server script crash, uncaught exception, or database outage.</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- SECTION 6: INTERACTIVE HTTP SIMULATOR -->
+      <section id="simulator" class="section-block">
+        <div class="section-header">
+          <div class="section-badge">HANDS-ON LAB</div>
+          <h2 class="section-title">Interactive HTTP Simulator</h2>
+          <p class="section-subtitle">
+            Simulate real-time HTTP client-server communication, packet transmission, and DOM rendering right in your browser.
+          </p>
+        </div>
+
+        <div class="simulator-wrapper">
+          <!-- Simulator Controls Bar -->
+          <div class="sim-controls-card">
+            <div class="sim-url-bar">
+              <span class="sim-method-badge" id="simMethodBadge">GET</span>
+              <div class="sim-input-wrapper">
+                <span class="sim-lock-icon">🔒</span>
+                <input type="text" id="simUrlInput" value="https://techexplorer.edu/welcome.html" readonly>
+              </div>
+            </div>
+            
+            <div class="sim-btn-group">
+              <button class="btn btn-primary" id="btnRunSimulator">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Load Webpage</span>
+              </button>
+              <button class="btn btn-outline" id="btnResetSimulator">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M23 4v6h-6"></path>
+                  <path d="M1 20v-6h6"></path>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                <span>Reset Simulation</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Simulation Live Visualization Arena -->
+          <div class="sim-arena">
+            
+            <!-- Client Box -->
+            <div class="sim-actor-card actor-client" id="actorClient">
+              <div class="actor-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <div class="actor-meta">
+                <h4>Web Browser</h4>
+                <span class="actor-ip">Client (192.168.1.105)</span>
+              </div>
+              <div class="actor-badge" id="clientStateBadge">Ready</div>
+            </div>
+
+            <!-- Network Wire with moving packet -->
+            <div class="sim-channel">
+              <div class="channel-wire">
+                <div class="animated-packet" id="animatedPacket">
+                  <span class="packet-inner" id="packetText">HTTP GET</span>
+                </div>
+              </div>
+              <div class="channel-status" id="channelStatusText">Channel Idle - Click 'Load Webpage' to start</div>
+            </div>
+
+            <!-- Server Box -->
+            <div class="sim-actor-card actor-server" id="actorServer">
+              <div class="actor-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+              </div>
+              <div class="actor-meta">
+                <h4>Origin Server</h4>
+                <span class="actor-ip">Server (93.184.216.34)</span>
+              </div>
+              <div class="actor-badge" id="serverStateBadge">Listening</div>
+            </div>
+
+          </div>
+
+          <!-- Overall Progress Bar -->
+          <div class="sim-progress-box">
+            <div class="progress-labels">
+              <span class="progress-title" id="progressStatusTitle">Ready to simulate</span>
+              <span class="progress-percentage" id="progressPercentText">0%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressFillBar" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Three Step Cards: Request, Processing, Response -->
+          <div class="sim-stages-grid">
+            
+            <!-- Stage 1 -->
+            <div class="sim-stage-card" id="stageCard1">
+              <div class="stage-header">
+                <span class="stage-num">Stage 1</span>
+                <span class="stage-state-indicator" id="stageState1">Waiting</span>
+              </div>
+              <h4>Browser Request</h4>
+              <p>Constructs HTTP GET header packet, resolves DNS address, opens secure TCP socket, and dispatches request.</p>
+              <div class="stage-output" id="stageOutput1">Waiting to trigger...</div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="sim-stage-card" id="stageCard2">
+              <div class="stage-header">
+                <span class="stage-num">Stage 2</span>
+                <span class="stage-state-indicator" id="stageState2">Waiting</span>
+              </div>
+              <h4>Server Processing</h4>
+              <p>Server parses headers, matches resource route <code>/welcome.html</code>, queries storage, and constructs HTTP 200 payload.</p>
+              <div class="stage-output" id="stageOutput2">Waiting for request...</div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="sim-stage-card" id="stageCard3">
+              <div class="stage-header">
+                <span class="stage-num">Stage 3</span>
+                <span class="stage-state-indicator" id="stageState3">Waiting</span>
+              </div>
+              <h4>Server Response</h4>
+              <p>Transfers HTTP 200 OK and HTML body; browser parses DOM, constructs CSSOM, and renders final page.</p>
+              <div class="stage-output" id="stageOutput3">Waiting for response...</div>
+            </div>
+
+          </div>
+
+          <!-- Event Log Console -->
+          <div class="sim-log-card">
+            <div class="log-header">
+              <div class="log-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="4 17 10 11 4 5"></polyline>
+                  <line x1="12" y1="19" x2="20" y2="19"></line>
+                </svg>
+                <span>Live Event Log & Terminal Stream</span>
+              </div>
+              <button class="log-clear-btn" id="btnClearLog">Clear Log</button>
+            </div>
+            <div class="log-stream" id="logStream">
+              <div class="log-entry info"><span class="log-time">[00:00.00]</span> Simulator initialized. Ready for user execution.</div>
+            </div>
+          </div>
+
+          <!-- Success Render Window (Appears upon 100% completion) -->
+          <div class="sim-render-result" id="simRenderResult">
+            <div class="result-browser-window">
+              <div class="result-browser-bar">
+                <div class="result-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <div class="result-url-display">
+                  <span>https://techexplorer.edu/welcome.html</span>
+                  <span class="secure-badge">✓ 200 OK</span>
+                </div>
+              </div>
+              <div class="result-content-body">
+                <div class="success-badge-banner">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span>HTTP Transaction Complete — Webpage Rendered Successfully!</span>
+                </div>
+                <div class="rendered-page-preview">
+                  <h2>Welcome to Tech Explorer</h2>
+                  <p class="rendered-sub">Webpage loaded successfully via HTTP/1.1 200 OK!</p>
+                  <div class="rendered-meta-tags">
+                    <span class="meta-tag">Latency: <strong>48ms</strong></span>
+                    <span class="meta-tag">Payload: <strong>1.25 KB</strong></span>
+                    <span class="meta-tag">Content-Type: <strong>text/html</strong></span>
+                    <span class="meta-tag">Connection: <strong>keep-alive</strong></span>
+                  </div>
+                  <p class="rendered-text-body">
+                    The HTML Document Object Model and CSSOM styling tree were evaluated in 12ms. All network resources completed without error.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 7: FOOTER -->
+      <footer id="footer" class="site-footer">
+        <div class="footer-container">
+          <div class="footer-top">
+            <div class="footer-brand-col">
+              <div class="footer-logo">
+                <div class="logo-icon-wrapper">
+                  <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                </div>
+                <h3>TECH EXPLORER</h3>
+              </div>
+              <p class="footer-desc">
+                An educational technology portal designed to illuminate modern web development 
+                principles, client-server architectures, and HTTP communication protocols through intuitive 
+                visualizations and hands-on simulation.
+              </p>
+            </div>
+
+            <div class="footer-nav-col">
+              <h4>Quick Navigation</h4>
+              <ul class="footer-links">
+                <li><a href="#hero">Home / Hero</a></li>
+                <li><a href="#overview">Web Development Overview</a></li>
+                <li><a href="#showcase">Webpage Design Showcase</a></li>
+                <li><a href="#process">HTTP Request & Response Process</a></li>
+                <li><a href="#example">HTTP Code Examples</a></li>
+                <li><a href="#simulator">Interactive HTTP Simulator</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-topics-col">
+              <h4>Core Topics</h4>
+              <ul class="footer-links">
+                <li><span class="footer-pill">HTML5 Semantics</span></li>
+                <li><span class="footer-pill">CSS3 Responsive Grids</span></li>
+                <li><span class="footer-pill">Vanilla JavaScript ES6+</span></li>
+                <li><span class="footer-pill">DNS Resolution</span></li>
+                <li><span class="footer-pill">TCP & TLS 1.3 Handshakes</span></li>
+                <li><span class="footer-pill">HTTP Status Codes</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p>© 2026 TECH EXPLORER. All rights reserved. Designed for Web Design & HTTP Communication Laboratory.</p>
+            <div class="footer-back-link">
+              <a href="#hero">Back to Top ↑</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- FLOATING BACK TO TOP BUTTON -->
+  <button class="back-to-top" id="backToTopBtn" aria-label="Back to Top" title="Back to Top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>

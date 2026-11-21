@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAMPUS INTERACTIVE – JavaScript Events Demonstration</title>
+  <!-- Google Fonts for Modern Academic Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Mobile Header Bar with Hamburger Toggle -->
+  <header class="mobile-topbar" id="mobileTopbar">
+    <div class="mobile-brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">CAMPUS INTERACTIVE</span>
+        <span class="brand-subtitle">Interactive Learning</span>
+      </div>
+    </div>
+    <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+  </header>
+
+  <!-- Sidebar Overlay for Mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Left Sidebar Navigation -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <div class="logo-symbol">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="sidebar-title">CAMPUS INTERACTIVE</h1>
+          <p class="sidebar-subtitle">Interactive Learning Experience</p>
+        </div>
+      </div>
+      <div class="lab-badge">JavaScript Events Lab</div>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="sidebar-nav">
+      <ul>
+        <li>
+          <a href="#home" class="nav-link active" id="nav-home">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="#paragraph-changer" class="nav-link" id="nav-paragraph">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="4 7 4 4 20 4 20 7"/>
+              <line x1="9" y1="20" x2="15" y2="20"/>
+              <line x1="12" y1="4" x2="12" y2="20"/>
+            </svg>
+            <span>Interactive Paragraph</span>
+          </a>
+        </li>
+        <li>
+          <a href="#word-highlighting" class="nav-link" id="nav-words">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+            <span>Word Highlighting</span>
+          </a>
+        </li>
+        <li>
+          <a href="#activity-monitor" class="nav-link" id="nav-monitor">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+            <span>Live Demonstration</span>
+          </a>
+        </li>
+        <li>
+          <a href="#how-it-works" class="nav-link" id="nav-how">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            <span>How It Works</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Sidebar Footer / Status Info -->
+    <div class="sidebar-footer">
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span class="status-text">Events Active: onclick, mouseover, mouseout</span>
+      </div>
+      <p class="sidebar-copy">Exp 11 &bull; Web Technology</p>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <!-- Top Announcement Banner -->
+    <div class="campus-topbar">
+      <div class="topbar-welcome">
+        <span class="topbar-tag">Academic Portal</span>
+        <span class="topbar-text">Welcome to Campus Interactive Experience Portal</span>
+      </div>
+      <div class="topbar-right">
+        <span class="date-badge" id="currentDateBadge">Academic Session 2026</span>
+      </div>
+    </div>
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span>Modern Web Lab Demonstration</span>
+        </div>
+        <h1 class="hero-title">Experience Interactive Learning!</h1>
+        <p class="hero-description">
+          Explore how JavaScript events make webpages dynamic and engaging. Witness real-time DOM manipulation through intuitive paragraph customization and responsive word highlighting.
+        </p>
+        <div class="hero-actions">
+          <a href="#paragraph-changer" class="btn btn-primary" id="btnExplore">
+            <span>Explore Now</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a href="#word-highlighting" class="btn btn-outline" id="btnHoverDemo">
+            <span>Discover Keywords</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="campus-image-card">
+          <img 
+            src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80" 
+            alt="Campus Interactive University Library and Students" 
+            class="campus-image"
+            id="campusImg"
+            loading="lazy"
+          >
+          <div class="image-overlay-card">
+            <div class="overlay-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div class="overlay-info">
+              <span class="overlay-title">State-of-the-Art Campus</span>
+              <span class="overlay-sub">Digital Hub &bull; Innovation Labs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PARAGRAPH APPEARANCE CHANGER SECTION -->
+    <section class="section-container" id="paragraph-changer">
+      <div class="section-header">
+        <span class="section-tag">Feature 1 &bull; onclick Event</span>
+        <h2 class="section-title">Customize Your Paragraph</h2>
+        <p class="section-subtitle">
+          Click the control buttons below to dynamically customize the font style, text color, background tint, and font size without refreshing the page.
+        </p>
+      </div>
+
+      <!-- Notification Toast / Status Alert -->
+      <div class="status-banner" id="statusBanner" role="status" aria-live="polite">
+        <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="12"/>
+          <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+        <span id="statusMessage">Default appearance loaded. Click any button below to customize the paragraph!</span>
+      </div>
+
+      <div class="interactive-card">
+        <!-- Interactive Paragraph Box -->
+        <div class="paragraph-box-wrapper">
+          <div class="paragraph-box-header">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="window-title">Dynamic Paragraph Preview</span>
+            <span class="paragraph-indicator" id="paragraphIndicator">Normal Style</span>
+          </div>
+
+          <div class="paragraph-content-box" id="customParagraphContainer">
+            <p id="customParagraph" class="target-paragraph">
+              College life is a transformative journey filled with vibrant academic exploration, technical innovations, and extracurricular achievements. At Campus Interactive, students engage in cutting-edge research, hands-on software development laboratories, collaborative design hackathons, and dynamic campus festivals. Through continuous mentorship, state-of-the-art digital infrastructure, and spirited student clubs, our community fosters critical thinking, creative problem-solving, and lifelong leadership skills for tomorrow's technological frontiers.
+            </p>
+          </div>
+        </div>
+
+        <!-- Controls Toolbar -->
+        <div class="controls-toolbar">
+          <h3 class="controls-title">Interactive Controls (JavaScript <code class="code-badge">onclick</code>)</h3>
+          <div class="button-grid">
+            <button type="button" class="ctrl-btn btn-font" id="btnFontStyle" title="Cycle through font families">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <polyline points="4 7 4 4 20 4 20 7"/>
+                <line x1="9" y1="20" x2="15" y2="20"/>
+                <line x1="12" y1="4" x2="12" y2="20"/>
+              </svg>
+              <span>Change Font Style</span>
+            </button>
+
+            <button type="button" class="ctrl-btn btn-color" id="btnTextColor" title="Cycle through font colors">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+              </svg>
+              <span>Change Text Color</span>
+            </button>
+
+            <button type="button" class="ctrl-btn btn-bg" id="btnBgColor" title="Cycle through background tints">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <line x1="3" y1="9" x2="21" y2="9"/>
+                <line x1="9" y1="21" x2="9" y2="9"/>
+              </svg>
+              <span>Change Background</span>
+            </button>
+
+            <button type="button" class="ctrl-btn btn-size" id="btnFontSize" title="Increase font size step by step">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <polyline points="15 3 21 3 21 9"/>
+                <polyline points="9 21 3 21 3 15"/>
+                <line x1="21" y1="3" x2="14" y2="10"/>
+                <line x1="3" y1="21" x2="10" y2="14"/>
+              </svg>
+              <span>Increase Font Size</span>
+            </button>
+
+            <button type="button" class="ctrl-btn btn-reset" id="btnResetStyle" title="Reset all appearance styles">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <polyline points="1 4 1 10 7 10"/>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+              </svg>
+              <span>Reset Appearance</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MOUSE HOVER WORD HIGHLIGHTING SECTION -->
+    <section class="section-container" id="word-highlighting">
+      <div class="section-header">
+        <span class="section-tag">Feature 2 &bull; mouseover &amp; mouseout Events</span>
+        <h2 class="section-title">Discover Important Words</h2>
+        <p class="section-subtitle">
+          Hover over the designated campus keywords in the paragraph below to observe real-time word highlighting.
+        </p>
+      </div>
+
+      <div class="interactive-card">
+        <!-- Interactive Tip / Instructions -->
+        <div class="instruction-box">
+          <div class="instruction-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <div class="instruction-text">
+            <strong>Interactive Tip:</strong> Move your mouse over the highlighted keywords to see the effect. Watch the keywords light up in bold styling!
+          </div>
+        </div>
+
+        <!-- Keyword Tags Legend -->
+        <div class="keyword-legend">
+          <span class="legend-label">Target Keywords:</span>
+          <span class="keyword-pill">Learning</span>
+          <span class="keyword-pill">Technology</span>
+          <span class="keyword-pill">Innovation</span>
+          <span class="keyword-pill">Knowledge</span>
+          <span class="keyword-pill">Creativity</span>
+          <span class="keyword-pill">Success</span>
+        </div>
+
+        <!-- Hover Paragraph Container -->
+        <div class="hover-paragraph-box">
+          <p class="hover-paragraph" id="hoverParagraph">
+            Modern higher education empowers students to turn ambition into real-world impact. Effective 
+            <span class="interactive-word" data-word="Learning" tabindex="0">Learning</span> 
+            goes beyond textbooks, encouraging active experimentation and peer discussion. By leveraging modern 
+            <span class="interactive-word" data-word="Technology" tabindex="0">Technology</span>, 
+            universities create immersive learning environments where curiosity thrives. Pioneering 
+            <span class="interactive-word" data-word="Innovation" tabindex="0">Innovation</span> 
+            drives students to develop groundbreaking solutions for contemporary global challenges. Cultivating deep 
+            <span class="interactive-word" data-word="Knowledge" tabindex="0">Knowledge</span> 
+            across disciplines enables visionary thinking and independent inquiry. Fostering boundless 
+            <span class="interactive-word" data-word="Creativity" tabindex="0">Creativity</span> 
+            equips young leaders to embrace new perspectives with confidence, ultimately guiding every aspiring scholar toward meaningful personal and professional 
+            <span class="interactive-word" data-word="Success" tabindex="0">Success</span>.
+          </p>
+        </div>
+
+        <!-- Hover Event Log/Tip -->
+        <div class="hover-live-state" id="hoverLiveState">
+          <div class="state-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <span id="hoverStatusText">Hover over any marked keyword to trigger mouseover. Move out to trigger mouseout.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. LIVE INTERACTIVE DEMONSTRATION & MONITOR -->
+    <section class="section-container" id="activity-monitor">
+      <div class="section-header">
+        <span class="section-tag">Live Activity Monitor &bull; Dynamic State</span>
+        <h2 class="section-title">Interactive Demonstration Activity Card</h2>
+        <p class="section-subtitle">
+          This dashboard monitors the dynamic state of your webpage in real-time, displaying current CSS styles and active hover events.
+        </p>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Metric 1: Font Style -->
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Paragraph Font Style</span>
+            <div class="metric-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                <polyline points="4 7 4 4 20 4 20 7"/>
+                <line x1="9" y1="20" x2="15" y2="20"/>
+                <line x1="12" y1="4" x2="12" y2="20"/>
+              </svg>
+            </div>
+          </div>
+          <div class="metric-value-box">
+            <span class="metric-value" id="dispFontStyle">Segoe UI / System</span>
+          </div>
+          <span class="metric-caption">Controlled by Change Font Style</span>
+        </div>
+
+        <!-- Metric 2: Text Color -->
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Current Text Color</span>
+            <div class="metric-icon navy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="metric-value-box color-preview-group">
+            <span class="color-swatch" id="textColorSwatch" style="background-color: #1e293b;"></span>
+            <span class="metric-value" id="dispTextColor">Slate Navy (#1e293b)</span>
+          </div>
+          <span class="metric-caption">Controlled by Change Text Color</span>
+        </div>
+
+        <!-- Metric 3: Background Color -->
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Current Background</span>
+            <div class="metric-icon sky">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <line x1="3" y1="9" x2="21" y2="9"/>
+                <line x1="9" y1="21" x2="9" y2="9"/>
+              </svg>
+            </div>
+          </div>
+          <div class="metric-value-box color-preview-group">
+            <span class="color-swatch" id="bgColorSwatch" style="background-color: #f8fafc; border: 1px solid #cbd5e1;"></span>
+            <span class="metric-value" id="dispBgColor">Soft Slate (#f8fafc)</span>
+          </div>
+          <span class="metric-caption">Controlled by Change Background</span>
+        </div>
+
+        <!-- Metric 4: Currently Highlighted Words -->
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-title">Highlighted Words</span>
+            <div class="metric-icon yellow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="metric-value-box highlight-count-group">
+            <span class="metric-badge" id="dispHoverCount">0 Active</span>
+            <span class="metric-word-list" id="dispHoveredWords">None hovered</span>
+          </div>
+          <span class="metric-caption">Tracks mouseover and mouseout</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. HOW IT WORKS SECTION -->
+    <section class="section-container" id="how-it-works">
+      <div class="section-header">
+        <span class="section-tag">Technical Architecture</span>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">
+          JavaScript event-driven programming handles user inputs and updates the Document Object Model (DOM) seamlessly.
+        </p>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Event Card 1: onclick -->
+        <div class="event-card">
+          <div class="event-badge badge-click">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 8 8 12 12 16"/>
+              <line x1="16" y1="12" x2="8" y2="12"/>
+            </svg>
+            <span>onclick Event</span>
+          </div>
+          <h3 class="event-card-title">Click Interaction</h3>
+          <p class="event-card-desc">
+            Changes paragraph appearance when a button is clicked. Event listeners attached via <code class="code-inline">addEventListener('click', handler)</code> detect clicks on styling buttons to cycle through fonts, colors, background tints, and sizes.
+          </p>
+          <div class="event-code-snippet">
+            <code>button.addEventListener('click', () =&gt; {<br>&nbsp;&nbsp;paragraph.style.fontFamily = newFont;<br>});</code>
+          </div>
+        </div>
+
+        <!-- Event Card 2: mouseover -->
+        <div class="event-card">
+          <div class="event-badge badge-over">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <path d="M5 12h14"/>
+              <path d="M12 5l7 7-7 7"/>
+            </svg>
+            <span>mouseover Event</span>
+          </div>
+          <h3 class="event-card-title">Hover In Interaction</h3>
+          <p class="event-card-desc">
+            Highlights a word when the mouse enters it. The listener detects when the cursor passes over individual keyword spans, dynamically applying a bright highlight background and bold typography.
+          </p>
+          <div class="event-code-snippet">
+            <code>word.addEventListener('mouseover', () =&gt; {<br>&nbsp;&nbsp;word.classList.add('highlighted');<br>});</code>
+          </div>
+        </div>
+
+        <!-- Event Card 3: mouseout -->
+        <div class="event-card">
+          <div class="event-badge badge-out">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <path d="M19 12H5"/>
+              <path d="M12 19l-7-7 7-7"/>
+            </svg>
+            <span>mouseout Event</span>
+          </div>
+          <h3 class="event-card-title">Hover Out Interaction</h3>
+          <p class="event-card-desc">
+            Removes highlighting when the mouse leaves it. The listener triggers as the mouse cursor exits the boundary of the keyword, cleanly restoring its original appearance and updating activity counters.
+          </p>
+          <div class="event-code-snippet">
+            <code>word.addEventListener('mouseout', () =&gt; {<br>&nbsp;&nbsp;word.classList.remove('highlighted');<br>});</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="campus-footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+            <span class="footer-brand-name">CAMPUS INTERACTIVE</span>
+          </div>
+          <p class="footer-tagline">
+            Interactive Learning Experience &bull; Department of Information Technology &amp; Computer Science.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#paragraph-changer">Paragraph Styling</a>
+          <a href="#word-highlighting">Keyword Highlighting</a>
+          <a href="#activity-monitor">Live Activity</a>
+          <a href="#how-it-works">How It Works</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 CAMPUS INTERACTIVE. All rights reserved. Created for Web Technology Lab Experiment 11.</p>
+        <div class="footer-features">
+          <span>Vanilla JavaScript (ES6+)</span>
+          <span>Responsive CSS3</span>
+          <span>DOM Event Handling</span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
