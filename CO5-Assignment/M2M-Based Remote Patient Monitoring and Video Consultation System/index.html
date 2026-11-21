@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RemoteCare – M2M Remote Patient Monitoring & Video Consultation</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Application Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Simulation & M2M Telemetry Live Status Ribbon -->
+  <div class="telemetry-banner" id="telemetryBanner">
+    <div class="telemetry-banner-left">
+      <span class="pulse-dot"></span>
+      <span>RemoteCare M2M Telemetry Feed: <strong id="ribbonStatusText">Operational (Edge-GW-01 Active)</strong></span>
+      <span style="opacity: 0.6;">|</span>
+      <span>Network: <strong id="ribbonNetworkPreset">Excellent (5G / Fiber)</strong></span>
+      <span style="opacity: 0.6;">|</span>
+      <span>Latency: <strong id="ribbonLatency">14ms</strong></span>
+    </div>
+    <div class="telemetry-banner-right">
+      <span>Simulated Medical IoT Stream</span>
+      <span style="opacity: 0.6;">|</span>
+      <span id="ribbonClock">--:--:--</span>
+    </div>
+  </div>
+
+  <div id="app-container">
+    <!-- =====================================================================
+         Left Navigation Sidebar
+         ===================================================================== -->
+    <aside class="sidebar" id="appSidebar">
+      <!-- Sidebar Header -->
+      <div class="sidebar-header">
+        <a href="#overview" class="brand-wrapper" id="brandLink">
+          <div class="brand-icon-box">
+            <i data-lucide="activity"></i>
+          </div>
+          <div class="brand-info">
+            <h1>Remote<span>Care</span></h1>
+            <div class="brand-tagline">Connected Care. Anywhere. Anytime.</div>
+          </div>
+        </a>
+        <button class="sidebar-toggle-btn" id="sidebarCollapseBtn" title="Toggle Sidebar">
+          <i data-lucide="chevron-left"></i>
+        </button>
+      </div>
+
+      <!-- Navigation Menu Groups -->
+      <nav class="sidebar-menu">
+        <!-- Group 1: Clinical Telemetry -->
+        <div class="nav-group">
+          <div class="nav-group-title">Clinical Telemetry</div>
+          <ul class="nav-list">
+            <li class="nav-item active" data-page="overview">
+              <a class="nav-link">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Overview</span>
+              </a>
+            </li>
+            <li class="nav-item" data-page="patients" id="navItemPatients">
+              <a class="nav-link">
+                <i data-lucide="users"></i>
+                <span>Patient Monitoring</span>
+              </a>
+            </li>
+            <li class="nav-item" data-page="devices">
+              <a class="nav-link">
+                <i data-lucide="cpu"></i>
+                <span>Connected Devices</span>
+              </a>
+            </li>
+            <li class="nav-item" data-page="live-telemetry">
+              <a class="nav-link">
+                <i data-lucide="heart-pulse"></i>
+                <span>Live Health Readings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Group 2: M2M Communication -->
+        <div class="nav-group">
+          <div class="nav-group-title">M2M Architecture</div>
+          <ul class="nav-list">
+            <li class="nav-item" data-page="architecture">
+              <a class="nav-link">
+                <i data-lucide="git-merge"></i>
+                <span>M2M Architecture</span>
+              </a>
+            </li>
+            <li class="nav-item" data-page="protocols">
+              <a class="nav-link">
+                <i data-lucide="binary"></i>
+                <span>User-Defined Protocols</span>
+              </a>
+            </li>
+            <li class="nav-item" data-page="network">
+              <a class="nav-link">
+                <i data-lucide="wifi"></i>
+                <span>Network Status</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Group 3: Consultations & Care -->
+        <div class="nav-group">
+          <div class="nav-group-title">Telehealth & History</div>
+          <ul class="nav-list">
+            <li class="nav-item" data-page="alerts">
+              <a class="nav-link">
+                <i data-lucide="bell"></i>
+                <span>Alerts & Notifications</span>
+                <span class="nav-badge pulse" id="sidebarAlertBadge">2</span>
+              </a>
+            </li>
+            <li class="nav-item" data-page="consultation">
+              <a class="nav-link">
+                <i data-lucide="video"></i>
+                <span>Video Consultation</span>
+              </a>
+            </li>
+            <li class="nav-item" data-page="appointments">
+              <a class="nav-link">
+                <i data-lucide="calendar"></i>
+                <span>Appointments</span>
+              </a>
+            </li>
+            <li class="nav-item" data-page="history">
+              <a class="nav-link">
+                <i data-lucide="history"></i>
+                <span>Patient History</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Group 4: Analytics & Governance -->
+        <div class="nav-group">
+          <div class="nav-group-title">Governance & Analytics</div>
+          <ul class="nav-list">
+            <li class="nav-item" data-page="reports">
+              <a class="nav-link">
+                <i data-lucide="bar-chart-3"></i>
+                <span>Reports & Analytics</span>
+              </a>
+            </li>
+            <li class="nav-item" data-page="security">
+              <a class="nav-link">
+                <i data-lucide="shield-check"></i>
+                <span>Privacy & Security</span>
+              </a>
+            </li>
+            <li class="nav-item" data-page="settings">
+              <a class="nav-link">
+                <i data-lucide="settings"></i>
+                <span>System Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Sidebar Bottom: User Profile & Role -->
+      <div class="sidebar-footer">
+        <div class="user-profile-card">
+          <div class="user-avatar" id="sidebarUserAvatar">SJ</div>
+          <div class="user-details">
+            <div class="user-name" id="sidebarUserName">Dr. Sarah Jenkins</div>
+            <div class="user-role-badge" id="sidebarUserRoleBadge">Doctor Role</div>
+          </div>
+          <div class="user-actions">
+            <button class="btn-icon-logout" id="logoutBtn" title="Switch Account / Logout">
+              <i data-lucide="log-out"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- =====================================================================
+         Main Application Wrapper
+         ===================================================================== -->
+    <div class="main-wrapper">
+      <!-- App Header Bar -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="mobile-menu-trigger" id="mobileMenuBtn">
+            <i data-lucide="menu"></i>
+          </button>
+          <div class="page-title-box">
+            <h2 id="currentPageTitle">Overview Dashboard</h2>
+            <div class="page-breadcrumb">
+              <span>RemoteCare</span>
+              <i data-lucide="chevron-right" style="width: 12px; height: 12px;"></i>
+              <span id="currentBreadcrumb">Clinical Telemetry</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-search">
+          <i data-lucide="search"></i>
+          <input type="text" id="globalSearchInput" placeholder="Search patient, device, alert...">
+        </div>
+
+        <div class="header-right">
+          <!-- M2M Gateway Health Pill -->
+          <div class="m2m-health-pill" id="headerM2mStatus">
+            <span class="pulse-dot" style="width: 6px; height: 6px;"></span>
+            <span id="headerM2mText">M2M Ingestion: Online</span>
+          </div>
+
+          <!-- Quick Role Switcher Pill -->
+          <div class="role-switch-container">
+            <button class="role-pill-btn active" id="btnRoleDoctor" title="Switch to Doctor Perspective">
+              <i data-lucide="stethoscope" style="width: 12px; height: 12px; display: inline-block; vertical-align: middle; margin-right: 3px;"></i> Doctor
+            </button>
+            <button class="role-pill-btn" id="btnRolePatient" title="Switch to Patient Perspective">
+              <i data-lucide="user" style="width: 12px; height: 12px; display: inline-block; vertical-align: middle; margin-right: 3px;"></i> Patient
+            </button>
+          </div>
+
+          <!-- Notification Bell -->
+          <div class="header-actions">
+            <button class="header-btn" id="headerAlertBtn" title="View Alerts">
+              <i data-lucide="bell"></i>
+              <span class="header-btn-badge" id="headerAlertBadge">2</span>
+            </button>
+            <button class="header-btn" id="headerVideoShortcutBtn" title="Quick Video Consultation">
+              <i data-lucide="video"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body Container with Dynamic Views -->
+      <main class="content-container">
+
+        <!-- =================================================================
+             1. OVERVIEW DASHBOARD PAGE
+             ================================================================= -->
+        <section class="page-view active" id="overview">
+          <!-- Top KPI Summary Cards -->
+          <div class="metrics-summary-grid">
+            <div class="metric-card" style="--card-accent: var(--primary);">
+              <div class="metric-icon-box blue">
+                <i data-lucide="users"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">Total Registered Patients</div>
+                <div class="metric-value" id="kpiTotalPatients">24</div>
+                <div class="metric-subtext">18 Under active M2M monitoring</div>
+              </div>
+            </div>
+
+            <div class="metric-card" style="--card-accent: var(--secondary);">
+              <div class="metric-icon-box teal">
+                <i data-lucide="cpu"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">Active Connected Devices</div>
+                <div class="metric-value" id="kpiActiveDevices">5 / 5</div>
+                <div class="metric-subtext">Edge Gateway (Edge-GW-01) Live</div>
+              </div>
+            </div>
+
+            <div class="metric-card" style="--card-accent: var(--warning);">
+              <div class="metric-icon-box amber">
+                <i data-lucide="alert-triangle"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">Patients Requiring Attention</div>
+                <div class="metric-value" id="kpiAttentionPatients">2</div>
+                <div class="metric-subtext" style="color: var(--warning-text); font-weight: 600;">1 Tachycardia, 1 Low SpO2</div>
+              </div>
+            </div>
+
+            <div class="metric-card" style="--card-accent: var(--accent-purple);">
+              <div class="metric-icon-box purple">
+                <i data-lucide="video"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">Consultations Scheduled</div>
+                <div class="metric-value" id="kpiScheduledCalls">3</div>
+                <div class="metric-subtext">Next: James Peterson at 10:30 AM</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Real-Time Telemetry Summary Banner -->
+          <div class="live-telemetry-banner-card">
+            <div class="telemetry-status-indicator">
+              <div class="pulse-dot"></div>
+              <div>
+                <strong style="color: var(--text-main); font-size: 0.95rem;">Live Multi-Sensor Ingestion Pipeline Active</strong>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">
+                  Continuous MQTT &amp; CoAP packets processed via Edge-GW-01. Data refreshes every 2 seconds.
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+              <button class="btn btn-outline btn-sm" id="btnOverviewGoDevices">
+                <i data-lucide="cpu"></i> Manage Devices
+              </button>
+              <button class="btn btn-primary btn-sm" id="btnOverviewSimulatePacket">
+                <i data-lucide="zap"></i> Trigger Ingestion Pulse
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Live Patient Monitoring Table -->
+          <div class="card" style="margin-bottom: 1.75rem;">
+            <div class="card-header">
+              <div class="card-title">
+                <i data-lucide="activity" style="color: var(--primary);"></i>
+                <span>Active Patient Live Monitoring Feed</span>
+              </div>
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <span class="badge badge-normal"><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Live Sync</span>
+                <button class="btn btn-outline btn-sm" id="btnViewAllPatients">View All Patients</button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="healthcare-table" id="overviewPatientTable">
+                <thead>
+                  <tr>
+                    <th>Patient Name</th>
+                    <th>Patient ID</th>
+                    <th>Heart Rate</th>
+                    <th>Blood Pressure</th>
+                    <th>Blood Glucose</th>
+                    <th>Oxygen (SpO2)</th>
+                    <th>Device Status</th>
+                    <th>Last Transmitted</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="overviewPatientTableBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Split Dashboard Section: Charts & Side Panels -->
+          <div class="dashboard-grid-split">
+            <!-- Left: Health Trends Chart -->
+            <div class="card chart-card-container">
+              <div class="card-header">
+                <div class="card-title">
+                  <i data-lucide="trending-up" style="color: var(--primary);"></i>
+                  <span>Patient Health Vitals Trend</span>
+                </div>
+                <div class="chart-header-actions">
+                  <select class="filter-select" id="overviewTrendPatientSelect">
+                    <!-- Populated dynamically -->
+                  </select>
+                  <select class="filter-select" id="overviewTrendMetricSelect">
+                    <option value="heartRate">Heart Rate (BPM)</option>
+                    <option value="spO2">Oxygen Saturation (%)</option>
+                    <option value="glucose">Blood Glucose (mg/dL)</option>
+                    <option value="systolic">Blood Pressure (mmHg)</option>
+                  </select>
+                </div>
+              </div>
+              <div style="height: 270px; position: relative;">
+                <canvas id="overviewTrendsChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Right: Health Alerts & Upcoming Consultations -->
+            <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+              <!-- Recent Alerts -->
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">
+                    <i data-lucide="alert-circle" style="color: var(--warning);"></i>
+                    <span>Recent Health Alerts</span>
+                  </div>
+                  <a href="#alerts" class="btn btn-outline btn-sm" id="btnOverviewViewAlerts">View All</a>
+                </div>
+                <div class="alerts-preview-list" id="overviewAlertsList">
+                  <!-- Populated by JS -->
+                </div>
+              </div>
+
+              <!-- Upcoming Consultations Card -->
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">
+                    <i data-lucide="video" style="color: var(--accent-purple);"></i>
+                    <span>Upcoming Consultations</span>
+                  </div>
+                  <button class="btn btn-outline btn-sm" id="btnOverviewBookCall">Schedule</button>
+                </div>
+                <div class="consultations-preview-list" id="overviewConsultationsList">
+                  <!-- Populated by JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             2. PATIENT MONITORING PAGE
+             ================================================================= -->
+        <section class="page-view" id="patients">
+          <div class="patient-toolbar">
+            <div class="patient-filter-group">
+              <div class="header-search" style="width: 260px;">
+                <i data-lucide="search"></i>
+                <input type="text" id="patientSearchInput" placeholder="Search by name, ID, condition...">
+              </div>
+
+              <select class="filter-select" id="patientStatusFilter">
+                <option value="all">All Health Statuses</option>
+                <option value="normal">Normal / Stable</option>
+                <option value="attention">Needs Attention</option>
+                <option value="critical">Critical Review</option>
+              </select>
+
+              <select class="filter-select" id="patientDeviceFilter">
+                <option value="all">All Device States</option>
+                <option value="connected">Connected (Online)</option>
+                <option value="disconnected">Disconnected (Offline)</option>
+              </select>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem;">
+              <button class="btn btn-outline" id="btnTogglePatientView">
+                <i data-lucide="grid"></i> <span id="viewToggleLabel">Table View</span>
+              </button>
+              <button class="btn btn-primary" id="btnOpenAddPatientModal">
+                <i data-lucide="user-plus"></i> Add New Patient
+              </button>
+            </div>
+          </div>
+
+          <!-- Cards View Container -->
+          <div class="patient-cards-grid" id="patientCardsContainer">
+            <!-- Populated by JS -->
+          </div>
+
+          <!-- Table View Container (Initially Hidden) -->
+          <div class="card" id="patientTableContainer" style="display: none; margin-top: 1rem;">
+            <div class="table-responsive">
+              <table class="healthcare-table">
+                <thead>
+                  <tr>
+                    <th>Patient</th>
+                    <th>Age / Gender</th>
+                    <th>Assigned Doctor</th>
+                    <th>Monitoring Status</th>
+                    <th>Device Link</th>
+                    <th>Heart Rate</th>
+                    <th>Blood Pressure</th>
+                    <th>Blood Glucose</th>
+                    <th>SpO2</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="patientFullTableBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             3. CONNECTED MEDICAL DEVICES PAGE
+             ================================================================= -->
+        <section class="page-view" id="devices">
+          <div class="device-header-stats">
+            <div class="card" style="padding: 1rem;">
+              <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">ACTIVE GATEWAY</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: var(--primary);">Edge-GW-01 (Raspberry Pi Edge)</div>
+              <div style="font-size: 0.7rem; color: var(--success-text);">Status: Online • BLE/Zigbee/MQTT Gateway</div>
+            </div>
+            <div class="card" style="padding: 1rem;">
+              <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">TRANSMISSION FREQUENCY</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: var(--secondary);">2,000 ms (Interval)</div>
+              <div style="font-size: 0.7rem; color: var(--text-light);">Continuous M2M Keepalive &amp; Vitals</div>
+            </div>
+            <div class="card" style="padding: 1rem;">
+              <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">ONLINE SENSORS</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: var(--text-main);" id="deviceOnlineRatio">5 of 5 Online</div>
+              <div style="font-size: 0.7rem; color: var(--text-light);">Average Battery: 88%</div>
+            </div>
+            <div class="card" style="padding: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+              <button class="btn btn-outline btn-sm" id="btnRestartAllDevices">
+                <i data-lucide="refresh-cw"></i> Restart Simulation
+              </button>
+            </div>
+          </div>
+
+          <!-- 5 Connected Devices Grid -->
+          <div class="devices-grid" id="devicesGridContainer">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- =================================================================
+             4. LIVE HEALTH READINGS PAGE
+             ================================================================= -->
+        <section class="page-view" id="live-telemetry">
+          <div class="live-controls-bar">
+            <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+              <div>
+                <label class="form-label">Select Patient:</label>
+                <select class="form-select" id="livePatientSelect">
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+
+              <div>
+                <label class="form-label">Time-Range Filter:</label>
+                <select class="form-select" id="liveTimeRangeSelect">
+                  <option value="5m">Real-Time (Last 5 Mins)</option>
+                  <option value="15m">Last 15 Mins</option>
+                  <option value="1h">Last 1 Hour</option>
+                  <option value="24h">Last 24 Hours</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="form-label">Simulation Speed:</label>
+                <select class="form-select" id="liveSimSpeedSelect">
+                  <option value="2000">Normal (2.0s)</option>
+                  <option value="1000">Fast (1.0s)</option>
+                  <option value="4000">Slow (4.0s)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Simulation Triggers to Test Alert Generation -->
+            <div style="display: flex; gap: 0.5rem; align-items: flex-end;">
+              <button class="btn btn-outline btn-sm" id="btnSimulateTachycardia" title="Force a Heart Rate reading > 115 BPM to trigger alert">
+                <i data-lucide="zap"></i> Simulate Tachycardia
+              </button>
+              <button class="btn btn-outline btn-sm" id="btnSimulateSpO2Drop" title="Force SpO2 reading < 92% to trigger alert">
+                <i data-lucide="wind"></i> Simulate SpO2 Drop
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Number Cards Grid with Animated Wave Indicators -->
+          <div class="live-stream-grid">
+            <!-- Heart Rate -->
+            <div class="live-vitals-card ecg-active">
+              <div class="live-vitals-header">
+                <span class="live-vitals-name">Heart Rate</span>
+                <span class="badge badge-normal" id="badgeLiveHR">Normal</span>
+              </div>
+              <div class="live-vitals-reading">
+                <span id="liveValHR">76</span>
+                <span class="live-vitals-unit">BPM</span>
+              </div>
+              <div class="live-vitals-target">Standard Target: 60 - 100 BPM</div>
+              <div class="ecg-pulse-line">
+                <svg class="ecg-pulse-svg" viewBox="0 0 200 40" preserveAspectRatio="none">
+                  <path d="M 0 20 L 40 20 L 50 5 L 60 35 L 70 20 L 110 20 L 120 5 L 130 35 L 140 20 L 200 20" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Blood Pressure -->
+            <div class="live-vitals-card">
+              <div class="live-vitals-header">
+                <span class="live-vitals-name">Blood Pressure</span>
+                <span class="badge badge-normal" id="badgeLiveBP">Optimal</span>
+              </div>
+              <div class="live-vitals-reading">
+                <span id="liveValBP">120/80</span>
+                <span class="live-vitals-unit">mmHg</span>
+              </div>
+              <div class="live-vitals-target">Systolic / Diastolic Target: &lt;120/80</div>
+              <div class="ecg-pulse-line">
+                <svg class="ecg-pulse-svg" viewBox="0 0 200 40" preserveAspectRatio="none">
+                  <path d="M 0 20 L 30 20 L 45 10 L 60 28 L 75 20 L 130 20 L 145 10 L 160 28 L 175 20 L 200 20" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Blood Glucose -->
+            <div class="live-vitals-card">
+              <div class="live-vitals-header">
+                <span class="live-vitals-name">Blood Glucose</span>
+                <span class="badge badge-normal" id="badgeLiveGlucose">In Range</span>
+              </div>
+              <div class="live-vitals-reading">
+                <span id="liveValGlucose">104</span>
+                <span class="live-vitals-unit">mg/dL</span>
+              </div>
+              <div class="live-vitals-target">Fasting Target: 70 - 130 mg/dL</div>
+              <div class="ecg-pulse-line">
+                <svg class="ecg-pulse-svg" viewBox="0 0 200 40" preserveAspectRatio="none">
+                  <path d="M 0 20 Q 50 5, 100 20 T 200 20" fill="none" stroke="#0d9488" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Oxygen Saturation (SpO2) -->
+            <div class="live-vitals-card">
+              <div class="live-vitals-header">
+                <span class="live-vitals-name">Oxygen (SpO2)</span>
+                <span class="badge badge-normal" id="badgeLiveSpO2">Optimal</span>
+              </div>
+              <div class="live-vitals-reading">
+                <span id="liveValSpO2">98</span>
+                <span class="live-vitals-unit">%</span>
+              </div>
+              <div class="live-vitals-target">Standard Target: 95% - 100%</div>
+              <div class="ecg-pulse-line">
+                <svg class="ecg-pulse-svg" viewBox="0 0 200 40" preserveAspectRatio="none">
+                  <path d="M 0 20 C 40 10, 60 30, 100 20 C 140 10, 160 30, 200 20" fill="none" stroke="#7c3aed" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Body Temperature -->
+            <div class="live-vitals-card">
+              <div class="live-vitals-header">
+                <span class="live-vitals-name">Body Temp</span>
+                <span class="badge badge-normal" id="badgeLiveTemp">Normal</span>
+              </div>
+              <div class="live-vitals-reading">
+                <span id="liveValTemp">36.7</span>
+                <span class="live-vitals-unit">°C</span>
+              </div>
+              <div class="live-vitals-target">Target Range: 36.1°C - 37.2°C</div>
+              <div class="ecg-pulse-line">
+                <svg class="ecg-pulse-svg" viewBox="0 0 200 40" preserveAspectRatio="none">
+                  <path d="M 0 20 L 70 20 L 85 14 L 100 26 L 115 20 L 200 20" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Time Multi-Parameter Line Chart -->
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="card-header">
+              <div class="card-title">
+                <i data-lucide="line-chart" style="color: var(--primary);"></i>
+                <span>Live Continuous Telemetry Stream</span>
+              </div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">
+                Streaming live measurements • Last updated: <span id="liveLastUpdatedTime" style="font-weight: 700; color: var(--text-main);">Just now</span>
+              </div>
+            </div>
+            <div style="height: 320px; position: relative;">
+              <canvas id="liveContinuousChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             5. M2M COMMUNICATION ARCHITECTURE PAGE
+             ================================================================= -->
+        <section class="page-view" id="architecture">
+          <div class="m2m-architecture-wrapper">
+            <div class="card-header" style="margin-bottom: 1.5rem;">
+              <div>
+                <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--text-main);">M2M End-to-End Communication Architecture</h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">
+                  Interactive pipeline showing data progression from biosensors through gateways, networks, and cloud broker to doctor workstations.
+                </p>
+              </div>
+              <button class="btn btn-primary" id="btnSimulateM2mPipeline">
+                <i data-lucide="play"></i> Simulate Data Transmission
+              </button>
+            </div>
+
+            <!-- Visual 7-Stage Architectural Pipeline -->
+            <div class="m2m-pipeline-flow">
+              <!-- Stage 1 -->
+              <div class="m2m-stage-node" id="stageNode1">
+                <div class="m2m-node-icon">
+                  <i data-lucide="heart"></i>
+                </div>
+                <div class="m2m-node-title">1. Medical Sensors</div>
+                <div class="m2m-node-sub">HR, BP, Glucose, SpO2</div>
+              </div>
+
+              <div class="m2m-stage-connector" id="stageConn1"></div>
+
+              <!-- Stage 2 -->
+              <div class="m2m-stage-node" id="stageNode2">
+                <div class="m2m-node-icon">
+                  <i data-lucide="watch"></i>
+                </div>
+                <div class="m2m-node-title">2. Wearable Devices</div>
+                <div class="m2m-node-sub">Smart Band, Oximeter</div>
+              </div>
+
+              <div class="m2m-stage-connector" id="stageConn2"></div>
+
+              <!-- Stage 3 -->
+              <div class="m2m-stage-node" id="stageNode3">
+                <div class="m2m-node-icon">
+                  <i data-lucide="router"></i>
+                </div>
+                <div class="m2m-node-title">3. Gateway / Edge</div>
+                <div class="m2m-node-sub">Edge-GW-01 Ingestion</div>
+              </div>
+
+              <div class="m2m-stage-connector" id="stageConn3"></div>
+
+              <!-- Stage 4 -->
+              <div class="m2m-stage-node" id="stageNode4">
+                <div class="m2m-node-icon">
+                  <i data-lucide="radio"></i>
+                </div>
+                <div class="m2m-node-title">4. Network</div>
+                <div class="m2m-node-sub">Wi-Fi, 4G/5G, LoRa</div>
+              </div>
+
+              <div class="m2m-stage-connector" id="stageConn4"></div>
+
+              <!-- Stage 5 -->
+              <div class="m2m-stage-node" id="stageNode5">
+                <div class="m2m-node-icon">
+                  <i data-lucide="server"></i>
+                </div>
+                <div class="m2m-node-title">5. M2M Server</div>
+                <div class="m2m-node-sub">MQTT Broker &amp; API</div>
+              </div>
+
+              <div class="m2m-stage-connector" id="stageConn5"></div>
+
+              <!-- Stage 6 -->
+              <div class="m2m-stage-node" id="stageNode6">
+                <div class="m2m-node-icon">
+                  <i data-lucide="database"></i>
+                </div>
+                <div class="m2m-node-title">6. Database</div>
+                <div class="m2m-node-sub">Time-Series &amp; Patient</div>
+              </div>
+
+              <div class="m2m-stage-connector" id="stageConn6"></div>
+
+              <!-- Stage 7 -->
+              <div class="m2m-stage-node" id="stageNode7">
+                <div class="m2m-node-icon">
+                  <i data-lucide="monitor"></i>
+                </div>
+                <div class="m2m-node-title">7. Doctor App</div>
+                <div class="m2m-node-sub">RemoteCare Portal</div>
+              </div>
+            </div>
+
+            <!-- Current Transmission Step Status Callout -->
+            <div id="m2mPipelineStatusBox" style="background-color: var(--primary-subtle); border: 1px solid #bae6fd; border-radius: var(--radius-md); padding: 0.85rem 1.25rem; margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span class="pulse-dot"></span>
+                <span id="m2mPipelineStatusText" style="font-size: 0.825rem; font-weight: 600; color: var(--text-main);">
+                  Ready: Click "Simulate Data Transmission" to trace packet journey across all 7 stages.
+                </span>
+              </div>
+              <span class="badge badge-normal" id="m2mPipelineProtocolBadge">MQTT v5.0 QoS 1</span>
+            </div>
+          </div>
+
+          <!-- Explanation Grid of Stages -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.75rem;">
+            <div class="card" style="padding: 1rem;">
+              <h4 style="font-size: 0.875rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 0.4rem;">
+                <i data-lucide="cpu" style="width: 16px; height: 16px;"></i> Biosensors &amp; Wearables
+              </h4>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem;">
+                Sensors detect physiological electrical/photoplethysmographic signals, convert analog bio-signals to digital telemetry, and transmit over BLE or Zigbee.
+              </p>
+            </div>
+
+            <div class="card" style="padding: 1rem;">
+              <h4 style="font-size: 0.875rem; font-weight: 700; color: var(--secondary); display: flex; align-items: center; gap: 0.4rem;">
+                <i data-lucide="router" style="width: 16px; height: 16px;"></i> Edge Gateway
+              </h4>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem;">
+                Edge hub aggregates sensor readings, executes protocol translation (BLE to MQTT/JSON), manages local packet buffering during outages, and handles device encryption.
+              </p>
+            </div>
+
+            <div class="card" style="padding: 1rem;">
+              <h4 style="font-size: 0.875rem; font-weight: 700; color: var(--accent-purple); display: flex; align-items: center; gap: 0.4rem;">
+                <i data-lucide="server" style="width: 16px; height: 16px;"></i> Ingestion &amp; Storage
+              </h4>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem;">
+                High-throughput MQTT broker ingests incoming packets, validates schemas, writes records to time-series DB, and fires threshold alerts asynchronously.
+              </p>
+            </div>
+
+            <div class="card" style="padding: 1rem;">
+              <h4 style="font-size: 0.875rem; font-weight: 700; color: var(--success); display: flex; align-items: center; gap: 0.4rem;">
+                <i data-lucide="activity" style="width: 16px; height: 16px;"></i> Clinical Dashboard
+              </h4>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem;">
+                Web application receives real-time updates via WebSockets/Socket.IO, rendering instant clinical vitals, anomaly charts, and notification alarms for physicians.
+              </p>
+            </div>
+          </div>
+
+          <!-- Real-Time Transmission Packet Log -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <i data-lucide="terminal" style="color: var(--primary);"></i>
+                <span>Live M2M Transmission Event Stream</span>
+              </div>
+              <button class="btn btn-outline btn-sm" id="btnClearTransmissionLog">Clear Stream Log</button>
+            </div>
+            <div class="transmission-log-terminal" id="transmissionLogTerminal">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             6. USER-DEFINED PROTOCOLS PAGE
+             ================================================================= -->
+        <section class="page-view" id="protocols">
+          <!-- Protocol Overview Cards -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div class="card" style="padding: 1rem; border-top: 3px solid var(--primary);">
+              <h4 style="font-size: 0.85rem; font-weight: 700;">MQTT (QoS 1)</h4>
+              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.3rem;">Pub/Sub Lightweight IoT Protocol</div>
+              <div style="font-size: 0.68rem; color: var(--primary); margin-top: 0.5rem; font-weight: 600;">Payload: Compact JSON/Binary • Transport: TCP</div>
+            </div>
+
+            <div class="card" style="padding: 1rem; border-top: 3px solid var(--secondary);">
+              <h4 style="font-size: 0.85rem; font-weight: 700;">CoAP (RFC 7252)</h4>
+              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.3rem;">Constrained Application Protocol</div>
+              <div style="font-size: 0.68rem; color: var(--secondary); margin-top: 0.5rem; font-weight: 600;">Payload: 4-byte header • Transport: UDP</div>
+            </div>
+
+            <div class="card" style="padding: 1rem; border-top: 3px solid var(--accent-purple);">
+              <h4 style="font-size: 0.85rem; font-weight: 700;">HTTP/HTTPS REST</h4>
+              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.3rem;">Edge-to-Cloud RESTful Ingestion</div>
+              <div style="font-size: 0.68rem; color: var(--accent-purple); margin-top: 0.5rem; font-weight: 600;">Payload: Structured JSON • Transport: TLS/TCP</div>
+            </div>
+
+            <div class="card" style="padding: 1rem; border-top: 3px solid #f59e0b;">
+              <h4 style="font-size: 0.85rem; font-weight: 700;">BLE Health Profiles</h4>
+              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.3rem;">Bluetooth SIG GATT Vitals</div>
+              <div style="font-size: 0.68rem; color: #d97706; margin-top: 0.5rem; font-weight: 600;">Payload: Characteristic UUIDs • Range: Short</div>
+            </div>
+          </div>
+
+          <!-- Protocol Builder & ACK Sandbox Grid -->
+          <div class="protocol-sandbox-grid">
+            <!-- Left: Configurable Message Builder Form -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i data-lucide="sliders" style="color: var(--primary);"></i>
+                  <span>User-Defined Protocol Message Studio</span>
+                </div>
+                <span class="badge badge-normal">Schema Validated</span>
+              </div>
+
+              <form id="protocolBuilderForm">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label">Target Protocol:</label>
+                    <select class="form-select" id="protoSelectProtocol">
+                      <option value="MQTT">MQTT v5.0 (Publish)</option>
+                      <option value="HTTP">HTTP/HTTPS REST (POST)</option>
+                      <option value="CoAP">CoAP (Confirmable PUT)</option>
+                      <option value="BLE">BLE 5.2 GATT Telemetry</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Sensor Type:</label>
+                    <select class="form-select" id="protoSelectSensor">
+                      <option value="Heart Rate" data-unit="BPM" data-dev="HR001" data-val="78">Heart Rate Sensor (HR001)</option>
+                      <option value="Blood Pressure" data-unit="mmHg" data-dev="BP002" data-val="122/82">Blood Pressure Monitor (BP002)</option>
+                      <option value="Blood Glucose" data-unit="mg/dL" data-dev="GM003" data-val="108">Smart Glucose Monitor (GM003)</option>
+                      <option value="Wearable Band" data-unit="BPM" data-dev="WB004" data-val="74">Wearable Health Band (WB004)</option>
+                      <option value="Pulse Oximeter" data-unit="%" data-dev="PO005" data-val="98">Smart Pulse Oximeter (PO005)</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Device ID:</label>
+                    <input type="text" class="form-input" id="protoDeviceId" value="HR001" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Patient ID:</label>
+                    <select class="form-select" id="protoPatientId">
+                      <!-- Populated dynamically -->
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Simulated Reading Value:</label>
+                    <input type="text" class="form-input" id="protoReadingValue" value="78" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Unit of Measurement:</label>
+                    <input type="text" class="form-input" id="protoUnitValue" value="BPM" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Message Type Header:</label>
+                    <select class="form-select" id="protoMessageType">
+                      <option value="HEALTH_DATA">HEALTH_DATA (Standard)</option>
+                      <option value="ALERT_EVENT">ALERT_EVENT (Priority)</option>
+                      <option value="KEEPALIVE_HEARTBEAT">KEEPALIVE_HEARTBEAT</option>
+                      <option value="DEVICE_DIAGNOSTIC">DEVICE_DIAGNOSTIC</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Device Status Flag:</label>
+                    <select class="form-select" id="protoDeviceStatus">
+                      <option value="CONNECTED">CONNECTED</option>
+                      <option value="LOW_BATTERY">LOW_BATTERY</option>
+                      <option value="CALIBRATING">CALIBRATING</option>
+                      <option value="RECONNECTING">RECONNECTING</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
+                  <button type="button" class="btn btn-outline" id="btnGenerateProtoMessage">
+                    <i data-lucide="code"></i> Generate JSON Packet
+                  </button>
+                  <button type="button" class="btn btn-primary" id="btnSendProtoMessage">
+                    <i data-lucide="send"></i> Transmit Packet
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Right: Generated Message & Server Acknowledgement (ACK) -->
+            <div>
+              <div class="card" style="margin-bottom: 1rem;">
+                <div class="card-header">
+                  <div class="card-title">
+                    <i data-lucide="file-json" style="color: var(--secondary);"></i>
+                    <span>Formatted M2M Protocol Payload</span>
+                  </div>
+                  <span class="badge badge-normal" id="protoPayloadChecksum">CRC32: 0x8F4A21C0</span>
+                </div>
+                <div class="code-viewer-panel" id="protoCodeViewer">
+{
+  "device_id": "HR001",
+  "patient_id": "P1001",
+  "sensor_type": "Heart Rate",
+  "reading": 78,
+  "unit": "BPM",
+  "timestamp": "2026-11-21T10:30:00.000Z",
+  "message_type": "HEALTH_DATA",
+  "status": "CONNECTED",
+  "protocol": "MQTT v5.0",
+  "qos": 1
+}
+                </div>
+              </div>
+
+              <!-- Server Acknowledgement Receiver Panel -->
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-title">
+                    <i data-lucide="check-check" style="color: var(--success);"></i>
+                    <span>Server Acknowledgement (ACK / Response)</span>
+                  </div>
+                  <span class="badge badge-normal" id="protoAckStatusBadge">Ready</span>
+                </div>
+                <div class="server-ack-panel" id="protoAckContent">
+                  <div style="display: flex; align-items: center; gap: 0.65rem; color: var(--success-text);">
+                    <i data-lucide="shield-check" style="width: 20px; height: 20px;"></i>
+                    <strong>Server Response Pending:</strong>
+                  </div>
+                  <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.4rem;">
+                    Click "Transmit Packet" above. The M2M server will authenticate the device header, parse the JSON payload, calculate checksum parity, store reading, and emit a PUBACK code.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             7. ALERTS & NOTIFICATIONS PAGE
+             ================================================================= -->
+        <section class="page-view" id="alerts">
+          <div class="patient-toolbar">
+            <div class="patient-filter-group">
+              <div class="header-search" style="width: 240px;">
+                <i data-lucide="search"></i>
+                <input type="text" id="alertSearchInput" placeholder="Filter alerts...">
+              </div>
+
+              <select class="filter-select" id="alertSeverityFilter">
+                <option value="all">All Severities</option>
+                <option value="critical">Critical Only</option>
+                <option value="warning">Requires Review</option>
+                <option value="info">System Info</option>
+              </select>
+
+              <select class="filter-select" id="alertStatusFilter">
+                <option value="all">All Statuses</option>
+                <option value="active">Active Alerts</option>
+                <option value="reviewed">Under Review</option>
+                <option value="resolved">Resolved</option>
+              </select>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem;">
+              <button class="btn btn-outline" id="btnOpenThresholdConfig">
+                <i data-lucide="sliders-horizontal"></i> Threshold Rules
+              </button>
+              <button class="btn btn-outline" id="btnClearResolvedAlerts">
+                <i data-lucide="trash-2"></i> Clear Resolved
+              </button>
+            </div>
+          </div>
+
+          <!-- Alert Cards Container -->
+          <div style="display: flex; flex-direction: column; gap: 0.85rem;" id="alertsFullList">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- =================================================================
+             8. VIDEO CONSULTATION STUDIO PAGE
+             ================================================================= -->
+        <section class="page-view" id="consultation">
+          <div class="video-consultation-studio">
+            <!-- Left: Video Stream Stage -->
+            <div class="video-stage-main">
+              <!-- Top Overlay Status Bar -->
+              <div class="video-call-status-bar">
+                <div class="call-timer-badge">
+                  <span class="pulse-dot" style="background-color: #ef4444;"></span>
+                  <span>Encrypted WebRTC • Room #RC-7821</span>
+                  <span style="opacity: 0.5;">|</span>
+                  <span id="videoCallTimer">00:04:12</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem; pointer-events: auto;">
+                  <span class="badge badge-normal" id="callNetworkPill">HD 1080p • 60fps</span>
+                </div>
+              </div>
+
+              <!-- Main Stream Grid -->
+              <div class="video-streams-grid">
+                <!-- Remote Participant (Doctor or Patient depending on logged-in role) -->
+                <div class="remote-video-container" id="remoteParticipantContainer">
+                  <div class="remote-avatar-display" id="remoteAvatarDisplay">
+                    <div class="remote-avatar-circle" id="remoteParticipantAvatar">JP</div>
+                    <div style="text-align: center;">
+                      <h3 style="font-size: 1.25rem; font-weight: 700;" id="remoteParticipantName">James Peterson (Patient)</h3>
+                      <p style="font-size: 0.8rem; color: #94a3b8;" id="remoteParticipantMeta">Remote Patient Connected via WebRTC • Camera On</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Local Picture-in-Picture (PiP) Stream -->
+                <div class="local-pip-video-container" id="localPipContainer">
+                  <video id="localVideoElement" autoplay playsinline muted></video>
+                  <div class="local-video-fallback" id="localVideoFallback" style="display: none;">
+                    <i data-lucide="camera-off" style="width: 22px; height: 22px; margin-bottom: 4px;"></i>
+                    <span>Camera Offline (Simulated Stream Active)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Floating Media Controls Dock -->
+              <div class="video-controls-dock">
+                <button class="video-ctrl-btn" id="btnToggleMic" title="Toggle Microphone">
+                  <i data-lucide="mic"></i>
+                </button>
+                <button class="video-ctrl-btn" id="btnToggleCamera" title="Toggle Video Camera">
+                  <i data-lucide="video"></i>
+                </button>
+                <button class="video-ctrl-btn" id="btnToggleSpeaker" title="Toggle Audio / Mute">
+                  <i data-lucide="volume-2"></i>
+                </button>
+                <button class="video-ctrl-btn" id="btnShareScreen" title="Share Screen / Chart">
+                  <i data-lucide="monitor-up"></i>
+                </button>
+                <button class="video-ctrl-btn btn-hangup" id="btnEndConsultation" title="End Consultation">
+                  <i data-lucide="phone-off"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right: Interactive Telehealth Panel (Tabs: Chat, Notes, Mini Vitals) -->
+            <div class="video-side-panel">
+              <div class="side-panel-tabs">
+                <button class="side-tab-btn active" data-tab="tabChat">
+                  <i data-lucide="message-square" style="width: 14px; height: 14px; vertical-align: middle;"></i> Chat
+                </button>
+                <button class="side-tab-btn" data-tab="tabNotes">
+                  <i data-lucide="file-text" style="width: 14px; height: 14px; vertical-align: middle;"></i> Notes
+                </button>
+                <button class="side-tab-btn" data-tab="tabVitals">
+                  <i data-lucide="activity" style="width: 14px; height: 14px; vertical-align: middle;"></i> Live Vitals
+                </button>
+              </div>
+
+              <!-- Tab 1: Live Consultation Chat -->
+              <div class="side-tab-content active" id="tabChat">
+                <div class="chat-messages-scroll" id="consultationChatScroll">
+                  <div class="chat-bubble patient">
+                    <strong>James Peterson:</strong> Good morning Dr. Jenkins. I noticed a small spike in my heart rate after my walk today.
+                    <span class="chat-time-tag">10:31 AM</span>
+                  </div>
+                  <div class="chat-bubble doctor">
+                    <strong>Dr. Sarah Jenkins:</strong> Hello James! I'm reviewing your live wearable band telemetry right now. Let's inspect the last 30 minutes.
+                    <span class="chat-time-tag">10:32 AM</span>
+                  </div>
+                </div>
+
+                <div class="chat-input-bar">
+                  <input type="text" class="form-input" id="consultationChatInput" placeholder="Type message..." style="flex: 1;">
+                  <button class="btn btn-primary" id="btnSendConsultationChat">
+                    <i data-lucide="send"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Tab 2: Clinical Consultation Notes -->
+              <div class="side-tab-content" id="tabNotes">
+                <div class="form-group" style="height: 100%;">
+                  <label class="form-label">Physician Clinical Assessment &amp; Rx:</label>
+                  <textarea class="form-input" id="consultationNotesTextarea" style="flex: 1; resize: none; font-size: 0.825rem;" placeholder="Enter clinical observations, medication adjustments, or follow-up instructions..."></textarea>
+                  <div style="display: flex; justify-content: flex-end; margin-top: 0.5rem;">
+                    <button class="btn btn-secondary btn-sm" id="btnSaveConsultationNotes">
+                      <i data-lucide="save"></i> Save to Patient File
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab 3: Embedded Live Vitals Stream -->
+              <div class="side-tab-content" id="tabVitals">
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                  Real-time sensor feed during video call:
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                  <div style="display: flex; justify-content: space-between; padding: 0.65rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                    <span style="font-size: 0.8rem; font-weight: 600;">Heart Rate</span>
+                    <span style="font-size: 0.95rem; font-weight: 800; color: #ef4444;" id="videoMiniHR">78 BPM</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding: 0.65rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                    <span style="font-size: 0.8rem; font-weight: 600;">Blood Pressure</span>
+                    <span style="font-size: 0.95rem; font-weight: 800; color: #0284c7;" id="videoMiniBP">122/80 mmHg</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding: 0.65rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                    <span style="font-size: 0.8rem; font-weight: 600;">Oxygen Saturation</span>
+                    <span style="font-size: 0.95rem; font-weight: 800; color: #7c3aed;" id="videoMiniSpO2">98 %</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; padding: 0.65rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+                    <span style="font-size: 0.8rem; font-weight: 600;">Blood Glucose</span>
+                    <span style="font-size: 0.95rem; font-weight: 800; color: #0d9488;" id="videoMiniGlucose">106 mg/dL</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             9. APPOINTMENTS PAGE
+             ================================================================= -->
+        <section class="page-view" id="appointments">
+          <div class="patient-toolbar">
+            <div>
+              <h3 class="section-heading" style="margin-bottom: 0;">Scheduled Consultations &amp; Telehealth Visits</h3>
+              <p class="section-subheading">Manage remote video consultations and routine monitoring check-ups.</p>
+            </div>
+            <button class="btn btn-primary" id="btnOpenScheduleModal">
+              <i data-lucide="calendar-plus"></i> Schedule New Consultation
+            </button>
+          </div>
+
+          <div class="card">
+            <div class="table-responsive">
+              <table class="healthcare-table">
+                <thead>
+                  <tr>
+                    <th>Appointment ID</th>
+                    <th>Patient</th>
+                    <th>Physician</th>
+                    <th>Date &amp; Time</th>
+                    <th>Reason for Visit</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="appointmentsTableBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             10. PATIENT HISTORY PAGE
+             ================================================================= -->
+        <section class="page-view" id="history">
+          <div class="patient-toolbar">
+            <div class="patient-filter-group">
+              <div>
+                <label class="form-label">Select Patient:</label>
+                <select class="form-select" id="historyPatientSelect">
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+
+              <div>
+                <label class="form-label">Measurement Type:</label>
+                <select class="form-select" id="historyParamSelect">
+                  <option value="heartRate">Heart Rate (BPM)</option>
+                  <option value="bloodPressure">Blood Pressure (mmHg)</option>
+                  <option value="glucose">Blood Glucose (mg/dL)</option>
+                  <option value="spO2">Oxygen Saturation (%)</option>
+                  <option value="temperature">Body Temperature (°C)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="form-label">Date Window:</label>
+                <select class="form-select" id="historyDateWindowSelect">
+                  <option value="7d">Last 7 Days</option>
+                  <option value="30d">Last 30 Days</option>
+                  <option value="90d">Last 3 Months</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; align-items: flex-end;">
+              <button class="btn btn-outline" id="btnExportPatientHistoryCsv">
+                <i data-lucide="download"></i> Export History CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- History Chart -->
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="card-header">
+              <div class="card-title">
+                <i data-lucide="history" style="color: var(--primary);"></i>
+                <span id="historyChartTitle">Historical Health Readings</span>
+              </div>
+              <span class="badge badge-normal">Clinical Reference Range Active</span>
+            </div>
+            <div style="height: 300px; position: relative;">
+              <canvas id="patientHistoryChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Historical Clinical Events & Consultations Table -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <i data-lucide="clipboard-list" style="color: var(--secondary);"></i>
+                <span>Past Medical Consultations &amp; Telemetry Logs</span>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="healthcare-table">
+                <thead>
+                  <tr>
+                    <th>Date &amp; Time</th>
+                    <th>Event Type</th>
+                    <th>Recorded Metrics</th>
+                    <th>Attending Doctor</th>
+                    <th>Clinical Notes / Outcome</th>
+                  </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             11. NETWORK STATUS & RELIABILITY PAGE
+             ================================================================= -->
+        <section class="page-view" id="network">
+          <!-- Network Presets Bar -->
+          <div class="network-presets-bar">
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Simulated Presets:</span>
+            <button class="preset-chip active" data-preset="excellent">5G / Fiber (Excellent)</button>
+            <button class="preset-chip" data-preset="good">4G LTE (Good)</button>
+            <button class="preset-chip" data-preset="moderate">3G Mobile (Moderate)</button>
+            <button class="preset-chip" data-preset="poor">Congested / Edge (Poor)</button>
+            <button class="preset-chip" data-preset="unstable">Intermittent Outage (Unstable)</button>
+          </div>
+
+          <!-- Network Metrics Grid -->
+          <div class="metrics-summary-grid">
+            <div class="metric-card">
+              <div class="metric-icon-box blue">
+                <i data-lucide="gauge"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">Simulated Bandwidth</div>
+                <div class="metric-value" id="netBandwidthVal">94.5 <span style="font-size: 0.85rem; font-weight: 500;">Mbps</span></div>
+                <div class="metric-subtext">Peak Ingestion Capacity</div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box teal">
+                <i data-lucide="clock"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">M2M Ingestion Latency</div>
+                <div class="metric-value" id="netLatencyVal">14 <span style="font-size: 0.85rem; font-weight: 500;">ms</span></div>
+                <div class="metric-subtext">Round-trip ACK time</div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box amber">
+                <i data-lucide="percent"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">Packet Loss Rate</div>
+                <div class="metric-value" id="netPacketLossVal">0.0 <span style="font-size: 0.85rem; font-weight: 500;">%</span></div>
+                <div class="metric-subtext">Retransmissions handled: 0</div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box purple">
+                <i data-lucide="signal"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">RSSI Signal Strength</div>
+                <div class="metric-value" id="netSignalVal">-58 <span style="font-size: 0.85rem; font-weight: 500;">dBm</span></div>
+                <div class="metric-subtext">5 of 5 Bars • Strong Link</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Network Outage & Edge Buffer Simulation Lab -->
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="card-header">
+              <div>
+                <h3 style="font-size: 1rem; font-weight: 700;">M2M Reliability &amp; Edge Offline Buffering Lab</h3>
+                <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem;">
+                  Demonstrates how edge devices buffer biometric data when connection drops and flush the queue in FIFO order upon reconnection with zero data loss.
+                </p>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button class="btn btn-danger btn-sm" id="btnSimulateOutage">
+                  <i data-lucide="wifi-off"></i> Simulate Network Outage
+                </button>
+                <button class="btn btn-secondary btn-sm" id="btnRestoreNetwork" disabled>
+                  <i data-lucide="refresh-cw"></i> Restore &amp; Flush Buffer
+                </button>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+                  <span>Edge Device Local Buffer Queue</span>
+                  <span class="badge badge-normal" id="bufferCountBadge">0 Buffered Items</span>
+                </div>
+                <div class="buffer-queue-viewer" id="bufferQueueViewer">
+                  <div style="color: var(--text-muted); font-size: 0.78rem; text-align: center; margin: auto;">
+                    Buffer is empty. Network is connected and transmitting live without delays.
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">
+                  Reliability Mechanism Details
+                </div>
+                <div style="background-color: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; font-size: 0.78rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.6rem;">
+                  <div><strong style="color: var(--text-main);">1. Message Buffering:</strong> Telemetry frames are queued in non-volatile flash RAM when transport drops.</div>
+                  <div><strong style="color: var(--text-main);">2. Exponential Backoff:</strong> Reconnection attempts employ jittered exponential backoff to prevent network congestion storms.</div>
+                  <div><strong style="color: var(--text-main);">3. Duplicate Prevention:</strong> Each packet holds a monotonic UUIDv4 to eliminate duplicate ingestion.</div>
+                  <div><strong style="color: var(--text-main);">4. Strict Ordering:</strong> High-precision UTC timestamps preserve chronological integrity.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             12. REPORTS & ANALYTICS PAGE
+             ================================================================= -->
+        <section class="page-view" id="reports">
+          <div class="patient-toolbar no-print">
+            <div>
+              <h3 class="section-heading" style="margin-bottom: 0;">Clinical Analytics &amp; Telemetry Reports</h3>
+              <p class="section-subheading">Aggregated healthcare metrics, compliance statistics, and data export.</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+              <button class="btn btn-outline" id="btnPrintReport">
+                <i data-lucide="printer"></i> Print Report Layout
+              </button>
+              <button class="btn btn-primary" id="btnExportFullCsv">
+                <i data-lucide="download"></i> Export Patient Monitoring CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- Report Key Aggregations -->
+          <div class="metrics-summary-grid">
+            <div class="metric-card">
+              <div class="metric-icon-box blue">
+                <i data-lucide="database"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">Total Data Transmissions</div>
+                <div class="metric-value" id="reportTotalPackets">14,820</div>
+                <div class="metric-subtext">Packets successfully ingested</div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box teal">
+                <i data-lucide="check-circle-2"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">Transmission Success Rate</div>
+                <div class="metric-value">99.8%</div>
+                <div class="metric-subtext">QoS 1 delivery confirmed</div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box amber">
+                <i data-lucide="bell"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">Alerts In Last 30 Days</div>
+                <div class="metric-value" id="reportAlertCount">18</div>
+                <div class="metric-subtext">Avg resolution: 14.2 mins</div>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon-box purple">
+                <i data-lucide="video"></i>
+              </div>
+              <div class="metric-content">
+                <div class="metric-label">Telehealth Consultations</div>
+                <div class="metric-value">42</div>
+                <div class="metric-subtext">Patient satisfaction: 4.9 / 5.0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Row in Reports -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i data-lucide="pie-chart" style="color: var(--primary);"></i>
+                  <span>Alert Distribution by Severity</span>
+                </div>
+              </div>
+              <div style="height: 250px; position: relative;">
+                <canvas id="reportAlertSeverityChart"></canvas>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i data-lucide="bar-chart" style="color: var(--secondary);"></i>
+                  <span>Daily M2M Message Volume</span>
+                </div>
+              </div>
+              <div style="height: 250px; position: relative;">
+                <canvas id="reportVolumeChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             13. PRIVACY & SECURITY PAGE
+             ================================================================= -->
+        <section class="page-view" id="security">
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="card-header">
+              <div class="card-title">
+                <i data-lucide="shield-check" style="color: var(--primary);"></i>
+                <span>Healthcare Security &amp; Patient Privacy Architecture</span>
+              </div>
+              <span class="badge badge-normal">HIPAA &amp; GDPR Framework Concept</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+              <div style="padding: 1rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                <div style="font-weight: 700; font-size: 0.85rem; color: var(--primary);">1. End-to-End Encryption</div>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.35rem;">
+                  All M2M payloads are encrypted at the edge with AES-256-GCM. Ingestion channels enforce TLS 1.3 mutual certificate pinning.
+                </p>
+              </div>
+
+              <div style="padding: 1rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                <div style="font-weight: 700; font-size: 0.85rem; color: var(--secondary);">2. Role-Based Access Control</div>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.35rem;">
+                  Strict segregation ensures doctors access only assigned cohorts, while patient roles access exclusively their personal telemetry records.
+                </p>
+              </div>
+
+              <div style="padding: 1rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                <div style="font-weight: 700; font-size: 0.85rem; color: var(--accent-purple);">3. Device Mutual Authentication</div>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.35rem;">
+                  Each medical biosensor possesses an X.509 hardware certificate validated by Edge-GW-01 before packets are accepted.
+                </p>
+              </div>
+            </div>
+
+            <!-- Patient Consent Management Interactive Panel -->
+            <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.85rem;">Patient Telehealth Data Consent Controls</h4>
+              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-light); cursor: pointer;">
+                  <div>
+                    <div style="font-size: 0.825rem; font-weight: 600;">Consent for Continuous Remote Biometric Monitoring</div>
+                    <div style="font-size: 0.72rem; color: var(--text-muted);">Authorizes wearable devices to stream telemetry to the clinical care team.</div>
+                  </div>
+                  <input type="checkbox" id="consentTelemetryCheckbox" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+                </label>
+
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-light); cursor: pointer;">
+                  <div>
+                    <div style="font-size: 0.825rem; font-weight: 600;">Consent for Encrypted Cloud Storage &amp; Retrospective Analytics</div>
+                    <div style="font-size: 0.72rem; color: var(--text-muted);">Allows historical time-series storage to detect long-term physiological trends.</div>
+                  </div>
+                  <input type="checkbox" id="consentStorageCheckbox" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+                </label>
+
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid var(--border-light); cursor: pointer;">
+                  <div>
+                    <div style="font-size: 0.825rem; font-weight: 600;">Consent for Video Consultation Sessions</div>
+                    <div style="font-size: 0.72rem; color: var(--text-muted);">Authorizes real-time P2P WebRTC audio-video streaming between patient and doctor.</div>
+                  </div>
+                  <input type="checkbox" id="consentVideoCheckbox" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security Audit Activity Log -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <i data-lucide="lock" style="color: var(--primary);"></i>
+                <span>System Security Audit Log</span>
+              </div>
+              <span class="badge badge-normal">Immutable Audit Trail</span>
+            </div>
+            <div class="table-responsive">
+              <table class="healthcare-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>User / Device Principal</th>
+                    <th>Action</th>
+                    <th>Resource</th>
+                    <th>Security Context</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="securityAuditTableBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================
+             14. SYSTEM SETTINGS PAGE
+             ================================================================= -->
+        <section class="page-view" id="settings">
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="card-header">
+              <div class="card-title">
+                <i data-lucide="settings" style="color: var(--primary);"></i>
+                <span>Platform Simulation &amp; Demo Preferences</span>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Active Demonstration Role:</label>
+                <select class="form-select" id="settingsRoleSelect">
+                  <option value="doctor">Doctor (Dr. Sarah Jenkins)</option>
+                  <option value="patient">Patient (James Peterson)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Telemetry Ingestion Interval:</label>
+                <select class="form-select" id="settingsIntervalSelect">
+                  <option value="1500">1.5 Seconds (High Frequency)</option>
+                  <option value="2500" selected>2.5 Seconds (Standard Balanced)</option>
+                  <option value="5000">5.0 Seconds (Battery Saver)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Audio Alert Notifications:</label>
+                <select class="form-select" id="settingsAudioAlertsSelect">
+                  <option value="enabled">Enabled (Subtle Web Audio Chime)</option>
+                  <option value="disabled">Disabled (Silent Visual Badges Only)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Local Demo Data Persistence:</label>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem;">
+                  Patient records, alerts, and appointment entries are stored in browser localStorage.
+                </div>
+              </div>
+            </div>
+
+            <div style="border-top: 1px solid var(--border-color); margin-top: 1.5rem; padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong style="font-size: 0.85rem; color: var(--danger-text);">Reset Demonstration Data</strong>
+                <p style="font-size: 0.75rem; color: var(--text-muted);">Restores all fictional patients, devices, alerts, and appointments to original factory demo state.</p>
+              </div>
+              <button class="btn btn-outline" id="btnResetDemoData" style="border-color: var(--danger); color: var(--danger);">
+                <i data-lucide="rotate-ccw"></i> Reset All Data
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       MODALS & DIALOGS
+       ======================================================================= -->
+
+  <!-- 1. Patient Details / Monitoring Modal -->
+  <div class="modal-backdrop" id="patientDetailModal">
+    <div class="modal-window modal-lg">
+      <div class="modal-header">
+        <h3 id="patientDetailModalTitle">Patient Detailed Vitals Monitor</h3>
+        <button class="modal-close-btn" data-close="patientDetailModal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="patientDetailModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" data-close="patientDetailModal">Close</button>
+        <button class="btn btn-primary" id="btnModalStartVideoConsultation">
+          <i data-lucide="video"></i> Start Video Consultation
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Add / Edit Patient Modal -->
+  <div class="modal-backdrop" id="patientFormModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 id="patientFormModalTitle">Add New Fictional Patient</h3>
+        <button class="modal-close-btn" data-close="patientFormModal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="patientForm">
+          <input type="hidden" id="patientFormMode" value="add">
+          <input type="hidden" id="patientFormId" value="">
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Full Name:</label>
+              <input type="text" class="form-input" id="patientFormName" required placeholder="e.g. Eleanor Vance">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Age:</label>
+              <input type="number" class="form-input" id="patientFormAge" required placeholder="e.g. 54" min="1" max="120">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Gender:</label>
+              <select class="form-select" id="patientFormGender">
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Location / Room:</label>
+              <input type="text" class="form-input" id="patientFormLocation" required placeholder="e.g. Home Ward B-12">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Assigned Doctor:</label>
+              <input type="text" class="form-input" id="patientFormDoctor" value="Dr. Sarah Jenkins" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Primary Monitoring Focus:</label>
+              <input type="text" class="form-input" id="patientFormCondition" required placeholder="e.g. Hypertension, Type 2 Diabetes">
+            </div>
+
+            <div class="form-group col-span-2">
+              <label class="form-label">Assigned Medical Device:</label>
+              <select class="form-select" id="patientFormDevice">
+                <option value="Smart Heart Rate Sensor (HR001)">Smart Heart Rate Sensor (HR001)</option>
+                <option value="Digital Blood Pressure Monitor (BP002)">Digital Blood Pressure Monitor (BP002)</option>
+                <option value="Smart Glucose Monitor (GM003)">Smart Glucose Monitor (GM003)</option>
+                <option value="Wearable Health Band (WB004)">Wearable Health Band (WB004)</option>
+                <option value="Smart Pulse Oximeter (PO005)">Smart Pulse Oximeter (PO005)</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" data-close="patientFormModal">Cancel</button>
+        <button class="btn btn-primary" id="btnSavePatientForm">Save Patient</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Schedule Appointment Modal -->
+  <div class="modal-backdrop" id="scheduleModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Schedule Telehealth Consultation</h3>
+        <button class="modal-close-btn" data-close="scheduleModal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="scheduleForm">
+          <div class="form-grid">
+            <div class="form-group col-span-2">
+              <label class="form-label">Select Patient:</label>
+              <select class="form-select" id="schedPatientSelect">
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Assigned Doctor:</label>
+              <input type="text" class="form-input" id="schedDoctorInput" value="Dr. Sarah Jenkins (Cardiology)" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Date:</label>
+              <input type="date" class="form-input" id="schedDateInput" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Time Slot:</label>
+              <input type="time" class="form-input" id="schedTimeInput" value="10:30" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Consultation Type:</label>
+              <select class="form-select" id="schedTypeSelect">
+                <option value="Routine Biometric Review">Routine Biometric Review</option>
+                <option value="Urgent Vital Anomaly Follow-up">Urgent Vital Anomaly Follow-up</option>
+                <option value="Medication Adjustment">Medication Adjustment</option>
+                <option value="Post-Discharge Checkup">Post-Discharge Checkup</option>
+              </select>
+            </div>
+
+            <div class="form-group col-span-2">
+              <label class="form-label">Consultation Reason / Clinical Notes:</label>
+              <textarea class="form-input" id="schedReasonInput" rows="3" placeholder="Provide background clinical context..."></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" data-close="scheduleModal">Cancel</button>
+        <button class="btn btn-primary" id="btnConfirmSchedule">Confirm Appointment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Threshold Configuration Modal -->
+  <div class="modal-backdrop" id="thresholdModal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Configure Demonstration Alert Thresholds</h3>
+        <button class="modal-close-btn" data-close="thresholdModal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="background-color: var(--warning-light); border: 1px solid #fde68a; border-radius: var(--radius-md); padding: 0.75rem 1rem; margin-bottom: 1.25rem; font-size: 0.78rem; color: var(--warning-text);">
+          <strong style="display: block; margin-bottom: 2px;">Notice:</strong>
+          These demonstration thresholds are configurable parameters for the M2M simulation engine, not clinical advice or certified hospital alarm limits.
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Max Heart Rate Alert (BPM):</label>
+            <input type="number" class="form-input" id="threshMaxHR" value="100">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Min Heart Rate Alert (BPM):</label>
+            <input type="number" class="form-input" id="threshMinHR" value="55">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Max Systolic BP (mmHg):</label>
+            <input type="number" class="form-input" id="threshMaxBP" value="135">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Min Oxygen Saturation SpO2 (%):</label>
+            <input type="number" class="form-input" id="threshMinSpO2" value="94">
+          </div>
+          <div class="form-group col-span-2">
+            <label class="form-label">Max Blood Glucose (mg/dL):</label>
+            <input type="number" class="form-input" id="threshMaxGlucose" value="140">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" data-close="thresholdModal">Close</button>
+        <button class="btn btn-primary" id="btnSaveThresholds">Save Thresholds</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Delete Confirmation Modal -->
+  <div class="modal-backdrop" id="deleteModal">
+    <div class="modal-window" style="max-width: 420px;">
+      <div class="modal-header">
+        <h3 style="color: var(--danger-text);">Confirm Removal</h3>
+        <button class="modal-close-btn" data-close="deleteModal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.85rem; color: var(--text-main);">
+          Are you sure you want to remove demo patient record for <strong id="deleteTargetPatientName">--</strong>?
+        </p>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem;">
+          This will unassign connected medical biosensors and remove associated local simulation telemetry.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" data-close="deleteModal">Cancel</button>
+        <button class="btn btn-danger" id="btnConfirmDeletePatient">Remove Patient</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       LOGIN SCREEN OVERLAY (Role Switching & Initial Auth)
+       ======================================================================= -->
+  <div class="login-overlay-container" id="loginOverlay">
+    <div class="login-card">
+      <div class="login-brand-header">
+        <div class="login-brand-icon">
+          <i data-lucide="activity"></i>
+        </div>
+        <h2>Remote<span>Care</span></h2>
+        <p>M2M Remote Patient Monitoring &amp; Video Consultation</p>
+      </div>
+
+      <!-- Quick 1-Click Demo Accounts -->
+      <div class="quick-demo-accounts">
+        <div class="quick-demo-title">Quick Demo Login (Select Role):</div>
+        <div class="demo-account-buttons">
+          <button class="btn btn-outline-primary btn-sm" id="btnQuickLoginDoctor" style="font-size: 0.75rem;">
+            <i data-lucide="stethoscope"></i> Dr. Sarah Jenkins (Doctor)
+          </button>
+          <button class="btn btn-outline btn-sm" id="btnQuickLoginPatient" style="font-size: 0.75rem;">
+            <i data-lucide="user"></i> James Peterson (Patient)
+          </button>
+        </div>
+      </div>
+
+      <form id="manualLoginForm" style="display: flex; flex-direction: column; gap: 0.85rem;">
+        <div class="form-group">
+          <label class="form-label">Email Address:</label>
+          <input type="email" class="form-input" id="loginEmail" value="sarah.jenkins@remotecare.health" required>
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label class="form-label">Password:</label>
+            <button type="button" id="btnTogglePassword" style="background: none; border: none; font-size: 0.72rem; color: var(--primary); cursor: pointer;">Show</button>
+          </div>
+          <input type="password" class="form-input" id="loginPassword" value="DemoHospitalPass2026!" required>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem;">
+          <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+            <input type="checkbox" id="loginRememberMe" checked>
+            <span>Remember demo session</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">
+          Sign In to RemoteCare Portal
+        </button>
+
+        <p style="font-size: 0.68rem; color: var(--text-light); text-align: center; margin-top: 0.25rem;">
+          Demonstration Environment: Authenticates locally in browser session without requiring backend server.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
