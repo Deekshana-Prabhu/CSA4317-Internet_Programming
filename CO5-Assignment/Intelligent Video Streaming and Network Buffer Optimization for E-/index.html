@@ -1,0 +1,2456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamLearn – Intelligent Video Streaming & Network Buffer Optimization</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Chart.js CDN with automatic canvas fallback in script.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- LEFT SIDEBAR NAVIGATION -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span class="signal-ring"></span>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">StreamLearn</span>
+            <span class="brand-sub">Buffer & QoS Engine</span>
+          </div>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle" title="Toggle Navigation">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="sidebar-quick-status">
+        <div class="quick-status-dot pulse-good" id="sidebarStatusDot"></div>
+        <div class="quick-status-info">
+          <span class="quick-status-label">Network Condition</span>
+          <strong class="quick-status-val" id="sidebarNetworkState">Good (18.5 Mbps)</strong>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">E-LEARNING</div>
+        <a href="#home" class="nav-item active" data-section="home">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span>Home Dashboard</span>
+        </a>
+        <a href="#my-learning" class="nav-item" data-section="my-learning">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>My Learning</span>
+          <span class="nav-badge" id="enrolledBadge">4</span>
+        </a>
+        <a href="#live-classes" class="nav-item" data-section="live-classes">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"></circle><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path></svg>
+          <span>Live Classes</span>
+          <span class="live-pulse-badge">LIVE</span>
+        </a>
+        <a href="#video-library" class="nav-item" data-section="video-library">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+          <span>Video Library</span>
+        </a>
+
+        <div class="nav-section-title">INTELLIGENT NETWORKING</div>
+        <a href="#network-monitor" class="nav-item" data-section="network-monitor">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          <span>Network Monitor</span>
+        </a>
+        <a href="#streaming-simulator" class="nav-item" data-section="streaming-simulator">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+          <span>Streaming Simulator</span>
+        </a>
+        <a href="#buffer-optimization" class="nav-item" data-section="buffer-optimization">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+          <span>Buffer Optimization</span>
+        </a>
+        <a href="#adaptive-quality" class="nav-item" data-section="adaptive-quality">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          <span>Adaptive Quality (ABR)</span>
+        </a>
+        <a href="#bandwidth-manager" class="nav-item" data-section="bandwidth-manager">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Bandwidth Manager</span>
+        </a>
+        <a href="#content-delivery" class="nav-item" data-section="content-delivery">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span>Content Delivery (CDN)</span>
+        </a>
+        <a href="#network-architecture" class="nav-item" data-section="network-architecture">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="6" height="6" rx="1"></rect><rect x="16" y="3" width="6" height="6" rx="1"></rect><rect x="9" y="15" width="6" height="6" rx="1"></rect><path d="M5 9v3a2 2 0 0 0 2 2h5m7-5v3a2 2 0 0 1-2 2h-5m0 0v1"></path></svg>
+          <span>Network Architecture</span>
+        </a>
+
+        <div class="nav-section-title">INSIGHTS & CONFIG</div>
+        <a href="#performance-reports" class="nav-item" data-section="performance-reports">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <span>Performance Reports</span>
+        </a>
+        <a href="#settings" class="nav-item" data-section="settings">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="opt-indicator-card">
+          <div class="opt-title">
+            <span class="opt-badge">Smart Buffer 2.4</span>
+            <span class="opt-status-active">Active</span>
+          </div>
+          <p class="opt-desc">Auto-adjusts buffer headroom &amp; bitrate based on dynamic RTT.</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="main-wrapper">
+      <!-- COMPACT HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="header-search">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="globalSearchInput" placeholder="Search lectures, topics, instructors or networking algorithms...">
+            <div class="search-results-dropdown" id="searchResultsDropdown"></div>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Real-time network health capsule -->
+          <div class="network-health-pill" id="headerNetworkPill" title="Current Simulated Network Health">
+            <span class="health-dot health-good"></span>
+            <span class="health-speed" id="headerBandwidthText">18.5 Mbps</span>
+            <span class="health-sep">•</span>
+            <span class="health-quality" id="headerQualityText">1080p ABR</span>
+          </div>
+
+          <!-- Quick Network Preset Picker -->
+          <div class="quick-preset-select">
+            <select id="quickPresetSelect" title="Switch Network Preset">
+              <option value="good" selected>Preset: Good (20 Mbps)</option>
+              <option value="excellent">Preset: Excellent (50 Mbps)</option>
+              <option value="moderate">Preset: Moderate (5 Mbps)</option>
+              <option value="poor">Preset: Poor (1.2 Mbps)</option>
+              <option value="unstable">Preset: Unstable Flapping</option>
+            </select>
+          </div>
+
+          <!-- Notification Dropdown -->
+          <div class="header-action-container">
+            <button class="icon-btn" id="notifBtn" title="Notifications">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              <span class="notif-badge" id="notifBadge">3</span>
+            </button>
+            <div class="notif-dropdown" id="notifDropdown">
+              <div class="notif-header">
+                <h4>System &amp; Network Alerts</h4>
+                <button class="text-btn" id="markReadBtn">Mark all read</button>
+              </div>
+              <div class="notif-list" id="notifList">
+                <div class="notif-item unread">
+                  <span class="notif-dot notif-blue"></span>
+                  <div class="notif-content">
+                    <p class="notif-title">Buffer Optimization Engaged</p>
+                    <span class="notif-time">2 mins ago • Adaptive threshold raised to 18s</span>
+                  </div>
+                </div>
+                <div class="notif-item unread">
+                  <span class="notif-dot notif-teal"></span>
+                  <div class="notif-content">
+                    <p class="notif-title">Live Class Starting Soon</p>
+                    <span class="notif-time">10 mins ago • "TCP Congestion &amp; BBR" with Dr. Sarah Jenkins</span>
+                  </div>
+                </div>
+                <div class="notif-item unread">
+                  <span class="notif-dot notif-purple"></span>
+                  <div class="notif-content">
+                    <p class="notif-title">Edge Cache Hit Ratio: 92%</p>
+                    <span class="notif-time">30 mins ago • Low latency streaming maintained</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- User Profile -->
+          <div class="profile-pill" id="profilePill">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Student Profile" class="profile-avatar">
+            <div class="profile-info">
+              <span class="profile-name">Alex Chen</span>
+              <span class="profile-role">CS Student • Year 3</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- SECTIONS CONTAINER -->
+      <main class="content-area">
+
+        <!-- =========================================
+             SECTION: HOME DASHBOARD
+             ========================================= -->
+        <section id="home" class="page-section active">
+          <!-- Hero Banner -->
+          <div class="hero-card">
+            <div class="hero-content">
+              <span class="hero-tag">Intelligent E-Learning Platform</span>
+              <h1 class="hero-title">Learn Without Limits.<br><span class="gradient-text">Stream Without Interruptions.</span></h1>
+              <p class="hero-desc">
+                StreamLearn continuously optimizes video chunk pre-buffering, packet latency mitigation, and adaptive bitrates so your education never stalls—even on cellular or high-congestion campus Wi-Fi.
+              </p>
+              <div class="hero-actions">
+                <button class="btn btn-primary" onclick="navigateToSection('video-library')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  Browse Lectures
+                </button>
+                <button class="btn btn-secondary" onclick="navigateToSection('streaming-simulator')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                  Launch Buffer Simulator
+                </button>
+                <button class="btn btn-outline" onclick="navigateToSection('live-classes')">
+                  <span class="pulse-dot-mini"></span> Join Live Class
+                </button>
+              </div>
+            </div>
+            <div class="hero-graphic">
+              <div class="hero-stats-floating">
+                <div class="floating-stat-item">
+                  <span class="f-label">Buffer Health</span>
+                  <div class="f-bar-wrap"><div class="f-bar" style="width: 88%;"></div></div>
+                  <span class="f-val">22.4s (Safe)</span>
+                </div>
+                <div class="floating-stat-item">
+                  <span class="f-label">Active ABR Stream</span>
+                  <span class="f-pill">1080p • 4500 kbps</span>
+                </div>
+                <div class="floating-stat-item">
+                  <span class="f-label">Packet Loss Mitigation</span>
+                  <span class="f-pill f-pill-teal">0.0% Lost • FEC Active</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Performance & Learning Metrics Tiles -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon-wrap icon-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </div>
+              <div class="stat-details">
+                <span class="stat-label">Available Courses</span>
+                <h3 class="stat-value" id="dashTotalCourses">12 Courses</h3>
+                <span class="stat-trend trend-up">6 Categories Available</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon-wrap icon-purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"></circle><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path></svg>
+              </div>
+              <div class="stat-details">
+                <span class="stat-label">Live Classes Today</span>
+                <h3 class="stat-value" id="dashLiveClassesCount">3 Scheduled</h3>
+                <span class="stat-trend trend-live">1 In Progress Now</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon-wrap icon-teal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div class="stat-details">
+                <span class="stat-label">Completed Lessons</span>
+                <h3 class="stat-value" id="dashCompletedLessons">8 of 24</h3>
+                <span class="stat-trend trend-up">+2 this week</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon-wrap icon-sky">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              </div>
+              <div class="stat-details">
+                <span class="stat-label">Simulated Network Speed</span>
+                <h3 class="stat-value" id="dashNetworkSpeed">18.5 Mbps</h3>
+                <span class="stat-trend" id="dashNetworkPresetBadge">Good Preset</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon-wrap icon-indigo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line></svg>
+              </div>
+              <div class="stat-details">
+                <span class="stat-label">Average Streaming Quality</span>
+                <h3 class="stat-value" id="dashAvgQuality">1080p Full HD</h3>
+                <span class="stat-trend trend-up">99.4% Stall-Free</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon-wrap icon-emerald">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+              </div>
+              <div class="stat-details">
+                <span class="stat-label">Buffer Health</span>
+                <h3 class="stat-value" id="dashBufferHealth">94% Optimal</h3>
+                <span class="stat-trend trend-up">22.8s Headroom</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Continue Learning & Upcoming Classes Row -->
+          <div class="dash-row-grid">
+            <!-- Continue Learning Section -->
+            <div class="dash-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Continue Learning</h3>
+                  <p class="card-subtitle">Resume your recent video lectures where you left off</p>
+                </div>
+                <button class="btn-text" onclick="navigateToSection('video-library')">View All Videos &rarr;</button>
+              </div>
+              <div class="continue-lecture-item" id="dashContinueItem">
+                <div class="continue-thumb-wrap">
+                  <div class="continue-thumb-overlay">
+                    <button class="play-btn-circle" onclick="playLectureById('lec-net-410')">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    </button>
+                  </div>
+                  <div class="mock-thumb thumb-net">
+                    <span class="cat-pill">Networking</span>
+                  </div>
+                </div>
+                <div class="continue-info">
+                  <span class="sub-badge">NET 410 • Computer Networks</span>
+                  <h4 class="continue-title">TCP Congestion Control, BBR &amp; Packet Dynamics</h4>
+                  <p class="continue-meta">Instructor: Dr. Sarah Jenkins • 42 mins</p>
+                  <div class="lecture-progress-wrap">
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 65%;"></div></div>
+                    <span class="progress-text">65% completed (27:18 / 42:00)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Upcoming Live Classes Widget -->
+            <div class="dash-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Live Interactive Classes</h3>
+                  <p class="card-subtitle">Upcoming and currently streaming lectures</p>
+                </div>
+                <button class="btn-text" onclick="navigateToSection('live-classes')">View Schedule &rarr;</button>
+              </div>
+              <div class="upcoming-live-list">
+                <div class="live-event-card current">
+                  <div class="live-status-col">
+                    <span class="pulse-live-badge">STREAMING</span>
+                    <span class="live-viewers-count">142 students</span>
+                  </div>
+                  <div class="live-event-info">
+                    <h4>CS 301: Distributed Systems &amp; Consensus Algorithms</h4>
+                    <p>Prof. Marcus Vance • Started 15m ago</p>
+                  </div>
+                  <button class="btn btn-sm btn-primary" onclick="joinLiveClassModal('live-cs-301')">Join Now</button>
+                </div>
+
+                <div class="live-event-card">
+                  <div class="live-status-col">
+                    <span class="time-tag">Tomorrow 10:00 AM</span>
+                    <span class="enrolled-count">88 enrolled</span>
+                  </div>
+                  <div class="live-event-info">
+                    <h4>AI 402: Deep Neural Networks &amp; Backpropagation</h4>
+                    <p>Dr. Elena Rostova • Room A2</p>
+                  </div>
+                  <button class="btn btn-sm btn-outline" onclick="enrollLiveClass('live-ai-402')">Set Reminder</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Network Performance Summary & Charts -->
+          <div class="dash-row-grid-2">
+            <div class="dash-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Live Network Performance Summary</h3>
+                  <p class="card-subtitle">Current simulated network parameters and buffer headroom</p>
+                </div>
+                <div class="header-badges">
+                  <span class="badge badge-blue" id="dashLiveBwPill">18.5 Mbps Download</span>
+                  <span class="badge badge-teal" id="dashLiveLatencyPill">28 ms RTT</span>
+                </div>
+              </div>
+              <div class="chart-container" style="height: 240px; position: relative;">
+                <canvas id="dashNetworkChart"></canvas>
+              </div>
+              <div class="chart-legend-row">
+                <span class="legend-item"><span class="legend-color" style="background:#0284c7;"></span> Simulated Bandwidth (Mbps)</span>
+                <span class="legend-item"><span class="legend-color" style="background:#8b5cf6;"></span> Buffer Level (Seconds)</span>
+                <span class="legend-item"><span class="legend-color" style="background:#0d9488;"></span> Latency (ms)</span>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">QoS &amp; Buffer Optimization Status</h3>
+                  <p class="card-subtitle">Comparing streaming with and without intelligent buffer engine</p>
+                </div>
+                <button class="btn-text" onclick="navigateToSection('buffer-optimization')">Optimize Engine &rarr;</button>
+              </div>
+              <div class="comparison-bars">
+                <div class="comp-item">
+                  <div class="comp-label-row">
+                    <span>Re-buffering Stalls (per hour)</span>
+                    <span class="comp-diff">-87% reduction</span>
+                  </div>
+                  <div class="comp-bars-wrap">
+                    <div class="comp-bar-row">
+                      <span class="comp-mode">Standard</span>
+                      <div class="comp-bar-bg"><div class="comp-bar-fill fill-bad" style="width: 78%;"></div></div>
+                      <span class="comp-val">7.8 stalls</span>
+                    </div>
+                    <div class="comp-bar-row">
+                      <span class="comp-mode">StreamLearn</span>
+                      <div class="comp-bar-fill-wrap">
+                        <div class="comp-bar-bg"><div class="comp-bar-fill fill-good" style="width: 12%;"></div></div>
+                      </div>
+                      <span class="comp-val">0.9 stalls</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="comp-item">
+                  <div class="comp-label-row">
+                    <span>Initial Video Start Delay (TTFP)</span>
+                    <span class="comp-diff">62% faster</span>
+                  </div>
+                  <div class="comp-bars-wrap">
+                    <div class="comp-bar-row">
+                      <span class="comp-mode">Standard</span>
+                      <div class="comp-bar-bg"><div class="comp-bar-fill fill-bad" style="width: 65%;"></div></div>
+                      <span class="comp-val">3.4s</span>
+                    </div>
+                    <div class="comp-bar-row">
+                      <span class="comp-mode">StreamLearn</span>
+                      <div class="comp-bar-fill-wrap">
+                        <div class="comp-bar-bg"><div class="comp-bar-fill fill-good" style="width: 25%;"></div></div>
+                      </div>
+                      <span class="comp-val">1.3s</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="comp-item">
+                  <div class="comp-label-row">
+                    <span>Quality Smoothness Index</span>
+                    <span class="comp-diff">+41% smoother</span>
+                  </div>
+                  <div class="comp-bars-wrap">
+                    <div class="comp-bar-row">
+                      <span class="comp-mode">Standard</span>
+                      <div class="comp-bar-bg"><div class="comp-bar-fill fill-warning" style="width: 58%;"></div></div>
+                      <span class="comp-val">58 / 100</span>
+                    </div>
+                    <div class="comp-bar-row">
+                      <span class="comp-mode">StreamLearn</span>
+                      <div class="comp-bar-fill-wrap">
+                        <div class="comp-bar-bg"><div class="comp-bar-fill fill-good" style="width: 94%;"></div></div>
+                      </div>
+                      <span class="comp-val">94 / 100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommended Courses Grid -->
+          <div class="dash-section-wrap">
+            <div class="section-title-row">
+              <div>
+                <h3 class="section-heading">Featured Educational Lectures</h3>
+                <p class="section-subheading">High-definition lectures optimized for dynamic network streaming</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="navigateToSection('video-library')">Explore Full Library</button>
+            </div>
+            <div class="video-cards-grid" id="homeRecommendedGrid">
+              <!-- Dynamically populated from script.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: VIDEO PLAYER
+             ========================================= -->
+        <section id="video-player-section" class="page-section">
+          <div class="player-page-layout">
+            <!-- Left: Primary Player & Controls -->
+            <div class="player-main-column">
+              <div class="player-breadcrumb">
+                <button class="btn-back" onclick="navigateToSection('video-library')">&larr; Back to Video Library</button>
+                <span class="crumb-sep">/</span>
+                <span id="playerBreadcrumbCategory">Computer Science</span>
+                <span class="crumb-sep">/</span>
+                <span id="playerBreadcrumbTitle" class="crumb-current">CS 301: Distributed Systems</span>
+              </div>
+
+              <!-- Custom Video Player Wrapper -->
+              <div class="video-container" id="videoContainer">
+                <!-- HTML5 Video Element -->
+                <video id="mainVideoPlayer" preload="metadata" playsinline crossorigin="anonymous">
+                  <!-- Sources populated dynamically via script.js -->
+                  <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+
+                <!-- Buffering Spinner Overlay -->
+                <div class="player-overlay-buffering" id="playerBufferingOverlay">
+                  <div class="buffering-spinner"></div>
+                  <span class="buffering-text">Buffering Stream...</span>
+                  <span class="buffering-sub" id="bufferingSubText">Network throttle simulated: Filling buffer threshold (2.0s)</span>
+                </div>
+
+                <!-- Simulation Stalled Alert Banner -->
+                <div class="player-sim-banner" id="playerSimBanner">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                  <span>Simulation Event: Network bottleneck detected. ABR downshifted stream resolution to 360p to prevent stall.</span>
+                </div>
+
+                <!-- Stats For Nerds Overlay (Toggleable) -->
+                <div class="player-stats-overlay" id="playerStatsOverlay">
+                  <div class="stats-overlay-header">
+                    <strong>StreamLearn Video Diagnostics (Stats for Nerds)</strong>
+                    <button class="close-stats-btn" onclick="toggleStatsForNerds()">&times;</button>
+                  </div>
+                  <div class="stats-overlay-grid">
+                    <div><span>Video ID:</span> <strong id="nerdVideoId">lec-cs-301</strong></div>
+                    <div><span>Resolution:</span> <strong id="nerdResolution">1920x1080 @ 60fps</strong></div>
+                    <div><span>Active Bitrate:</span> <strong id="nerdBitrate">4,500 kbps</strong></div>
+                    <div><span>Buffer Health:</span> <strong id="nerdBufferHealth">18.4 s</strong></div>
+                    <div><span>Network Bandwidth:</span> <strong id="nerdBandwidth">18.5 Mbps</strong></div>
+                    <div><span>Latency / RTT:</span> <strong id="nerdLatency">28 ms</strong></div>
+                    <div><span>Packet Loss:</span> <strong id="nerdPacketLoss">0.0%</strong></div>
+                    <div><span>Dropped Frames:</span> <strong id="nerdDroppedFrames">0</strong></div>
+                    <div><span>ABR Mode:</span> <strong id="nerdAbrMode">BBR-Aware Dynamic</strong></div>
+                    <div><span>Edge CDN Cache:</span> <strong id="nerdCdnStatus">HIT (Region: us-east-edge)</strong></div>
+                  </div>
+                </div>
+
+                <!-- Custom Overlay Controls -->
+                <div class="custom-player-controls" id="playerControls">
+                  <!-- Progress Bar & Buffer Bar -->
+                  <div class="timeline-container" id="timelineContainer">
+                    <div class="timeline-bg">
+                      <!-- Real HTML5 buffer bar -->
+                      <div class="timeline-buffer" id="timelineBuffer"></div>
+                      <!-- Simulated safe buffer zone -->
+                      <div class="timeline-sim-buffer" id="timelineSimBuffer"></div>
+                      <!-- Current playhead progress -->
+                      <div class="timeline-progress" id="timelineProgress"></div>
+                      <div class="timeline-scrubber" id="timelineScrubber"></div>
+                    </div>
+                    <div class="timeline-hover-time" id="timelineHoverTime">00:00</div>
+                  </div>
+
+                  <!-- Controls Bar -->
+                  <div class="controls-row">
+                    <div class="controls-left">
+                      <!-- Play/Pause Button -->
+                      <button class="control-btn" id="playPauseBtn" title="Play/Pause (Space)">
+                        <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        <svg id="pauseIcon" class="hidden" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                      </button>
+
+                      <!-- Replay 10s -->
+                      <button class="control-btn" id="replay10Btn" title="Back 10s">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"></path><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path><text x="9" y="15" font-size="8" font-weight="bold" fill="currentColor">10</text></svg>
+                      </button>
+
+                      <!-- Forward 10s -->
+                      <button class="control-btn" id="forward10Btn" title="Forward 10s">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path><text x="8.5" y="15" font-size="8" font-weight="bold" fill="currentColor">10</text></svg>
+                      </button>
+
+                      <!-- Volume & Mute -->
+                      <div class="volume-group">
+                        <button class="control-btn" id="volumeBtn" title="Mute/Unmute">
+                          <svg id="volumeHighIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                          <svg id="volumeMuteIcon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                        </button>
+                        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.05" value="0.8">
+                      </div>
+
+                      <!-- Time Display -->
+                      <div class="time-display">
+                        <span id="currentTimeText">0:00</span>
+                        <span class="time-sep">/</span>
+                        <span id="durationText">0:00</span>
+                      </div>
+                    </div>
+
+                    <div class="controls-right">
+                      <!-- Active ABR Status Tag -->
+                      <div class="abr-active-tag" id="playerAbrTag" title="Adaptive Bitrate Engine Active">
+                        <span class="abr-dot"></span>
+                        <span id="playerActiveQualityBadge">Auto (1080p)</span>
+                      </div>
+
+                      <!-- Playback Speed Picker -->
+                      <div class="dropdown-control">
+                        <button class="control-text-btn" id="speedMenuBtn" title="Playback Speed">1.0x</button>
+                        <div class="control-dropdown-menu" id="speedDropdown">
+                          <div class="menu-header">Playback Speed</div>
+                          <button class="menu-item" data-speed="0.5">0.5x</button>
+                          <button class="menu-item" data-speed="0.75">0.75x</button>
+                          <button class="menu-item active" data-speed="1.0">1.0x (Normal)</button>
+                          <button class="menu-item" data-speed="1.25">1.25x</button>
+                          <button class="menu-item" data-speed="1.5">1.5x</button>
+                          <button class="menu-item" data-speed="2.0">2.0x</button>
+                        </div>
+                      </div>
+
+                      <!-- Quality Selector -->
+                      <div class="dropdown-control">
+                        <button class="control-text-btn" id="qualityMenuBtn" title="Quality Selection">
+                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                          <span id="qualityBtnLabel">1080p</span>
+                        </button>
+                        <div class="control-dropdown-menu" id="qualityDropdown">
+                          <div class="menu-header">Video Quality (ABR)</div>
+                          <button class="menu-item active" data-quality="auto">Auto (Recommended ABR)</button>
+                          <button class="menu-item" data-quality="1080p">1080p HD (6.0 Mbps)</button>
+                          <button class="menu-item" data-quality="720p">720p HD (3.0 Mbps)</button>
+                          <button class="menu-item" data-quality="480p">480p SD (1.5 Mbps)</button>
+                          <button class="menu-item" data-quality="360p">360p (800 kbps)</button>
+                          <button class="menu-item" data-quality="240p">240p Low Bandwidth (300 kbps)</button>
+                        </div>
+                      </div>
+
+                      <!-- Stats for Nerds Toggle -->
+                      <button class="control-btn" id="statsForNerdsBtn" title="Toggle Streaming Diagnostics (Stats for Nerds)" onclick="toggleStatsForNerds()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                      </button>
+
+                      <!-- Fullscreen -->
+                      <button class="control-btn" id="fullscreenBtn" title="Toggle Fullscreen (F)">
+                        <svg id="fullscreenEnterIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                        <svg id="fullscreenExitIcon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Lecture Info Card Below Player -->
+              <div class="player-info-card">
+                <div class="player-header-row">
+                  <div>
+                    <h2 class="player-lecture-title" id="playerCurrentTitle">CS 301: Distributed Systems &amp; Consensus Algorithms</h2>
+                    <p class="player-lecture-sub" id="playerCurrentSubtitle">Taught by Prof. Marcus Vance • Department of Computer Science</p>
+                  </div>
+                  <div class="player-action-buttons">
+                    <button class="btn btn-outline btn-sm" id="bookmarkBtn" onclick="toggleBookmarkCurrent()">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                      <span id="bookmarkText">Save Lecture</span>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="downloadLectureNotes()">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                      Notes (PDF)
+                    </button>
+                  </div>
+                </div>
+
+                <div class="player-meta-badges">
+                  <span class="meta-pill pill-category" id="playerMetaCategory">Computer Science</span>
+                  <span class="meta-pill pill-duration" id="playerMetaDuration">48 mins</span>
+                  <span class="meta-pill pill-quality">1080p / 720p / 480p / 360p / 240p</span>
+                  <span class="meta-pill pill-edge">Edge Cached: 98% Latency Reduction</span>
+                </div>
+
+                <div class="player-tabs-wrap">
+                  <div class="player-tabs">
+                    <button class="tab-btn active" data-tab="overview" onclick="switchPlayerTab('overview')">Lecture Overview</button>
+                    <button class="tab-btn" data-tab="network-diag" onclick="switchPlayerTab('network-diag')">Real-Time Network Diagnostics</button>
+                    <button class="tab-btn" data-tab="qos-details" onclick="switchPlayerTab('qos-details')">QoS &amp; Buffer Model</button>
+                  </div>
+
+                  <div class="player-tab-content active" id="tab-overview">
+                    <p class="lecture-description-text" id="playerDescription">
+                      Explore the foundational challenges of building fault-tolerant distributed networks. This lecture covers Paxos and Raft consensus, Byzantine fault tolerance, network partition handling under the CAP theorem, and how network latency variations impact replica synchronization and streaming heartbeats.
+                    </p>
+                    <div class="learning-objectives-box">
+                      <h4>Key Learning Objectives:</h4>
+                      <ul>
+                        <li>Understand clock drift, leader election, and split-brain scenarios.</li>
+                        <li>Analyze how round-trip time (RTT) affects quorum consensus and streaming throughput.</li>
+                        <li>Demonstrate how chunk pre-buffering preserves uninterrupted streaming during temporary packet retransmission cycles.</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="player-tab-content" id="tab-network-diag">
+                    <div class="mini-diag-grid">
+                      <div class="diag-card">
+                        <span class="d-label">Effective Download Bandwidth</span>
+                        <strong class="d-val" id="diagBw">18.5 Mbps</strong>
+                        <span class="d-sub">TCP BBR Congestion Window: 48 segments</span>
+                      </div>
+                      <div class="diag-card">
+                        <span class="d-label">Buffer Depletion Time</span>
+                        <strong class="d-val" id="diagBufferTime">18.4 seconds</strong>
+                        <span class="d-sub">Sufficient to absorb 3 lost segment bursts</span>
+                      </div>
+                      <div class="diag-card">
+                        <span class="d-label">Simulated Latency (RTT)</span>
+                        <strong class="d-val" id="diagLatency">28 ms</strong>
+                        <span class="d-sub">Direct edge server connection</span>
+                      </div>
+                      <div class="diag-card">
+                        <span class="d-label">Buffer Underflow Risk</span>
+                        <strong class="d-val text-green" id="diagRisk">Low (&lt; 2%)</strong>
+                        <span class="d-sub">Dynamic sizing auto-inflated to 25s</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="player-tab-content" id="tab-qos-details">
+                    <div class="qos-explainer-card">
+                      <h4>How StreamLearn Delivers Uninterrupted Video in this Lecture:</h4>
+                      <div class="qos-steps-grid">
+                        <div class="qos-step">
+                          <span class="step-num">1</span>
+                          <strong>Segment Slicing</strong>
+                          <p>The 48-minute lecture is sliced into 2-second independent MPEG-DASH chunks (.m4s) encoded at 5 discrete bitrates.</p>
+                        </div>
+                        <div class="qos-step">
+                          <span class="step-num">2</span>
+                          <strong>Dynamic Windowing</strong>
+                          <p>When the simulated bandwidth drops, our client engine requests lower-bitrate segments ahead of time before the buffer drops below the 4-second panic waterline.</p>
+                        </div>
+                        <div class="qos-step">
+                          <span class="step-num">3</span>
+                          <strong>Smart Re-buffering</strong>
+                          <p>If an interruption occurs, playback only resumes once a safe 2.5-second buffer headroom is replenished, preventing micro-stutters.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Interactive Stream Simulator & Quick Presets -->
+            <div class="player-sidebar-column">
+              <!-- Live Video Buffer Tank -->
+              <div class="sidebar-box">
+                <div class="sidebar-box-header">
+                  <h4 class="box-title">Live Video Buffer Tank</h4>
+                  <span class="status-indicator-tag tag-healthy" id="bufferTankStatus">Healthy (22s)</span>
+                </div>
+                <div class="buffer-tank-container">
+                  <div class="buffer-tank">
+                    <div class="tank-threshold line-danger" style="bottom: 15%;" title="Stall Danger Line (2s)"><span>Stall Line (2s)</span></div>
+                    <div class="tank-threshold line-safe" style="bottom: 45%;" title="Target Safe Line (12s)"><span>Safe Target (12s)</span></div>
+                    <div class="tank-threshold line-max" style="bottom: 85%;" title="Max Buffer Capacity (30s)"><span>Max Cap (30s)</span></div>
+                    <div class="tank-fluid" id="tankFluid" style="height: 65%;">
+                      <div class="tank-bubbles"></div>
+                    </div>
+                  </div>
+                  <div class="tank-readouts">
+                    <div class="tank-metric">
+                      <span>Buffered Headroom</span>
+                      <strong id="tankHeadroomText">18.4 s</strong>
+                    </div>
+                    <div class="tank-metric">
+                      <span>Download Velocity</span>
+                      <strong id="tankDownloadSpeed">2.4x Playback</strong>
+                    </div>
+                    <div class="tank-metric">
+                      <span>Consumption Rate</span>
+                      <strong>1.0x (Normal)</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="tank-actions">
+                  <button class="btn btn-sm btn-outline w-100" id="simulateStallBtn" onclick="triggerSimulatedStall()">
+                    Simulate Network Bottleneck (Drop BW)
+                  </button>
+                </div>
+              </div>
+
+              <!-- Quick Network Condition Presets -->
+              <div class="sidebar-box">
+                <div class="sidebar-box-header">
+                  <h4 class="box-title">Simulate Network Conditions</h4>
+                </div>
+                <p class="sidebar-box-desc">Switch network presets below to observe immediate adaptive quality changes and buffer behaviors.</p>
+                <div class="presets-buttons-stack">
+                  <button class="preset-btn" data-preset="excellent" onclick="applyNetworkPreset('excellent')">
+                    <div class="preset-title-row">
+                      <strong>Excellent Fiber</strong>
+                      <span class="preset-badge badge-green">50 Mbps</span>
+                    </div>
+                    <span class="preset-desc">15ms RTT • 0.0% Loss • Ultra 1080p</span>
+                  </button>
+
+                  <button class="preset-btn active" data-preset="good" onclick="applyNetworkPreset('good')">
+                    <div class="preset-title-row">
+                      <strong>Good Campus Wi-Fi</strong>
+                      <span class="preset-badge badge-blue">20 Mbps</span>
+                    </div>
+                    <span class="preset-desc">35ms RTT • 0.2% Loss • 1080p High</span>
+                  </button>
+
+                  <button class="preset-btn" data-preset="moderate" onclick="applyNetworkPreset('moderate')">
+                    <div class="preset-title-row">
+                      <strong>Moderate 4G LTE</strong>
+                      <span class="preset-badge badge-teal">5 Mbps</span>
+                    </div>
+                    <span class="preset-desc">85ms RTT • 1.5% Loss • 720p / 480p</span>
+                  </button>
+
+                  <button class="preset-btn" data-preset="poor" onclick="applyNetworkPreset('poor')">
+                    <div class="preset-title-row">
+                      <strong>Poor Cellular Edge</strong>
+                      <span class="preset-badge badge-warning">1.2 Mbps</span>
+                    </div>
+                    <span class="preset-desc">220ms RTT • 5.8% Loss • 360p / 240p</span>
+                  </button>
+
+                  <button class="preset-btn" data-preset="unstable" onclick="applyNetworkPreset('unstable')">
+                    <div class="preset-title-row">
+                      <strong>Unstable / Flapping Wi-Fi</strong>
+                      <span class="preset-badge badge-red">Fluctuating</span>
+                    </div>
+                    <span class="preset-desc">Jitter &gt; 65ms • 8.5% Loss • Dynamic ABR</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Next Lectures in this Series -->
+              <div class="sidebar-box">
+                <div class="sidebar-box-header">
+                  <h4 class="box-title">Course Lectures Playlist</h4>
+                </div>
+                <div class="playlist-items-list" id="playerPlaylist">
+                  <!-- Injected dynamically from script.js -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: MY LEARNING
+             ========================================= -->
+        <section id="my-learning" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">My Learning &amp; Course Progress</h2>
+              <p class="page-subheading">Track your lecture completions, saved bookmarks, and streaming bandwidth utilization</p>
+            </div>
+            <div class="header-action-group">
+              <button class="btn btn-outline" onclick="clearLearningHistory()">Reset Progress</button>
+              <button class="btn btn-primary" onclick="navigateToSection('video-library')">+ Enroll in More Courses</button>
+            </div>
+          </div>
+
+          <!-- Overall Learning Progress Summary -->
+          <div class="learning-overview-grid">
+            <div class="learning-stat-card">
+              <span class="l-label">Enrolled Courses</span>
+              <h3 class="l-val" id="myTotalEnrolled">4 Active</h3>
+              <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 67%;"></div></div>
+              <span class="l-sub">67% average completion rate</span>
+            </div>
+            <div class="learning-stat-card">
+              <span class="l-label">Total Watch Time</span>
+              <h3 class="l-val">18 hrs 42 mins</h3>
+              <span class="l-sub">Simulated Bandwidth saved by CDN: 12.8 GB</span>
+            </div>
+            <div class="learning-stat-card">
+              <span class="l-label">Average Streaming Quality</span>
+              <h3 class="l-val">1080p Full HD</h3>
+              <span class="l-sub">Buffer optimization prevented 38 stall events</span>
+            </div>
+            <div class="learning-stat-card">
+              <span class="l-label">Certificates Earned</span>
+              <h3 class="l-val">2 Verified</h3>
+              <span class="l-sub">Computer Networks &amp; Web Systems</span>
+            </div>
+          </div>
+
+          <!-- Enrolled Courses List -->
+          <div class="content-box">
+            <div class="content-box-header">
+              <h3 class="box-title">Active Courses &amp; Progress</h3>
+            </div>
+            <div class="enrolled-courses-list" id="enrolledCoursesList">
+              <!-- Dynamically populated from script.js -->
+            </div>
+          </div>
+
+          <!-- Bookmarked & Saved Lectures -->
+          <div class="content-box mt-4">
+            <div class="content-box-header">
+              <h3 class="box-title">Saved Bookmarks &amp; Watch Later</h3>
+            </div>
+            <div class="video-cards-grid" id="savedBookmarksGrid">
+              <!-- Dynamically populated from script.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: LIVE CLASSES
+             ========================================= -->
+        <section id="live-classes" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">Live Interactive Classes</h2>
+              <p class="page-subheading">Ultra-low latency virtual classrooms with real-time peer chat and dynamic stream optimization</p>
+            </div>
+            <div class="live-banner-pill">
+              <span class="pulse-dot-mini"></span> 1 Class Streaming Live Right Now
+            </div>
+          </div>
+
+          <!-- Active Live Virtual Classroom Demonstration -->
+          <div class="live-classroom-card" id="liveClassroomArea">
+            <div class="live-class-header">
+              <div class="live-meta">
+                <span class="live-tag-pill">LIVE CLASSROOM</span>
+                <h3 class="live-class-title" id="activeLiveTitle">CS 301: Distributed Consensus &amp; Raft Algorithm Implementation</h3>
+                <span class="live-instructor-name">Prof. Marcus Vance • Department of Computer Science • 142 Active Students</span>
+              </div>
+              <div class="live-telemetry">
+                <div class="telemetry-pill">
+                  <span class="t-dot t-good"></span>
+                  <span>Latency: <strong id="liveClassLatency">28 ms</strong></span>
+                </div>
+                <div class="telemetry-pill">
+                  <span>Stream: <strong id="liveClassQuality">1080p @ 60fps</strong></span>
+                </div>
+                <div class="telemetry-pill">
+                  <span>Buffer: <strong id="liveClassBuffer">4.8s Live Headroom</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="live-room-grid">
+              <!-- Video Stage -->
+              <div class="live-stage">
+                <div class="live-video-box">
+                  <video id="liveClassVideo" autoplay muted loop playsinline crossorigin="anonymous">
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4">
+                  </video>
+                  <div class="live-indicator-overlay">
+                    <span class="live-indicator-badge">● LIVE STREAM</span>
+                    <span class="live-time-stamp" id="liveStreamingTimer">00:18:42</span>
+                  </div>
+                  <div class="live-controls-bar">
+                    <button class="live-btn" id="liveMuteToggle" onclick="toggleLiveClassAudio()">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon></svg>
+                      <span id="liveAudioLabel">Unmute Audio</span>
+                    </button>
+                    <button class="live-btn" onclick="raiseLiveHand()">✋ Raise Hand</button>
+                    <button class="live-btn" onclick="sendReactionEmoji('👏')">👏 Clap</button>
+                    <button class="live-btn" onclick="sendReactionEmoji('💡')">💡 Insight</button>
+                    <button class="live-btn" onclick="sendReactionEmoji('❤️')">❤️ Great</button>
+                  </div>
+                </div>
+
+                <div class="live-info-bar">
+                  <div class="instructor-profile-chip">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Prof Vance" class="inst-avatar">
+                    <div>
+                      <strong>Prof. Marcus Vance</strong>
+                      <span>Host &amp; Lead Researcher • Distributed Systems Lab</span>
+                    </div>
+                  </div>
+                  <div class="live-disclaimer-note">
+                    <small>Demonstration live-class module with automated peer interaction. No third-party conferencing plugins required.</small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Live Chat -->
+              <div class="live-chat-panel">
+                <div class="chat-header">
+                  <h4>Classroom Discussion</h4>
+                  <span class="online-count">142 online</span>
+                </div>
+                <div class="chat-messages-container" id="liveChatMessages">
+                  <div class="chat-msg">
+                    <span class="msg-author author-prof">Prof. Marcus Vance:</span>
+                    <p class="msg-text">Welcome everyone! Today we are looking at how Raft handles network partitions between follower nodes.</p>
+                    <span class="msg-time">10:02 AM</span>
+                  </div>
+                  <div class="chat-msg">
+                    <span class="msg-author">Sarah Jenkins:</span>
+                    <p class="msg-text">Does Raft require an odd number of voting nodes to maintain majority quorum?</p>
+                    <span class="msg-time">10:04 AM</span>
+                  </div>
+                  <div class="chat-msg">
+                    <span class="msg-author author-prof">Prof. Marcus Vance:</span>
+                    <p class="msg-text">Exactly Sarah! With 5 nodes, a quorum requires 3 votes (2N+1 rule).</p>
+                    <span class="msg-time">10:05 AM</span>
+                  </div>
+                  <div class="chat-msg">
+                    <span class="msg-author">David Thorne:</span>
+                    <p class="msg-text">Notice how the video stream stayed 1080p even when our lab router hopped subnets. The buffer optimization works great!</p>
+                    <span class="msg-time">10:07 AM</span>
+                  </div>
+                </div>
+
+                <form class="chat-input-bar" id="liveChatForm" onsubmit="handleSendChatMessage(event)">
+                  <input type="text" id="liveChatInput" placeholder="Ask a question or share an answer..." autocomplete="off">
+                  <button type="submit" class="btn btn-sm btn-primary">Send</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upcoming Live Classes Schedule Table -->
+          <div class="content-box mt-4">
+            <div class="content-box-header">
+              <h3 class="box-title">Upcoming Live Class Schedule</h3>
+              <span class="badge badge-blue">Term 1 • 2026</span>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Course Code &amp; Title</th>
+                    <th>Instructor</th>
+                    <th>Date &amp; Time</th>
+                    <th>Enrolled</th>
+                    <th>Network Bandwidth Req</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="upcomingLiveClassesTable">
+                  <!-- Injected from script.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: VIDEO LIBRARY
+             ========================================= -->
+        <section id="video-library" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">Video Learning Library</h2>
+              <p class="page-subheading">Comprehensive collection of university lectures with instant adaptive streaming</p>
+            </div>
+            <div class="library-search-box">
+              <input type="text" id="librarySearchInput" placeholder="Search by lecture title or topic..." oninput="handleLibrarySearch(this.value)">
+            </div>
+          </div>
+
+          <!-- Category Filter Pills & Sort Options -->
+          <div class="library-toolbar">
+            <div class="category-filters" id="categoryFilterContainer">
+              <button class="filter-btn active" data-category="all" onclick="filterVideosByCategory('all')">All Lectures (12)</button>
+              <button class="filter-btn" data-category="Computer Science" onclick="filterVideosByCategory('Computer Science')">Computer Science</button>
+              <button class="filter-btn" data-category="Artificial Intelligence" onclick="filterVideosByCategory('Artificial Intelligence')">Artificial Intelligence</button>
+              <button class="filter-btn" data-category="Mathematics" onclick="filterVideosByCategory('Mathematics')">Mathematics</button>
+              <button class="filter-btn" data-category="Networking" onclick="filterVideosByCategory('Networking')">Networking</button>
+              <button class="filter-btn" data-category="Programming" onclick="filterVideosByCategory('Programming')">Programming</button>
+              <button class="filter-btn" data-category="Engineering" onclick="filterVideosByCategory('Engineering')">Engineering</button>
+            </div>
+
+            <div class="library-sort-wrap">
+              <label for="librarySortSelect">Sort by:</label>
+              <select id="librarySortSelect" onchange="sortVideosBy(this.value)">
+                <option value="featured">Featured / Recommended</option>
+                <option value="duration-asc">Duration (Shortest first)</option>
+                <option value="duration-desc">Duration (Longest first)</option>
+                <option value="title-asc">Lecture Title (A-Z)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Video Cards Grid (At least 12 sample lectures) -->
+          <div class="video-cards-grid" id="fullVideoLibraryGrid">
+            <!-- Dynamically populated from script.js with all 12 lectures -->
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: NETWORK MONITOR
+             ========================================= -->
+        <section id="network-monitor" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">Network Performance Monitor</h2>
+              <p class="page-subheading">Real-time telemetry and network QoS metrics for streaming media</p>
+            </div>
+            <div class="sim-badge-alert">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <span>Educational Simulation Engine • Measurements are simulated based on selected network conditions</span>
+            </div>
+          </div>
+
+          <!-- Network Preset Quick Selector Cards -->
+          <div class="preset-selector-row">
+            <button class="preset-card active" data-preset="good" onclick="applyNetworkPreset('good')">
+              <div class="p-header">
+                <span class="p-dot dot-good"></span>
+                <strong>Good Network</strong>
+              </div>
+              <p class="p-specs">20 Mbps Down • 35ms Latency • 0.2% Loss</p>
+              <span class="p-badge">Default Campus Wi-Fi</span>
+            </button>
+
+            <button class="preset-card" data-preset="excellent" onclick="applyNetworkPreset('excellent')">
+              <div class="p-header">
+                <span class="p-dot dot-excellent"></span>
+                <strong>Excellent Network</strong>
+              </div>
+              <p class="p-specs">50 Mbps Down • 15ms Latency • 0.0% Loss</p>
+              <span class="p-badge">Gigabit Optical</span>
+            </button>
+
+            <button class="preset-card" data-preset="moderate" onclick="applyNetworkPreset('moderate')">
+              <div class="p-header">
+                <span class="p-dot dot-moderate"></span>
+                <strong>Moderate Network</strong>
+              </div>
+              <p class="p-specs">5 Mbps Down • 85ms Latency • 1.5% Loss</p>
+              <span class="p-badge">4G Cellular / Commuter</span>
+            </button>
+
+            <button class="preset-card" data-preset="poor" onclick="applyNetworkPreset('poor')">
+              <div class="p-header">
+                <span class="p-dot dot-poor"></span>
+                <strong>Poor Network</strong>
+              </div>
+              <p class="p-specs">1.2 Mbps Down • 220ms Latency • 5.8% Loss</p>
+              <span class="p-badge">Congested Cell Edge</span>
+            </button>
+
+            <button class="preset-card" data-preset="unstable" onclick="applyNetworkPreset('unstable')">
+              <div class="p-header">
+                <span class="p-dot dot-unstable"></span>
+                <strong>Unstable Network</strong>
+              </div>
+              <p class="p-specs">0.8 - 8 Mbps • 180ms Latency • 8.5% Loss</p>
+              <span class="p-badge">High Jitter / Flapping</span>
+            </button>
+          </div>
+
+          <!-- Live Telemetry Gauges Grid -->
+          <div class="monitor-gauges-grid">
+            <div class="gauge-card">
+              <div class="gauge-header">
+                <span class="gauge-title">Download Bandwidth</span>
+                <span class="gauge-icon icon-blue">↓</span>
+              </div>
+              <div class="gauge-value-row">
+                <h3 class="gauge-number" id="monBwDown">18.5</h3>
+                <span class="gauge-unit">Mbps</span>
+              </div>
+              <div class="gauge-bar-wrap">
+                <div class="gauge-bar-fill" id="monBwDownBar" style="width: 37%;"></div>
+              </div>
+              <span class="gauge-footer" id="monBwDownFooter">Sufficient for 1080p HD (Needs ≥ 6 Mbps)</span>
+            </div>
+
+            <div class="gauge-card">
+              <div class="gauge-header">
+                <span class="gauge-title">Upload Bandwidth</span>
+                <span class="gauge-icon icon-purple">↑</span>
+              </div>
+              <div class="gauge-value-row">
+                <h3 class="gauge-number" id="monBwUp">5.2</h3>
+                <span class="gauge-unit">Mbps</span>
+              </div>
+              <div class="gauge-bar-wrap">
+                <div class="gauge-bar-fill" id="monBwUpBar" style="width: 52%;"></div>
+              </div>
+              <span class="gauge-footer">ACK return and webcam uplink</span>
+            </div>
+
+            <div class="gauge-card">
+              <div class="gauge-header">
+                <span class="gauge-title">Network Latency (RTT)</span>
+                <span class="gauge-icon icon-teal">⏱</span>
+              </div>
+              <div class="gauge-value-row">
+                <h3 class="gauge-number" id="monLatency">28</h3>
+                <span class="gauge-unit">ms</span>
+              </div>
+              <div class="gauge-bar-wrap">
+                <div class="gauge-bar-fill" id="monLatencyBar" style="width: 14%;"></div>
+              </div>
+              <span class="gauge-footer" id="monLatencyFooter">Optimal edge server response</span>
+            </div>
+
+            <div class="gauge-card">
+              <div class="gauge-header">
+                <span class="gauge-title">Packet Loss Ratio</span>
+                <span class="gauge-icon icon-amber">⚠</span>
+              </div>
+              <div class="gauge-value-row">
+                <h3 class="gauge-number" id="monPacketLoss">0.2</h3>
+                <span class="gauge-unit">%</span>
+              </div>
+              <div class="gauge-bar-wrap">
+                <div class="gauge-bar-fill" id="monLossBar" style="width: 2%;"></div>
+              </div>
+              <span class="gauge-footer" id="monLossFooter">TCP Selective ACK (SACK) handles drops</span>
+            </div>
+
+            <div class="gauge-card">
+              <div class="gauge-header">
+                <span class="gauge-title">Jitter (Variance)</span>
+                <span class="gauge-icon icon-sky">~</span>
+              </div>
+              <div class="gauge-value-row">
+                <h3 class="gauge-number" id="monJitter">4.2</h3>
+                <span class="gauge-unit">ms</span>
+              </div>
+              <div class="gauge-bar-wrap">
+                <div class="gauge-bar-fill" id="monJitterBar" style="width: 8%;"></div>
+              </div>
+              <span class="gauge-footer">Low variation, smooth chunk arrival</span>
+            </div>
+
+            <div class="gauge-card">
+              <div class="gauge-header">
+                <span class="gauge-title">Buffer Health Level</span>
+                <span class="gauge-icon icon-emerald">🛡</span>
+              </div>
+              <div class="gauge-value-row">
+                <h3 class="gauge-number" id="monBufferHealth">22.4</h3>
+                <span class="gauge-unit">sec</span>
+              </div>
+              <div class="gauge-bar-wrap">
+                <div class="gauge-bar-fill" id="monBufferBar" style="width: 74%;"></div>
+              </div>
+              <span class="gauge-footer" id="monBufferFooter">Comfortable headroom above stall line</span>
+            </div>
+          </div>
+
+          <!-- Real-Time Scrolling Telemetry Charts -->
+          <div class="monitor-charts-row">
+            <div class="content-box">
+              <div class="content-box-header">
+                <h3 class="box-title">Simulated Throughput &amp; Bandwidth Dynamics (Last 30s)</h3>
+                <span class="badge badge-blue">Sampling Rate: 1s</span>
+              </div>
+              <div class="chart-container" style="height: 260px; position: relative;">
+                <canvas id="monThroughputChart"></canvas>
+              </div>
+            </div>
+
+            <div class="content-box">
+              <div class="content-box-header">
+                <h3 class="box-title">Simulated Latency (RTT) &amp; Packet Loss Profile</h3>
+                <span class="badge badge-teal">Real-time Oscillations</span>
+              </div>
+              <div class="chart-container" style="height: 260px; position: relative;">
+                <canvas id="monLatencyChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: STREAMING SIMULATOR
+             ========================================= -->
+        <section id="streaming-simulator" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">Interactive Streaming Performance Simulator</h2>
+              <p class="page-subheading">Experiment with bandwidth constraints, latency spikes, and packet drop to observe real-time buffer mechanics</p>
+            </div>
+            <div class="header-action-group">
+              <button class="btn btn-outline" onclick="resetSimulatorDefaults()">Reset Controls</button>
+              <button class="btn btn-primary" id="simToggleBtn" onclick="toggleMainSimulation()">
+                <span id="simBtnIcon">▶</span> <span id="simBtnText">Start Real-Time Simulation</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Scenario Quick-Load Buttons -->
+          <div class="scenario-chips-row">
+            <span class="scenario-label">Pre-configured Scenarios:</span>
+            <button class="scenario-btn active" onclick="loadSimScenario('high-bw')">1. High Bandwidth (Fiber)</button>
+            <button class="scenario-btn" onclick="loadSimScenario('low-bw')">2. Low Bandwidth (Bottleneck)</button>
+            <button class="scenario-btn" onclick="loadSimScenario('high-latency')">3. High Latency (Satellite / Remote)</button>
+            <button class="scenario-btn" onclick="loadSimScenario('packet-loss')">4. Packet Loss (Unstable Radio)</button>
+            <button class="scenario-btn" onclick="loadSimScenario('unstable-flapping')">5. Flapping Wi-Fi (Oscillating)</button>
+          </div>
+
+          <!-- Simulator Interactive Grid -->
+          <div class="simulator-layout-grid">
+            <!-- Interactive Parameter Sliders -->
+            <div class="content-box">
+              <div class="content-box-header">
+                <h3 class="box-title">Simulation Parameters</h3>
+                <span class="badge badge-purple">Adjust Live</span>
+              </div>
+
+              <div class="sim-sliders-list">
+                <!-- Bandwidth Slider -->
+                <div class="sim-slider-group">
+                  <div class="slider-header-row">
+                    <label for="simBwSlider">Available Bandwidth</label>
+                    <span class="slider-display" id="simBwDisplay">20.0 Mbps</span>
+                  </div>
+                  <input type="range" class="custom-range" id="simBwSlider" min="0.5" max="60" step="0.5" value="20" oninput="updateSimParameter('bandwidth', this.value)">
+                  <div class="slider-scale">
+                    <span>0.5 Mbps (Poor 2G)</span>
+                    <span>15 Mbps</span>
+                    <span>60 Mbps (High Speed)</span>
+                  </div>
+                </div>
+
+                <!-- Latency Slider -->
+                <div class="sim-slider-group">
+                  <div class="slider-header-row">
+                    <label for="simLatencySlider">Network Latency (Round Trip Time)</label>
+                    <span class="slider-display" id="simLatencyDisplay">35 ms</span>
+                  </div>
+                  <input type="range" class="custom-range" id="simLatencySlider" min="5" max="500" step="5" value="35" oninput="updateSimParameter('latency', this.value)">
+                  <div class="slider-scale">
+                    <span>5 ms (Edge)</span>
+                    <span>150 ms (Cross-Continent)</span>
+                    <span>500 ms (Satellite)</span>
+                  </div>
+                </div>
+
+                <!-- Packet Loss Slider -->
+                <div class="sim-slider-group">
+                  <div class="slider-header-row">
+                    <label for="simLossSlider">Packet Loss Ratio</label>
+                    <span class="slider-display" id="simLossDisplay">0.2 %</span>
+                  </div>
+                  <input type="range" class="custom-range" id="simLossSlider" min="0" max="25" step="0.5" value="0.2" oninput="updateSimParameter('packetLoss', this.value)">
+                  <div class="slider-scale">
+                    <span>0% (Clean Wire)</span>
+                    <span>10% (Heavy Interference)</span>
+                    <span>25% (Critical Loss)</span>
+                  </div>
+                </div>
+
+                <!-- Jitter Slider -->
+                <div class="sim-slider-group">
+                  <div class="slider-header-row">
+                    <label for="simJitterSlider">Network Jitter (Delay Variation)</label>
+                    <span class="slider-display" id="simJitterDisplay">4 ms</span>
+                  </div>
+                  <input type="range" class="custom-range" id="simJitterSlider" min="0" max="100" step="2" value="4" oninput="updateSimParameter('jitter', this.value)">
+                  <div class="slider-scale">
+                    <span>0 ms</span>
+                    <span>40 ms</span>
+                    <span>100 ms</span>
+                  </div>
+                </div>
+
+                <!-- Target Buffer Size Slider -->
+                <div class="sim-slider-group">
+                  <div class="slider-header-row">
+                    <label for="simBufferSizeSlider">Target Buffer Capacity</label>
+                    <span class="slider-display" id="simBufferSizeDisplay">30 sec</span>
+                  </div>
+                  <input type="range" class="custom-range" id="simBufferSizeSlider" min="5" max="60" step="5" value="30" oninput="updateSimParameter('bufferSize', this.value)">
+                  <div class="slider-scale">
+                    <span>5s (Aggressive)</span>
+                    <span>30s (Balanced)</span>
+                    <span>60s (Heavy Memory)</span>
+                  </div>
+                </div>
+
+                <!-- Target Video Quality -->
+                <div class="sim-slider-group">
+                  <div class="slider-header-row">
+                    <label>Requested Video Stream Bitrate</label>
+                    <span class="slider-display" id="simQualityDisplay">Auto (Adaptive)</span>
+                  </div>
+                  <div class="sim-quality-pills">
+                    <button class="q-pill active" data-q="auto" onclick="setSimTargetQuality('auto')">Auto ABR</button>
+                    <button class="q-pill" data-q="1080p" onclick="setSimTargetQuality('1080p')">1080p (4.5M)</button>
+                    <button class="q-pill" data-q="720p" onclick="setSimTargetQuality('720p')">720p (2.5M)</button>
+                    <button class="q-pill" data-q="480p" onclick="setSimTargetQuality('480p')">480p (1.2M)</button>
+                    <button class="q-pill" data-q="360p" onclick="setSimTargetQuality('360p')">360p (0.6M)</button>
+                    <button class="q-pill" data-q="240p" onclick="setSimTargetQuality('240p')">240p (0.3M)</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Buffer Mechanics & Playback Simulation -->
+            <div class="simulator-visuals-col">
+              <!-- Buffer Tank & Waterlines -->
+              <div class="content-box">
+                <div class="content-box-header">
+                  <div>
+                    <h3 class="box-title">Buffer Filling &amp; Depletion Dynamics</h3>
+                    <p class="card-subtitle">Real-time simulation of incoming chunk packets vs video consumption</p>
+                  </div>
+                  <span class="badge badge-teal" id="simPlaybackStateBadge">STREAMING SMOOTHLY</span>
+                </div>
+
+                <div class="sim-stage-visual">
+                  <div class="sim-flow-row">
+                    <!-- Edge Server / Source -->
+                    <div class="flow-node">
+                      <div class="node-icon icon-blue">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                      </div>
+                      <span class="node-name">CDN Edge Server</span>
+                      <small class="node-stat" id="simChunkRate">12 chunks/sec</small>
+                    </div>
+
+                    <!-- Flow Pipe with Animated Packets -->
+                    <div class="flow-pipe">
+                      <div class="pipe-track">
+                        <div class="packet-particle particle-1"></div>
+                        <div class="packet-particle particle-2"></div>
+                        <div class="packet-particle particle-3"></div>
+                      </div>
+                      <div class="pipe-stats">
+                        <span id="simPipeBw">20 Mbps</span>
+                        <span id="simPipeLoss">0.2% loss</span>
+                      </div>
+                    </div>
+
+                    <!-- Buffer Tank In-Between -->
+                    <div class="flow-tank-wrap">
+                      <div class="flow-tank">
+                        <div class="tank-danger-zone"></div>
+                        <div class="tank-fluid-fill" id="simTankFluid" style="height: 65%;">
+                          <span class="fluid-val" id="simTankVal">19.5s</span>
+                        </div>
+                      </div>
+                      <span class="node-name">Client Memory Buffer</span>
+                      <small class="node-stat" id="simBufferFillRate">+1.4s / sec</small>
+                    </div>
+
+                    <!-- Playback Engine -->
+                    <div class="flow-pipe">
+                      <div class="pipe-track">
+                        <div class="packet-particle particle-drain"></div>
+                      </div>
+                      <div class="pipe-stats">
+                        <span>Drain Rate</span>
+                        <span>1.0x Realtime</span>
+                      </div>
+                    </div>
+
+                    <!-- Student Screen Player -->
+                    <div class="flow-node">
+                      <div class="node-icon icon-teal" id="simScreenIcon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                      </div>
+                      <span class="node-name">Student Device</span>
+                      <small class="node-stat" id="simActiveResolution">1080p @ 60fps</small>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Simulation Live Telemetry Cards -->
+                <div class="sim-metrics-grid">
+                  <div class="sim-m-card">
+                    <span class="sm-label">Buffer Level</span>
+                    <strong class="sm-val" id="simLiveBufferLevel">19.5 sec</strong>
+                    <span class="sm-status text-green" id="simBufferTrend">Stable Headroom</span>
+                  </div>
+                  <div class="sim-m-card">
+                    <span class="sm-label">Playback State</span>
+                    <strong class="sm-val text-blue" id="simPlaybackState">Playing</strong>
+                    <span class="sm-status" id="simDrainState">Consuming at 1.0x</span>
+                  </div>
+                  <div class="sim-m-card">
+                    <span class="sm-label">Stalling Events</span>
+                    <strong class="sm-val" id="simStallCount">0</strong>
+                    <span class="sm-status text-green">0.0s total stall</span>
+                  </div>
+                  <div class="sim-m-card">
+                    <span class="sm-label">Retransmission Overhead</span>
+                    <strong class="sm-val" id="simRetransmit">0.4%</strong>
+                    <span class="sm-status">SACK TCP dynamic</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Simulation Time-Series Buffer Graph -->
+              <div class="content-box mt-4">
+                <div class="content-box-header">
+                  <h3 class="box-title">Buffer Fill vs. Depletion Live Timeline</h3>
+                  <span class="badge badge-indigo">Dynamic Window Tracking</span>
+                </div>
+                <div class="chart-container" style="height: 240px; position: relative;">
+                  <canvas id="simBufferTimelineChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: BUFFER OPTIMIZATION
+             ========================================= -->
+        <section id="buffer-optimization" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">Intelligent Buffer Optimization Techniques</h2>
+              <p class="page-subheading">Eliminate video interruptions with dynamic sizing, pre-buffering, and intelligent recovery thresholds</p>
+            </div>
+            <div class="header-action-group">
+              <button class="btn btn-primary" onclick="runOptimizationComparisonDemo()">Run Side-by-Side Benchmark</button>
+            </div>
+          </div>
+
+          <!-- The 5 Core Buffer Optimization Techniques -->
+          <div class="techniques-cards-grid">
+            <div class="technique-card">
+              <div class="tech-icon-wrap icon-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+              </div>
+              <h4 class="tech-title">A. Adaptive Buffer Management</h4>
+              <p class="tech-desc">Continuously calculates the harmonic mean of recent chunk download times to estimate real throughput, preventing over-optimistic quality shifts.</p>
+            </div>
+
+            <div class="technique-card">
+              <div class="tech-icon-wrap icon-purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              </div>
+              <h4 class="tech-title">B. Dynamic Buffer Sizing</h4>
+              <p class="tech-desc">Expands the target buffer capacity from 15s to 35s during periods of high latency jitter, while shrinking it during steady conditions to conserve device RAM.</p>
+            </div>
+
+            <div class="technique-card">
+              <div class="tech-icon-wrap icon-teal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <h4 class="tech-title">C. Intelligent Pre-Buffering</h4>
+              <p class="tech-desc">Fetches initial low-bitrate chunks in an aggressive parallel burst to achieve sub-second startup latency (TTFP) before seamlessly scaling to 1080p.</p>
+            </div>
+
+            <div class="technique-card">
+              <div class="tech-icon-wrap icon-sky">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              </div>
+              <h4 class="tech-title">D. Buffer Threshold Hysteresis</h4>
+              <p class="tech-desc">Maintains high-water and low-water marks. Prevents annoying rapid switching between resolutions caused by brief momentary network fluctuations.</p>
+            </div>
+
+            <div class="technique-card">
+              <div class="tech-icon-wrap icon-indigo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+              </div>
+              <h4 class="tech-title">E. Intelligent Playback Recovery</h4>
+              <p class="tech-desc">If a stall occurs, playback is only released once the buffer recovers a safe 3-second cushion, avoiding the dreaded stutter loop.</p>
+            </div>
+          </div>
+
+          <!-- Interactive Optimization Parameters Config -->
+          <div class="content-box mt-4">
+            <div class="content-box-header">
+              <h3 class="box-title">Interactive Buffer Optimization Engine Controls</h3>
+              <span class="badge badge-blue">Fine-Tune Engine Rules</span>
+            </div>
+
+            <div class="opt-controls-grid">
+              <div class="opt-control-item">
+                <label for="optMinBuffer">Minimum Panic Threshold (s)</label>
+                <div class="opt-input-row">
+                  <input type="range" id="optMinBuffer" min="1" max="5" step="0.5" value="2.5" oninput="updateOptParam('minBuffer', this.value)">
+                  <span class="opt-val" id="optMinBufferVal">2.5s</span>
+                </div>
+                <small>Stall mitigation triggers when buffer falls below this point.</small>
+              </div>
+
+              <div class="opt-control-item">
+                <label for="optMaxBuffer">Maximum Dynamic Capacity (s)</label>
+                <div class="opt-input-row">
+                  <input type="range" id="optMaxBuffer" min="10" max="60" step="5" value="30" oninput="updateOptParam('maxBuffer', this.value)">
+                  <span class="opt-val" id="optMaxBufferVal">30s</span>
+                </div>
+                <small>Ceiling for chunk pre-buffering to prevent memory bloat.</small>
+              </div>
+
+              <div class="opt-control-item">
+                <label for="optPrebuffer">Initial Startup Pre-buffer (s)</label>
+                <div class="opt-input-row">
+                  <input type="range" id="optPrebuffer" min="0.5" max="4" step="0.5" value="1.5" oninput="updateOptParam('prebuffer', this.value)">
+                  <span class="opt-val" id="optPrebufferVal">1.5s</span>
+                </div>
+                <small>Required chunk seconds before unpausing initial playback.</small>
+              </div>
+
+              <div class="opt-control-item">
+                <label for="optRecovery">Stall Recovery Cushion (s)</label>
+                <div class="opt-input-row">
+                  <input type="range" id="optRecovery" min="1" max="6" step="0.5" value="3.0" oninput="updateOptParam('recovery', this.value)">
+                  <span class="opt-val" id="optRecoveryVal">3.0s</span>
+                </div>
+                <small>Headroom required before restarting after an unexpected stall.</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Side-by-Side Comparison: Without vs With Optimization -->
+          <div class="content-box mt-4">
+            <div class="content-box-header">
+              <div>
+                <h3 class="box-title">Live Side-by-Side Comparison Benchmark</h3>
+                <p class="card-subtitle">Real-time simulation of the same network bottleneck (5 Mbps drop with 120ms RTT)</p>
+              </div>
+              <button class="btn btn-sm btn-secondary" onclick="simulateBottleneckOnBoth()">Simulate Bottleneck Spike</button>
+            </div>
+
+            <div class="comparison-dual-grid">
+              <!-- Without Optimization (Naive) -->
+              <div class="comp-col comp-naive">
+                <div class="comp-col-header">
+                  <h4>Without Optimization (Naive Standard)</h4>
+                  <span class="badge badge-warning">Fixed 4s Buffer • Immediate Resume</span>
+                </div>
+                <div class="comp-metric-stack">
+                  <div class="comp-m">
+                    <span>Buffering Interruptions:</span>
+                    <strong class="text-red" id="naiveStallCount">8 Stalls / hr</strong>
+                  </div>
+                  <div class="comp-m">
+                    <span>Total Interruption Time:</span>
+                    <strong class="text-red" id="naiveStallTime">16.4 seconds</strong>
+                  </div>
+                  <div class="comp-m">
+                    <span>Stutter Loop Frequency:</span>
+                    <strong class="text-red">High (Restarts on 0.2s)</strong>
+                  </div>
+                  <div class="comp-m">
+                    <span>Student QoE Index:</span>
+                    <strong class="text-red" id="naiveQoE">52 / 100 (Frustrating)</strong>
+                  </div>
+                </div>
+                <div class="mini-tank-row">
+                  <span>Buffer Waterline:</span>
+                  <div class="mini-tank-bar">
+                    <div class="mini-tank-fill fill-bad" id="naiveTankBar" style="width: 25%;"></div>
+                  </div>
+                  <strong id="naiveTankVal">1.2s</strong>
+                </div>
+              </div>
+
+              <!-- With StreamLearn Optimization -->
+              <div class="comp-col comp-opt">
+                <div class="comp-col-header">
+                  <h4>With StreamLearn Smart Buffer Engine</h4>
+                  <span class="badge badge-teal">Adaptive Hysteresis &amp; Dynamic Capacity</span>
+                </div>
+                <div class="comp-metric-stack">
+                  <div class="comp-m">
+                    <span>Buffering Interruptions:</span>
+                    <strong class="text-green" id="optStallCount">1 Stall / hr</strong>
+                  </div>
+                  <div class="comp-m">
+                    <span>Total Interruption Time:</span>
+                    <strong class="text-green" id="optStallTime">1.8 seconds</strong>
+                  </div>
+                  <div class="comp-m">
+                    <span>Stutter Loop Frequency:</span>
+                    <strong class="text-green">Zero (3s Recovery Lock)</strong>
+                  </div>
+                  <div class="comp-m">
+                    <span>Student QoE Index:</span>
+                    <strong class="text-green" id="optQoE">94 / 100 (Seamless)</strong>
+                  </div>
+                </div>
+                <div class="mini-tank-row">
+                  <span>Buffer Waterline:</span>
+                  <div class="mini-tank-bar">
+                    <div class="mini-tank-fill fill-good" id="optTankBar" style="width: 78%;"></div>
+                  </div>
+                  <strong id="optTankVal">23.4s</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comparison Chart -->
+            <div class="chart-container mt-3" style="height: 250px; position: relative;">
+              <canvas id="bufferComparisonChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: ADAPTIVE QUALITY (ABR)
+             ========================================= -->
+        <section id="adaptive-quality" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">Adaptive Bitrate Streaming (ABR)</h2>
+              <p class="page-subheading">Intelligent quality ladder transitions balancing user visual quality against buffer starvation</p>
+            </div>
+            <div class="header-action-group">
+              <span class="badge badge-purple" id="abrActiveModeLabel">Mode: Automatic Hybrid ABR</span>
+            </div>
+          </div>
+
+          <!-- Quality Ladder Hierarchy Cards -->
+          <div class="quality-ladder-row">
+            <div class="ladder-card" id="ladder1080">
+              <div class="l-badge">1080p Full HD</div>
+              <h4 class="l-bitrate">4,500 kbps</h4>
+              <p class="l-req">Req: ≥ 6.0 Mbps</p>
+              <div class="l-indicator"></div>
+              <span class="l-status">Optimal Fiber / Wi-Fi</span>
+            </div>
+
+            <div class="ladder-card active" id="ladder720">
+              <div class="l-badge">720p HD</div>
+              <h4 class="l-bitrate">2,500 kbps</h4>
+              <p class="l-req">Req: ≥ 3.0 Mbps</p>
+              <div class="l-indicator"></div>
+              <span class="l-status">Stable 4G / Campus</span>
+            </div>
+
+            <div class="ladder-card" id="ladder480">
+              <div class="l-badge">480p SD</div>
+              <h4 class="l-bitrate">1,200 kbps</h4>
+              <p class="l-req">Req: ≥ 1.5 Mbps</p>
+              <div class="l-indicator"></div>
+              <span class="l-status">Moderate Cellular</span>
+            </div>
+
+            <div class="ladder-card" id="ladder360">
+              <div class="l-badge">360p</div>
+              <h4 class="l-bitrate">600 kbps</h4>
+              <p class="l-req">Req: ≥ 800 kbps</p>
+              <div class="l-indicator"></div>
+              <span class="l-status">Low Bandwidth</span>
+            </div>
+
+            <div class="ladder-card" id="ladder240">
+              <div class="l-badge">240p</div>
+              <h4 class="l-bitrate">300 kbps</h4>
+              <p class="l-req">Req: ≥ 350 kbps</p>
+              <div class="l-indicator"></div>
+              <span class="l-status">Emergency Fallback</span>
+            </div>
+          </div>
+
+          <!-- Live ABR Controller Dashboard -->
+          <div class="abr-controller-grid mt-4">
+            <!-- Left: Live Decision Explainer -->
+            <div class="content-box">
+              <div class="content-box-header">
+                <h3 class="box-title">ABR Decision Engine Telemetry</h3>
+                <span class="badge badge-teal">Throughput + Buffer Hybrid</span>
+              </div>
+
+              <div class="abr-decision-card">
+                <div class="decision-header">
+                  <div class="decision-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                  </div>
+                  <div>
+                    <span class="decision-label">Active Chosen Stream</span>
+                    <h3 class="decision-val" id="abrCurrentChoice">720p HD (2,500 kbps)</h3>
+                  </div>
+                </div>
+                <div class="decision-reason-box">
+                  <strong>Decision Reason:</strong>
+                  <p id="abrDecisionReason">Estimated bandwidth is 5.2 Mbps with a healthy 18.2s buffer headroom. System has safe headroom for 720p without risking buffer starvation.</p>
+                </div>
+                <div class="decision-factors-grid">
+                  <div class="factor-item">
+                    <span>Available Bandwidth:</span>
+                    <strong id="abrBwVal">5.2 Mbps</strong>
+                  </div>
+                  <div class="factor-item">
+                    <span>Required Bitrate:</span>
+                    <strong id="abrReqVal">2.5 Mbps</strong>
+                  </div>
+                  <div class="factor-item">
+                    <span>Buffer Headroom:</span>
+                    <strong id="abrHeadroomVal">18.2 sec</strong>
+                  </div>
+                  <div class="factor-item">
+                    <span>ABR Safety Factor:</span>
+                    <strong>1.4x Headroom</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive ABR Mode Controls -->
+              <div class="abr-mode-switcher mt-3">
+                <span class="mode-label">Algorithm Selection:</span>
+                <div class="btn-group">
+                  <button class="btn btn-sm btn-primary active" id="abrModeAuto" onclick="switchAbrAlgorithm('hybrid')">Hybrid (Throughput + Buffer)</button>
+                  <button class="btn btn-sm btn-outline" id="abrModeThroughput" onclick="switchAbrAlgorithm('throughput')">Throughput-Only (BBA-0)</button>
+                  <button class="btn btn-sm btn-outline" id="abrModeBuffer" onclick="switchAbrAlgorithm('buffer')">Buffer-Only (BOLA)</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: ABR Event History Log -->
+            <div class="content-box">
+              <div class="content-box-header">
+                <h3 class="box-title">Quality Switching History Log</h3>
+                <button class="btn-text" onclick="clearAbrLog()">Clear Log</button>
+              </div>
+              <div class="abr-log-stream" id="abrLogStream">
+                <!-- Log entries added in script.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Quality vs Bandwidth Chart -->
+          <div class="content-box mt-4">
+            <div class="content-box-header">
+              <h3 class="box-title">Bandwidth Fluctuations vs. ABR Quality Transitions</h3>
+              <span class="badge badge-blue">Time Window: Last 60s</span>
+            </div>
+            <div class="chart-container" style="height: 260px; position: relative;">
+              <canvas id="abrTransitionChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: BANDWIDTH MANAGER
+             ========================================= -->
+        <section id="bandwidth-manager" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">University Campus Bandwidth Manager</h2>
+              <p class="page-subheading">Simulate multi-student contention on shared university network backbones with QoS priority allocation</p>
+            </div>
+            <div class="header-action-group">
+              <button class="btn btn-primary" onclick="simulateCampusPeakHour()">Simulate Peak Hour Congestion</button>
+            </div>
+          </div>
+
+          <!-- Total Campus Pipe Controls -->
+          <div class="campus-pipe-card">
+            <div class="pipe-header-row">
+              <div>
+                <span class="pipe-tag">Campus Edge Ingress Gateway</span>
+                <h3 class="pipe-title">Total Shared Campus Bandwidth</h3>
+              </div>
+              <div class="pipe-val-pill">
+                <span class="pipe-num" id="campusTotalBwDisplay">40 Mbps</span>
+                <span class="pipe-sub">Shared Pipe</span>
+              </div>
+            </div>
+
+            <div class="pipe-slider-wrap">
+              <input type="range" class="custom-range" id="campusPipeSlider" min="5" max="100" step="5" value="40" oninput="updateCampusTotalBandwidth(this.value)">
+              <div class="slider-scale">
+                <span>5 Mbps (Heavy Bottleneck)</span>
+                <span>40 Mbps (Standard Shared)</span>
+                <span>100 Mbps (Full Capacity)</span>
+              </div>
+            </div>
+
+            <!-- Allocation Strategy Picker -->
+            <div class="allocation-strategy-row">
+              <span class="strat-label">Allocation Policy:</span>
+              <div class="strat-options">
+                <label class="strat-radio">
+                  <input type="radio" name="allocStrategy" value="unmanaged" onchange="setBandwidthStrategy('unmanaged')">
+                  <span>Unmanaged (Greedy / Congested)</span>
+                </label>
+                <label class="strat-radio">
+                  <input type="radio" name="allocStrategy" value="fair" checked onchange="setBandwidthStrategy('fair')">
+                  <span>Fair-Share Allocation (Equal Split)</span>
+                </label>
+                <label class="strat-radio">
+                  <input type="radio" name="allocStrategy" value="priority" onchange="setBandwidthStrategy('priority')">
+                  <span>Priority QoS (Live Classes First)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Concurrent Students Streaming Table/Cards -->
+          <div class="content-box mt-4">
+            <div class="content-box-header">
+              <h3 class="box-title">Concurrent Active Student Streams</h3>
+              <span class="badge badge-purple" id="campusActiveCountBadge">5 Active Students</span>
+            </div>
+
+            <div class="students-grid" id="campusStudentsGrid">
+              <!-- Dynamically populated from script.js -->
+            </div>
+          </div>
+
+          <!-- Allocation Comparison Chart -->
+          <div class="content-box mt-4">
+            <div class="content-box-header">
+              <h3 class="box-title">Bandwidth Distribution &amp; Stream Quality Comparison</h3>
+              <span class="badge badge-teal">Live QoS Balancing</span>
+            </div>
+            <div class="chart-container" style="height: 250px; position: relative;">
+              <canvas id="bandwidthAllocChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: CONTENT DELIVERY (CDN)
+             ========================================= -->
+        <section id="content-delivery" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">Content Delivery Network (CDN) &amp; Edge Caching</h2>
+              <p class="page-subheading">Accelerate e-learning video delivery with edge servers, geographical caching, and video chunk segmentation</p>
+            </div>
+            <div class="header-action-group">
+              <button class="btn btn-outline" onclick="purgeEdgeCache()">Purge Edge Cache</button>
+              <button class="btn btn-primary" onclick="runCdnBenchmark()">Run CDN Benchmark Test</button>
+            </div>
+          </div>
+
+          <!-- CDN Visual Architecture Diagram -->
+          <div class="content-box">
+            <div class="content-box-header">
+              <h3 class="box-title">Content Delivery Architecture Flow</h3>
+              <span class="badge badge-blue">Interactive Data Path</span>
+            </div>
+
+            <div class="cdn-architecture-visual">
+              <div class="cdn-tier origin-tier">
+                <div class="tier-icon icon-blue">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                </div>
+                <div class="tier-info">
+                  <strong>Educational Video Origin Server</strong>
+                  <span>Central University Data Center (Dallas, TX)</span>
+                  <small>Holds master uncompressed 4K video archives</small>
+                </div>
+              </div>
+
+              <div class="cdn-connector">
+                <div class="conn-line"><div class="conn-pulse"></div></div>
+                <span class="conn-label">High-Speed Backbone (10 Gbps)</span>
+              </div>
+
+              <div class="cdn-tier edge-tier">
+                <div class="tier-icon icon-purple">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+                <div class="tier-info">
+                  <strong>Regional Edge Caching Server</strong>
+                  <span id="cdnEdgeLocation">Campus Regional Point-of-Presence (PoP)</span>
+                  <small>Caches popular 2-second DASH chunks closer to students</small>
+                </div>
+                <div class="cache-badge" id="cdnCacheStatusBadge">CACHE HIT (94%)</div>
+              </div>
+
+              <div class="cdn-connector">
+                <div class="conn-line"><div class="conn-pulse"></div></div>
+                <span class="conn-label">Low Latency Edge Transit (15-28ms)</span>
+              </div>
+
+              <div class="cdn-tier client-tier">
+                <div class="tier-icon icon-teal">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <div class="tier-info">
+                  <strong>Student Client Devices</strong>
+                  <span>Laptops, Tablets &amp; Smartphones</span>
+                  <small>Instant chunk retrieval with minimal initial latency</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct Origin vs Cached Edge Delivery Comparison -->
+          <div class="cdn-comparison-row mt-4">
+            <div class="content-box">
+              <div class="content-box-header">
+                <h3 class="box-title">Direct Origin vs. Cached Edge Server Benchmark</h3>
+                <span class="badge badge-teal">Simulated Benchmark Data</span>
+              </div>
+
+              <div class="cdn-metrics-dual">
+                <div class="cdn-metric-col col-origin">
+                  <h4>Direct Origin Server</h4>
+                  <div class="c-stat">
+                    <span>Time to First Byte (TTFB):</span>
+                    <strong class="text-warning" id="originTtfb">185 ms</strong>
+                  </div>
+                  <div class="c-stat">
+                    <span>Round-Trip Latency:</span>
+                    <strong class="text-warning" id="originLatency">120 ms</strong>
+                  </div>
+                  <div class="c-stat">
+                    <span>Segment Fetch Time:</span>
+                    <strong class="text-warning" id="originFetch">1,240 ms</strong>
+                  </div>
+                  <div class="c-stat">
+                    <span>Core Backbone Load:</span>
+                    <strong class="text-warning">100% Transit</strong>
+                  </div>
+                </div>
+
+                <div class="cdn-metric-col col-edge">
+                  <h4>Cached Edge Server (StreamLearn CDN)</h4>
+                  <div class="c-stat">
+                    <span>Time to First Byte (TTFB):</span>
+                    <strong class="text-green" id="edgeTtfb">18 ms (-90%)</strong>
+                  </div>
+                  <div class="c-stat">
+                    <span>Round-Trip Latency:</span>
+                    <strong class="text-green" id="edgeLatency">16 ms (-86%)</strong>
+                  </div>
+                  <div class="c-stat">
+                    <span>Segment Fetch Time:</span>
+                    <strong class="text-green" id="edgeFetch">140 ms (-88%)</strong>
+                  </div>
+                  <div class="c-stat">
+                    <span>Core Backbone Load:</span>
+                    <strong class="text-green">Offloaded (Cache Hit)</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="chart-container mt-3" style="height: 220px; position: relative;">
+                <canvas id="cdnLatencyCompareChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Video Segmentation Demonstration -->
+            <div class="content-box">
+              <div class="content-box-header">
+                <h3 class="box-title">Video Segmentation (Chunking) Mechanics</h3>
+                <span class="badge badge-purple">MPEG-DASH / HLS</span>
+              </div>
+              <p class="card-subtitle">Videos are split into 2-second segments allowing clients to adjust quality on the fly.</p>
+
+              <div class="segment-grid">
+                <div class="seg-item cached">
+                  <span class="seg-id">Chunk 01</span>
+                  <span class="seg-dur">0:00-0:02</span>
+                  <span class="seg-tag">Cached 1080p</span>
+                </div>
+                <div class="seg-item cached">
+                  <span class="seg-id">Chunk 02</span>
+                  <span class="seg-dur">0:02-0:04</span>
+                  <span class="seg-tag">Cached 1080p</span>
+                </div>
+                <div class="seg-item cached">
+                  <span class="seg-id">Chunk 03</span>
+                  <span class="seg-dur">0:04-0:06</span>
+                  <span class="seg-tag">Cached 1080p</span>
+                </div>
+                <div class="seg-item cached">
+                  <span class="seg-id">Chunk 04</span>
+                  <span class="seg-dur">0:06-0:08</span>
+                  <span class="seg-tag">Cached 720p</span>
+                </div>
+                <div class="seg-item fetching">
+                  <span class="seg-id">Chunk 05</span>
+                  <span class="seg-dur">0:08-0:10</span>
+                  <span class="seg-tag">Fetching Edge...</span>
+                </div>
+                <div class="seg-item pending">
+                  <span class="seg-id">Chunk 06</span>
+                  <span class="seg-dur">0:10-0:12</span>
+                  <span class="seg-tag">Pre-buffer Queue</span>
+                </div>
+              </div>
+
+              <div class="cdn-stats-box mt-3">
+                <div class="cs-row">
+                  <span>Edge Hit Ratio:</span>
+                  <strong class="text-green">94.2%</strong>
+                </div>
+                <div class="cs-row">
+                  <span>Bandwidth Saved by Edge:</span>
+                  <strong>8.4 TB / Month</strong>
+                </div>
+                <div class="cs-row">
+                  <span>Average Startup Delay:</span>
+                  <strong class="text-green">0.82 seconds</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: NETWORK ARCHITECTURE
+             ========================================= -->
+        <section id="network-architecture" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">Interactive Network Streaming Architecture</h2>
+              <p class="page-subheading">End-to-end data flow from origin lecture servers through CDN edge nodes to student browser playback</p>
+            </div>
+            <div class="header-action-group">
+              <span class="badge badge-blue">Click any component card for protocol specs</span>
+            </div>
+          </div>
+
+          <!-- Interactive Pipeline Diagram -->
+          <div class="content-box">
+            <div class="architecture-flow-wrapper">
+              <div class="arch-node-card active" data-node="student-device" onclick="selectArchitectureNode('student-device')">
+                <div class="arch-badge">Node 1</div>
+                <div class="arch-icon icon-teal">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <h4>Student Device</h4>
+                <p>Browser HTML5 Video + MediaSource Extensions (MSE)</p>
+              </div>
+
+              <div class="arch-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </div>
+
+              <div class="arch-node-card" data-node="net-monitor" onclick="selectArchitectureNode('net-monitor')">
+                <div class="arch-badge">Node 2</div>
+                <div class="arch-icon icon-blue">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                </div>
+                <h4>Network Monitoring</h4>
+                <p>Harmonic RTT Estimator &amp; Packet Loss Detection</p>
+              </div>
+
+              <div class="arch-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </div>
+
+              <div class="arch-node-card" data-node="abr-controller" onclick="selectArchitectureNode('abr-controller')">
+                <div class="arch-badge">Node 3</div>
+                <div class="arch-icon icon-purple">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                </div>
+                <h4>Adaptive Controller</h4>
+                <p>ABR Bitrate Decision Logic (Throughput + Buffer)</p>
+              </div>
+
+              <div class="arch-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </div>
+
+              <div class="arch-node-card" data-node="buffer-module" onclick="selectArchitectureNode('buffer-module')">
+                <div class="arch-badge">Node 4</div>
+                <div class="arch-icon icon-sky">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+                </div>
+                <h4>Buffer Optimization</h4>
+                <p>Dynamic Sizing, Headroom Hysteresis &amp; Safe Recovery</p>
+              </div>
+
+              <div class="arch-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </div>
+
+              <div class="arch-node-card" data-node="cdn-edge" onclick="selectArchitectureNode('cdn-edge')">
+                <div class="arch-badge">Node 5</div>
+                <div class="arch-icon icon-indigo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+                </div>
+                <h4>CDN / Edge Server</h4>
+                <p>Geographically Distributed Cache Points-of-Presence</p>
+              </div>
+
+              <div class="arch-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </div>
+
+              <div class="arch-node-card" data-node="origin-server" onclick="selectArchitectureNode('origin-server')">
+                <div class="arch-badge">Node 6</div>
+                <div class="arch-icon icon-emerald">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                </div>
+                <h4>Video Origin Server</h4>
+                <p>Master Course Library &amp; Video Transcoder Array</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Node Details Inspector -->
+          <div class="content-box mt-4" id="archNodeDetailBox">
+            <div class="content-box-header">
+              <h3 class="box-title" id="archDetailTitle">Component: Student Device</h3>
+              <span class="badge badge-teal" id="archDetailProtocol">Protocol: HTML5 MSE / WebAssembly</span>
+            </div>
+            <div class="arch-detail-body" id="archDetailContent">
+              <p class="arch-p" id="archDetailDesc">
+                The student's browser hosts the client-side streaming player. Utilizing MediaSource Extensions (MSE), video segments downloaded over HTTP are demuxed and appended to the SourceBuffer in device memory. The player decodes H.264/AAC video tracks on the fly and monitors playback progress.
+              </p>
+              <div class="arch-specs-grid" id="archDetailSpecs">
+                <div class="spec-item">
+                  <span class="s-name">Client Engine:</span>
+                  <strong class="s-val">StreamLearn JS Engine v2.4</strong>
+                </div>
+                <div class="spec-item">
+                  <span class="s-name">Buffer Interface:</span>
+                  <strong class="s-val">HTMLMediaElement SourceBuffer</strong>
+                </div>
+                <div class="spec-item">
+                  <span class="s-name">Decoders:</span>
+                  <strong class="s-val">Hardware-Accelerated AVC/H.264 &amp; AAC</strong>
+                </div>
+                <div class="spec-item">
+                  <span class="s-name">Telemetry Hook:</span>
+                  <strong class="s-val">Real-time QoE &amp; Dropped Frame Observer</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: PERFORMANCE REPORTS
+             ========================================= -->
+        <section id="performance-reports" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">Streaming Performance Reports &amp; Analytics</h2>
+              <p class="page-subheading">Comprehensive session metrics, quality breakdown, and downloadable streaming analytics</p>
+            </div>
+            <div class="header-action-group">
+              <button class="btn btn-outline" onclick="window.print()">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Print / Export PDF
+              </button>
+              <button class="btn btn-primary" onclick="downloadCsvReport()">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download CSV Report
+              </button>
+            </div>
+          </div>
+
+          <!-- High-Level Session Summary Cards -->
+          <div class="report-summary-grid">
+            <div class="report-stat-card">
+              <span class="r-label">Total Streaming Duration</span>
+              <h3 class="r-val" id="repDuration">48 mins 12s</h3>
+              <span class="r-sub">Across 4 lecture sessions</span>
+            </div>
+
+            <div class="report-stat-card">
+              <span class="r-label">Average Video Quality</span>
+              <h3 class="r-val" id="repAvgQuality">1080p Full HD</h3>
+              <span class="r-sub">Average bitrate: 4,120 kbps</span>
+            </div>
+
+            <div class="report-stat-card">
+              <span class="r-label">Total Buffering Events</span>
+              <h3 class="r-val text-green" id="repStallEvents">1 Event</h3>
+              <span class="r-sub">Total stall time: 1.8 seconds</span>
+            </div>
+
+            <div class="report-stat-card">
+              <span class="r-label">Average Latency (RTT)</span>
+              <h3 class="r-val" id="repAvgLatency">26.4 ms</h3>
+              <span class="r-sub">Edge cache served 94%</span>
+            </div>
+
+            <div class="report-stat-card">
+              <span class="r-label">Playback Interruption Rate</span>
+              <h3 class="r-val text-green" id="repInterruptionRate">0.06%</h3>
+              <span class="r-sub">&lt; 0.5% industry SLA standard</span>
+            </div>
+
+            <div class="report-stat-card">
+              <span class="r-label">Buffer Optimization Gain</span>
+              <h3 class="r-val text-teal" id="repGainScore">+88.4%</h3>
+              <span class="r-sub">Compared to unoptimized baseline</span>
+            </div>
+          </div>
+
+          <!-- Charts: Unoptimized vs Optimized & Quality Distribution -->
+          <div class="report-charts-grid mt-4">
+            <div class="content-box">
+              <div class="content-box-header">
+                <h3 class="box-title">Streaming Metrics: Baseline vs. StreamLearn Optimized</h3>
+                <span class="badge badge-teal">Direct Metric Comparison</span>
+              </div>
+              <div class="chart-container" style="height: 270px; position: relative;">
+                <canvas id="reportComparisonBarChart"></canvas>
+              </div>
+            </div>
+
+            <div class="content-box">
+              <div class="content-box-header">
+                <h3 class="box-title">Stream Resolution Distribution</h3>
+                <span class="badge badge-purple">Time Spent by Quality Tier</span>
+              </div>
+              <div class="chart-container" style="height: 270px; position: relative;">
+                <canvas id="reportQualityPieChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Session Telemetry Log Table -->
+          <div class="content-box mt-4">
+            <div class="content-box-header">
+              <h3 class="box-title">Detailed Session Event Log</h3>
+              <span class="badge badge-blue">Ready for CSV Export</span>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Lecture Session</th>
+                    <th>Selected Resolution</th>
+                    <th>Simulated Bandwidth</th>
+                    <th>Buffer Headroom</th>
+                    <th>Latency (RTT)</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="reportSessionTable">
+                  <!-- Injected from script.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+             SECTION: SETTINGS
+             ========================================= -->
+        <section id="settings" class="page-section">
+          <div class="section-page-header">
+            <div>
+              <h2 class="page-heading">Platform &amp; Streaming Settings</h2>
+              <p class="page-subheading">Configure video player defaults, network simulation thresholds, and student preferences</p>
+            </div>
+            <button class="btn btn-primary" onclick="saveUserSettings()">Save Preferences</button>
+          </div>
+
+          <div class="settings-grid">
+            <div class="content-box">
+              <div class="content-box-header">
+                <h3 class="box-title">Video Playback Preferences</h3>
+              </div>
+              <div class="settings-list">
+                <div class="setting-item">
+                  <div>
+                    <strong>Default Streaming Quality</strong>
+                    <p>Preferred resolution when loading a new lecture.</p>
+                  </div>
+                  <select id="prefDefaultQuality" class="setting-select">
+                    <option value="auto" selected>Auto (Adaptive Bitrate)</option>
+                    <option value="1080p">1080p Full HD</option>
+                    <option value="720p">720p HD</option>
+                    <option value="480p">480p SD</option>
+                  </select>
+                </div>
+
+                <div class="setting-item">
+                  <div>
+                    <strong>Low Data Saver Mode</strong>
+                    <p>Limits maximum resolution to 480p on metered connections.</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="prefDataSaver">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="setting-item">
+                  <div>
+                    <strong>Hardware Video Acceleration</strong>
+                    <p>Enables GPU-accelerated video decoding in browser preview.</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="prefHwAccel" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="setting-item">
+                  <div>
+                    <strong>Auto-Play Next Lecture</strong>
+                    <p>Automatically stream subsequent playlist video when finished.</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="prefAutoPlay" checked>
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="content-box">
+              <div class="content-box-header">
+                <h3 class="box-title">Buffer &amp; Simulation Engine Config</h3>
+              </div>
+              <div class="settings-list">
+                <div class="setting-item">
+                  <div>
+                    <strong>Default Network Simulation Preset</strong>
+                    <p>Condition loaded upon application start.</p>
+                  </div>
+                  <select id="prefDefaultPreset" class="setting-select">
+                    <option value="good" selected>Good (20 Mbps, 35ms)</option>
+                    <option value="excellent">Excellent (50 Mbps, 15ms)</option>
+                    <option value="moderate">Moderate (5 Mbps, 85ms)</option>
+                    <option value="poor">Poor (1.2 Mbps, 220ms)</option>
+                    <option value="unstable">Unstable Flapping</option>
+                  </select>
+                </div>
+
+                <div class="setting-item">
+                  <div>
+                    <strong>Advanced Stats for Nerds Display</strong>
+                    <p>Show real-time technical video overlay by default.</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="prefShowNerdStats">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+
+                <div class="setting-item">
+                  <div>
+                    <strong>Local Learning Cache &amp; History</strong>
+                    <p>Reset all saved bookmarks, watch progress, and custom simulation data.</p>
+                  </div>
+                  <button class="btn btn-outline btn-sm text-red" onclick="resetAllLocalStorage()">Clear All Local Data</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

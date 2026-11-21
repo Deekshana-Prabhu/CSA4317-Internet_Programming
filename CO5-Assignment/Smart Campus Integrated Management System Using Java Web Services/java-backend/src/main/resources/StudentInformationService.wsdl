@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ======================================================================
+  Smart Campus Integrated Management System
+  WSDL 1.1 Definition for StudentInformationService
+  Standard SOAP Web Service Specification
+  ======================================================================
+-->
+<definitions 
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://service.smartcampus.com/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://service.smartcampus.com/"
+    name="StudentInformationService">
+
+    <!-- ========================================== -->
+    <!-- 1. DATA TYPES (XML SCHEMA DEFINITION)      -->
+    <!-- ========================================== -->
+    <types>
+        <xsd:schema 
+            targetNamespace="http://service.smartcampus.com/" 
+            elementFormDefault="qualified">
+
+            <!-- Student Data Structure Definition -->
+            <xsd:complexType name="student">
+                <xsd:sequence>
+                    <xsd:element name="studentId" type="xsd:string"/>
+                    <xsd:element name="studentName" type="xsd:string"/>
+                    <xsd:element name="department" type="xsd:string"/>
+                    <xsd:element name="year" type="xsd:string"/>
+                    <xsd:element name="email" type="xsd:string"/>
+                    <xsd:element name="mobileNumber" type="xsd:string"/>
+                    <xsd:element name="admissionStatus" type="xsd:string"/>
+                    <xsd:element name="cgpa" type="xsd:double"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <!-- Operation 1: getStudentById Request -->
+            <xsd:element name="getStudentById">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="studentId" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- Operation 1: getStudentById Response -->
+            <xsd:element name="getStudentByIdResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="student" type="tns:student" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- Operation 2: getAllStudents Request -->
+            <xsd:element name="getAllStudents">
+                <xsd:complexType/>
+            </xsd:element>
+
+            <!-- Operation 2: getAllStudents Response -->
+            <xsd:element name="getAllStudentsResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="studentList" type="tns:student" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <!-- Fault Element: StudentNotFoundFault -->
+            <xsd:element name="StudentNotFoundFault">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="faultInfo" type="xsd:string"/>
+                        <xsd:element name="message" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+        </xsd:schema>
+    </types>
+
+    <!-- ========================================== -->
+    <!-- 2. MESSAGES DEFINITION                     -->
+    <!-- ========================================== -->
+    <message name="getStudentByIdRequest">
+        <part name="parameters" element="tns:getStudentById"/>
+    </message>
+
+    <message name="getStudentByIdResponse">
+        <part name="parameters" element="tns:getStudentByIdResponse"/>
+    </message>
+
+    <message name="getAllStudentsRequest">
+        <part name="parameters" element="tns:getAllStudents"/>
+    </message>
+
+    <message name="getAllStudentsResponse">
+        <part name="parameters" element="tns:getAllStudentsResponse"/>
+    </message>
+
+    <message name="StudentNotFoundFault">
+        <part name="fault" element="tns:StudentNotFoundFault"/>
+    </message>
+
+    <!-- ========================================== -->
+    <!-- 3. PORT TYPE (SERVICE CONTRACT)            -->
+    <!-- ========================================== -->
+    <portType name="StudentInformationService">
+
+        <!-- Operation: getStudentById -->
+        <operation name="getStudentById">
+            <documentation>Retrieves complete student details by unique ID</documentation>
+            <input message="tns:getStudentByIdRequest"/>
+            <output message="tns:getStudentByIdResponse"/>
+            <fault name="StudentNotFoundFault" message="tns:StudentNotFoundFault"/>
+        </operation>
+
+        <!-- Operation: getAllStudents -->
+        <operation name="getAllStudents">
+            <documentation>Returns a list of all enrolled students across all departments</documentation>
+            <input message="tns:getAllStudentsRequest"/>
+            <output message="tns:getAllStudentsResponse"/>
+        </operation>
+
+    </portType>
+
+    <!-- ========================================== -->
+    <!-- 4. PROTOCOL BINDING (SOAP 1.1 / HTTP)      -->
+    <!-- ========================================== -->
+    <binding name="StudentInformationServicePortBinding" type="tns:StudentInformationService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+
+        <operation name="getStudentById">
+            <soap:operation soapAction="http://service.smartcampus.com/getStudentById"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="StudentNotFoundFault">
+                <soap:fault name="StudentNotFoundFault" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="getAllStudents">
+            <soap:operation soapAction="http://service.smartcampus.com/getAllStudents"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+
+    </binding>
+
+    <!-- ========================================== -->
+    <!-- 5. SERVICE & ENDPOINT LOCATION             -->
+    <!-- ========================================== -->
+    <service name="StudentInformationService">
+        <documentation>Centralized Smart Campus Student Information Web Service</documentation>
+        <port name="StudentInformationServicePort" binding="tns:StudentInformationServicePortBinding">
+            <soap:address location="http://localhost:8888/ws/student"/>
+        </port>
+    </service>
+
+</definitions>

@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Campus – Integrated Management System Using Java Web Services</title>
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- ======================================================== -->
+    <!-- LEFT SIDEBAR NAVIGATION                                   -->
+    <!-- ======================================================== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-info">
+          <div class="brand-title">Smart <span>Campus</span></div>
+          <div class="brand-tagline">One Campus. One Connected System.</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <!-- Main Navigation -->
+        <div class="nav-section-title">Central Platform</div>
+        <ul class="nav-list">
+          <li>
+            <a href="#dashboard" class="nav-link active">
+              <i class="fa-solid fa-chart-pie"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#students" class="nav-link">
+              <i class="fa-solid fa-user-graduate"></i>
+              <span>Student Information</span>
+              <span class="nav-badge blue" id="navStudentCountBadge">10</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Departmental Applications -->
+        <div class="nav-section-title">Departmental Applications</div>
+        <ul class="nav-list">
+          <li>
+            <a href="#admission" class="nav-link">
+              <i class="fa-solid fa-id-card"></i>
+              <span>Admission Management</span>
+              <span class="nav-badge teal">New</span>
+            </a>
+          </li>
+          <li>
+            <a href="#attendance" class="nav-link">
+              <i class="fa-solid fa-clipboard-user"></i>
+              <span>Attendance Management</span>
+            </a>
+          </li>
+          <li>
+            <a href="#examination" class="nav-link">
+              <i class="fa-solid fa-file-signature"></i>
+              <span>Examination Records</span>
+            </a>
+          </li>
+          <li>
+            <a href="#library" class="nav-link">
+              <i class="fa-solid fa-book-bookmark"></i>
+              <span>Library Management</span>
+            </a>
+          </li>
+          <li>
+            <a href="#fees" class="nav-link">
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+              <span>Fee Management</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Java Web Services Integration -->
+        <div class="nav-section-title">Java Web Services</div>
+        <ul class="nav-list">
+          <li>
+            <a href="#architecture" class="nav-link">
+              <i class="fa-solid fa-network-wired"></i>
+              <span>Web Services Architecture</span>
+              <span class="nav-badge purple">SOA</span>
+            </a>
+          </li>
+          <li>
+            <a href="#registry" class="nav-link">
+              <i class="fa-solid fa-cubes-stacked"></i>
+              <span>Service Registry</span>
+              <span class="nav-badge blue">6 Live</span>
+            </a>
+          </li>
+          <li>
+            <a href="#wsdl" class="nav-link">
+              <i class="fa-solid fa-code"></i>
+              <span>WSDL Explorer</span>
+            </a>
+          </li>
+          <li>
+            <a href="#testing" class="nav-link">
+              <i class="fa-solid fa-vial-circle-check"></i>
+              <span>Service Testing</span>
+              <span class="nav-badge teal">SOAP</span>
+            </a>
+          </li>
+          <li>
+            <a href="#integration" class="nav-link">
+              <i class="fa-solid fa-arrows-split-up-and-left"></i>
+              <span>API Integration</span>
+            </a>
+          </li>
+          <li>
+            <a href="#reports" class="nav-link">
+              <i class="fa-solid fa-chart-simple"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="service-status-pill">
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span class="status-dot pulse"></span>
+            <span style="font-weight:600; color:var(--text-main);">JAX-WS SOAP</span>
+          </div>
+          <span style="font-size:0.72rem; color:var(--teal-primary); font-weight:700;">PORT 8888</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ======================================================== -->
+    <!-- MAIN WRAPPER                                             -->
+    <!-- ======================================================== -->
+    <div class="main-wrapper">
+
+      <!-- Compact Top Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search students, departments, services..." oninput="handleStudentSearch(this.value)">
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="header-badge-tag">
+            <span class="status-dot"></span>
+            <span>6 Web Services Online</span>
+          </div>
+
+          <button class="header-action-btn" title="View Architecture" onclick="location.hash='#architecture'">
+            <i class="fa-solid fa-circle-nodes"></i>
+          </button>
+
+          <button class="header-action-btn" title="System Notifications" onclick="showToast('SOAP endpoint http://localhost:8888/ws/student is broadcasting normally.', 'info')">
+            <i class="fa-regular fa-bell"></i>
+            <span class="btn-indicator"></span>
+          </button>
+
+          <div class="user-profile-pill" onclick="showToast('Logged in as Campus System Administrator (Prof. R. Vance)', 'info')">
+            <div class="user-avatar">AD</div>
+            <div class="user-info">
+              <span class="user-name">Prof. R. Vance</span>
+              <span class="user-role">Campus Administrator</span>
+            </div>
+            <i class="fa-solid fa-angle-down" style="font-size:0.75rem; color:var(--text-light); margin-left:0.35rem;"></i>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content Body -->
+      <main class="content-body">
+
+        <!-- ==================================================== -->
+        <!-- 1. DASHBOARD SECTION                                 -->
+        <!-- ==================================================== -->
+        <section id="dashboard" class="page-section active">
+          <div class="section-header">
+            <div>
+              <h1 class="section-title">University Executive Dashboard</h1>
+              <p class="section-subtitle">Real-time status of connected departmental applications and Java Web Services</p>
+            </div>
+            <div style="display:flex; gap:0.65rem;">
+              <button class="btn btn-primary btn-sm" onclick="location.hash='#testing'">
+                <i class="fa-solid fa-vial"></i> Test SOAP Service
+              </button>
+              <button class="btn btn-outline btn-sm" onclick="exportStudentsCSV()">
+                <i class="fa-solid fa-download"></i> Export Data
+              </button>
+            </div>
+          </div>
+
+          <!-- 6 Stat Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-title">Total Students</span>
+                <div class="stat-icon blue"><i class="fa-solid fa-users"></i></div>
+              </div>
+              <div class="stat-value" id="dashTotalStudents">10 Enrolled</div>
+              <div class="stat-trend positive">
+                <i class="fa-solid fa-arrow-trend-up"></i> +12% from last term
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-title">Active Departments</span>
+                <div class="stat-icon purple"><i class="fa-solid fa-building-columns"></i></div>
+              </div>
+              <div class="stat-value">6 Connected</div>
+              <div class="stat-trend positive">
+                <i class="fa-solid fa-circle-check"></i> 100% Interoperable
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-title">Attendance Rate</span>
+                <div class="stat-icon teal"><i class="fa-solid fa-user-clock"></i></div>
+              </div>
+              <div class="stat-value" id="dashAttendanceRate">88.8%</div>
+              <div class="stat-trend positive">
+                <i class="fa-solid fa-shield-halved"></i> 90% Exam Eligible
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-title">Exam Pass Rate</span>
+                <div class="stat-icon blue"><i class="fa-solid fa-award"></i></div>
+              </div>
+              <div class="stat-value">94.2%</div>
+              <div class="stat-trend positive">
+                <i class="fa-solid fa-star"></i> 5 Distinctions
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-title">Library Volumes</span>
+                <div class="stat-icon purple"><i class="fa-solid fa-book-open-reader"></i></div>
+              </div>
+              <div class="stat-value">28,450</div>
+              <div class="stat-trend neutral">
+                <i class="fa-solid fa-arrows-rotate"></i> 6 Issued Today
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-title">Fee Collection</span>
+                <div class="stat-icon teal"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+              </div>
+              <div class="stat-value" id="dashFeeCollected">$53.5k (82%)</div>
+              <div class="stat-trend positive">
+                <i class="fa-solid fa-receipt"></i> Verified via SOAP
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Row -->
+          <div class="charts-grid">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Enrollment Growth & Web Service Invocations</span>
+                </div>
+                <span class="badge badge-info">2022 - 2026 Trend</span>
+              </div>
+              <div class="chart-container">
+                <canvas id="enrollmentTrendChart"></canvas>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Department Distribution</span>
+                </div>
+                <span class="badge badge-purple">6 Disciplines</span>
+              </div>
+              <div class="chart-container">
+                <canvas id="deptDistributionChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Activities & Financial Feeds -->
+          <div class="dashboard-details-grid">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-clock-rotate-left"></i>
+                  <span>Recent Student Activities</span>
+                </div>
+                <button class="btn btn-outline btn-xs" onclick="showToast('Activity log refreshed from central audit log.', 'info')">
+                  <i class="fa-solid fa-rotate"></i>
+                </button>
+              </div>
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-icon-wrap" style="background-color:var(--teal-light); color:var(--teal-primary);">
+                    <i class="fa-solid fa-user-check"></i>
+                  </div>
+                  <div class="activity-desc">
+                    <p>New Student Aarav Sharma verified via <strong>StudentInformationService</strong>.</p>
+                    <div class="activity-meta">
+                      <span><i class="fa-regular fa-clock"></i> 8 mins ago</span>
+                      <span>By Admission Office</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-icon-wrap" style="background-color:var(--blue-light); color:var(--blue-primary);">
+                    <i class="fa-solid fa-book"></i>
+                  </div>
+                  <div class="activity-desc">
+                    <p>Library issued <em>"Modern Operating Systems"</em> to Sophia Chen (STU-1002).</p>
+                    <div class="activity-meta">
+                      <span><i class="fa-regular fa-clock"></i> 32 mins ago</span>
+                      <span>By Library System</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-icon-wrap" style="background-color:var(--purple-light); color:var(--purple-primary);">
+                    <i class="fa-solid fa-receipt"></i>
+                  </div>
+                  <div class="activity-desc">
+                    <p>Tuition Fee of $6,500 cleared for Priya Patel; generated receipt REC-2026-904.</p>
+                    <div class="activity-meta">
+                      <span><i class="fa-regular fa-clock"></i> 1 hour ago</span>
+                      <span>By Bursar Portal</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-icon-wrap" style="background-color:var(--warning-light); color:var(--warning);">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                  </div>
+                  <div class="activity-desc">
+                    <p>Attendance Warning dispatched for Lucas Silva (72.5% &lt; 75% threshold).</p>
+                    <div class="activity-meta">
+                      <span><i class="fa-regular fa-clock"></i> 2 hours ago</span>
+                      <span>By Academic Registry</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Web Service Health & Connection Status -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-server"></i>
+                  <span>Connected Departmental Web Services</span>
+                </div>
+                <span class="badge badge-success"><span class="status-dot"></span> All Endpoints Operational</span>
+              </div>
+
+              <div class="table-responsive" style="box-shadow:none; border:none;">
+                <table class="data-table" style="font-size:0.8rem;">
+                  <thead>
+                    <tr>
+                      <th>Service Name</th>
+                      <th>Protocol</th>
+                      <th>Latency</th>
+                      <th>Status</th>
+                      <th>Ping</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>StudentInformationService</strong></td>
+                      <td><span class="soap-endpoint-tag">SOAP 1.1</span></td>
+                      <td><span style="color:var(--teal-primary); font-weight:600;">11 ms</span></td>
+                      <td><span class="badge badge-success">ONLINE</span></td>
+                      <td><button class="btn btn-outline btn-xs" onclick="showToast('Ping response from port 8888 in 11ms: HTTP 200 OK', 'success')"><i class="fa-solid fa-bolt"></i></button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>AdmissionService</strong></td>
+                      <td><span class="soap-endpoint-tag">SOAP 1.1</span></td>
+                      <td><span style="color:var(--teal-primary); font-weight:600;">14 ms</span></td>
+                      <td><span class="badge badge-success">ONLINE</span></td>
+                      <td><button class="btn btn-outline btn-xs" onclick="showToast('Ping response from port 8888 in 14ms: HTTP 200 OK', 'success')"><i class="fa-solid fa-bolt"></i></button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>AttendanceService</strong></td>
+                      <td><span class="soap-endpoint-tag">SOAP 1.1</span></td>
+                      <td><span style="color:var(--teal-primary); font-weight:600;">12 ms</span></td>
+                      <td><span class="badge badge-success">ONLINE</span></td>
+                      <td><button class="btn btn-outline btn-xs" onclick="showToast('Ping response from port 8888 in 12ms: HTTP 200 OK', 'success')"><i class="fa-solid fa-bolt"></i></button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>ExaminationService</strong></td>
+                      <td><span class="soap-endpoint-tag">SOAP 1.1</span></td>
+                      <td><span style="color:var(--teal-primary); font-weight:600;">15 ms</span></td>
+                      <td><span class="badge badge-success">ONLINE</span></td>
+                      <td><button class="btn btn-outline btn-xs" onclick="showToast('Ping response from port 8888 in 15ms: HTTP 200 OK', 'success')"><i class="fa-solid fa-bolt"></i></button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>LibraryService</strong></td>
+                      <td><span class="soap-endpoint-tag">SOAP 1.1</span></td>
+                      <td><span style="color:var(--teal-primary); font-weight:600;">9 ms</span></td>
+                      <td><span class="badge badge-success">ONLINE</span></td>
+                      <td><button class="btn btn-outline btn-xs" onclick="showToast('Ping response from port 8888 in 9ms: HTTP 200 OK', 'success')"><i class="fa-solid fa-bolt"></i></button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>FeeManagementService</strong></td>
+                      <td><span class="soap-endpoint-tag">SOAP 1.1</span></td>
+                      <td><span style="color:var(--teal-primary); font-weight:600;">13 ms</span></td>
+                      <td><span class="badge badge-success">ONLINE</span></td>
+                      <td><button class="btn btn-outline btn-xs" onclick="showToast('Ping response from port 8888 in 13ms: HTTP 200 OK', 'success')"><i class="fa-solid fa-bolt"></i></button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 2. STUDENT INFORMATION MODULE                        -->
+        <!-- ==================================================== -->
+        <section id="students" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1 class="section-title">Student Information Management</h1>
+              <p class="section-subtitle">Centralized student directory synchronized across all campus web services</p>
+            </div>
+            <div style="display:flex; gap:0.65rem;">
+              <button class="btn btn-primary btn-sm" onclick="openModal('addStudentModal')">
+                <i class="fa-solid fa-user-plus"></i> Add Sample Student
+              </button>
+              <button class="btn btn-outline btn-sm" onclick="exportStudentsCSV()">
+                <i class="fa-solid fa-file-csv"></i> Export CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- Filter & Search Bar -->
+          <div class="table-filter-bar">
+            <div class="filter-group">
+              <div class="search-input-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search by name, ID, or email..." oninput="handleStudentSearch(this.value)">
+              </div>
+
+              <select class="filter-select" onchange="handleStudentDeptFilter(this.value)">
+                <option value="">All Departments</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Biotechnology">Biotechnology</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Electronics & Comm.">Electronics & Comm.</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+              </select>
+
+              <select class="filter-select" onchange="handleStudentYearFilter(this.value)">
+                <option value="">All Academic Years</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+              </select>
+            </div>
+
+            <div style="font-size:0.82rem; font-weight:600; color:var(--text-muted);" id="studentRecordCount">
+              Loading students...
+            </div>
+          </div>
+
+          <!-- Students Data Table -->
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Department</th>
+                  <th>Year</th>
+                  <th>Email</th>
+                  <th>Mobile Number</th>
+                  <th>Admission Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="studentTableBody">
+                <!-- Dynamically rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 3. ADMISSION MANAGEMENT APPLICATION                  -->
+        <!-- ==================================================== -->
+        <section id="admission" class="page-section">
+          <div class="dept-connection-banner">
+            <div class="banner-left">
+              <div class="banner-icon"><i class="fa-solid fa-id-card"></i></div>
+              <div class="banner-text">
+                <h4>Admission Departmental Application</h4>
+                <p>Processes incoming student admissions and publishes verified profiles to StudentInformationService.</p>
+              </div>
+            </div>
+            <div class="banner-meta">
+              <span class="badge badge-teal"><span class="status-dot"></span> Service Connected</span>
+              <span class="soap-endpoint-tag">Endpoint: http://localhost:8888/ws/admission</span>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Student Admission Records</h2>
+              <p class="section-subtitle">Manage entrance verification and enroll candidates into the central platform</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="showToast('Admissions synchronized with university entrance portal.', 'info')">
+              <i class="fa-solid fa-arrows-rotate"></i> Sync Portal
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Application ID</th>
+                  <th>Student Name</th>
+                  <th>Department</th>
+                  <th>Entrance Score</th>
+                  <th>Application Date</th>
+                  <th>Admission Status</th>
+                  <th>SOAP Action</th>
+                </tr>
+              </thead>
+              <tbody id="admissionsTableBody">
+                <!-- Dynamically rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 4. ATTENDANCE MANAGEMENT APPLICATION                 -->
+        <!-- ==================================================== -->
+        <section id="attendance" class="page-section">
+          <div class="dept-connection-banner">
+            <div class="banner-left">
+              <div class="banner-icon"><i class="fa-solid fa-clipboard-user"></i></div>
+              <div class="banner-text">
+                <h4>Attendance Tracking Departmental Application</h4>
+                <p>Consumes Student ID from StudentInformationService to record daily classes and verify exam eligibility.</p>
+              </div>
+            </div>
+            <div class="banner-meta">
+              <span class="badge badge-teal"><span class="status-dot"></span> Consumer Bound</span>
+              <span class="soap-endpoint-tag">Invokes: getStudentById()</span>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Attendance Management System</h2>
+              <p class="section-subtitle">Monitor class attendance compliance and flag exam shortage warnings (&lt; 75%)</p>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="showToast('Attendance records for current semester verified.', 'success')">
+              <i class="fa-solid fa-check-double"></i> Validate Compliance
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Total Classes</th>
+                  <th>Attended Classes</th>
+                  <th>Attendance %</th>
+                  <th>Eligibility Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="attendanceTableBody">
+                <!-- Dynamically rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 5. EXAMINATION MANAGEMENT APPLICATION                -->
+        <!-- ==================================================== -->
+        <section id="examination" class="page-section">
+          <div class="dept-connection-banner">
+            <div class="banner-left">
+              <div class="banner-icon"><i class="fa-solid fa-file-signature"></i></div>
+              <div class="banner-text">
+                <h4>Examination Departmental Application</h4>
+                <p>Integrates with central student identity to compile internal marks, end-term grades, and GPA transcripts.</p>
+              </div>
+            </div>
+            <div class="banner-meta">
+              <span class="badge badge-teal"><span class="status-dot"></span> Consumer Bound</span>
+              <span class="soap-endpoint-tag">Endpoint: http://localhost:8888/ws/examination</span>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Examination & Grade Records</h2>
+              <p class="section-subtitle">Semester assessments, internal evaluations, and distinction determinations</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="showToast('Published official grade sheets to student registry.', 'success')">
+              <i class="fa-solid fa-bullhorn"></i> Publish Results
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Subject</th>
+                  <th>Internal (30)</th>
+                  <th>End-Term (70)</th>
+                  <th>Total (100)</th>
+                  <th>Grade</th>
+                  <th>Result Status</th>
+                </tr>
+              </thead>
+              <tbody id="examTableBody">
+                <!-- Dynamically rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 6. LIBRARY MANAGEMENT APPLICATION                   -->
+        <!-- ==================================================== -->
+        <section id="library" class="page-section">
+          <div class="dept-connection-banner">
+            <div class="banner-left">
+              <div class="banner-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+              <div class="banner-text">
+                <h4>Library Circulation Departmental Application</h4>
+                <p>Verifies student enrollment via SOAP before issuing reference books and tracking returns.</p>
+              </div>
+            </div>
+            <div class="banner-meta">
+              <span class="badge badge-teal"><span class="status-dot"></span> Consumer Bound</span>
+              <span class="soap-endpoint-tag">Invokes: getStudentById()</span>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Library Books & Circulation</h2>
+              <p class="section-subtitle">Manage campus book inventory, student lending limits, and return schedules</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="showToast('Scanned library inventory. 2 books available for issue.', 'info')">
+              <i class="fa-solid fa-magnifying-glass"></i> Check Availability
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Book ID</th>
+                  <th>Book Title</th>
+                  <th>Author</th>
+                  <th>Category</th>
+                  <th>Availability</th>
+                  <th>Borrower</th>
+                  <th>Due Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="libraryTableBody">
+                <!-- Dynamically rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 7. FEE MANAGEMENT APPLICATION                        -->
+        <!-- ==================================================== -->
+        <section id="fees" class="page-section">
+          <div class="dept-connection-banner">
+            <div class="banner-left">
+              <div class="banner-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+              <div class="banner-text">
+                <h4>Fee Management & Bursar Application</h4>
+                <p>Tracks semester tuition dues, records installment payments, and issues financial clearance certificates.</p>
+              </div>
+            </div>
+            <div class="banner-meta">
+              <span class="badge badge-teal"><span class="status-dot"></span> Consumer Bound</span>
+              <span class="soap-endpoint-tag">Endpoint: http://localhost:8888/ws/fees</span>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Tuition Fee Ledger & Transactions</h2>
+              <p class="section-subtitle">Real-time balances linked to central student profiles via Java Web Services</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="showToast('Financial clearance reports generated for bursar office.', 'info')">
+              <i class="fa-solid fa-receipt"></i> Clearance Audit
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Total Fee</th>
+                  <th>Paid Amount</th>
+                  <th>Pending Amount</th>
+                  <th>Payment Status</th>
+                  <th>Receipt #</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="feeTableBody">
+                <!-- Dynamically rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 8. JAVA WEB SERVICES ARCHITECTURE                    -->
+        <!-- ==================================================== -->
+        <section id="architecture" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1 class="section-title">Java Web Services Architecture</h1>
+              <p class="section-subtitle">Visual demonstration of the Service-Oriented Architecture (SOA) in Smart Campus</p>
+            </div>
+            <span class="badge badge-purple" style="font-size:0.8rem; padding:0.4rem 0.8rem;">
+              <i class="fa-solid fa-network-wired"></i> Standard SOA Triangle
+            </span>
+          </div>
+
+          <div class="architecture-container">
+            <!-- Visual Architecture Canvas -->
+            <div class="arch-visual-canvas">
+              <div class="soa-triangle-diagram">
+
+                <!-- 1. Service Provider -->
+                <div class="arch-node provider arch-interactive-node" data-arch-key="provider">
+                  <div class="arch-node-title">
+                    <i class="fa-solid fa-server" style="color:var(--purple-primary);"></i>
+                    <span>Student Information Service Provider</span>
+                  </div>
+                  <div class="arch-node-desc">
+                    JAX-WS SIB (Port 8888) • Owns Master Student Database • Exposes WSDL Contract
+                  </div>
+                </div>
+
+                <!-- Arrow 1: Publish -->
+                <div class="arch-flow-arrows">
+                  <div class="flow-connector">
+                    <span>1. Publish Service &amp; WSDL</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                  </div>
+                </div>
+
+                <!-- 2. Service Registry -->
+                <div class="arch-node registry arch-interactive-node" data-arch-key="registry">
+                  <div class="arch-node-title">
+                    <i class="fa-solid fa-cubes-stacked" style="color:var(--blue-primary);"></i>
+                    <span>Central Service Registry</span>
+                  </div>
+                  <div class="arch-node-desc">
+                    UDDI-style Directory • WSDL Descriptions • Endpoints &amp; Contract Metadata
+                  </div>
+                </div>
+
+                <!-- Arrow 2: Discovery -->
+                <div class="arch-flow-arrows">
+                  <div class="flow-connector arch-interactive-node" data-arch-key="discovery">
+                    <span>2. Service Discovery (WSDL Lookup)</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                  </div>
+                </div>
+
+                <!-- 3. Service Consumers Group -->
+                <div class="arch-node consumer-group arch-interactive-node" data-arch-key="consumers">
+                  <div class="arch-node-title">
+                    <i class="fa-solid fa-laptop-code" style="color:var(--teal-primary);"></i>
+                    <span>Service Consumers (Independent Department Applications)</span>
+                  </div>
+                  <div class="arch-node-desc">
+                    3. Invoke Operations via SOAP 1.1 / HTTP Request-Response over Network
+                  </div>
+
+                  <div class="consumers-subgrid">
+                    <div class="consumer-chip">
+                      <i class="fa-solid fa-id-card"></i>
+                      <span>Admission App</span>
+                    </div>
+                    <div class="consumer-chip">
+                      <i class="fa-solid fa-clipboard-user"></i>
+                      <span>Attendance App</span>
+                    </div>
+                    <div class="consumer-chip">
+                      <i class="fa-solid fa-file-signature"></i>
+                      <span>Examination App</span>
+                    </div>
+                    <div class="consumer-chip">
+                      <i class="fa-solid fa-book-bookmark"></i>
+                      <span>Library App</span>
+                    </div>
+                    <div class="consumer-chip">
+                      <i class="fa-solid fa-hand-holding-dollar"></i>
+                      <span>Fee Mgmt App</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Dynamic Node Details Inspector -->
+            <div class="card" style="border-left:4px solid var(--blue-primary);" id="archNodeDetailContent">
+              <h4 style="font-size:1.05rem; font-weight:700; color:var(--text-main); margin-bottom:0.35rem;">
+                Click any component above to inspect its role and message protocols
+              </h4>
+              <p style="font-size:0.85rem; color:var(--text-muted);">
+                The Smart Campus architecture decouples departmental applications. The <strong>Student Information Service Provider</strong> publishes its standard WSDL contract to the <strong>Service Registry</strong>. When a consumer such as the Attendance or Library app needs to verify a student, it discovers the endpoint and invokes <code>getStudentById()</code> using standard SOAP envelopes.
+              </p>
+            </div>
+
+            <!-- 3 Architecture Explanatory Cards -->
+            <div class="arch-cards-grid">
+              <div class="arch-info-card">
+                <div class="arch-info-icon purple">
+                  <i class="fa-solid fa-laptop-file"></i>
+                </div>
+                <h4>1. Service Provider</h4>
+                <p>
+                  The department or application that creates, publishes, and maintains a web service. In our system, the <strong>Central Academic Office</strong> implements <code>StudentInformationServiceImpl</code> and publishes it via an embedded HTTP endpoint.
+                </p>
+              </div>
+
+              <div class="arch-info-card">
+                <div class="arch-info-icon blue">
+                  <i class="fa-solid fa-folder-tree"></i>
+                </div>
+                <h4>2. Service Registry</h4>
+                <p>
+                  A searchable directory where available web services, their operational endpoints, and machine-readable WSDL descriptions are cataloged. Enables loose coupling by allowing consumers to discover services dynamically.
+                </p>
+              </div>
+
+              <div class="arch-info-card">
+                <div class="arch-info-icon teal">
+                  <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <h4>3. Service Consumer</h4>
+                <p>
+                  The client application that discovers the service contract and invokes exposed operations. The <strong>Attendance, Exam, Library, and Fee</strong> apps bind to the provider using JAX-WS dynamic proxies.
+                </p>
+              </div>
+            </div>
+
+            <!-- Benefits & Advantages Section -->
+            <div class="card" style="margin-top:0.5rem;">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-check-circle" style="color:var(--teal-primary);"></i>
+                  <span>Advantages of Java Web Services in University Management</span>
+                </div>
+                <span class="badge badge-teal">Enterprise SOA Benefits</span>
+              </div>
+
+              <div class="arch-cards-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div style="background-color:var(--blue-subtle); padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--blue-light);">
+                  <div style="color:var(--blue-primary); font-size:1.35rem; margin-bottom:0.5rem;"><i class="fa-solid fa-arrows-split-up-and-left"></i></div>
+                  <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:0.35rem;">Heterogeneous Interoperability</h4>
+                  <p style="font-size:0.8rem; color:var(--text-body); line-height:1.45;">
+                    Connects applications built on different technologies (Java, .NET, Python, Node.js). By utilizing universal XML and SOAP protocols, departments freely exchange data without proprietary lock-in.
+                  </p>
+                </div>
+
+                <div style="background-color:var(--purple-subtle); padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--purple-light);">
+                  <div style="color:var(--purple-primary); font-size:1.35rem; margin-bottom:0.5rem;"><i class="fa-solid fa-layer-group"></i></div>
+                  <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:0.35rem;">High Scalability</h4>
+                  <p style="font-size:0.8rem; color:var(--text-body); line-height:1.45;">
+                    New departments (e.g., Hostel, Sports, Alumni) can be plugged into the campus platform anytime without modifying existing services. Each departmental service can be scaled or updated independently.
+                  </p>
+                </div>
+
+                <div style="background-color:var(--teal-subtle); padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--teal-light);">
+                  <div style="color:var(--teal-primary); font-size:1.35rem; margin-bottom:0.5rem;"><i class="fa-solid fa-database"></i></div>
+                  <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:0.35rem;">Seamless Information Sharing</h4>
+                  <p style="font-size:0.8rem; color:var(--text-body); line-height:1.45;">
+                    Eliminates duplicate student data entry across offices. When a student updates their address or phone number, the change immediately reflects in Attendance, Library, and Fee departments.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 9. SERVICE REGISTRY SECTION                          -->
+        <!-- ==================================================== -->
+        <section id="registry" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1 class="section-title">Central Campus Service Registry</h1>
+              <p class="section-subtitle">Catalog of available university web services, descriptions, endpoints, and WSDL contracts</p>
+            </div>
+            <span class="badge badge-info" style="font-size:0.8rem; padding:0.4rem 0.8rem;">
+              <i class="fa-solid fa-circle-info"></i> Educational SOA Catalog Demo
+            </span>
+          </div>
+
+          <div style="background-color:var(--blue-subtle); border:1px solid var(--blue-light); border-radius:var(--radius-lg); padding:1rem 1.25rem; margin-bottom:1.5rem; font-size:0.82rem; color:var(--text-body);">
+            <strong>How Service Discovery Works:</strong> Departmental consumers query this central registry to discover service endpoints dynamically. The registry provides the WSDL location, enabling clients to generate stubs or bind dynamic proxies at runtime without static compilation dependencies.
+          </div>
+
+          <!-- Registered Services Cards Grid -->
+          <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));" id="registryCardsGrid">
+            <!-- Dynamically rendered via JS -->
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 10. WSDL EXPLORER SECTION                            -->
+        <!-- ==================================================== -->
+        <section id="wsdl" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1 class="section-title">WSDL Document Explorer</h1>
+              <p class="section-subtitle">Web Services Description Language (WSDL 1.1) contract for StudentInformationService</p>
+            </div>
+            <div style="display:flex; gap:0.65rem;">
+              <button class="btn btn-outline btn-sm" onclick="copyWsdlToClipboard()">
+                <i class="fa-regular fa-copy"></i> Copy WSDL
+              </button>
+              <button class="btn btn-primary btn-sm" onclick="downloadWsdlFile()">
+                <i class="fa-solid fa-download"></i> Download WSDL
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Elements Breakdown Card -->
+          <div class="card" style="margin-bottom:1.5rem;">
+            <div class="card-header">
+              <div class="card-title">
+                <i class="fa-solid fa-puzzle-piece" style="color:var(--purple-primary);"></i>
+                <span>Explain WSDL Elements</span>
+              </div>
+              <span class="badge badge-purple">Standard WSDL Structure</span>
+            </div>
+
+            <!-- Breakdown Tabs -->
+            <div class="code-tabs" style="margin-bottom:1rem; border-bottom:1px solid var(--border-light); padding-bottom:0.5rem;">
+              <button class="wsdl-element-tab code-tab-btn active" data-target="wsdlTypesTab">&lt;types&gt;</button>
+              <button class="wsdl-element-tab code-tab-btn" data-target="wsdlMessageTab">&lt;message&gt;</button>
+              <button class="wsdl-element-tab code-tab-btn" data-target="wsdlPortTypeTab">&lt;portType&gt;</button>
+              <button class="wsdl-element-tab code-tab-btn" data-target="wsdlBindingTab">&lt;binding&gt;</button>
+              <button class="wsdl-element-tab code-tab-btn" data-target="wsdlServiceTab">&lt;service&gt;</button>
+            </div>
+
+            <!-- Tab Content 1: Types -->
+            <div id="wsdlTypesTab" class="wsdl-element-content" style="font-size:0.85rem; line-height:1.5;">
+              <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:0.35rem;">
+                <code>&lt;types&gt;</code> – Data Type Definitions (XML Schema / XSD)
+              </h4>
+              <p style="color:var(--text-muted); margin-bottom:0.5rem;">
+                Defines the structure of the data transmitted between provider and consumers. Specifies complex types such as <code>student</code> (containing studentId, studentName, department, etc.) and wrapper elements for requests and responses.
+              </p>
+              <div style="background-color:var(--bg-subtle); padding:0.65rem; border-radius:var(--radius-sm); font-family:'JetBrains Mono'; font-size:0.75rem;">
+                &lt;xsd:complexType name="student"&gt; &lt;xsd:sequence&gt; &lt;xsd:element name="studentId" type="xsd:string"/&gt; ...
+              </div>
+            </div>
+
+            <!-- Tab Content 2: Message -->
+            <div id="wsdlMessageTab" class="wsdl-element-content" style="display:none; font-size:0.85rem; line-height:1.5;">
+              <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:0.35rem;">
+                <code>&lt;message&gt;</code> – Input and Output Parameters
+              </h4>
+              <p style="color:var(--text-muted); margin-bottom:0.5rem;">
+                Defines the abstract messages exchanged in an operation. For instance, <code>getStudentByIdRequest</code> defines the parameter payload sent to the service, and <code>getStudentByIdResponse</code> defines the returned data.
+              </p>
+            </div>
+
+            <!-- Tab Content 3: PortType -->
+            <div id="wsdlPortTypeTab" class="wsdl-element-content" style="display:none; font-size:0.85rem; line-height:1.5;">
+              <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:0.35rem;">
+                <code>&lt;portType&gt;</code> – Abstract Service Interface
+              </h4>
+              <p style="color:var(--text-muted); margin-bottom:0.5rem;">
+                Analogous to a Java Interface. Specifies the callable operations (such as <code>getStudentById</code> and <code>getAllStudents</code>) and associates them with corresponding input, output, and fault messages.
+              </p>
+            </div>
+
+            <!-- Tab Content 4: Binding -->
+            <div id="wsdlBindingTab" class="wsdl-element-content" style="display:none; font-size:0.85rem; line-height:1.5;">
+              <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:0.35rem;">
+                <code>&lt;binding&gt;</code> – Protocol and Encoding Format
+              </h4>
+              <p style="color:var(--text-muted); margin-bottom:0.5rem;">
+                Specifies how the abstract <code>portType</code> operations are serialized over the wire. In our case, it specifies <strong>SOAP 1.1 Document/Literal</strong> style over <strong>HTTP</strong> transport.
+              </p>
+            </div>
+
+            <!-- Tab Content 5: Service -->
+            <div id="wsdlServiceTab" class="wsdl-element-content" style="display:none; font-size:0.85rem; line-height:1.5;">
+              <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:0.35rem;">
+                <code>&lt;service&gt;</code> – Physical Endpoint Location
+              </h4>
+              <p style="color:var(--text-muted); margin-bottom:0.5rem;">
+                Specifies the concrete network address (URI) where the service can be invoked. In our setup, this is located at <code>http://localhost:8888/ws/student</code>.
+              </p>
+            </div>
+          </div>
+
+          <!-- WSDL Source Code Viewer -->
+          <div class="code-viewer-card">
+            <div class="code-viewer-header">
+              <div style="display:flex; align-items:center; gap:0.6rem; color:#ffffff; font-size:0.85rem; font-weight:600;">
+                <i class="fa-solid fa-file-code" style="color:var(--blue-primary);"></i>
+                <span>StudentInformationService.wsdl (SOAP 1.1)</span>
+              </div>
+              <div class="code-actions">
+                <button class="code-btn" onclick="copyWsdlToClipboard()"><i class="fa-regular fa-copy"></i> Copy XML</button>
+                <button class="code-btn" onclick="downloadWsdlFile()"><i class="fa-solid fa-download"></i> Download</button>
+              </div>
+            </div>
+            <div class="code-body">
+              <pre id="wsdlSourcePre"><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;definitions 
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://service.smartcampus.com/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://service.smartcampus.com/"
+    name="StudentInformationService"&gt;
+
+    &lt;!-- 1. DATA TYPES (XML SCHEMA DEFINITION) --&gt;
+    &lt;types&gt;
+        &lt;xsd:schema targetNamespace="http://service.smartcampus.com/" elementFormDefault="qualified"&gt;
+            &lt;xsd:complexType name="student"&gt;
+                &lt;xsd:sequence&gt;
+                    &lt;xsd:element name="studentId" type="xsd:string"/&gt;
+                    &lt;xsd:element name="studentName" type="xsd:string"/&gt;
+                    &lt;xsd:element name="department" type="xsd:string"/&gt;
+                    &lt;xsd:element name="year" type="xsd:string"/&gt;
+                    &lt;xsd:element name="email" type="xsd:string"/&gt;
+                    &lt;xsd:element name="mobileNumber" type="xsd:string"/&gt;
+                    &lt;xsd:element name="admissionStatus" type="xsd:string"/&gt;
+                    &lt;xsd:element name="cgpa" type="xsd:double"/&gt;
+                &lt;/xsd:sequence&gt;
+            &lt;/xsd:complexType&gt;
+
+            &lt;xsd:element name="getStudentById"&gt;
+                &lt;xsd:complexType&gt;
+                    &lt;xsd:sequence&gt;
+                        &lt;xsd:element name="studentId" type="xsd:string"/&gt;
+                    &lt;/xsd:sequence&gt;
+                &lt;/xsd:complexType&gt;
+            &lt;/xsd:element&gt;
+
+            &lt;xsd:element name="getStudentByIdResponse"&gt;
+                &lt;xsd:complexType&gt;
+                    &lt;xsd:sequence&gt;
+                        &lt;xsd:element name="student" type="tns:student" minOccurs="0"/&gt;
+                    &lt;/xsd:sequence&gt;
+                &lt;/xsd:complexType&gt;
+            &lt;/xsd:element&gt;
+
+            &lt;xsd:element name="getAllStudents"&gt;
+                &lt;xsd:complexType/&gt;
+            &lt;/xsd:element&gt;
+
+            &lt;xsd:element name="getAllStudentsResponse"&gt;
+                &lt;xsd:complexType&gt;
+                    &lt;xsd:sequence&gt;
+                        &lt;xsd:element name="studentList" type="tns:student" minOccurs="0" maxOccurs="unbounded"/&gt;
+                    &lt;/xsd:sequence&gt;
+                &lt;/xsd:complexType&gt;
+            &lt;/xsd:element&gt;
+
+            &lt;xsd:element name="StudentNotFoundFault"&gt;
+                &lt;xsd:complexType&gt;
+                    &lt;xsd:sequence&gt;
+                        &lt;xsd:element name="faultInfo" type="xsd:string"/&gt;
+                        &lt;xsd:element name="message" type="xsd:string"/&gt;
+                    &lt;/xsd:sequence&gt;
+                &lt;/xsd:complexType&gt;
+            &lt;/xsd:element&gt;
+        &lt;/xsd:schema&gt;
+    &lt;/types&gt;
+
+    &lt;!-- 2. MESSAGES --&gt;
+    &lt;message name="getStudentByIdRequest"&gt;
+        &lt;part name="parameters" element="tns:getStudentById"/&gt;
+    &lt;/message&gt;
+    &lt;message name="getStudentByIdResponse"&gt;
+        &lt;part name="parameters" element="tns:getStudentByIdResponse"/&gt;
+    &lt;/message&gt;
+    &lt;message name="getAllStudentsRequest"&gt;
+        &lt;part name="parameters" element="tns:getAllStudents"/&gt;
+    &lt;/message&gt;
+    &lt;message name="getAllStudentsResponse"&gt;
+        &lt;part name="parameters" element="tns:getAllStudentsResponse"/&gt;
+    &lt;/message&gt;
+    &lt;message name="StudentNotFoundFault"&gt;
+        &lt;part name="fault" element="tns:StudentNotFoundFault"/&gt;
+    &lt;/message&gt;
+
+    &lt;!-- 3. PORT TYPE (CONTRACT) --&gt;
+    &lt;portType name="StudentInformationService"&gt;
+        &lt;operation name="getStudentById"&gt;
+            &lt;input message="tns:getStudentByIdRequest"/&gt;
+            &lt;output message="tns:getStudentByIdResponse"/&gt;
+            &lt;fault name="StudentNotFoundFault" message="tns:StudentNotFoundFault"/&gt;
+        &lt;/operation&gt;
+        &lt;operation name="getAllStudents"&gt;
+            &lt;input message="tns:getAllStudentsRequest"/&gt;
+            &lt;output message="tns:getAllStudentsResponse"/&gt;
+        &lt;/operation&gt;
+    &lt;/portType&gt;
+
+    &lt;!-- 4. PROTOCOL BINDING (SOAP 1.1 / HTTP) --&gt;
+    &lt;binding name="StudentInformationServicePortBinding" type="tns:StudentInformationService"&gt;
+        &lt;soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/&gt;
+        &lt;operation name="getStudentById"&gt;
+            &lt;soap:operation soapAction="http://service.smartcampus.com/getStudentById"/&gt;
+            &lt;input&gt;&lt;soap:body use="literal"/&gt;&lt;/input&gt;
+            &lt;output&gt;&lt;soap:body use="literal"/&gt;&lt;/output&gt;
+            &lt;fault name="StudentNotFoundFault"&gt;
+                &lt;soap:fault name="StudentNotFoundFault" use="literal"/&gt;
+            &lt;/fault&gt;
+        &lt;/operation&gt;
+        &lt;operation name="getAllStudents"&gt;
+            &lt;soap:operation soapAction="http://service.smartcampus.com/getAllStudents"/&gt;
+            &lt;input&gt;&lt;soap:body use="literal"/&gt;&lt;/input&gt;
+            &lt;output&gt;&lt;soap:body use="literal"/&gt;&lt;/output&gt;
+        &lt;/operation&gt;
+    &lt;/binding&gt;
+
+    &lt;!-- 5. SERVICE ENDPOINT --&gt;
+    &lt;service name="StudentInformationService"&gt;
+        &lt;port name="StudentInformationServicePort" binding="tns:StudentInformationServicePortBinding"&gt;
+            &lt;soap:address location="http://localhost:8888/ws/student"/&gt;
+        &lt;/port&gt;
+    &lt;/service&gt;
+&lt;/definitions&gt;</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 11. SERVICE TESTING SANDBOX (SOAP CLIENT)           -->
+        <!-- ==================================================== -->
+        <section id="testing" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1 class="section-title">Web Service Testing Interface</h1>
+              <p class="section-subtitle">Interactive SOAP client to test live operations against StudentInformationService</p>
+            </div>
+            <span class="badge badge-teal" style="font-size:0.8rem; padding:0.4rem 0.8rem;">
+              <i class="fa-solid fa-vial"></i> Live Browser Simulator
+            </span>
+          </div>
+
+          <!-- Step-by-Step Lifecycle Guide -->
+          <div class="card" style="margin-bottom:1.5rem;">
+            <div class="card-header">
+              <div class="card-title">
+                <i class="fa-solid fa-list-check" style="color:var(--blue-primary);"></i>
+                <span>Web Service Lifecycle & Execution Procedure</span>
+              </div>
+              <span class="badge badge-info">6-Step Workflow</span>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:1rem; text-align:center;">
+              <div style="background-color:var(--bg-subtle); padding:0.85rem; border-radius:var(--radius-md);">
+                <div style="color:var(--blue-primary); font-size:1.25rem; margin-bottom:0.35rem;"><i class="fa-solid fa-file-code"></i></div>
+                <strong style="font-size:0.82rem; display:block;">1. Create SEI &amp; SIB</strong>
+                <span style="font-size:0.72rem; color:var(--text-muted);">Annotate with @WebService</span>
+              </div>
+              <div style="background-color:var(--bg-subtle); padding:0.85rem; border-radius:var(--radius-md);">
+                <div style="color:var(--purple-primary); font-size:1.25rem; margin-bottom:0.35rem;"><i class="fa-solid fa-circle-nodes"></i></div>
+                <strong style="font-size:0.82rem; display:block;">2. Define Operations</strong>
+                <span style="font-size:0.72rem; color:var(--text-muted);">getStudentById, getAll</span>
+              </div>
+              <div style="background-color:var(--bg-subtle); padding:0.85rem; border-radius:var(--radius-md);">
+                <div style="color:var(--teal-primary); font-size:1.25rem; margin-bottom:0.35rem;"><i class="fa-solid fa-tower-broadcast"></i></div>
+                <strong style="font-size:0.82rem; display:block;">3. Publish Endpoint</strong>
+                <span style="font-size:0.72rem; color:var(--text-muted);">Endpoint.publish(:8888)</span>
+              </div>
+              <div style="background-color:var(--bg-subtle); padding:0.85rem; border-radius:var(--radius-md);">
+                <div style="color:var(--blue-primary); font-size:1.25rem; margin-bottom:0.35rem;"><i class="fa-solid fa-file-invoice"></i></div>
+                <strong style="font-size:0.82rem; display:block;">4. Access WSDL</strong>
+                <span style="font-size:0.72rem; color:var(--text-muted);">Inspect ?wsdl contract</span>
+              </div>
+              <div style="background-color:var(--bg-subtle); padding:0.85rem; border-radius:var(--radius-md);">
+                <div style="color:var(--purple-primary); font-size:1.25rem; margin-bottom:0.35rem;"><i class="fa-solid fa-vial-virus"></i></div>
+                <strong style="font-size:0.82rem; display:block;">5. Test via SOAP</strong>
+                <span style="font-size:0.72rem; color:var(--text-muted);">Send XML envelopes</span>
+              </div>
+              <div style="background-color:var(--bg-subtle); padding:0.85rem; border-radius:var(--radius-md);">
+                <div style="color:var(--teal-primary); font-size:1.25rem; margin-bottom:0.35rem;"><i class="fa-solid fa-arrows-to-circle"></i></div>
+                <strong style="font-size:0.82rem; display:block;">6. Consume Service</strong>
+                <span style="font-size:0.72rem; color:var(--text-muted);">Department integration</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive SOAP Tester Grid -->
+          <div class="soap-tester-layout">
+            <!-- Left: Request Configuration -->
+            <div class="tester-panel">
+              <div class="panel-header">
+                <h3><i class="fa-solid fa-paper-plane" style="color:var(--blue-primary);"></i> SOAP Request Builder</h3>
+                <span class="soap-endpoint-tag">POST :8888/ws/student</span>
+              </div>
+
+              <div class="form-group">
+                <label>Target Web Service Operation</label>
+                <select id="soapOperationSelect" class="form-control">
+                  <option value="getStudentById">getStudentById(String studentId)</option>
+                  <option value="getAllStudents">getAllStudents()</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Student Identifier (studentId)</label>
+                <input type="text" id="soapStudentIdInput" class="form-control" value="STU-1001" placeholder="e.g. STU-1001">
+                
+                <div class="preset-pills">
+                  <span style="font-size:0.72rem; color:var(--text-muted); align-self:center;">Presets:</span>
+                  <button class="preset-pill" data-id="STU-1001">STU-1001 (CS)</button>
+                  <button class="preset-pill" data-id="STU-1004">STU-1004 (IT)</button>
+                  <button class="preset-pill" data-id="STU-1007">STU-1007 (CS)</button>
+                  <button class="preset-pill fault-pill" data-id="STU-9999">
+                    <i class="fa-solid fa-bug"></i> STU-9999 (Test Fault)
+                  </button>
+                </div>
+              </div>
+
+              <div style="margin-top:0.5rem; margin-bottom:1rem;">
+                <button class="btn btn-primary" id="sendSoapRequestBtn" style="width:100%;">
+                  <i class="fa-solid fa-play"></i> Send SOAP Request
+                </button>
+              </div>
+
+              <label style="font-size:0.8rem; font-weight:600; color:var(--text-main); margin-bottom:0.35rem; display:block;">
+                Generated XML SOAP Request Envelope
+              </label>
+              <div class="code-viewer-card" style="margin-bottom:0;">
+                <div class="code-body" style="max-height:200px; padding:0.85rem;">
+                  <pre><code id="soapRawRequest" class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;soapenv:Envelope 
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:ser="http://service.smartcampus.com/"&gt;
+    &lt;soapenv:Header/&gt;
+    &lt;soapenv:Body&gt;
+        &lt;ser:getStudentById&gt;
+            &lt;studentId&gt;STU-1001&lt;/studentId&gt;
+        &lt;/ser:getStudentById&gt;
+    &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Response Inspector -->
+            <div class="tester-panel">
+              <div class="panel-header">
+                <h3><i class="fa-solid fa-inbox" style="color:var(--teal-primary);"></i> SOAP Response Inspector</h3>
+                <div style="display:flex; align-items:center; gap:0.5rem;">
+                  <span class="badge badge-success" id="soapHttpStatus"><i class="fa-solid fa-check"></i> 200 OK (SOAP)</span>
+                  <span class="badge badge-info" id="soapLatencyBadge">12 ms</span>
+                </div>
+              </div>
+
+              <!-- Formatted Card Result -->
+              <div id="soapResponsePreview">
+                <div class="response-card-preview">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.75rem;">
+                    <div style="display:flex; align-items:center; gap:0.6rem;">
+                      <div class="user-avatar" style="width:36px; height:36px; font-size:0.9rem;">A</div>
+                      <div>
+                        <h4 style="font-size:1rem; font-weight:700;">Aarav Sharma</h4>
+                        <span class="badge badge-purple" style="font-family:'JetBrains Mono'; font-size:0.72rem;">STU-1001</span>
+                      </div>
+                    </div>
+                    <span class="badge badge-success"><i class="fa-solid fa-circle-check"></i> Enrolled</span>
+                  </div>
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; font-size:0.78rem;">
+                    <div><strong style="color:var(--text-muted);">Department:</strong> Computer Science</div>
+                    <div><strong style="color:var(--text-muted);">Year:</strong> 3rd Year</div>
+                    <div><strong style="color:var(--text-muted);">Email:</strong> aarav.sharma@campus.edu</div>
+                    <div><strong style="color:var(--text-muted);">Mobile:</strong> +1 (555) 234-5678</div>
+                    <div><strong style="color:var(--text-muted);">CGPA:</strong> <span style="color:var(--teal-primary); font-weight:700;">3.85</span></div>
+                    <div><strong style="color:var(--text-muted);">Attendance:</strong> 92.4%</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Raw XML Response -->
+              <label style="font-size:0.8rem; font-weight:600; color:var(--text-main); margin-top:1rem; margin-bottom:0.35rem; display:block;">
+                Raw XML SOAP Response Envelope
+              </label>
+              <div class="code-viewer-card" style="margin-bottom:0; flex:1;">
+                <div class="code-body" style="max-height:220px; padding:0.85rem;">
+                  <pre><code id="soapRawResponse" class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;soapenv:Envelope 
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:ser="http://service.smartcampus.com/"&gt;
+    &lt;soapenv:Header/&gt;
+    &lt;soapenv:Body&gt;
+        &lt;ser:getStudentByIdResponse&gt;
+            &lt;student&gt;
+                &lt;studentId&gt;STU-1001&lt;/studentId&gt;
+                &lt;studentName&gt;Aarav Sharma&lt;/studentName&gt;
+                &lt;department&gt;Computer Science&lt;/department&gt;
+                &lt;year&gt;3rd Year&lt;/year&gt;
+                &lt;email&gt;aarav.sharma@campus.edu&lt;/email&gt;
+                &lt;mobileNumber&gt;+1 (555) 234-5678&lt;/mobileNumber&gt;
+                &lt;admissionStatus&gt;Enrolled&lt;/admissionStatus&gt;
+                &lt;cgpa&gt;3.85&lt;/cgpa&gt;
+            &lt;/student&gt;
+        &lt;/ser:getStudentByIdResponse&gt;
+    &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 12. API INTEGRATION & SERVICE CONSUMER DEMO          -->
+        <!-- ==================================================== -->
+        <section id="integration" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1 class="section-title">Departmental Service Consumer &amp; Integration</h1>
+              <p class="section-subtitle">Real-time simulation showing how Attendance &amp; Fee systems consume the Student Information Service</p>
+            </div>
+            <span class="badge badge-purple" style="font-size:0.8rem; padding:0.4rem 0.8rem;">
+              <i class="fa-solid fa-code-fork"></i> Inter-Department Data Binding
+            </span>
+          </div>
+
+          <div class="soap-tester-layout" style="margin-bottom:1.5rem;">
+            <!-- Simulation Controls -->
+            <div class="tester-panel">
+              <div class="panel-header">
+                <h3><i class="fa-solid fa-sliders" style="color:var(--blue-primary);"></i> Consumer Invocation Setup</h3>
+              </div>
+
+              <div class="form-group">
+                <label>Select Consumer Department Application</label>
+                <select id="integrationConsumerSelect" class="form-control">
+                  <option value="Attendance Management Application">Attendance Management Application</option>
+                  <option value="Library Circulation Application">Library Circulation Application</option>
+                  <option value="Fee Management Application">Fee Management Application</option>
+                  <option value="Examination Application">Examination Application</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Select Student To Query via SOAP</label>
+                <select id="integrationStudentSelect" class="form-control">
+                  <option value="STU-1001">STU-1001 - Aarav Sharma (Computer Science)</option>
+                  <option value="STU-1002">STU-1002 - Sophia Chen (Biotechnology)</option>
+                  <option value="STU-1003">STU-1003 - Liam Johnson (Mechanical Engg)</option>
+                  <option value="STU-1004">STU-1004 - Priya Patel (Information Tech)</option>
+                  <option value="STU-1007">STU-1007 - Elena Rostova (Computer Science)</option>
+                </select>
+              </div>
+
+              <button class="btn btn-teal" id="runIntegrationSimulationBtn" style="margin-top:0.5rem;">
+                <i class="fa-solid fa-bolt"></i> Run Inter-Departmental SOAP Call
+              </button>
+
+              <div id="integrationFinalCard" style="margin-top:1.25rem; display:none;"></div>
+            </div>
+
+            <!-- Simulation Execution Steps -->
+            <div class="tester-panel">
+              <div class="panel-header">
+                <h3><i class="fa-solid fa-terminal" style="color:var(--teal-primary);"></i> Execution Trace</h3>
+                <span class="badge badge-info">HTTP 1.1 / Port 8888</span>
+              </div>
+
+              <div id="integrationStepLogs" class="activity-list" style="flex:1;">
+                <div class="activity-item">
+                  <div class="activity-icon-wrap" style="background-color:var(--bg-subtle); color:var(--text-light);">
+                    <i class="fa-solid fa-circle"></i>
+                  </div>
+                  <div class="activity-desc">
+                    <p style="color:var(--text-muted);">Ready. Click "Run Inter-Departmental SOAP Call" to initiate inter-service data exchange.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Java Service Consumer Code Viewer -->
+          <div class="code-viewer-card">
+            <div class="code-viewer-header">
+              <div style="display:flex; align-items:center; gap:0.6rem; color:#ffffff; font-size:0.85rem; font-weight:600;">
+                <i class="fa-brands fa-java" style="color:#fbbf24;"></i>
+                <span>StudentServiceConsumer.java (Real JAX-WS Java Consumer Code)</span>
+              </div>
+              <button class="code-btn" onclick="showToast('Java consumer snippet copied.', 'info')">
+                <i class="fa-regular fa-copy"></i> Copy Java
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><code class="java">// Obtain WSDL URL and QName
+URL wsdlUrl = URI.create("http://localhost:8888/ws/student?wsdl").toURL();
+QName serviceQName = new QName("http://service.smartcampus.com/", "StudentInformationService");
+
+// Create standard JAX-WS service proxy
+Service service = Service.create(wsdlUrl, serviceQName);
+StudentInformationService studentService = service.getPort(StudentInformationService.class);
+
+// Invoke operation getStudentById over SOAP
+Student student = studentService.getStudentById("STU-1001");
+System.out.println("Verified Student: " + student.getStudentName() + " | Dept: " + student.getDepartment());</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 13. REPORTS SECTION                                  -->
+        <!-- ==================================================== -->
+        <section id="reports" class="page-section">
+          <div class="section-header">
+            <div>
+              <h1 class="section-title">University Analytical Reports</h1>
+              <p class="section-subtitle">Comprehensive campus performance, attendance compliance, and web services telemetry</p>
+            </div>
+            <div style="display:flex; gap:0.65rem;">
+              <button class="btn btn-primary btn-sm" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> Print Report
+              </button>
+              <button class="btn btn-outline btn-sm" onclick="showToast('Executive PDF generated for Academic Council.', 'success')">
+                <i class="fa-solid fa-file-pdf"></i> Download PDF
+              </button>
+            </div>
+          </div>
+
+          <!-- Summary Metric Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-title">Academic Distinction</div>
+              <div class="stat-value" style="color:var(--purple-primary);">50.0%</div>
+              <div class="stat-trend positive">5 out of 10 students >= 90%</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-title">Attendance Compliance</div>
+              <div class="stat-value" style="color:var(--teal-primary);">90.0%</div>
+              <div class="stat-trend positive">9 out of 10 exam-eligible</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-title">Fee Recovery Ratio</div>
+              <div class="stat-value" style="color:var(--blue-primary);">82.3%</div>
+              <div class="stat-trend positive">$53,500 of $65,000 received</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-title">Web Service Uptime</div>
+              <div class="stat-value" style="color:var(--success);">99.98%</div>
+              <div class="stat-trend positive">Avg response: 11.8ms</div>
+            </div>
+          </div>
+
+          <!-- Detailed Reports Grid -->
+          <div class="dashboard-details-grid">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-award"></i>
+                  <span>Academic Honors &amp; Top Performers</span>
+                </div>
+              </div>
+              <div class="table-responsive" style="border:none; box-shadow:none;">
+                <table class="data-table" style="font-size:0.8rem;">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Student Name</th>
+                      <th>Department</th>
+                      <th>CGPA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="badge badge-purple">#1</span></td>
+                      <td><strong>Elena Rostova</strong></td>
+                      <td>Computer Science</td>
+                      <td><strong style="color:var(--teal-primary);">3.95 / 4.0</strong></td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-purple">#2</span></td>
+                      <td><strong>Sophia Chen</strong></td>
+                      <td>Biotechnology</td>
+                      <td><strong style="color:var(--teal-primary);">3.92 / 4.0</strong></td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-purple">#3</span></td>
+                      <td><strong>Fatima Zahra</strong></td>
+                      <td>Biotechnology</td>
+                      <td><strong style="color:var(--teal-primary);">3.88 / 4.0</strong></td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-purple">#4</span></td>
+                      <td><strong>Aarav Sharma</strong></td>
+                      <td>Computer Science</td>
+                      <td><strong style="color:var(--teal-primary);">3.85 / 4.0</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Departmental Service Invocation Analytics -->
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">
+                  <i class="fa-solid fa-chart-simple"></i>
+                  <span>Web Service Traffic by Department</span>
+                </div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:1rem;">
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600; margin-bottom:0.25rem;">
+                    <span>Attendance Management App</span>
+                    <span style="color:var(--blue-primary);">54,200 calls (36.5%)</span>
+                  </div>
+                  <div class="progress-bar-wrap"><div class="progress-bar-fill blue" style="width:36.5%;"></div></div>
+                </div>
+
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600; margin-bottom:0.25rem;">
+                    <span>Examination Records App</span>
+                    <span style="color:var(--purple-primary);">38,100 calls (25.7%)</span>
+                  </div>
+                  <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:25.7%; background-color:var(--purple-primary);"></div></div>
+                </div>
+
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600; margin-bottom:0.25rem;">
+                    <span>Fee &amp; Bursar App</span>
+                    <span style="color:var(--teal-primary);">29,400 calls (19.8%)</span>
+                  </div>
+                  <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:19.8%; background-color:var(--teal-primary);"></div></div>
+                </div>
+
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600; margin-bottom:0.25rem;">
+                    <span>Library Circulation App</span>
+                    <span style="color:var(--warning);">18,200 calls (12.3%)</span>
+                  </div>
+                  <div class="progress-bar-wrap"><div class="progress-bar-fill yellow" style="width:12.3%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODALS                                                   -->
+  <!-- ======================================================== -->
+
+  <!-- 1. Add Student Modal -->
+  <div class="modal-backdrop" id="addStudentModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-user-plus" style="color:var(--blue-primary);"></i>
+          <span>Add Sample Student</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('addStudentModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <form id="addStudentForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Student Full Name *</label>
+            <input type="text" id="newStudentName" class="form-control" required placeholder="e.g. Maya Lin">
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>Department *</label>
+              <select id="newStudentDept" class="form-control" required>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Biotechnology">Biotechnology</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Electronics & Comm.">Electronics & Comm.</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Academic Year *</label>
+              <select id="newStudentYear" class="form-control" required>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>University Email *</label>
+            <input type="email" id="newStudentEmail" class="form-control" required placeholder="e.g. maya.lin@campus.edu">
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>Mobile Number *</label>
+              <input type="text" id="newStudentPhone" class="form-control" required placeholder="+1 (555) 789-4561">
+            </div>
+            <div class="form-group">
+              <label>Initial CGPA</label>
+              <input type="number" step="0.01" min="0" max="4.0" id="newStudentGpa" class="form-control" value="3.75">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('addStudentModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Register Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Edit Student Modal -->
+  <div class="modal-backdrop" id="editStudentModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-pen-to-square" style="color:var(--purple-primary);"></i>
+          <span>Edit Student Record</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('editStudentModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <form id="editStudentForm">
+        <input type="hidden" id="editStudentId">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Student Full Name</label>
+            <input type="text" id="editStudentName" class="form-control" required>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>Department</label>
+              <select id="editStudentDept" class="form-control">
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Biotechnology">Biotechnology</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Electronics & Comm.">Electronics & Comm.</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Academic Year</label>
+              <select id="editStudentYear" class="form-control">
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>University Email</label>
+            <input type="email" id="editStudentEmail" class="form-control" required>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>Mobile Number</label>
+              <input type="text" id="editStudentPhone" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Admission Status</label>
+              <select id="editStudentStatus" class="form-control">
+                <option value="Enrolled">Enrolled</option>
+                <option value="Graduated">Graduated</option>
+                <option value="On Leave">On Leave</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('editStudentModal')">Cancel</button>
+          <button type="submit" class="btn btn-purple"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Student Profile View Modal -->
+  <div class="modal-backdrop" id="studentProfileModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-address-card" style="color:var(--teal-primary);"></i>
+          <span>Student Comprehensive Profile</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('studentProfileModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="studentProfileModalContent">
+        <!-- Rendered dynamically via JS -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="closeModal('studentProfileModal')">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Issue Library Book Modal -->
+  <div class="modal-backdrop" id="issueBookModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-book" style="color:var(--blue-primary);"></i>
+          <span>Issue Library Book</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('issueBookModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <form id="issueBookForm">
+        <input type="hidden" id="issueBookId">
+        <div class="modal-body">
+          <div style="background-color:var(--bg-subtle); padding:0.85rem; border-radius:var(--radius-md); margin-bottom:1rem;">
+            <span style="font-size:0.75rem; color:var(--text-muted); display:block;">SELECTED BOOK:</span>
+            <strong id="issueBookTitle" style="font-size:0.95rem; color:var(--text-main);">-</strong>
+          </div>
+          <div class="form-group">
+            <label>Borrower Student ID (Verified via SOAP) *</label>
+            <select id="issueStudentId" class="form-control" required>
+              <option value="STU-1001">STU-1001 - Aarav Sharma</option>
+              <option value="STU-1002">STU-1002 - Sophia Chen</option>
+              <option value="STU-1003">STU-1003 - Liam Johnson</option>
+              <option value="STU-1004">STU-1004 - Priya Patel</option>
+              <option value="STU-1007">STU-1007 - Elena Rostova</option>
+              <option value="STU-1008">STU-1008 - David Kim</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('issueBookModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Issue via SOAP</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Controller Script -->
+  <script src="script.js"></script>
+</body>
+</html>
