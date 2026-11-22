@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INTERACTIFY – Interactive DHTML Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Mobile Header Bar -->
+  <header class="mobile-header">
+    <div class="brand">
+      <div class="brand-icon">⚡</div>
+      <span class="brand-text">INTERACTIFY</span>
+    </div>
+    <button id="mobileNavToggle" class="mobile-nav-toggle" aria-label="Toggle navigation menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </header>
+
+  <div class="layout-container">
+    <!-- Left Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-icon">⚡</div>
+          <div>
+            <h1 class="brand-text">INTERACTIFY</h1>
+            <span class="brand-badge">DHTML v2.0</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="#home" class="nav-link active" data-section="home">
+              <span class="nav-icon">🏠</span>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#image-toggle" class="nav-link" data-section="image-toggle">
+              <span class="nav-icon">🖼️</span>
+              <span>Image Toggle</span>
+            </a>
+          </li>
+          <li>
+            <a href="#text-hover" class="nav-link" data-section="text-hover">
+              <span class="nav-icon">✨</span>
+              <span>Text Hover</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about" class="nav-link" data-section="about">
+              <span class="nav-icon">💡</span>
+              <span>About &amp; How It Works</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Quick Interactive Status Widget in Sidebar -->
+      <div class="sidebar-widget">
+        <div class="widget-title">Live System Status</div>
+        <div class="widget-pill">
+          <span class="widget-dot active"></span>
+          <span>DOM Ready &amp; Listening</span>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <p class="sidebar-credit">Dynamic HTML Demo</p>
+      </div>
+    </aside>
+
+    <!-- Overlay for Mobile Sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- 1. HOME / HERO SECTION -->
+      <section id="home" class="section hero-section">
+        <div class="hero-wrapper">
+          <div class="hero-content">
+            <div class="badge-tag">Dynamic HTML Showcase</div>
+            <h1 class="hero-title">Discover Interactive Web Effects!</h1>
+            <p class="hero-subtitle">
+              Explore how DHTML makes webpages dynamic using image and text interactions. Experience real-time DOM manipulation without page reloads.
+            </p>
+            <div class="hero-actions">
+              <a href="#image-toggle" class="btn btn-primary">
+                <span>Explore Now</span>
+                <span class="btn-arrow">→</span>
+              </a>
+              <a href="#text-hover" class="btn btn-secondary">
+                <span>Try Text Hover</span>
+              </a>
+            </div>
+
+            <!-- Two Feature Cards -->
+            <div class="feature-cards-grid">
+              <a href="#image-toggle" class="feature-card">
+                <div class="feature-icon icon-lavender">🖼️</div>
+                <div class="feature-info">
+                  <h3>Click to Change Images</h3>
+                  <p>Swap visuals dynamically with onclick handlers</p>
+                </div>
+                <span class="card-arrow">↗</span>
+              </a>
+              <a href="#text-hover" class="feature-card">
+                <div class="feature-icon icon-pink">🎨</div>
+                <div class="feature-info">
+                  <h3>Hover to Transform Text</h3>
+                  <p>Morph font style, color and shadow on mouseover</p>
+                </div>
+                <span class="card-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-card-preview">
+              <div class="preview-glow"></div>
+              <div class="preview-inner">
+                <div class="preview-top">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                  <span class="preview-title">DHTML Simulator</span>
+                </div>
+                <div class="preview-body">
+                  <div class="interactive-demo-mini">
+                    <div class="mini-icon">✨</div>
+                    <div class="mini-text">
+                      <strong>Real-Time Interaction</strong>
+                      <span>Listen &bull; Respond &bull; Animate</span>
+                    </div>
+                  </div>
+                  <div class="mini-badges">
+                    <span class="chip">HTML5</span>
+                    <span class="chip">CSS3</span>
+                    <span class="chip">Vanilla JS</span>
+                    <span class="chip">Event Listeners</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. INTERACTION STATUS PANEL (Positioned prominently between hero & demos) -->
+      <section class="section status-section" aria-label="Interaction Status Panel">
+        <div class="status-panel-container">
+          <div class="status-panel-header">
+            <div class="pulse-indicator"></div>
+            <h2>Live Interaction Status Panel</h2>
+            <span class="live-pill">Real-time DHTML Feed</span>
+          </div>
+          <div class="status-cards-grid">
+            <div class="status-card" id="imageStatusCard">
+              <div class="status-card-header">
+                <span class="status-label">Current Image</span>
+                <span class="status-icon" id="statusImageIcon">☀️</span>
+              </div>
+              <div class="status-value-group">
+                <span class="status-badge day" id="imageStatusBadge">Day</span>
+                <p class="status-desc" id="imageStatusDesc">Day landscape active</p>
+              </div>
+            </div>
+
+            <div class="status-card" id="textStatusCard">
+              <div class="status-card-header">
+                <span class="status-label">Text Style</span>
+                <span class="status-icon" id="statusTextIcon">✨</span>
+              </div>
+              <div class="status-value-group">
+                <span class="status-badge normal" id="textStatusBadge">Normal</span>
+                <p class="status-desc" id="textStatusDesc">Default typography active</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. IMAGE TOGGLE SECTION -->
+      <section id="image-toggle" class="section">
+        <div class="section-header">
+          <div class="badge-tag lavender">Interactive DHTML Event: onclick</div>
+          <h2 class="section-title">Interactive Image Toggle</h2>
+          <p class="section-subtitle">
+            Click on the image or the button below to toggle seamlessly between the bright day landscape and the serene night landscape.
+          </p>
+        </div>
+
+        <div class="interactive-card">
+          <!-- Image Display Card -->
+          <div class="image-toggle-container">
+            <div class="image-frame" id="imageFrame" role="button" tabindex="0" title="Click to toggle between Day and Night">
+              <img 
+                id="toggleImage" 
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" 
+                alt="Beautiful green nature landscape during daytime with lush forest and mountains" 
+                class="responsive-image visible"
+              />
+              <div class="image-overlay-hint">
+                <span class="hint-icon">👆</span>
+                <span>Click image to switch view</span>
+              </div>
+              <div class="image-theme-tag" id="imageThemeTag">
+                <span id="themeTagIcon">☀️</span>
+                <span id="themeTagText">Day Mode</span>
+              </div>
+            </div>
+
+            <!-- Controls and Feedback -->
+            <div class="image-controls">
+              <button id="changeImageBtn" class="btn btn-action" aria-label="Change displayed image">
+                <span class="btn-icon">🔄</span>
+                <span>Change Image</span>
+              </button>
+
+              <div class="image-status-box">
+                <span class="status-indicator-dot" id="imageStateDot"></span>
+                <span class="status-message-text" id="imageStatusMessage">Day Image Displayed</span>
+              </div>
+            </div>
+
+            <div class="interaction-tip">
+              💡 <strong>DHTML Tip:</strong> This interaction listens for user clicks via <code>addEventListener('click')</code> and swaps the image's <code>src</code> attribute with a smooth CSS opacity cross-fade.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. TEXT HOVER EFFECT SECTION -->
+      <section id="text-hover" class="section">
+        <div class="section-header">
+          <div class="badge-tag pink">Interactive DHTML Events: mouseover &amp; mouseout</div>
+          <h2 class="section-title">Interactive Text Styling</h2>
+          <p class="section-subtitle">
+            Experience real-time dynamic styling changes on mouse hover. Notice how colors, typography, weights and shadows transform instantly.
+          </p>
+        </div>
+
+        <div class="interactive-card">
+          <div class="text-hover-container">
+            <div class="instruction-banner">
+              <span class="instruction-icon">🖱️</span>
+              <span class="instruction-text">Move your mouse over the text to experience the effect.</span>
+            </div>
+
+            <!-- Interactive Paragraph with Highlighted Words -->
+            <div class="text-effect-card" id="hoverParagraphBox">
+              <p id="interactiveParagraph" class="effect-paragraph">
+                <span class="keyword" data-word="tech">Technology</span> makes 
+                <span class="keyword" data-word="learn">learning</span> easier, 
+                <span class="keyword" data-word="create">creativity</span> stronger and 
+                <span class="keyword" data-word="innovate">innovation</span> possible. 
+                Explore new ideas and discover endless opportunities through interactive web experiences.
+              </p>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="text-controls">
+              <button id="resetStyleBtn" class="btn btn-outline" aria-label="Reset text style to default">
+                <span class="btn-icon">↺</span>
+                <span>Reset Style</span>
+              </button>
+              
+              <div class="applied-effects-display" id="appliedEffectsDisplay">
+                <span class="effect-chip">Color: Purple/Blue</span>
+                <span class="effect-chip">Font: Italic</span>
+                <span class="effect-chip">Weight: Bold</span>
+                <span class="effect-chip">Shadow: Active</span>
+              </div>
+            </div>
+
+            <div class="interaction-tip">
+              💡 <strong>DHTML Tip:</strong> JavaScript binds to <code>mouseover</code> and <code>mouseout</code> events to dynamically alter element styles without requiring CSS-only pseudo-classes.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. HOW IT WORKS / ABOUT SECTION -->
+      <section id="about" class="section">
+        <div class="section-header">
+          <div class="badge-tag blue">Concept &amp; Architecture</div>
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-subtitle">
+            Understand the core mechanics behind modern Dynamic HTML in three simple steps.
+          </p>
+        </div>
+
+        <div class="info-cards-grid">
+          <!-- Card 1 -->
+          <div class="info-card">
+            <div class="info-card-badge">01</div>
+            <div class="info-icon lavender-bg">⚡</div>
+            <h3 class="info-title">DHTML (Dynamic HTML)</h3>
+            <p class="info-desc">
+              Combines HTML, CSS and JavaScript to create dynamic webpages. It empowers web browsers to modify page content, layout and visual appearance dynamically on the client side.
+            </p>
+            <div class="info-tag">HTML + CSS + JavaScript</div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="info-card">
+            <div class="info-card-badge">02</div>
+            <div class="info-icon blue-bg">🖱️</div>
+            <h3 class="info-title">onclick Event</h3>
+            <p class="info-desc">
+              Switches between two images when clicked. The event listener detects the click trigger and immediately updates the DOM <code>img.src</code> attribute with smooth visual transitions.
+            </p>
+            <div class="info-tag">element.onclick / addEventListener</div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="info-card">
+            <div class="info-card-badge">03</div>
+            <div class="info-icon pink-bg">🎨</div>
+            <h3 class="info-title">mouseover and mouseout</h3>
+            <p class="info-desc">
+              mouseover and mouseout: Changes and restores text styling when the mouse enters or leaves. By intercepting cursor movement, DHTML directly alters CSS font styles, colors, and shadows on the fly.
+            </p>
+            <div class="info-tag">element.style / DOM Manipulation</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. FOOTER -->
+      <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="brand">
+              <div class="brand-icon">⚡</div>
+              <span class="brand-text">INTERACTIFY</span>
+            </div>
+            <p class="footer-tagline">Click. Hover. Discover.</p>
+          </div>
+
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#image-toggle">Image Toggle</a>
+            <a href="#text-hover">Text Hover</a>
+            <a href="#about">About</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 INTERACTIFY &bull; Interactive DHTML Experience. All rights reserved.</p>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
