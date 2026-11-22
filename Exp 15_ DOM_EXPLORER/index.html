@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM EXPLORER – Dynamic Element Creator & DOM Traversal</title>
+  <meta name="description" content="An interactive, beginner-friendly educational playground to learn HTML Document Object Model (DOM) manipulation and traversal.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Mobile Header Bar -->
+  <header class="mobile-topbar">
+    <div class="brand-badge">
+      <div class="logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+          <polyline points="2 17 12 22 22 17"></polyline>
+          <polyline points="2 12 12 17 22 12"></polyline>
+        </svg>
+      </div>
+      <span class="brand-text">DOM <span>EXPLORER</span></span>
+    </div>
+    <button id="mobileMenuBtn" class="menu-toggle-btn" aria-label="Toggle navigation menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Mobile Overlay Backdrop -->
+  <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+  <!-- Main App Layout Container -->
+  <div class="app-layout">
+    
+    <!-- LEFT SIDEBAR NAVIGATION -->
+    <aside id="appSidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h1 class="logo-title">DOM <span>EXPLORER</span></h1>
+            <p class="logo-subtitle">Interactive Web Lab</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group-label">NAVIGATION</div>
+        <ul class="nav-list">
+          <li>
+            <a href="#home" class="nav-link active" data-section="home">
+              <span class="nav-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </span>
+              <span>Home & Overview</span>
+            </a>
+          </li>
+          <li>
+            <a href="#creator" class="nav-link" data-section="creator">
+              <span class="nav-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="16"></line>
+                  <line x1="8" y1="12" x2="16" y2="12"></line>
+                </svg>
+              </span>
+              <span>Element Creator</span>
+              <span class="nav-badge">Playground</span>
+            </a>
+          </li>
+          <li>
+            <a href="#traversal" class="nav-link" data-section="traversal">
+              <span class="nav-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </span>
+              <span>DOM Traversal</span>
+            </a>
+          </li>
+          <li>
+            <a href="#dom-tree" class="nav-link" data-section="dom-tree">
+              <span class="nav-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+              </span>
+              <span>Interactive DOM Tree</span>
+            </a>
+          </li>
+          <li>
+            <a href="#real-world" class="nav-link" data-section="real-world">
+              <span class="nav-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </span>
+              <span>Real-World Example</span>
+            </a>
+          </li>
+          <li>
+            <a href="#reference" class="nav-link" data-section="reference">
+              <span class="nav-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </span>
+              <span>DOM Methods Reference</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer Badge -->
+      <div class="sidebar-card">
+        <div class="card-status-dot"></div>
+        <div class="sidebar-card-text">
+          <strong>Vanilla JS Ready</strong>
+          <p>No frameworks • Pure native DOM APIs</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN SCROLLABLE CONTENT -->
+    <main class="main-content">
+
+      <!-- ==============================================
+           1. HOME SECTION
+           ============================================== -->
+      <section id="home" class="content-section hero-section">
+        <div class="hero-header">
+          <div class="hero-badge">
+            <span class="badge-spark">✨</span> Modern Interactive Web Lab
+          </div>
+          <h1 class="hero-title">Explore the <span>Document Object Model</span></h1>
+          <p class="hero-subtitle">
+            Create, access, traverse, and modify HTML elements dynamically with pure JavaScript.
+            Master DOM manipulation through live visual experiments!
+          </p>
+          <div class="hero-actions">
+            <a href="#creator" class="btn btn-primary btn-lg">
+              <span>Start Exploring</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#traversal" class="btn btn-secondary btn-lg">
+              <span>Try DOM Traversal</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- DOM Tree Illustration Graphic -->
+        <div class="illustration-card">
+          <div class="card-glass-header">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="window-title">DOM Hierarchy Architecture</span>
+            <span class="badge-pill">window.document</span>
+          </div>
+
+          <div class="dom-visual-tree">
+            <!-- Root: document -->
+            <div class="tree-tier">
+              <div class="tree-node node-document">
+                <span class="tag-chip">Object</span>
+                <strong>document</strong>
+              </div>
+            </div>
+            
+            <div class="tree-line-v"></div>
+
+            <!-- Root Element: html -->
+            <div class="tree-tier">
+              <div class="tree-node node-html">
+                <span class="tag-chip">Root Element</span>
+                <strong>&lt;html&gt;</strong>
+              </div>
+            </div>
+
+            <!-- Branch Split to Head & Body -->
+            <div class="tree-branch-container">
+              <div class="tree-branch">
+                <div class="branch-line left"></div>
+                <div class="tree-node node-head">
+                  <span class="tag-chip">Element</span>
+                  <strong>&lt;head&gt;</strong>
+                  <span class="node-meta">title, meta, link</span>
+                </div>
+              </div>
+
+              <div class="tree-branch">
+                <div class="branch-line right"></div>
+                <div class="tree-node node-body">
+                  <span class="tag-chip">Element</span>
+                  <strong>&lt;body&gt;</strong>
+                  <span class="node-meta">visible layout</span>
+                </div>
+                <!-- Body Children Preview -->
+                <div class="mini-subnodes">
+                  <span class="subnode-chip">&lt;header&gt;</span>
+                  <span class="subnode-chip">&lt;main&gt;</span>
+                  <span class="subnode-chip">&lt;footer&gt;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two Feature Cards -->
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon>
+                <line x1="3" y1="22" x2="21" y2="22"></line>
+              </svg>
+            </div>
+            <h3>Dynamic Element Creator</h3>
+            <p>
+              Generate, customize, and attach HTML tags dynamically using <code>document.createElement()</code>, 
+              <code>textContent</code>, and <code>appendChild()</code>.
+            </p>
+            <a href="#creator" class="feature-link">Open Playground &rarr;</a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3>DOM Traversal Explorer</h3>
+            <p>
+              Navigate nested element trees effortlessly with <code>parentElement</code>, 
+              <code>children</code>, <code>nextElementSibling</code>, and <code>previousElementSibling</code>.
+            </p>
+            <a href="#traversal" class="feature-link">Inspect Nodes &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           2. DOM MANIPULATION PLAYGROUND
+           ============================================== -->
+      <section id="creator" class="content-section">
+        <div class="section-title-wrap">
+          <div class="section-badge">Section 2</div>
+          <h2 class="section-title">Dynamic Element Creator</h2>
+          <p class="section-desc">
+            Construct live HTML elements in memory, configure their content safely, and inject them into the DOM without reloading.
+          </p>
+        </div>
+
+        <!-- Creator Playground Layout -->
+        <div class="playground-layout">
+          <!-- Controls Column -->
+          <div class="card control-panel-card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+                Element Builder
+              </h3>
+              <span class="badge-pill blue">Controls</span>
+            </div>
+
+            <form id="createElementForm" class="control-form" onsubmit="return false;">
+              <!-- Input Content -->
+              <div class="form-group">
+                <label for="elementContentInput" class="form-label">
+                  Element Text Content:
+                  <span class="required-star">*</span>
+                </label>
+                <div class="input-with-icon">
+                  <input 
+                    type="text" 
+                    id="elementContentInput" 
+                    class="form-control" 
+                    placeholder="e.g. Welcome to Web Technology Lab!" 
+                    autocomplete="off"
+                  >
+                </div>
+                <div id="inputValidationError" class="validation-message" style="display: none;">
+                  ⚠️ Please enter some text content first!
+                </div>
+              </div>
+
+              <!-- Select Tag Type -->
+              <div class="form-group">
+                <label for="elementTypeSelect" class="form-label">Choose Element Type:</label>
+                <div class="select-wrapper">
+                  <select id="elementTypeSelect" class="form-select">
+                    <option value="p">Paragraph (&lt;p&gt;)</option>
+                    <option value="h3">Heading (&lt;h3&gt;)</option>
+                    <option value="li">List Item (&lt;li&gt;)</option>
+                    <option value="button">Button (&lt;button&gt;)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="action-buttons-stack">
+                <button type="button" id="btnAddElement" class="btn btn-primary btn-block">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  <span>Add Element to DOM</span>
+                </button>
+
+                <div class="secondary-btn-row">
+                  <button type="button" id="btnDeleteLast" class="btn btn-outline-warning">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="3 6 5 6 21 6"></polyline>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    <span>Delete Last</span>
+                  </button>
+                  <button type="button" id="btnClearAll" class="btn btn-outline-danger">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="15" y1="9" x2="9" y2="15"></line>
+                      <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                    <span>Clear All</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Feedback Toast Banner -->
+            <div id="creatorFeedbackBanner" class="feedback-banner" style="display: none;">
+              <span id="feedbackIcon">✅</span>
+              <span id="feedbackText">Element created successfully!</span>
+            </div>
+
+            <!-- Live Code Preview -->
+            <div class="live-code-box">
+              <div class="code-box-header">
+                <span>Executed JavaScript Code</span>
+                <span class="code-lang">JavaScript</span>
+              </div>
+              <pre class="code-display"><code id="codeSnippetDisplay">// Fill inputs and click "Add Element" to execute DOM methods
+const element = document.createElement('...');
+element.textContent = '...';
+outputContainer.appendChild(element);</code></pre>
+            </div>
+          </div>
+
+          <!-- Output Display Container Column -->
+          <div class="card output-container-card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Live DOM Output Container</h3>
+                <p class="card-desc">Elements appended below are real, live nodes in the document.</p>
+              </div>
+              <div class="count-badge-wrap">
+                <span class="count-label">Total Elements:</span>
+                <span id="elementCountBadge" class="count-badge">0</span>
+              </div>
+            </div>
+
+            <!-- Visual Container Wrapper -->
+            <div class="output-canvas-frame">
+              <div class="canvas-header-bar">
+                <div class="canvas-tag">&lt;div id="dynamicOutputContainer"&gt;</div>
+                <div class="canvas-status">Live Target</div>
+              </div>
+
+              <div id="dynamicOutputContainer" class="dynamic-output-area">
+                <!-- Empty Placeholder State -->
+                <div id="outputEmptyPlaceholder" class="empty-placeholder">
+                  <div class="empty-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                      <line x1="8" y1="21" x2="16" y2="21"></line>
+                      <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                  </div>
+                  <h4>No elements created yet</h4>
+                  <p>Type text on the left, pick an element type, and click "Add Element" to watch the DOM update instantly!</p>
+                </div>
+              </div>
+
+              <div class="canvas-footer-bar">
+                <span>&lt;/div&gt;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           3. DOM TRAVERSAL EXPLORER
+           ============================================== -->
+      <section id="traversal" class="content-section">
+        <div class="section-title-wrap">
+          <div class="section-badge">Section 3</div>
+          <h2 class="section-title">Explore Nested HTML Elements</h2>
+          <p class="section-desc">
+            Inspect the relationships between elements. Click any student card to discover its parent, siblings, and children.
+          </p>
+        </div>
+
+        <!-- Traversal Controls Bar -->
+        <div class="traversal-toolbar">
+          <div class="toolbar-hint">
+            <span class="sparkle-icon">💡</span>
+            <span>Click any <strong>Student Card</strong> below, then test the traversal highlight buttons:</span>
+          </div>
+          <div class="toolbar-actions">
+            <button type="button" id="btnHighlightParent" class="btn btn-traversal blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+              <span>Highlight Parent</span>
+            </button>
+            <button type="button" id="btnHighlightSiblings" class="btn btn-traversal purple">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+                <polyline points="15 6 9 12 15 18"></polyline>
+              </svg>
+              <span>Highlight Siblings</span>
+            </button>
+            <button type="button" id="btnResetHighlights" class="btn btn-traversal gray">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 2v6h6"></path>
+                <path d="M21 12A9 9 0 0 0 6 5.3L3 8"></path>
+                <path d="M21 22v-6h-6"></path>
+                <path d="M3 12a9 9 0 0 0 15 6.7l3-2.7"></path>
+              </svg>
+              <span>Reset Highlights</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Two Column Layout: Hierarchy View & Traversal Inspector -->
+        <div class="traversal-grid">
+          
+          <!-- Column 1: Nested HTML Cards -->
+          <div class="hierarchy-card-container">
+            <!-- Root College Card -->
+            <div id="collegeElement" class="nested-card level-college">
+              <div class="nested-card-badge">
+                <span class="tag-label">&lt;div id="collegeElement"&gt;</span>
+                <span class="role-label">Root Ancestor: College</span>
+              </div>
+              <h3 class="nested-title">🎓 Institute of Technology</h3>
+
+              <!-- Department Card -->
+              <div id="departmentElement" class="nested-card level-department">
+                <div class="nested-card-badge">
+                  <span class="tag-label">&lt;div id="departmentElement"&gt;</span>
+                  <span class="role-label">Parent: Department</span>
+                </div>
+                <h4 class="nested-subtitle">💻 Department of Computer Science & Engineering</h4>
+
+                <!-- Students Container -->
+                <div id="studentsContainer" class="nested-card level-students">
+                  <div class="nested-card-badge">
+                    <span class="tag-label">&lt;div id="studentsContainer"&gt;</span>
+                    <span class="role-label">Direct Parent of Students</span>
+                  </div>
+                  <div class="students-list-label">Students Roster (Click a student):</div>
+
+                  <!-- Student 1 -->
+                  <div id="student1" class="student-item active-target" data-name="Student 1: Alice Johnson" data-roll="CS-101">
+                    <div class="student-avatar blue">AJ</div>
+                    <div class="student-meta">
+                      <div class="student-name">Student 1: Alice Johnson</div>
+                      <div class="student-roll">Roll No: CS-101 • Year 3</div>
+                    </div>
+                    <span class="select-badge">Selected</span>
+                  </div>
+
+                  <!-- Student 2 -->
+                  <div id="student2" class="student-item" data-name="Student 2: Bob Smith" data-roll="CS-102">
+                    <div class="student-avatar purple">BS</div>
+                    <div class="student-meta">
+                      <div class="student-name">Student 2: Bob Smith</div>
+                      <div class="student-roll">Roll No: CS-102 • Year 3</div>
+                    </div>
+                    <span class="select-badge">Select</span>
+                  </div>
+
+                  <!-- Student 3 -->
+                  <div id="student3" class="student-item" data-name="Student 3: Charlie Davis" data-roll="CS-103">
+                    <div class="student-avatar green">CD</div>
+                    <div class="student-meta">
+                      <div class="student-name">Student 3: Charlie Davis</div>
+                      <div class="student-roll">Roll No: CS-103 • Year 3</div>
+                    </div>
+                    <span class="select-badge">Select</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Live Traversal Results Inspector -->
+          <div class="traversal-inspector-card card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                DOM Traversal Inspector
+              </h3>
+              <span class="badge-pill purple">Live Results</span>
+            </div>
+
+            <div class="inspector-body">
+              <!-- Selected Target Summary -->
+              <div class="selected-target-banner">
+                <div class="target-title-wrap">
+                  <span class="target-small-label">Currently Selected Element:</span>
+                  <h4 id="inspectorSelectedName">Student 1: Alice Johnson</h4>
+                </div>
+                <code id="inspectorSelectedId">#student1</code>
+              </div>
+
+              <!-- Relationship Key-Value List -->
+              <div class="relationship-table">
+                
+                <!-- parentElement -->
+                <div class="rel-row">
+                  <div class="rel-key">
+                    <code>element.parentElement</code>
+                    <span class="rel-desc">Direct container above this node</span>
+                  </div>
+                  <div class="rel-val" id="valParentElement">
+                    <span class="val-tag">&lt;div id="studentsContainer"&gt;</span>
+                  </div>
+                </div>
+
+                <!-- children -->
+                <div class="rel-row">
+                  <div class="rel-key">
+                    <code>element.children</code>
+                    <span class="rel-desc">Immediate child nodes count</span>
+                  </div>
+                  <div class="rel-val" id="valChildren">
+                    <span class="val-number">3 child elements</span>
+                  </div>
+                </div>
+
+                <!-- firstElementChild -->
+                <div class="rel-row">
+                  <div class="rel-key">
+                    <code>element.firstElementChild</code>
+                    <span class="rel-desc">The initial nested element</span>
+                  </div>
+                  <div class="rel-val" id="valFirstElementChild">
+                    <span class="val-tag">&lt;div class="student-avatar"&gt;</span>
+                  </div>
+                </div>
+
+                <!-- previousElementSibling -->
+                <div class="rel-row">
+                  <div class="rel-key">
+                    <code>element.previousElementSibling</code>
+                    <span class="rel-desc">Sibling directly above</span>
+                  </div>
+                  <div class="rel-val" id="valPrevSibling">
+                    <span class="val-null">null (First sibling)</span>
+                  </div>
+                </div>
+
+                <!-- nextElementSibling -->
+                <div class="rel-row">
+                  <div class="rel-key">
+                    <code>element.nextElementSibling</code>
+                    <span class="rel-desc">Sibling directly below</span>
+                  </div>
+                  <div class="rel-val" id="valNextSibling">
+                    <span class="val-tag">&lt;div id="student2"&gt;</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Educational Traversal Explanation -->
+              <div class="traversal-insight-box">
+                <div class="insight-header">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  <span>How JavaScript Traverses This:</span>
+                </div>
+                <pre class="insight-code"><code id="traversalInsightCode">// Current selection:
+const current = document.getElementById("student1");
+const parent = current.parentElement;        // &lt;div id="studentsContainer"&gt;
+const next = current.nextElementSibling;     // &lt;div id="student2"&gt;
+const prev = current.previousElementSibling; // null</code></pre>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           4. INTERACTIVE DOM TREE
+           ============================================== -->
+      <section id="dom-tree" class="content-section">
+        <div class="section-title-wrap">
+          <div class="section-badge">Section 4</div>
+          <h2 class="section-title">Interactive DOM Tree</h2>
+          <p class="section-desc">
+            Explore a visual tree diagram representing standard page structure. Click any node to traverse its relationships!
+          </p>
+        </div>
+
+        <div class="tree-explorer-grid">
+          <!-- Tree Nodes Interactive Canvas -->
+          <div class="card tree-canvas-card">
+            <div class="card-header">
+              <h3 class="card-title">HTML Document Structure</h3>
+              <span class="badge-pill blue">Click any node to inspect</span>
+            </div>
+
+            <div class="interactive-tree-diagram">
+              
+              <!-- Tier 1: Document -->
+              <div class="tree-level">
+                <div class="dom-tree-node node-clickable" data-tag="Document" data-name="document" data-parent="null" data-children="1" id="tree-doc">
+                  <span class="node-icon">📄</span>
+                  <strong>Document</strong>
+                </div>
+              </div>
+
+              <div class="tree-connector"></div>
+
+              <!-- Tier 2: HTML -->
+              <div class="tree-level">
+                <div class="dom-tree-node node-clickable" data-tag="HTML" data-name="html" data-parent="document" data-children="2" id="tree-html">
+                  <span class="node-icon">🌐</span>
+                  <strong>html</strong>
+                </div>
+              </div>
+
+              <div class="tree-connector-split"></div>
+
+              <!-- Tier 3: Head & Body -->
+              <div class="tree-row">
+                <div class="tree-sub-branch">
+                  <div class="dom-tree-node node-clickable" data-tag="HEAD" data-name="head" data-parent="html" data-children="0" id="tree-head">
+                    <span class="node-icon">🧠</span>
+                    <strong>head</strong>
+                  </div>
+                </div>
+
+                <div class="tree-sub-branch branch-wide">
+                  <div class="dom-tree-node node-clickable node-selected" data-tag="BODY" data-name="body" data-parent="html" data-children="3" id="tree-body">
+                    <span class="node-icon">📦</span>
+                    <strong>body</strong>
+                  </div>
+
+                  <!-- Tier 4: Header, Main, Footer -->
+                  <div class="tree-connector-split three-way"></div>
+                  
+                  <div class="tree-row sub-row">
+                    <!-- Header -->
+                    <div class="dom-tree-node node-clickable" data-tag="HEADER" data-name="header" data-parent="body" data-children="0" id="tree-header">
+                      <span class="node-icon">📑</span>
+                      <strong>header</strong>
+                    </div>
+
+                    <!-- Main (Has children) -->
+                    <div class="tree-sub-branch main-branch">
+                      <div class="dom-tree-node node-clickable" data-tag="MAIN" data-name="main" data-parent="body" data-children="2" id="tree-main">
+                        <span class="node-icon">🏛️</span>
+                        <strong>main</strong>
+                      </div>
+
+                      <div class="tree-connector-split"></div>
+                      
+                      <!-- Main children: Section & Container -->
+                      <div class="tree-row sub-row">
+                        <div class="dom-tree-node node-clickable" data-tag="SECTION" data-name="section" data-parent="main" data-children="0" id="tree-section">
+                          <span class="node-icon">📑</span>
+                          <strong>section</strong>
+                        </div>
+
+                        <div class="tree-sub-branch">
+                          <div class="dom-tree-node node-clickable" data-tag="DIV" data-name="container" data-parent="main" data-children="2" id="tree-container">
+                            <span class="node-icon">📦</span>
+                            <strong>container</strong>
+                          </div>
+
+                          <div class="tree-connector-split"></div>
+
+                          <!-- Container children: Paragraph & Button -->
+                          <div class="tree-row sub-row">
+                            <div class="dom-tree-node node-clickable leaf-node" data-tag="P" data-name="paragraph" data-parent="container" data-children="0" id="tree-p">
+                              <span class="node-icon">📝</span>
+                              <strong>paragraph</strong>
+                            </div>
+                            <div class="dom-tree-node node-clickable leaf-node" data-tag="BUTTON" data-name="button" data-parent="container" data-children="0" id="tree-btn">
+                              <span class="node-icon">🔘</span>
+                              <strong>button</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="dom-tree-node node-clickable" data-tag="FOOTER" data-name="footer" data-parent="body" data-children="0" id="tree-footer">
+                      <span class="node-icon">🦶</span>
+                      <strong>footer</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Tree Node Traversal Inspector Card -->
+          <div class="card tree-info-card">
+            <div class="card-header">
+              <h3 class="card-title">Node Inspector Details</h3>
+              <span class="badge-pill green">Active Selection</span>
+            </div>
+
+            <div class="tree-info-content">
+              <div class="tree-active-highlight">
+                <span class="active-badge">Inspecting Node:</span>
+                <h3 id="treeInspectorName">&lt;body&gt;</h3>
+              </div>
+
+              <div class="info-metric-grid">
+                <div class="metric-card">
+                  <span class="metric-label">Tag Name</span>
+                  <strong id="treeInspectorTag" class="metric-value">BODY</strong>
+                </div>
+                <div class="metric-card">
+                  <span class="metric-label">Child Nodes</span>
+                  <strong id="treeInspectorChildren" class="metric-value">3 elements</strong>
+                </div>
+              </div>
+
+              <div class="tree-relations-list">
+                <div class="relation-item">
+                  <span class="rel-label">Parent Element:</span>
+                  <code id="treeInspectorParent">&lt;html&gt;</code>
+                </div>
+                <div class="relation-item">
+                  <span class="rel-label">Sibling Status:</span>
+                  <span id="treeInspectorSiblings" class="rel-text">Has sibling: &lt;head&gt;</span>
+                </div>
+              </div>
+
+              <div class="tree-code-snippet">
+                <div class="snippet-header">Traversal Syntax in JS</div>
+                <pre><code id="treeCodeSyntax">const node = document.querySelector('body');
+console.log(node.parentElement.tagName); // "HTML"
+console.log(node.children.length);       // 3</code></pre>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==============================================
+           5. REAL-WORLD EXAMPLE
+           ============================================== -->
+      <section id="real-world" class="content-section">
+        <div class="section-title-wrap">
+          <div class="section-badge">Section 5</div>
+          <h2 class="section-title">Real-World Application Example</h2>
+          <p class="section-desc">
+            See why DOM traversal is essential in production apps: click "Change Status" on any card. 
+            JavaScript uses <code>closest()</code> and <code>querySelector()</code> to update <em>only</em> that card!
+          </p>
+        </div>
+
+        <div class="realworld-grid">
+          <!-- 3 Student Management Cards -->
+          <div class="student-cards-column">
+            
+            <!-- Card 1 -->
+            <div class="card student-mgmt-card" id="studentCard1" data-student-id="101">
+              <div class="mgmt-header">
+                <div class="mgmt-avatar blue">SC</div>
+                <div class="mgmt-details">
+                  <h4 class="student-mgmt-name">Sarah Connor</h4>
+                  <p class="student-mgmt-dept">Computer Science & Engineering</p>
+                </div>
+                <span class="status-badge status-active">Active</span>
+              </div>
+              <div class="mgmt-body">
+                <div class="mgmt-info-row">
+                  <span>Student ID:</span>
+                  <strong>#CSE-2024-001</strong>
+                </div>
+                <div class="mgmt-info-row">
+                  <span>Attendance:</span>
+                  <strong>94%</strong>
+                </div>
+              </div>
+              <div class="mgmt-footer">
+                <button type="button" class="btn btn-status-toggle">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 4v6h-6"></path>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                  </svg>
+                  <span>Change Status</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card student-mgmt-card" id="studentCard2" data-student-id="102">
+              <div class="mgmt-header">
+                <div class="mgmt-avatar purple">JD</div>
+                <div class="mgmt-details">
+                  <h4 class="student-mgmt-name">John Doe</h4>
+                  <p class="student-mgmt-dept">Information Technology</p>
+                </div>
+                <span class="status-badge status-active">Active</span>
+              </div>
+              <div class="mgmt-body">
+                <div class="mgmt-info-row">
+                  <span>Student ID:</span>
+                  <strong>#IT-2024-042</strong>
+                </div>
+                <div class="mgmt-info-row">
+                  <span>Attendance:</span>
+                  <strong>88%</strong>
+                </div>
+              </div>
+              <div class="mgmt-footer">
+                <button type="button" class="btn btn-status-toggle">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 4v6h-6"></path>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                  </svg>
+                  <span>Change Status</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card student-mgmt-card" id="studentCard3" data-student-id="103">
+              <div class="mgmt-header">
+                <div class="mgmt-avatar green">MP</div>
+                <div class="mgmt-details">
+                  <h4 class="student-mgmt-name">Maya Patel</h4>
+                  <p class="student-mgmt-dept">Data Science & AI</p>
+                </div>
+                <span class="status-badge status-completed">Completed</span>
+              </div>
+              <div class="mgmt-body">
+                <div class="mgmt-info-row">
+                  <span>Student ID:</span>
+                  <strong>#DSAI-2024-019</strong>
+                </div>
+                <div class="mgmt-info-row">
+                  <span>Attendance:</span>
+                  <strong>99%</strong>
+                </div>
+              </div>
+              <div class="mgmt-footer">
+                <button type="button" class="btn btn-status-toggle">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 4v6h-6"></path>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                  </svg>
+                  <span>Change Status</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Execution Trace Log & Educational Explanation -->
+          <div class="card realworld-explain-card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="4 17 10 11 4 5"></polyline>
+                  <line x1="12" y1="19" x2="20" y2="19"></line>
+                </svg>
+                Execution Trace & DOM Scoping
+              </h3>
+              <span class="badge-pill blue">Event Traversal</span>
+            </div>
+
+            <div class="explain-body">
+              <div class="concept-callout">
+                <h4>🎯 Why Traversal Matters Here:</h4>
+                <p>
+                  Instead of writing separate IDs or hardcoded functions for every single card, 
+                  one generic event listener uses <code>e.target.closest('.student-mgmt-card')</code> 
+                  to find the exact clicked card, then scopes <code>card.querySelector('.status-badge')</code> 
+                  to update only that element!
+                </p>
+              </div>
+
+              <!-- Live Step-by-Step Log -->
+              <div class="trace-log-panel">
+                <div class="trace-header">
+                  <span>Live Traversal Log</span>
+                  <span id="traceStatusBadge" class="trace-badge">Ready for Click</span>
+                </div>
+                <div id="traceLogContent" class="trace-log-steps">
+                  <div class="trace-step step-idle">
+                    <span class="step-num">⚡</span>
+                    <span class="step-desc">Click any "Change Status" button on the cards to trace the DOM traversal path...</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Code Implementation -->
+              <div class="code-box-header">
+                <span>The Production Pattern Used</span>
+              </div>
+              <pre class="code-display"><code>// 1. Traverse UP to the card component
+const card = e.target.closest('.student-mgmt-card');
+
+// 2. Query DOWN inside ONLY this card
+const badge = card.querySelector('.status-badge');
+
+// 3. Toggle status safely without touching other cards
+if (badge.textContent === 'Active') {
+  badge.textContent = 'Completed';
+  badge.className = 'status-badge status-completed';
+} else {
+  badge.textContent = 'Active';
+  badge.className = 'status-badge status-active';
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           6. DOM METHODS REFERENCE
+           ============================================== -->
+      <section id="reference" class="content-section">
+        <div class="section-title-wrap">
+          <div class="section-badge">Section 6</div>
+          <h2 class="section-title">DOM Methods Reference</h2>
+          <p class="section-desc">
+            Quick reference handbook for fundamental Document Object Model methods with code snippets and usage tips.
+          </p>
+        </div>
+
+        <div class="reference-grid">
+          
+          <!-- Method 1: createElement -->
+          <div class="card ref-card">
+            <div class="ref-header">
+              <span class="ref-method-badge create">Creation</span>
+              <h3 class="ref-title">document.createElement()</h3>
+            </div>
+            <p class="ref-description">
+              Creates a brand new HTML element node specified by tag name in browser memory.
+            </p>
+            <div class="ref-code">
+              <code>const div = document.createElement('div');</code>
+            </div>
+          </div>
+
+          <!-- Method 2: appendChild -->
+          <div class="card ref-card">
+            <div class="ref-header">
+              <span class="ref-method-badge insert">Insertion</span>
+              <h3 class="ref-title">parent.appendChild()</h3>
+            </div>
+            <p class="ref-description">
+              Appends a node as the last child of the specified parent element in the active document.
+            </p>
+            <div class="ref-code">
+              <code>parentElement.appendChild(childNode);</code>
+            </div>
+          </div>
+
+          <!-- Method 3: parentElement -->
+          <div class="card ref-card">
+            <div class="ref-header">
+              <span class="ref-method-badge traverse">Traversal</span>
+              <h3 class="ref-title">node.parentElement</h3>
+            </div>
+            <p class="ref-description">
+              Returns the immediate parent element of the current node, or <code>null</code> if none exists.
+            </p>
+            <div class="ref-code">
+              <code>const parent = child.parentElement;</code>
+            </div>
+          </div>
+
+          <!-- Method 4: children -->
+          <div class="card ref-card">
+            <div class="ref-header">
+              <span class="ref-method-badge traverse">Traversal</span>
+              <h3 class="ref-title">element.children</h3>
+            </div>
+            <p class="ref-description">
+              Returns a live HTMLCollection of all immediate child elements inside this element.
+            </p>
+            <div class="ref-code">
+              <code>const count = element.children.length;</code>
+            </div>
+          </div>
+
+          <!-- Method 5: nextElementSibling -->
+          <div class="card ref-card">
+            <div class="ref-header">
+              <span class="ref-method-badge traverse">Traversal</span>
+              <h3 class="ref-title">node.nextElementSibling</h3>
+            </div>
+            <p class="ref-description">
+              Returns the sibling element directly following this element in its parent's children list.
+            </p>
+            <div class="ref-code">
+              <code>const next = item.nextElementSibling;</code>
+            </div>
+          </div>
+
+          <!-- Method 6: previousElementSibling -->
+          <div class="card ref-card">
+            <div class="ref-header">
+              <span class="ref-method-badge traverse">Traversal</span>
+              <h3 class="ref-title">node.previousElementSibling</h3>
+            </div>
+            <p class="ref-description">
+              Returns the sibling element immediately preceding this element in the DOM tree.
+            </p>
+            <div class="ref-code">
+              <code>const prev = item.previousElementSibling;</code>
+            </div>
+          </div>
+
+          <!-- Method 7: querySelector -->
+          <div class="card ref-card">
+            <div class="ref-header">
+              <span class="ref-method-badge select">Selection</span>
+              <h3 class="ref-title">element.querySelector()</h3>
+            </div>
+            <p class="ref-description">
+              Returns the first element that matches a specified CSS selector within the scope.
+            </p>
+            <div class="ref-code">
+              <code>const title = card.querySelector('.title');</code>
+            </div>
+          </div>
+
+          <!-- Method 8: closest -->
+          <div class="card ref-card">
+            <div class="ref-header">
+              <span class="ref-method-badge select">Selection</span>
+              <h3 class="ref-title">element.closest()</h3>
+            </div>
+            <p class="ref-description">
+              Traverses up the DOM tree to find the closest ancestor element that matches the CSS selector.
+            </p>
+            <div class="ref-code">
+              <code>const card = btn.closest('.card-class');</code>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==============================================
+           7. FOOTER
+           ============================================== -->
+      <footer class="app-footer">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <div class="logo-icon small">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <div class="footer-title">DOM EXPLORER</div>
+          </div>
+          <div class="footer-tagline">
+            Understand. Create. Manipulate.
+          </div>
+          <p class="footer-copy">
+            &copy; 2026 DOM EXPLORER Educational Web Lab. Pure HTML5, CSS3 &amp; Vanilla JavaScript.
+          </p>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
