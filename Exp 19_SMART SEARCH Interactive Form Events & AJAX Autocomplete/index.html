@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMART SEARCH – Interactive Form Events & AJAX Autocomplete</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Layout Wrapper -->
+  <div class="app-layout">
+    
+    <!-- Mobile Navigation Toggle Header -->
+    <header class="mobile-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <path d="M11 8v6M8 11h6"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">SmartSearch</span>
+          <span class="brand-subtitle">DOM & AJAX Lab</span>
+        </div>
+      </div>
+      <button id="mobile-menu-btn" class="icon-btn" aria-label="Toggle Navigation Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Vertical Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <path d="M11 8v6M8 11h6"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">SmartSearch</span>
+            <span class="brand-tag">Interactive Hub</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <span class="nav-section-label">NAVIGATION</span>
+        <a href="#dashboard" class="nav-link active" data-section="dashboard">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+
+        <a href="#form-events" class="nav-link" data-section="form-events">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </span>
+          <span class="nav-label">Form Events</span>
+          <span class="nav-badge">Live</span>
+        </a>
+
+        <a href="#ajax-autocomplete" class="nav-link" data-section="ajax-autocomplete">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <span class="nav-label">AJAX Autocomplete</span>
+          <span class="nav-badge pulse">Fetch</span>
+        </a>
+
+        <a href="#event-monitor" class="nav-link" data-section="event-monitor">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </span>
+          <span class="nav-label">Event Monitor</span>
+          <span class="nav-pill" id="live-events-pill">0</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer Status & Quick Reset -->
+      <div class="sidebar-footer">
+        <div class="system-status-card">
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span class="status-text">Listeners Active</span>
+          </div>
+          <p class="status-desc">DOM Events & AJAX Fetch ready</p>
+        </div>
+        <button id="btn-sidebar-reset" class="btn btn-outline btn-full">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+          </svg>
+          <span>Reset Everything</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Backdrop for mobile drawer -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Action Bar -->
+      <div class="top-bar">
+        <div class="breadcrumb">
+          <span class="breadcrumb-root">Lab Application</span>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-active" id="current-section-title">Dashboard</span>
+        </div>
+        <div class="top-bar-actions">
+          <div class="badge-status">
+            <span class="pulse-indicator"></span>
+            Vanilla JS • Light Theme
+          </div>
+          <button id="btn-global-reset" class="btn btn-danger-soft btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+            <span>Reset Demo</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SECTION 1: DASHBOARD -->
+      <section id="dashboard" class="content-section">
+        <div class="hero-banner">
+          <div class="hero-content">
+            <div class="hero-chip">Interactive Web Development Experiment</div>
+            <h1 class="hero-title">SMART SEARCH – Interactive Form Events & AJAX Autocomplete</h1>
+            <p class="hero-subtitle">
+              Explore dynamic browser interactions in real time. Experience visual feedback on input focus, 
+              field blur validation, live keypress telemetry with special keys, and debounced asynchronous search autocomplete via the Fetch API.
+            </p>
+            <div class="hero-actions">
+              <a href="#form-events" class="btn btn-primary">
+                <span>Test Form Events</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <a href="#ajax-autocomplete" class="btn btn-secondary">
+                <span>Try AJAX Autocomplete</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="hero-graphic">
+            <div class="floating-badge badge-1">
+              <span class="badge-icon blue">⚡</span>
+              <div>
+                <strong>Focus & Blur</strong>
+                <small>Visual styles & validation</small>
+              </div>
+            </div>
+            <div class="floating-badge badge-2">
+              <span class="badge-icon purple">⌨️</span>
+              <div>
+                <strong>Keydown Telemetry</strong>
+                <small>Enter & Backspace triggers</small>
+              </div>
+            </div>
+            <div class="floating-badge badge-3">
+              <span class="badge-icon indigo">🔄</span>
+              <div>
+                <strong>Fetch() Autocomplete</strong>
+                <small>Debounced JSON streaming</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telemetry Metric Cards -->
+        <div class="metrics-grid">
+          <div class="metric-card metric-blue">
+            <div class="metric-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M6 16h12"></path>
+              </svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Keydown Presses</span>
+              <span class="metric-value" id="counter-keys">0</span>
+            </div>
+            <span class="metric-sparkle">keydown</span>
+          </div>
+
+          <div class="metric-card metric-purple">
+            <div class="metric-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="4"></circle>
+              </svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Focus Events</span>
+              <span class="metric-value" id="counter-focus">0</span>
+            </div>
+            <span class="metric-sparkle">focus</span>
+          </div>
+
+          <div class="metric-card metric-indigo">
+            <div class="metric-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Blur & Validations</span>
+              <span class="metric-value" id="counter-blur">0</span>
+            </div>
+            <span class="metric-sparkle">blur</span>
+          </div>
+
+          <div class="metric-card metric-teal">
+            <div class="metric-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">AJAX Fetch Calls</span>
+              <span class="metric-value" id="counter-ajax">0</span>
+            </div>
+            <span class="metric-sparkle">fetch()</span>
+          </div>
+        </div>
+
+        <!-- Quick Jump Feature Highlights -->
+        <div class="highlights-grid">
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <div class="feature-icon blue-bg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title">Real-Time Event Handlers</h3>
+            </div>
+            <p class="feature-desc">
+              Every focus, blur, and keydown action is captured using standard <code>addEventListener</code> to provide immediate visual feedback, border glowing, and inline validation alerts.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <div class="feature-icon purple-bg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <h3 class="feature-title">Debounced Fetch Engine</h3>
+            </div>
+            <p class="feature-desc">
+              Search queries are throttled with a 300ms debounce timer before executing asynchronous <code>fetch()</code> requests to ensure optimal performance and smooth UI rendering.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card-header">
+              <div class="feature-icon indigo-bg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </div>
+              <h3 class="feature-title">Live Preview & Telemetry</h3>
+            </div>
+            <p class="feature-desc">
+              Selecting any search suggestion immediately renders an interactive course card with syllabus tags, category badges, and quick action buttons.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: FORM EVENTS -->
+      <section id="form-events" class="content-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Interactive Form Events Demonstration</h2>
+            <p class="section-subtitle">Experience live DOM events: Focus effects, Blur validation logic, and Keydown keystroke tracking.</p>
+          </div>
+          <span class="badge-tag">DOM Event Listeners</span>
+        </div>
+
+        <div class="grid-two-columns">
+          <!-- Interactive Form Container -->
+          <div class="card form-demo-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <h3 class="card-title">User Registration Form</h3>
+                <span class="card-subtitle">Interact with fields to trigger Focus & Blur handlers</span>
+              </div>
+              <button id="btn-clear-form" class="btn btn-ghost btn-sm" title="Clear inputs">Clear Form</button>
+            </div>
+
+            <form id="interactive-demo-form" novalidate>
+              <!-- Full Name Field -->
+              <div class="form-group" id="group-fullname">
+                <label for="input-fullname" class="form-label">
+                  <span>Full Name</span>
+                  <span class="required-indicator">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <span class="input-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                  </span>
+                  <input 
+                    type="text" 
+                    id="input-fullname" 
+                    class="form-control" 
+                    placeholder="e.g. Alex Henderson" 
+                    autocomplete="name"
+                  >
+                  <span class="validation-status-icon" id="status-icon-fullname"></span>
+                </div>
+                <!-- Inline dynamic message element -->
+                <div class="field-feedback" id="feedback-fullname">
+                  <span class="feedback-badge default">Idle</span>
+                  <span class="feedback-text">Click or tab into this field to test the focus event.</span>
+                </div>
+              </div>
+
+              <!-- Email Address Field -->
+              <div class="form-group" id="group-email">
+                <label for="input-email" class="form-label">
+                  <span>Email Address</span>
+                  <span class="required-indicator">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <span class="input-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                  </span>
+                  <input 
+                    type="email" 
+                    id="input-email" 
+                    class="form-control" 
+                    placeholder="e.g. alex.henderson@example.com" 
+                    autocomplete="email"
+                  >
+                  <span class="validation-status-icon" id="status-icon-email"></span>
+                </div>
+                <!-- Inline dynamic message element -->
+                <div class="field-feedback" id="feedback-email">
+                  <span class="feedback-badge default">Idle</span>
+                  <span class="feedback-text">Field will validate email syntax when you blur away.</span>
+                </div>
+              </div>
+
+              <!-- Form Buttons -->
+              <div class="form-actions">
+                <button type="submit" id="btn-submit-form" class="btn btn-primary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Validate & Submit Demo</span>
+                </button>
+                <button type="button" id="btn-sample-data" class="btn btn-secondary">
+                  <span>Fill Sample Data</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Live Keydown Telemetry Card -->
+          <div class="card key-telemetry-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <h3 class="card-title">Live Keydown Inspector</h3>
+                <span class="card-subtitle">Real-time keystroke capture & special key detector</span>
+              </div>
+              <span class="telemetry-live-dot"></span>
+            </div>
+
+            <!-- Key Display Showcase -->
+            <div class="key-display-showcase">
+              <div class="key-capsule-wrapper">
+                <span class="key-capsule-label">LAST PRESSED KEY</span>
+                <div class="key-capsule" id="display-key-name">None</div>
+              </div>
+              
+              <div class="key-metrics-subgrid">
+                <div class="submetric-box">
+                  <span class="submetric-label">Key Code</span>
+                  <span class="submetric-value" id="display-key-code">—</span>
+                </div>
+                <div class="submetric-box">
+                  <span class="submetric-label">Location / Target</span>
+                  <span class="submetric-value" id="display-key-target">—</span>
+                </div>
+                <div class="submetric-box">
+                  <span class="submetric-label">Total Pressed</span>
+                  <span class="submetric-value" id="display-key-count">0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Special Key Alert Panel -->
+            <div class="special-key-panel" id="special-key-alert">
+              <div class="special-key-icon" id="special-key-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+              </div>
+              <div class="special-key-content">
+                <strong id="special-key-title">Awaiting keystroke...</strong>
+                <p id="special-key-desc">Press any key in any input field. Notice distinct alerts for <kbd>Enter</kbd> and <kbd>Backspace</kbd>.</p>
+              </div>
+            </div>
+
+            <!-- Keydown Guide Cards -->
+            <div class="key-guide-row">
+              <div class="key-pill-guide" id="guide-enter">
+                <kbd>Enter</kbd>
+                <span>Triggers submission / selection</span>
+              </div>
+              <div class="key-pill-guide" id="guide-backspace">
+                <kbd>Backspace</kbd>
+                <span>Deletes characters & clears</span>
+              </div>
+              <div class="key-pill-guide" id="guide-arrows">
+                <kbd>↑ / ↓</kbd>
+                <span>Navigates autocomplete items</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: AJAX AUTOCOMPLETE -->
+      <section id="ajax-autocomplete" class="content-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">AJAX Autocomplete Search</h2>
+            <p class="section-subtitle">Real-time debounced asynchronous search using vanilla JavaScript Fetch API and dynamic DOM injection.</p>
+          </div>
+          <span class="badge-tag">Fetch API Engine</span>
+        </div>
+
+        <div class="search-experience-wrapper">
+          <!-- Main Search Box Card -->
+          <div class="card search-card">
+            <div class="search-header-row">
+              <label for="ajax-search-input" class="search-label">Explore Technologies & Skills</label>
+              <div class="search-meta-indicators">
+                <span class="debounce-indicator" id="debounce-status-badge">
+                  <span class="dot-status"></span> Debounce: 300ms
+                </span>
+                <span class="fetch-counter-badge" id="fetch-status-badge">Fetch: Ready</span>
+              </div>
+            </div>
+
+            <!-- Search Input Container -->
+            <div class="search-control-container">
+              <div class="search-input-group" id="search-box-wrapper">
+                <!-- Search Icon -->
+                <span class="search-leading-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </span>
+
+                <!-- The Search Input -->
+                <input 
+                  type="text" 
+                  id="ajax-search-input" 
+                  class="search-input" 
+                  placeholder="Search courses, technologies, or skills..." 
+                  autocomplete="off" 
+                  spellcheck="false"
+                >
+
+                <!-- Search Trailing Actions (Spinner & Clear) -->
+                <div class="search-trailing-actions">
+                  <!-- Loading Spinner -->
+                  <div class="search-spinner" id="search-spinner" title="Querying asynchronous dataset...">
+                    <svg class="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                    </svg>
+                  </div>
+
+                  <!-- Clear Button -->
+                  <button type="button" id="btn-clear-search" class="clear-search-btn" title="Clear search query" aria-label="Clear Search">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Search Helper Message below input -->
+              <div class="field-feedback" id="feedback-search">
+                <span class="feedback-badge default">Idle</span>
+                <span class="feedback-text">Start typing e.g. "Java", "Python", "Web", "Data"...</span>
+              </div>
+
+              <!-- Dynamic Dropdown Menu -->
+              <div class="dropdown-wrapper" id="dropdown-wrapper">
+                <div class="dropdown-header">
+                  <span id="dropdown-count-label">Suggestions</span>
+                  <span class="dropdown-nav-hint">Use ↑ ↓ to navigate, Enter to choose, Esc to close</span>
+                </div>
+                <ul class="suggestions-list" id="suggestions-list" role="listbox">
+                  <!-- Suggestions injected dynamically via JS Fetch -->
+                </ul>
+                <div class="no-results-view" id="no-results-view">
+                  <div class="no-results-icon">🔍</div>
+                  <h4 class="no-results-title">No matching courses found</h4>
+                  <p class="no-results-desc">We couldn't find anything matching your search term. Try searching for "Python", "Machine Learning", "CSS", or "HTML".</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Suggestions Tags -->
+            <div class="quick-tags-container">
+              <span class="quick-tags-title">Quick Try:</span>
+              <div class="tags-cluster">
+                <button type="button" class="sample-tag" data-query="Python">Python</button>
+                <button type="button" class="sample-tag" data-query="JavaScript">JavaScript</button>
+                <button type="button" class="sample-tag" data-query="Machine Learning">Machine Learning</button>
+                <button type="button" class="sample-tag" data-query="HTML">HTML</button>
+                <button type="button" class="sample-tag" data-query="Data Science">Data Science</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search Result Preview Card (revealed upon suggestion selection) -->
+          <div class="card result-preview-card" id="search-result-preview">
+            <div class="preview-empty-state" id="preview-empty-state">
+              <div class="preview-empty-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <h3 class="preview-empty-title">Selection Preview Inspector</h3>
+              <p class="preview-empty-desc">Select any autocomplete suggestion above to inspect full course metadata, key syllabus modules, and topic details.</p>
+            </div>
+
+            <!-- Active Course Details -->
+            <div class="preview-content" id="preview-active-content">
+              <div class="preview-top-row">
+                <div class="preview-badge-category" id="preview-category">Technology</div>
+                <div class="preview-level-badge" id="preview-level">Beginner to Advanced</div>
+              </div>
+              
+              <div class="preview-header-meta">
+                <div class="preview-icon-box" id="preview-icon-box">💻</div>
+                <div>
+                  <h3 class="preview-title" id="preview-title">Python Programming</h3>
+                  <span class="preview-id" id="preview-code">COURSE-ID: #PY-101</span>
+                </div>
+              </div>
+
+              <p class="preview-description" id="preview-description">
+                Comprehensive programming guide covering syntax, object-oriented concepts, libraries, and practical scripting.
+              </p>
+
+              <div class="preview-syllabus-section">
+                <span class="preview-subheading">Core Modules & Competencies</span>
+                <div class="syllabus-tags" id="preview-modules">
+                  <!-- Injected via JS -->
+                </div>
+              </div>
+
+              <div class="preview-meta-grid">
+                <div class="preview-meta-item">
+                  <span class="meta-label">Duration</span>
+                  <span class="meta-value" id="preview-duration">8 Weeks</span>
+                </div>
+                <div class="preview-meta-item">
+                  <span class="meta-label">Prerequisites</span>
+                  <span class="meta-value" id="preview-prereq">None (Beginner Friendly)</span>
+                </div>
+                <div class="preview-meta-item">
+                  <span class="meta-label">Fetch Source</span>
+                  <span class="meta-value" id="preview-source">Asynchronous Data URL</span>
+                </div>
+              </div>
+
+              <div class="preview-footer-actions">
+                <button type="button" class="btn btn-primary btn-sm" id="btn-copy-preview">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span>Copy Selection</span>
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" id="btn-dismiss-preview">
+                  <span>Close Preview</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: EVENT MONITOR & ACTIVITY LOG -->
+      <section id="event-monitor" class="content-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Live Event Activity Monitor</h2>
+            <p class="section-subtitle">Real-time chronological timeline tracking DOM event dispatches, parameters, and network fetch calls.</p>
+          </div>
+          <div class="header-controls">
+            <button id="btn-clear-log" class="btn btn-outline btn-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              <span>Clear Activity Log</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="card event-log-card">
+          <!-- Filter Tabs -->
+          <div class="log-toolbar">
+            <div class="filter-tabs" id="log-filter-group">
+              <button class="filter-chip active" data-filter="all">All Events (<span id="count-filter-all">0</span>)</button>
+              <button class="filter-chip" data-filter="focus">Focus (<span id="count-filter-focus">0</span>)</button>
+              <button class="filter-chip" data-filter="blur">Blur (<span id="count-filter-blur">0</span>)</button>
+              <button class="filter-chip" data-filter="keydown">Keydown (<span id="count-filter-keydown">0</span>)</button>
+              <button class="filter-chip" data-filter="ajax">Fetch / AJAX (<span id="count-filter-ajax">0</span>)</button>
+            </div>
+            <div class="log-stream-status">
+              <span class="pulse-indicator"></span>
+              <span>Streaming DOM Dispatches</span>
+            </div>
+          </div>
+
+          <!-- Log Activity Container -->
+          <div class="log-stream-container" id="log-stream-container">
+            <div class="log-list" id="log-list">
+              <!-- Log Items inserted here dynamically -->
+            </div>
+            
+            <div class="empty-log-state" id="empty-log-state">
+              <div class="empty-log-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <p>No events logged yet. Click into form fields or type in search to generate real-time event telemetry.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- App Footer -->
+      <footer class="app-footer">
+        <p>SMART SEARCH – Interactive Form Events & AJAX Autocomplete Laboratory</p>
+        <span class="footer-badge">Built with HTML5, CSS3, & Pure Vanilla JavaScript</span>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Vanilla JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
