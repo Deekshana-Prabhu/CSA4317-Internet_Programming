@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PASSGUARD – Password Strength &amp; Regex Validator</title>
+  <meta name="description" content="Test password security and explore JavaScript Regular Expressions with PASSGUARD. Real-time validation, strength checking, and interactive RegExp method testing.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Mobile Navigation Header -->
+  <header class="mobile-header">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
+      </div>
+      <span class="brand-name">PASSGUARD</span>
+    </div>
+    <button id="mobileMenuBtn" class="mobile-toggle-btn" aria-label="Toggle navigation menu">
+      <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Sidebar Overlay for Mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Left Sidebar Navigation -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">PASSGUARD</span>
+          <span class="brand-badge">Regex Engine</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li>
+          <a href="#home" class="nav-link active" data-section="home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="#validator" class="nav-link" data-section="validator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>Password Validator</span>
+          </a>
+        </li>
+        <li>
+          <a href="#examples" class="nav-link" data-section="examples">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <span>Regex Examples</span>
+          </a>
+        </li>
+        <li>
+          <a href="#methods" class="nav-link" data-section="methods">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+            <span>Regex Methods</span>
+          </a>
+        </li>
+        <li>
+          <a href="#about" class="nav-link" data-section="about">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span>About</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="privacy-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>100% Client-Side. No data stored or sent.</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-content">
+
+    <!-- 1. HOME SECTION -->
+    <section id="home" class="content-section hero-section">
+      <div class="hero-container">
+        <div class="hero-text-col">
+          <div class="pill-badge">
+            <span class="pill-dot"></span>
+            <span>Client-Side Security Validator</span>
+          </div>
+          <h1 class="hero-title">Create a <span class="gradient-text">Strong Password</span></h1>
+          <p class="hero-subtitle">
+            Test password security using JavaScript Regular Expressions. Real-time requirement matching, progressive entropy assessment, and interactive RegExp pattern analysis.
+          </p>
+          <div class="hero-actions">
+            <a href="#validator" class="btn btn-primary" id="startValidationBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+              <span>Start Validation</span>
+            </a>
+            <a href="#methods" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              <span>Explore Regex Methods</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-graphic-col">
+          <div class="hero-illustration-wrapper">
+            <div class="illustration-glow"></div>
+            <!-- Security Shield & Lock Vector Illustration -->
+            <svg class="hero-svg" viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="shieldGrad" x1="50" y1="20" x2="350" y2="340" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#3b82f6" />
+                  <stop offset="50%" stop-color="#6366f1" />
+                  <stop offset="100%" stop-color="#0d9488" />
+                </linearGradient>
+                <linearGradient id="shieldInner" x1="100" y1="50" x2="300" y2="300" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+                  <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.85" />
+                </linearGradient>
+                <linearGradient id="accentTeal" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#14b8a6"/>
+                  <stop offset="100%" stop-color="#0d9488"/>
+                </linearGradient>
+                <filter id="shadowFilter" x="-10%" y="-10%" width="130%" height="130%">
+                  <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#6366f1" flood-opacity="0.22" />
+                </filter>
+              </defs>
+
+              <!-- Concentric Radar / Security Rings -->
+              <circle cx="200" cy="180" r="160" stroke="#e0e7ff" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.8"/>
+              <circle cx="200" cy="180" r="130" stroke="#ccfbf1" stroke-width="1.5" opacity="0.7"/>
+
+              <!-- Outer Shield with Glow Drop Shadow -->
+              <path d="M200 40 L310 85 C310 190 260 270 200 310 C140 270 90 190 90 85 Z" 
+                    fill="url(#shieldGrad)" filter="url(#shadowFilter)" />
+
+              <!-- Inner Glass Shield -->
+              <path d="M200 58 L294 96 C294 186 250 254 200 290 C150 254 106 186 106 96 Z" 
+                    fill="url(#shieldInner)" stroke="#ffffff" stroke-width="3" />
+
+              <!-- Shield Pattern Accents -->
+              <path d="M200 68 V280" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <path d="M116 170 H284" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+              <!-- Lock Body -->
+              <rect x="160" y="170" width="80" height="66" rx="14" fill="#0f172a"/>
+              <rect x="165" y="175" width="70" height="56" rx="10" fill="#1e293b"/>
+              
+              <!-- Lock Shackle -->
+              <path d="M174 170 V140 C174 125 186 114 200 114 C214 114 226 125 226 140 V170" 
+                    stroke="url(#shieldGrad)" stroke-width="12" stroke-linecap="round"/>
+
+              <!-- Keyhole -->
+              <circle cx="200" cy="198" r="7" fill="#38bdf8"/>
+              <path d="M197 202 L195 218 H205 L203 202 Z" fill="#38bdf8"/>
+
+              <!-- Floating Cyber Security Badges -->
+              <!-- Badge 1: Top Left Check -->
+              <g class="float-badge float-badge-1">
+                <rect x="35" y="100" width="105" height="42" rx="21" fill="#ffffff" filter="drop-shadow(0 6px 12px rgba(16, 185, 129, 0.15))" stroke="#e2e8f0"/>
+                <circle cx="56" cy="121" r="13" fill="#10b981"/>
+                <path d="M51 121 L54 124 L62 116" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="76" y="125" fill="#0f172a" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700">Verified</text>
+              </g>
+
+              <!-- Badge 2: Bottom Right Regex Token -->
+              <g class="float-badge float-badge-2">
+                <rect x="255" y="220" width="125" height="42" rx="21" fill="#ffffff" filter="drop-shadow(0 6px 12px rgba(99, 102, 241, 0.18))" stroke="#e2e8f0"/>
+                <circle cx="276" cy="241" r="13" fill="#6366f1"/>
+                <text x="270" y="246" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">.*</text>
+                <text x="296" y="246" fill="#0f172a" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700">/[A-Z]/</text>
+              </g>
+
+              <!-- Badge 3: Top Right Lock / 256-bit -->
+              <g class="float-badge float-badge-3">
+                <rect x="260" y="45" width="110" height="38" rx="19" fill="#ffffff" filter="drop-shadow(0 6px 12px rgba(14, 165, 233, 0.15))" stroke="#e2e8f0"/>
+                <circle cx="280" cy="64" r="12" fill="#0ea5e9"/>
+                <path d="M276 66 V62 C276 59.8 277.8 58 280 58 C282.2 58 284 59.8 284 62 V66" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                <rect x="274" y="66" width="12" height="9" rx="2" fill="#ffffff"/>
+                <text x="299" y="68" fill="#0f172a" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700">256-Bit</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Cards -->
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon icon-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="feature-title">Password Validation</h3>
+          <p class="feature-desc">
+            Granular evaluation using targeted regular expressions for minimum length, character classes, uppercase, lowercase, and digits.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon icon-purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="feature-title">Strength Checker</h3>
+          <p class="feature-desc">
+            Visual multi-stage progress meter computing password entropy dynamically with Weak, Medium, and Strong security classifications.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon icon-teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <h3 class="feature-title">Regex Methods</h3>
+          <p class="feature-desc">
+            Interactive playground demonstrating JavaScript RegExp native methods: <code class="inline-code">test()</code>, <code class="inline-code">exec()</code>, and <code class="inline-code">toString()</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PASSWORD VALIDATION SECTION -->
+    <section id="validator" class="content-section">
+      <div class="section-header">
+        <div class="section-tag">Core Engine</div>
+        <h2 class="section-title">Password Strength Checker</h2>
+        <p class="section-subtitle">
+          Enter a password below to test its strength and watch the regular expression checklist evaluate in real-time.
+        </p>
+      </div>
+
+      <div class="validator-card">
+        <div class="input-group-wrapper">
+          <label for="passwordInput" class="input-label">Password Input</label>
+          <div class="password-input-container">
+            <div class="input-icon-left">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <input 
+              type="password" 
+              id="passwordInput" 
+              class="password-input" 
+              placeholder="Enter your password" 
+              autocomplete="new-password"
+              spellcheck="false"
+            >
+            <button type="button" id="togglePasswordBtn" class="toggle-password-btn" aria-label="Show password" title="Show or hide password">
+              <!-- Eye open icon (default) -->
+              <svg id="eyeIcon" class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <!-- Eye off icon (hidden initially) -->
+              <svg id="eyeOffIcon" class="eye-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Controls: Validate and Reset Buttons -->
+        <div class="action-buttons-row">
+          <button type="button" id="validateBtn" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <span>Validate Password</span>
+          </button>
+          <button type="button" id="resetBtn" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2.5 2v6h6M21.5 22v-6h-6"/>
+              <path d="M22 11.5A10 10 0 0 0 3.2 7.2L2.5 8M2 12.5a10 10 0 0 0 18.8 4.3l.7-.8"/>
+            </svg>
+            <span>Reset</span>
+          </button>
+        </div>
+
+        <!-- Password Strength Meter -->
+        <div class="strength-meter-section">
+          <div class="strength-label-row">
+            <span class="strength-caption">Password Strength:</span>
+            <span id="strengthText" class="strength-status-badge badge-neutral">Awaiting Input</span>
+          </div>
+          <div class="strength-track">
+            <div id="strengthBar" class="strength-bar-fill"></div>
+          </div>
+          <div class="strength-indicators">
+            <span class="indicator-mark indicator-weak" id="markWeak">Weak</span>
+            <span class="indicator-mark indicator-medium" id="markMedium">Medium</span>
+            <span class="indicator-mark indicator-strong" id="markStrong">Strong</span>
+          </div>
+        </div>
+
+        <!-- Status Message Banner -->
+        <div id="validationAlert" class="validation-alert hidden" role="alert">
+          <div class="alert-icon" id="alertIcon"></div>
+          <div class="alert-content">
+            <h4 class="alert-title" id="alertTitle">Validation Result</h4>
+            <p class="alert-message" id="alertMessage"></p>
+          </div>
+        </div>
+
+        <!-- Requirements Checklist -->
+        <div class="checklist-card">
+          <h3 class="checklist-title">Password Requirements Checklist</h3>
+          <p class="checklist-subtext">Each condition is tested instantly using specialized JavaScript regular expressions:</p>
+          
+          <ul class="requirements-list" id="requirementsList">
+            <li class="req-item" id="req-length" data-rule="length">
+              <div class="req-status-icon">
+                <!-- Neutral dot default -->
+                <svg class="icon-neutral" viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="6"/>
+                </svg>
+                <!-- Pass tick icon -->
+                <svg class="icon-pass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <!-- Fail cross icon -->
+                <svg class="icon-fail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <div class="req-info">
+                <span class="req-name">Minimum 8 characters</span>
+                <span class="req-regex"><code class="regex-tag">/.{8,}/</code></span>
+              </div>
+            </li>
+
+            <li class="req-item" id="req-upper" data-rule="upper">
+              <div class="req-status-icon">
+                <svg class="icon-neutral" viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="6"/>
+                </svg>
+                <svg class="icon-pass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <svg class="icon-fail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <div class="req-info">
+                <span class="req-name">At least one uppercase letter (A-Z)</span>
+                <span class="req-regex"><code class="regex-tag">/[A-Z]/</code></span>
+              </div>
+            </li>
+
+            <li class="req-item" id="req-lower" data-rule="lower">
+              <div class="req-status-icon">
+                <svg class="icon-neutral" viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="6"/>
+                </svg>
+                <svg class="icon-pass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <svg class="icon-fail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <div class="req-info">
+                <span class="req-name">At least one lowercase letter (a-z)</span>
+                <span class="req-regex"><code class="regex-tag">/[a-z]/</code></span>
+              </div>
+            </li>
+
+            <li class="req-item" id="req-number" data-rule="number">
+              <div class="req-status-icon">
+                <svg class="icon-neutral" viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="6"/>
+                </svg>
+                <svg class="icon-pass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <svg class="icon-fail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </div>
+              <div class="req-info">
+                <span class="req-name">At least one number (0-9)</span>
+                <span class="req-regex"><code class="regex-tag">/[0-9]/</code></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="security-disclaimer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span>Privacy Guaranteed: Passwords evaluated locally in memory. Zero external server transmissions.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. REGEX EXAMPLES SECTION -->
+    <section id="examples" class="content-section">
+      <div class="section-header">
+        <div class="section-tag">Syntax Breakdown</div>
+        <h2 class="section-title">Regex Patterns &amp; Examples</h2>
+        <p class="section-subtitle">
+          Understand how the combined regular expression works and click any test case to run it through the live validator.
+        </p>
+      </div>
+
+      <!-- Combined Pattern Code Card -->
+      <div class="code-card">
+        <div class="code-card-header">
+          <div class="code-card-title">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-label">Combined JavaScript Regex Pattern</span>
+          </div>
+          <button id="copyPatternBtn" class="copy-code-btn" title="Copy pattern to clipboard">
+            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <div class="code-card-body">
+          <pre class="code-display"><code>/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/</code></pre>
+        </div>
+      </div>
+
+      <!-- Pattern Parts Breakdown -->
+      <div class="breakdown-grid">
+        <div class="breakdown-item">
+          <div class="token-badge">^</div>
+          <div class="token-desc">
+            <strong>Start of String:</strong> Asserts the matching position starts at the beginning of the text.
+          </div>
+        </div>
+        <div class="breakdown-item">
+          <div class="token-badge">(?=.*[a-z])</div>
+          <div class="token-desc">
+            <strong>Positive Lookahead:</strong> Asserts that at least one lowercase letter (<code class="inline-code">a-z</code>) appears anywhere.
+          </div>
+        </div>
+        <div class="breakdown-item">
+          <div class="token-badge">(?=.*[A-Z])</div>
+          <div class="token-desc">
+            <strong>Positive Lookahead:</strong> Asserts that at least one uppercase letter (<code class="inline-code">A-Z</code>) appears anywhere.
+          </div>
+        </div>
+        <div class="breakdown-item">
+          <div class="token-badge">(?=.*\d)</div>
+          <div class="token-desc">
+            <strong>Positive Lookahead:</strong> Asserts that at least one digit (<code class="inline-code">0-9</code> or <code class="inline-code">\d</code>) appears anywhere.
+          </div>
+        </div>
+        <div class="breakdown-item">
+          <div class="token-badge">.{8,}</div>
+          <div class="token-desc">
+            <strong>Quantifier:</strong> Matches any character (except line breaks) with a minimum length of 8 characters.
+          </div>
+        </div>
+        <div class="breakdown-item">
+          <div class="token-badge">$</div>
+          <div class="token-desc">
+            <strong>End of String:</strong> Asserts the matching position ends at the conclusion of the string.
+          </div>
+        </div>
+      </div>
+
+      <!-- Example Passwords Grid with "Try Example" buttons -->
+      <h3 class="subsection-title">Test Example Passwords</h3>
+      <div class="examples-grid">
+        <!-- Example 1 -->
+        <div class="example-card invalid-card">
+          <div class="example-header">
+            <span class="example-tag tag-invalid">Invalid</span>
+            <span class="example-reason">No Uppercase Letter</span>
+          </div>
+          <div class="example-value">hello123</div>
+          <p class="example-detail">Contains lowercase letters, digits, and has 8 characters, but lacks an uppercase letter (A-Z).</p>
+          <button type="button" class="btn btn-sm btn-example" data-password="hello123">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Try Example</span>
+          </button>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="example-card invalid-card">
+          <div class="example-header">
+            <span class="example-tag tag-invalid">Invalid</span>
+            <span class="example-reason">No Lowercase Letter</span>
+          </div>
+          <div class="example-value">HELLO123</div>
+          <p class="example-detail">Contains uppercase letters, digits, and has 8 characters, but lacks a lowercase letter (a-z).</p>
+          <button type="button" class="btn btn-sm btn-example" data-password="HELLO123">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Try Example</span>
+          </button>
+        </div>
+
+        <!-- Example 3 -->
+        <div class="example-card invalid-card">
+          <div class="example-header">
+            <span class="example-tag tag-invalid">Invalid</span>
+            <span class="example-reason">No Number</span>
+          </div>
+          <div class="example-value">HelloABC</div>
+          <p class="example-detail">Contains uppercase letters, lowercase letters, and has 8 characters, but lacks a digit (0-9).</p>
+          <button type="button" class="btn btn-sm btn-example" data-password="HelloABC">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Try Example</span>
+          </button>
+        </div>
+
+        <!-- Example 4 -->
+        <div class="example-card valid-card">
+          <div class="example-header">
+            <span class="example-tag tag-valid">Valid</span>
+            <span class="example-reason">Meets All Criteria</span>
+          </div>
+          <div class="example-value">Hello123</div>
+          <p class="example-detail">Contains uppercase (H), lowercase (ello), digits (123), and meets the minimum 8-character length.</p>
+          <button type="button" class="btn btn-sm btn-example" data-password="Hello123">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Try Example</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. REGEXP METHODS SECTION -->
+    <section id="methods" class="content-section">
+      <div class="section-header">
+        <div class="section-tag">JavaScript API</div>
+        <h2 class="section-title">RegExp Object Methods</h2>
+        <p class="section-subtitle">
+          JavaScript provides three primary native methods on regular expression instances to test patterns, extract matches, and inspect representations.
+        </p>
+      </div>
+
+      <!-- Three Info Cards -->
+      <div class="methods-info-grid">
+        <!-- Card 1: test() -->
+        <div class="method-card">
+          <div class="method-badge badge-method-blue">Boolean Search</div>
+          <h3 class="method-name"><code>RegExp.prototype.test()</code></h3>
+          <p class="method-description">
+            Executes a search for a match between a regular expression and a specified string. Returns <code class="inline-code">true</code> if a match exists; otherwise returns <code class="inline-code">false</code>.
+          </p>
+          <div class="method-code-box">
+            <div class="code-line"><span class="code-comment">// Check for uppercase letter:</span></div>
+            <div class="code-line"><span class="code-regex">/[A-Z]/</span>.<span class="code-fn">test</span>(<span class="code-str">"Hello123"</span>);</div>
+            <div class="code-line result-line"><span class="code-arrow">➜</span> <span class="code-boolean">true</span></div>
+          </div>
+        </div>
+
+        <!-- Card 2: exec() -->
+        <div class="method-card">
+          <div class="method-badge badge-method-purple">Match Extraction</div>
+          <h3 class="method-name"><code>RegExp.prototype.exec()</code></h3>
+          <p class="method-description">
+            Searches for a match in a specified string. Returns a result array containing match details, capture groups, index, and input text, or <code class="inline-code">null</code> if no match is found.
+          </p>
+          <div class="method-code-box">
+            <div class="code-line"><span class="code-comment">// Extract match details:</span></div>
+            <div class="code-line"><span class="code-regex">/[A-Z]/</span>.<span class="code-fn">exec</span>(<span class="code-str">"Hello123"</span>);</div>
+            <div class="code-line result-line"><span class="code-arrow">➜</span> <span class="code-arr">["H"]</span> <span class="code-meta">(index: 0)</span></div>
+          </div>
+        </div>
+
+        <!-- Card 3: toString() -->
+        <div class="method-card">
+          <div class="method-badge badge-method-teal">String Representation</div>
+          <h3 class="method-name"><code>RegExp.prototype.toString()</code></h3>
+          <p class="method-description">
+            Returns a string representing the regular expression literal, including the enclosing slashes and any active configuration flags.
+          </p>
+          <div class="method-code-box">
+            <div class="code-line"><span class="code-comment">// Convert pattern to string:</span></div>
+            <div class="code-line"><span class="code-regex">/[A-Z]/</span>.<span class="code-fn">toString</span>();</div>
+            <div class="code-line result-line"><span class="code-arrow">➜</span> <span class="code-str">"/[A-Z]/"</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Demonstration Sandbox -->
+      <div class="sandbox-card">
+        <div class="sandbox-header">
+          <div class="sandbox-title-wrap">
+            <div class="sandbox-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </div>
+            <div>
+              <h3 class="sandbox-heading">Interactive Regex Method Playground</h3>
+              <p class="sandbox-subtext">Test custom patterns and evaluate <code class="inline-code">test()</code>, <code class="inline-code">exec()</code>, and <code class="inline-code">toString()</code> live.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Presets Bar -->
+        <div class="presets-row">
+          <span class="preset-label">Quick Presets:</span>
+          <button type="button" class="preset-btn" data-pattern="[A-Z]" data-text="Hello123" data-flags="">Uppercase [A-Z]</button>
+          <button type="button" class="preset-btn" data-pattern="[0-9]+" data-text="Hello123" data-flags="">Digits [0-9]+</button>
+          <button type="button" class="preset-btn" data-pattern="^[a-zA-Z0-9]{8,}$" data-text="Password2026" data-flags="">Alphanumeric 8+</button>
+          <button type="button" class="preset-btn" data-pattern="(?=.*[a-z])(?=.*[A-Z])" data-text="SecretCode" data-flags="">Lookahead Both</button>
+        </div>
+
+        <div class="sandbox-inputs-grid">
+          <!-- Sample Text Input -->
+          <div class="form-group">
+            <label for="sampleTextInput" class="form-label">
+              <span>Sample Text</span>
+              <span class="label-hint">The target string to search</span>
+            </label>
+            <input 
+              type="text" 
+              id="sampleTextInput" 
+              class="form-control" 
+              placeholder="e.g. Hello123" 
+              value="Hello123"
+            >
+          </div>
+
+          <!-- Regex Pattern Input -->
+          <div class="form-group">
+            <label for="regexPatternInput" class="form-label">
+              <span>Regex Pattern</span>
+              <span class="label-hint">Pattern with optional /slashes/</span>
+            </label>
+            <div class="pattern-input-group">
+              <input 
+                type="text" 
+                id="regexPatternInput" 
+                class="form-control code-font" 
+                placeholder="e.g. [A-Z] or /[0-9]/" 
+                value="[A-Z]"
+              >
+              <input 
+                type="text" 
+                id="regexFlagsInput" 
+                class="form-control flags-control code-font" 
+                placeholder="flags (g, i)" 
+                value="" 
+                title="Optional regex flags: g, i, m"
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Execute Button -->
+        <div class="sandbox-action-row">
+          <button type="button" id="testPatternBtn" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+            <span>Test Pattern</span>
+          </button>
+          <button type="button" id="resetSandboxBtn" class="btn btn-outline">
+            <span>Reset Demo</span>
+          </button>
+        </div>
+
+        <!-- Error Banner (Safe Validation) -->
+        <div id="sandboxError" class="sandbox-error hidden" role="alert">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <div class="error-text-wrap">
+            <strong class="error-heading">Invalid Regular Expression:</strong>
+            <span id="sandboxErrorMessage" class="error-msg-body"></span>
+          </div>
+        </div>
+
+        <!-- Match Result Highlights -->
+        <div class="match-preview-box">
+          <div class="preview-header">
+            <span class="preview-title">Visual Match Highlight in Sample Text:</span>
+            <span id="matchStatusBadge" class="status-pill status-found">Match Found</span>
+          </div>
+          <div id="highlightedOutput" class="highlight-display">
+            <span class="match-chip">H</span>ello123
+          </div>
+        </div>
+
+        <!-- Method Results Outputs -->
+        <div class="results-output-grid">
+          <!-- test() Result Card -->
+          <div class="output-card">
+            <div class="output-card-header">
+              <span class="output-badge badge-blue">test() Output</span>
+              <span class="output-type">Boolean</span>
+            </div>
+            <div class="output-card-body">
+              <div class="output-code">
+                <span class="out-expr" id="testCallExpr">/[A-Z]/.test("Hello123")</span>
+                <span class="out-separator">=&gt;</span>
+                <span id="testResultVal" class="out-result res-true">true</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- exec() Result Card -->
+          <div class="output-card">
+            <div class="output-card-header">
+              <span class="output-badge badge-purple">exec() Output</span>
+              <span class="output-type">Array | null</span>
+            </div>
+            <div class="output-card-body">
+              <div class="output-code">
+                <span class="out-expr" id="execCallExpr">/[A-Z]/.exec("Hello123")</span>
+                <span class="out-separator">=&gt;</span>
+                <pre id="execResultVal" class="out-result-json">["H"]</pre>
+              </div>
+              <div id="execDetails" class="exec-meta">
+                <span>Matched Text: <strong id="execMatchText">"H"</strong></span>
+                <span>Index: <strong id="execMatchIndex">0</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- toString() Result Card -->
+          <div class="output-card full-width">
+            <div class="output-card-header">
+              <span class="output-badge badge-teal">toString() Output</span>
+              <span class="output-type">String</span>
+            </div>
+            <div class="output-card-body">
+              <div class="output-code">
+                <span class="out-expr" id="toStringCallExpr">regex.toString()</span>
+                <span class="out-separator">=&gt;</span>
+                <span id="toStringResultVal" class="out-result res-str">"/[A-Z]/"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. WHY REGULAR EXPRESSIONS? -->
+    <section id="about" class="content-section">
+      <div class="section-header">
+        <div class="section-tag">Theory &amp; Practical Applications</div>
+        <h2 class="section-title">Why Regular Expressions?</h2>
+        <p class="section-subtitle">
+          Regular expressions (RegExp) are formal pattern descriptions used to search, extract, match, and validate text across computing.
+        </p>
+      </div>
+
+      <div class="theory-intro-card">
+        <div class="intro-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+        </div>
+        <div class="intro-content">
+          <h3 class="intro-title">Declarative Pattern Matching Power</h3>
+          <p class="intro-text">
+            Without regular expressions, checking whether an input contains numbers, uppercase letters, and valid characters requires dozens of nested loops and manual ASCII code checks. With regular expressions, a single standardized pattern validates complex criteria in milliseconds with minimal, readable, and highly maintainable code.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3 Practical Uses -->
+      <h3 class="subsection-title">Three Practical Real-World Uses</h3>
+      <div class="practical-uses-grid">
+        <!-- Practical Use 1 -->
+        <div class="use-case-card">
+          <div class="use-case-icon icon-purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h4 class="use-case-title">1. Password Validation</h4>
+          <p class="use-case-desc">
+            Enforces security policies during user account registration by checking for length, uppercase characters, digits, and special symbols before hashing.
+          </p>
+          <div class="use-case-pattern">
+            <code>/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/</code>
+          </div>
+        </div>
+
+        <!-- Practical Use 2 -->
+        <div class="use-case-card">
+          <div class="use-case-icon icon-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <h4 class="use-case-title">2. Email Validation</h4>
+          <p class="use-case-desc">
+            Validates format syntax for email addresses ensuring valid user identifiers, the required <code class="inline-code">@</code> symbol, domain names, and top-level domains.
+          </p>
+          <div class="use-case-pattern">
+            <code>/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/</code>
+          </div>
+        </div>
+
+        <!-- Practical Use 3 -->
+        <div class="use-case-card">
+          <div class="use-case-icon icon-teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <h4 class="use-case-title">3. Phone Number Validation</h4>
+          <p class="use-case-desc">
+            Matches international and national phone formats, accounting for optional country dialing codes, area groupings, spaces, and hyphens.
+          </p>
+          <div class="use-case-pattern">
+            <code>/^\+?[0-9]{1,4}?[-.\s]?(\(?\d{1,3}?\)?[-.\s]?)?[\d-.\s]{7,10}$/</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+              <span>PASSGUARD</span>
+            </div>
+            <p class="footer-title">Password Security Checker</p>
+            <p class="footer-tagline">Secure. Validate. Protect.</p>
+          </div>
+          <div class="footer-links-group">
+            <h5 class="footer-nav-title">Quick Links</h5>
+            <ul class="footer-nav">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#validator">Password Validator</a></li>
+              <li><a href="#examples">Regex Examples</a></li>
+              <li><a href="#methods">RegExp Methods</a></li>
+              <li><a href="#about">Why Regular Expressions</a></li>
+            </ul>
+          </div>
+          <div class="footer-security-note">
+            <h5 class="footer-nav-title">Security &amp; Privacy</h5>
+            <p class="security-p">
+              All regular expressions run strictly inside your browser instance. Zero passwords or queries are transmitted or logged.
+            </p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="copyright-text">
+            &copy; 2026 PASSGUARD – Web Technology &amp; Information Security Laboratory. All rights reserved.
+          </p>
+          <p class="tech-stack-text">
+            Built with HTML5 &bull; CSS3 &bull; Vanilla JavaScript RegExp Engine
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
